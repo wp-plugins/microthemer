@@ -1,0 +1,13 @@
+/*** IE Only CSS ***/
+
+/* Microthemer UI Form Fields */
+#tvr-ui .property-fields input,
+#tvr-ui .property-fields select {
+	width:112px; /* IE9 actual width = 106 (-6px) */
+}
+#tvr-ui .input-span-2 select {
+	width:241px;
+}
+#tvr-ui .input-span-3 select {
+	width:369px;
+}

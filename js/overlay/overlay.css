@@ -1,0 +1,35 @@
+.tvr-margin-overlay, 
+.tvr-padding-overlay, 
+.tvr-content-overlay, 
+.tvr-border-overlay { position: absolute; opacity: 0.4; -moz-opacity:0.4; filter:alpha(opacity=40); }
+
+.tvr-padding-overlay { top: 0; left: 0; height: 100%; width: 100%; }
+
+/* colors from firebug overlay */
+.tvr-margin-overlay   { background-color: rgb(241, 255, 131); }
+.tvr-padding-overlay  { background-color: rgb(136, 123, 215); }
+.tvr-content-overlay  { background-color: rgb(159, 216, 239); }
+.tvr-border-overlay   { background-color: rgb(50, 50, 50); }
+
+.tvr-container-overlay { position: absolute; z-index:11111000; } /* was 1000 but added a load of 1s because gradient were obscuring in firefox */
+.tvr-margin-overlay  { z-index: 111110001; }
+.tvr-border-overlay  { z-index: 111110002; }
+.tvr-padding-overlay { z-index: 111110003; }
+.tvr-content-overlay { z-index: 111110004; }
+
+body.tvr-crosshair,
+body.tvr-crosshair a,
+body.tvr-crosshair label,
+body.tvr-crosshair input,
+body.tvr-crosshair select,
+body.tvr-crosshair textarea,
+body.tvr-crosshair radio,
+body.tvr-crosshair checkbox,
+body.tvr-crosshair .art-sheet,
+body.tvr-crosshair #art-main {
+	cursor: crosshair !important;
+}
+body.tvr-crosshair .tvr-overlay {
+	cursor: default !important;
+}
+
