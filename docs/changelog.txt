@@ -1,5 +1,9 @@
 CHANGELOG
 
+2.2.3 (July 9, 2013)
+# Enhancement
+* Custom CSS style properties can now be added to Selectors in the CSS Selector textarea. Microthemer will look for the use of curly braces and include any CSS properties it finds in between the curly braces.
+
 2.2.2 (July 5, 2013)
 
 # Change

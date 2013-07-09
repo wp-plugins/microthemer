@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.2.2
+Version: 2.2.3
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -41,7 +41,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.2.2';
+			var $version = '2.2.3';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -1062,7 +1062,7 @@ if ( is_admin() ) {
 			
 			// tell them to get validated
 			function validate_reminder() {
-				if (!$this->preferences['buyer_validated']) {
+				if (!$this->preferences['buyer_validated'] and TVR_MICRO_VARIANT == 'themer') {
 					?>
 					<div id='validate-reminder' class="error">
                     	<p><b>IMPORTANT - Free Trial Mode is Active</b><br /> <br /> 
@@ -1704,8 +1704,8 @@ if ( is_admin() ) {
 										$empty = false;
 									}
 								}
-								// if all property values are blank, the array is completely empty
-								if ($empty) { continue; }  
+								
+								// sort out the css selector
 								$css_selector_slug = $css_selector;
 								$label_array = explode('|', $array['label']);
 								$css_label =  ucwords(str_replace('_', ' ', $label_array[0]));
@@ -1716,10 +1716,29 @@ if ( is_admin() ) {
 								$css_selector = str_replace('cus-quot;', '"', $css_selector);
 								$css_selector = str_replace('cus-#039;', '\'', $css_selector);
 								$count_styles = count($array);
-								if ($count_styles > 2) {
+								
+								// check for use of curly braces
+								$curly = strpos($css_selector, '{');
+								
+								// if all property values are blank, the array is completely empty
+								if ($empty and $curly === false) { continue; }  
+								
+								// adjust selector if curly braces are present
+								if ($curly!== false) {
+									$curly_array = explode("{", $css_selector);
+									$css_selector = $curly_array[0];
+									// save custom styles in an array for later output
+									$cusStyles = explode(";", str_replace('}', '', $curly_array[1]) );
+								} else {
+									$cusStyles = false;
+								}
+								
+								// if there are styles or the user has entered hand-coded styles
+								if ($count_styles > 2 or $curly!== false ) {
 									$data.= "/* $css_label */
 $css_selector {
 ";
+
 									// loop the groups of properties for the selector
 									if ( is_array( $array['styles'] ) ) {
 										foreach ( $array['styles'] as $property_group_name => $property_group_array ) {
@@ -1829,6 +1848,20 @@ $css_selector {
 											$data.= "	position: relative;									
 ";
 										}
+									}
+									
+									// output the custom styles if they exist
+									if ($cusStyles and is_array($cusStyles)) {
+										$data.= "	/* Selector Custom CSS */
+";
+										foreach ($cusStyles as $rule) {
+											$clean_rule = trim($rule);
+											if ($clean_rule != '') {
+												$data.= "	$clean_rule;
+";
+											}
+										}
+											
 									}
 									
 									$data.= '}
@@ -3022,7 +3055,7 @@ if (!is_admin()) {
 				}
 				
 				// remove wp admin bar from frontend preview if prefered
-				if ($this->preferences['admin_bar'] == 0) {
+				if ($this->preferences['admin_bar'] == 0 and TVR_MICRO_VARIANT == 'themer') {
 					add_action( 'show_admin_bar', '__return_false' );
 				}
 				// add meta_tag if logged in - else undefined iframeUrl variable creates break error

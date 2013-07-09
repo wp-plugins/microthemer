@@ -90,5 +90,8 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+= 2.2.3 = 
+Custom CSS style properties can now be added to Selectors in the CSS Selector textarea. Microthemer will look for the use of curly braces and include any CSS properties it finds in between the curly braces.
+
 = 2.2.2 = 
 The first release of Microthemer Lite on wordpress.org

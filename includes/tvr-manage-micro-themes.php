@@ -184,11 +184,14 @@ if (TVR_MICRO_VARIANT == 'themer') {
 				$act_param = 'tvr_activate_micro_theme';
 				$nonce = 'tvr_activate_micro_theme';
             }
-            ?>
-            <!-- Having this option probably just creates confusion
-            <a href='admin.php?page=<?php echo $this->microthemespage;?>&action=<?php echo $act_param; ?>&_wpnonce=<?php echo wp_create_nonce($nonce); ?>' 
-            class='ac-deac-micro'><?php echo  $act_text; ?></a>
-             | -->
+            // Having this option probably just creates confusion for Microthemer - just have for Microloader
+			if (TVR_MICRO_VARIANT == 'loader') {
+				?>
+                <a href='admin.php?page=<?php echo $this->microthemespage;?>&action=<?php echo $act_param; ?>&_wpnonce=<?php echo wp_create_nonce($nonce); ?>' 
+                class='ac-deac-micro'><?php echo  $act_text; ?></a> | 
+                <?php
+			}
+			?>
             <a class='delete-micro' href='admin.php?page=<?php echo $this->microthemespage;?>&action=tvr_delete_micro_theme&_wpnonce=<?php echo wp_create_nonce('tvr_delete_micro_theme'); ?>'>
                 Delete</a> 
             <?php 
