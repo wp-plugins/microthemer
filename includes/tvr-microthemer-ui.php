@@ -40,6 +40,8 @@ foreach ($this->filtered_images as $dir => $array) {
         
         
         <span id="ui-nonce"><?php echo wp_create_nonce('tvr_microthemer_ui_load_styles'); ?></span>
+        <span id="fonts-api" rel="<?php echo $this->thispluginurl.'includes/fonts-api.php'; ?>"></span>
+        
         
         <?php
 	
@@ -82,7 +84,7 @@ foreach ($this->filtered_images as $dir => $array) {
                 continue;
             }
 			// disable sections locked by trial
-			if (!$this->preferences['buyer_validated'] and $sec_loop_count > 2) {
+			if (!$this->preferences['buyer_validated'] and $sec_loop_count > 3) {
 				$trial_disabled = 'trial-disabled';	
 			} else {
 				$trial_disabled = 'not-disabled';	
@@ -177,7 +179,7 @@ foreach ($this->filtered_images as $dir => $array) {
                 class='view-state-input section-tracker' name='tvr_mcth[non_section][view_state][<?php echo $section_name;?>][this]' value='<?php echo $section_view_state; ?>' />
                 <?php
 				// disable sections locked by trial
-				if (!$this->preferences['buyer_validated'] and $sec_loop_count > 2) {
+				if (!$this->preferences['buyer_validated'] and $sec_loop_count > 3) {
 					$trial_disabled = 'disabled';	
 				} else {
 					$trial_disabled = '';	
@@ -220,7 +222,7 @@ foreach ($this->filtered_images as $dir => $array) {
                             }
                         } 
 						// disable selectors locked by trial
-						if (!$this->preferences['buyer_validated'] and ($sel_loop_count > 3 or $sel_total_loop_count > 5) ) {
+						if (!$this->preferences['buyer_validated'] and ($sel_loop_count > 3 or $sel_total_loop_count > 8) ) {
 							$trial_disabled = 'disabled';	
 						} else {
 							++$sel_total_loop_count;

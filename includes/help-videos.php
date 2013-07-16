@@ -20,8 +20,10 @@ $youtube[5]['title'] = 'Managing Microthemer Settings Packs';
 $youtube[5]['id'] = 'yCo-5B5p6oM';
 $youtube[6]['title'] = 'Managing, Importing and Exporting Sections and Selectors';
 $youtube[6]['id'] = 'oIPHFBWMHX4';
-$youtube[7]['title'] = 'Restoring Your Settings From A Previous Save ';
+$youtube[7]['title'] = 'Restoring Your Settings From A Previous Save';
 $youtube[7]['id'] = 'y1L-tn26exU';
+$youtube[8]['title'] = 'Applying Google Web Fonts';
+$youtube[8]['id'] = 'gxnE-XCEYvo';
 
 
 foreach ($youtube as $key => $array) {

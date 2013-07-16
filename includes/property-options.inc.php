@@ -14,6 +14,7 @@ $propertyOptions['font']['font_variant'] = array('label' => 'Font Variant', 'typ
 $propertyOptions['font']['font_size'] = array('label' => 'Font Size', 'default_unit' => 'px', 'pos' => 'last');
 $propertyOptions['font']['font_family'] = array('label' => 'Font Family', 'type' => 'select', 'span' => '2', 
 	'select_options' => array(
+	"Google Font...",
 	"Arial",
 	"cus-#039;Book Antiquacus-#039;",
 	"cus-#039;Bookman Old Stylecus-#039;",
@@ -51,6 +52,8 @@ $propertyOptions['font']['font_family'] = array('label' => 'Font Family', 'type'
 	"Wingdings",
 	"cus-#039;Zapf Dingbatscus-#039;"
 	));
+$propertyOptions['font']['google_font'] = array('label' => 'Google Font', 'span' => '2', 'pos' => 'last');	
+	
 // text
 $propertyOptions['text']['line_height'] = array('label' => 'Line Height');
 $propertyOptions['text']['text_align'] = array('label' => 'Alignment', 'type' => 'select', 

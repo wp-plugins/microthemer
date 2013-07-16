@@ -345,21 +345,28 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
              /> Disable
             </p> 
             
-            <a name='validate'></a>
-            <br />
-            <h3>Disable Free Trial Mode - Unlock The Full Program!</h3>
-            <p>To disable Free Trial Mode and unlock the full program, please enter the email address that Themeover sent your Microthemer download link to. If you purchased Microthemer from CodeCanyon, please send us a "Validate my email" message via the contact form on the right hand side of <a target='_blank' href='http://codecanyon.net/user/themeover '>this page</a> (you will need to log in to CodeCanyon first).</p>
-            <p><label>Your Email Address: </label>
-            <input type='text' autocomplete="off" name='tvr_preferences[buyer_email]' 
-            value='<?php echo esc_attr($this->preferences['buyer_email']); ?>' />
-            </p>
-            <p><label>Manually Check for Updates Now: </label>
-            <input type='checkbox' autocomplete="off" class='checkbox' name='tvr_preferences_one_off[manual_update]' value='1' /> Yes
-             </p>
-            <p><b>Note:</b> Themeover will record your domain name when you submit your email address for license verification purposes. Microthemer can be used on multiple domains, but you must own the domains - unless you purchase a Developer License, which allows you to use Microthemer on Client Websites.
-            <a target='_blank' href='http://themeover.com/microthemer/'>Purchase a Standard or Developer License for Microthemer</a>.</p>
-            
-            <input name="tvr_preferences_submit" type="submit" value="Save Settings & Validate Purchase" class="button-primary submit" />
+            <?php 
+			if ($this->preferences['buyer_email'] != 'mojo') {
+				?>
+                <a name='validate'></a>
+                <br />
+                <h3>Disable Free Trial Mode - Unlock The Full Program!</h3>
+                <p>To disable Free Trial Mode and unlock the full program, please enter the email address that Themeover sent your Microthemer download link to. If you purchased Microthemer from CodeCanyon, please send us a "Validate my email" message via the contact form on the right hand side of <a target='_blank' href='http://codecanyon.net/user/themeover '>this page</a> (you will need to log in to CodeCanyon first).</p>
+                <p><label>Your Email Address: </label>
+                <input type='text' autocomplete="off" name='tvr_preferences[buyer_email]' 
+                value='<?php echo esc_attr($this->preferences['buyer_email']); ?>' />
+                </p>
+                <p><label>Manually Check for Updates Now: </label>
+                <input type='checkbox' autocomplete="off" class='checkbox' name='tvr_preferences_one_off[manual_update]' value='1' /> Yes
+                 </p>
+                <p><b>Note:</b> Themeover will record your domain name when you submit your email address for license verification purposes. Microthemer can be used on multiple domains, but you must own the domains - unless you purchase a Developer License, which allows you to use Microthemer on Client Websites.
+                <a target='_blank' href='http://themeover.com/microthemer/'>Purchase a Standard or Developer License for Microthemer</a>.</p>
+                
+                <input name="tvr_preferences_submit" type="submit" value="Save Settings & Validate Purchase" class="button-primary submit" />
+                
+                <?php
+			}
+			?>
           
         
             

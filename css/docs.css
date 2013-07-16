@@ -249,4 +249,115 @@ li.property-item {
 	display:none;
 }
 
+/* Google Fonts Styling */
+.google-fonts.content-box {
+	background:#fff;
+	font-family: Arial, Helvetica, sans-serif;
+	border:0;
+	margin:0;
+}
+.google-fonts .inner-box {
+	padding:3px 10px;
+}
+
+#controls {
+	float:left;
+	width:200px;
+	overflow:hidden;
+	padding-top:5px;
+}
+#page-arrows {
+	overflow:hidden;
+	margin-top:15px;
+}
+#page-arrows a {
+	display:inline-block;
+	font-size:12px;
+	padding-bottom:5px;
+	text-decoration:none;
+}
+#prev-page {
+	float:left;
+}
+#next-page {
+	float:right;
+	padding-right:10px;
+}
+#pagination {
+	
+	overflow:hidden;
+}
+#pagination ul {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+#pagination li {
+	float:left;
+	width:25px;
+	margin:0 5px 5px 0;
+	border:1px solid #ddd;
+	background:#F8F8F8;
+	text-align:center;
+	font-size:12px;
+}
+#pagination a,
+#pagination span {
+	display:block;
+	padding:5px 0;
+	text-decoration:none;
+}
+#pagination span {
+	font-weight:bold;
+	background:#222222;
+	color:#fff;
+}
+
+#output ul {
+	list-style:none;
+	line-height:1.2;
+	margin:0 10px 0 220px;
+	padding:0;
+}
+#output li {
+	border-bottom:1px solid #ddd;
+	margin-bottom:5px;
+	padding-bottom:10px;
+	text-align:right;
+}
+#output li.last {
+	border-bottom:0;
+	margin-bottom:0;
+	padding-bottom:0;
+}
+#output .font {
+	font-size:28px;
+	color:#222222;
+	text-align:left;
+	padding-bottom:7px;
+}
+#output .font-name {
+	display:block;
+	float:left;
+	text-align:left;
+	font-size:12px;
+	font-weight:bold;
+	padding-top:4px;
+}
+#output span.link {
+	color: #21759B;
+	cursor:pointer;
+}
+#output span.link:hover {
+	color: #DB6A69;
+}
+#output .font-variants span {
+	font-size:12px;
+}
+#output .variant.active {
+	font-weight:bold;
+}
+
+
+
 

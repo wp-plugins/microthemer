@@ -106,6 +106,24 @@ if (window.parent.TvrSharedVars) {
 	window.TvrExportVars = {}
 	jQuery(document).ready(function($){
 		
+		
+		// need to trigger ctrl+s shortcut if focus is on iframe too
+		// simply disables save event for chrome
+		$(window).keypress(function (event) {
+			if (!(event.which == 115 && event.ctrlKey) && !(event.which == 19)) return true;
+			event.preventDefault();
+			return false;
+		});
+		
+		// used to process the cmd+s and ctrl+s events
+		$(document).keydown(function (event) {
+			if (event.which == 83 && event.ctrlKey == true) {
+				 window.parent.TvrSharedVars.ajax_save_settings('save');
+				 event.preventDefault();
+				 return false;
+			}
+		});
+		
 		// if visual mode
 		if (window.parent.TvrSharedVars.context == 'visual') {
 			// update visual view prog indicator if page reloaded

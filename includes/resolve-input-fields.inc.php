@@ -24,6 +24,13 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 			echo ' bg-position-hide';
 		}
 	}
+	if ($property == 'google_font') {
+		echo ' tvr-font-custom';
+		// hide if background positon isn't set to custom
+		if ($property_group_array['font_family'] != 'Google Font...') {
+			echo ' google-font-hide';
+		}
+	}
 	?>'>      
     <label><?php
 	// provide colorbox image slider for bg images
@@ -36,6 +43,11 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 		}
 		echo '<a href="#" class="view-bg-images" rel="'.$this->micro_root_url.'" alt="'.$bg_url.'"  title="'.$value.'">view images&nbsp;</a>';
 	}
+	// allow user to edit their google font
+	if ($property == 'google_font') {
+		echo '<a href="'.$this->thispluginurl.'includes/fonts-api.php" class="snippet g-font"  title="Edit Google Font">Change Font</a>';
+	}
+	
 	?>
 	
 	<?php
@@ -84,6 +96,10 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 		// bg-position-select class
 		elseif ($property == 'background_position') {
 			echo ' bg-position-select';
+		}
+		// bg-position-select class
+		elseif ($property == 'font_family') {
+			echo ' tvr-font-select';
 		}
 		?>' autocomplete="off" 
         name="tvr_mcth[<?php echo $section_name; ?>][<?php echo $css_selector;?>][styles][<?php echo $property_group_name;?>][<?php echo $property; ?>]">

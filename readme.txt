@@ -14,7 +14,9 @@ Customize the appearance of absolutely ANY WordPress Theme (no coding required).
 
 == Description ==
 
-**Microthemer Lite** is a free trial of the much loved Microthemer plugin. It's fully functional, but you are limited to restyling 6 "elements" on your WordPress website e.g:
+**NEW:** Microthemer Lite is more than just a "Trial". As a tool for easily applying Google Web Fonts, this free Lite version is a great application in it's own right - checkout this <a target="_blank" href="http://www.youtube.com/watch?v=gxnE-XCEYvo&feature=youtu.be">Google Fonts video tutorial</a> to see how easy it is!
+
+**Microthemer Lite** is a free trial of the much loved Microthemer plugin. It's fully functional, but you're limited to restyling 9 "elements" on your WordPress website e.g:
 
 1. The site title
 2. The site description
@@ -22,7 +24,10 @@ Customize the appearance of absolutely ANY WordPress Theme (no coding required).
 4. A link, or all links
 5. The search site input field
 6. The search site button
-7. **Or any other 6 elements/type of element, these are just examples!**
+7. A Post/Page
+8. The Sidebar
+9. The Footer
+10. **Or any other 9 elements/type of element, these are just examples!**
  
 (The full program allows you to edit an **unlimited** number of elements - read on to find out how!)
 
@@ -47,8 +52,7 @@ Although Microthemer was originally built as a solution for non-coders to be abl
 11. Supports Multi-site
 12. Supports SSL sites
 13. Nonce security to help keep things secure
-
-http://youtu.be/kPaPM5RLshc
+14. Easily add Google Web Fonts to your Theme
 
 The <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/#tabs-2" target="_blank">Promo Video & Getting Started Videos</a> provide the best demonstration of using Microthemer. And if you get stuck, you can get help here on the WordPress forum, or on <a title="Microthemer Support Forum" href="http://themeover.com/forum/" target="_blank">our dedicated Microthemer forum</a>.
 
@@ -89,6 +93,9 @@ Microthemer has built-in documentation! Just click the Tutorials icon (accessibl
 View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/#changelog" target="_blank">Microthemer's Changelog here</a>
 
 == Upgrade Notice ==
+
+= 2.2.9 = 
+Added support for Google Web Fonts
 
 = 2.2.3 = 
 Custom CSS style properties can now be added to Selectors in the CSS Selector textarea. Microthemer will look for the use of curly braces and include any CSS properties it finds in between the curly braces.

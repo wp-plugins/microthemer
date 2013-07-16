@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.2.3
+Version: 2.2.9
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -41,7 +41,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.2.3';
+			var $version = '2.2.9';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -1068,9 +1068,10 @@ if ( is_admin() ) {
                     	<p><b>IMPORTANT - Free Trial Mode is Active</b><br /> <br /> 
                         Please <a href="admin.php?page=tvr-microthemer-preferences.php#validate">validate your purchase to unlock the full program</a>.
                         <br /> 
-                        The Free Trial limits you to editing or creating 2 Sections and 6 Selectors (3 per Section).</p>
+                        The Free Trial limits you to editing or creating 3 Sections and 9 Selectors (3 per Section).</p>
                         <p>Purchase a <a target="_blank" href="http://themeover.com/microthemer/">Standard</a> ($45) or 
                        <a target="_blank" href="http://themeover.com/microthemer/">Developer</a> ($90) License Now!</p>
+                       <p><b>This Plugin is Supported!</b> Themeover provides the <a target="_blank" href="http://themeover.com/forum/">best forum support</a> you'll get any where (and it's free of course)</p>
                         
                     </div>
 				<?php
@@ -1611,6 +1612,10 @@ if ( is_admin() ) {
 			
 			// update active-styles.css
 			function update_active_styles($activated_from, $context = '') {	
+			
+				$g_fonts = array();
+				$g_fonts_used = false;
+				
 				
 				// for later comparison
 				$prop_key_array = array('font', 'text', 'forecolor', 'background', 'dimensions', 
@@ -1777,6 +1782,21 @@ $css_selector {
 															elseif ($property == 'background-position' and $value == 'custom') {
 																$data.= ""; // do nothing
 															}
+															// exception for font family wit Google selected
+															elseif ($property == 'font-family' and $value == 'Google Font...') {
+																$data.= ""; // do nothing
+															}
+															// exception for google font
+															elseif ($property == 'google-font') {
+																$g_fonts_used = true;
+																// save unique fonts in array for building Google CSS URL
+																$url_font_value = str_replace(' ', '+', $value);
+																if (!in_array($url_font_value, $g_fonts)) {
+																	$g_fonts[] = $url_font_value;
+																}
+																$data.= "	font-family: '$value'{$css_important};
+";
+															}
 															// exception for custom bg x/y coordinates
 															elseif ($property == 'background-position-x' or $property == 'background-position-y') {
 																if ($property_group_array['background_position'] != 'custom') {
@@ -1886,6 +1906,23 @@ $css_selector {
 					}
 					// update the preferences value for active theme - custom/theme name
 					$pref_array = array();
+					// build google font url
+					if ($g_fonts_used) {
+						$g_url = 'http://fonts.googleapis.com/css?family=';
+						$first = true;
+						foreach ($g_fonts as $key => $url_font_value) {
+							if ($first) {
+								$first = false;
+							} else {
+								$g_url.='|';
+							}
+							$g_url.= $url_font_value;
+						}
+					} else {
+						$g_url = '';
+					}
+					$pref_array['g_fonts_used'] = $g_fonts_used;
+					$pref_array['g_url'] = $g_url;
 					
 					if ($activated_from != 'customised' and $context != 'Merge') {
 						$pref_array['theme_in_focus'] = $activated_from;
@@ -3118,9 +3155,18 @@ if (!is_admin()) {
 				if ($this->preferences['active_theme'] != '') {
 					// register css - check theme name so relevant dependecies can be added
 					$deps = $this->dep_stylesheets();
+					
+					// check if Google Fonts stylesheet needs to be called
+					if ($this->preferences['g_fonts_used']) {
+						wp_register_style( 'micro'.TVR_MICRO_VARIANT.'g_font', $this->preferences['g_url'], false ); 
+						// enqueue
+						wp_enqueue_style( 'micro'.TVR_MICRO_VARIANT.'g_font' );
+					}
+					
 					wp_register_style( 'micro'.TVR_MICRO_VARIANT, $this->micro_root_url.'active-styles.css'.$append, $deps ); 
 					// enqueue
 					wp_enqueue_style( 'micro'.TVR_MICRO_VARIANT );	
+					
 				}
 				// only include firebug style overlay css if user is logged in
 				if (is_user_logged_in() and TVR_MICRO_VARIANT == 'themer') {

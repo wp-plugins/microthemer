@@ -15,7 +15,7 @@ else {
 }
 
 if ($label != 'pie') { ?>
-<p class="w3-attr">Much information in this CSS reference has been gathered from the <a target='_blank' href='http://www.w3schools.com/cssref/default.asp'>W3 Schools CSS Reference.</a></p>
+<p class="w3-attr">Much information in this CSS reference has been gathered from the <a target='_blank' href='http://www.w3schools.com/css/default.asp'>W3 Schools CSS Reference.</a></p>
 
 <?php } ?>
 
@@ -29,7 +29,7 @@ $ref['font']['font_weight'] = array(
 	'values' => array(
 		"normal" => "Defines normal characters. This is default",
 		"bold" => "Defines thick characters"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_font_weight.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_font_weight.asp');
 // font style
 $ref['font']['font_style'] = array(
 	'title' => 'Font Style', 
@@ -38,7 +38,7 @@ $ref['font']['font_style'] = array(
 		"normal" => "The browser displays a normal font style. This is default",
 		"italic" => "The browser displays an italic font style",
 		"oblique" => "The browser displays an oblique font style"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_font_font-style.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_font_font-style.asp');
 // font variant
 $ref['font']['font_variant'] = array(
 	'title' => 'Font Variant', 
@@ -46,21 +46,21 @@ $ref['font']['font_variant'] = array(
 	'values' => array(
 		"normal" => "The browser displays a normal font. This is default",
 		"small-caps" => "The browser displays a small-caps font"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_font_font-variant.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_font_font-variant.asp');
 // font size
 $ref['font']['font_size'] = array(
 	'title' => 'Font Size', 
 	'desc' => "The font-size property sets the size of a font.",
 	'values' => array(
 		"(numeric)" => "e.g. '12' would set the font size to 12 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '1.2em' in the Font Size field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_font_font-size.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_font_font-size.asp');
 // font family
 $ref['font']['font_family'] = array(
 	'title' => 'Font Family', 
 	'desc' => "The font-family property specifies the font for an element.",
 	'values' => array(
 		"font name" => "The name of the font e.g. 'Arial'"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_font_font-family.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_font_font-family.asp');
 // Google Font
 $ref['font']['google_font'] = array(
 	'title' => 'Google Web Fonts', 
@@ -75,7 +75,7 @@ $ref['text']['line_height'] = array(
 	'desc' => "The line-height property specifies the line height.",
 	'values' => array(
 		"(numeric)" => "e.g. '18' would set the line height to 18 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '1.8em' in the Line Height field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_dim_line-height.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_dim_line-height.asp');
 // text alignment
 $ref['text']['text_align'] = array(
 	'title' => 'Text Alignment', 
@@ -85,7 +85,7 @@ $ref['text']['text_align'] = array(
 		"right" => "Aligns the text to the right",
 		"center" => "Centers the text",
 		"justify" => "Stretches the lines so that each line has equal width (like in newspapers and magazines)"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_text_text-align.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_text_text-align.asp');
 // text decoration
 $ref['text']['text_decoration'] = array(
 	'title' => 'Text Decoration', 
@@ -94,7 +94,7 @@ $ref['text']['text_decoration'] = array(
 		"underline" => "Defines a line below the text",
 		"line-through" => "Defines a line through the text",
 		"none" => "	Defines normal text. This is default"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_text_text-decoration.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_text_text-decoration.asp');
 // text transform
 $ref['text']['text_transform'] = array(
 	'title' => 'Text Transform', 
@@ -104,28 +104,28 @@ $ref['text']['text_transform'] = array(
 		"uppercase" => "Transforms all characters to uppercase",
 		"lowercase" => "Transforms all characters to lowercase",
 		"none" => "No capitalization. The text renders as it is. This is default"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_text_text-transform.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_text_text-transform.asp');
 // text indent
 $ref['text']['text_indent'] = array(
 	'title' => 'Text Indent', 
 	'desc' => "The text-indent property specifies the indentation of the first line in a text-block.",
 	'values' => array(
 		"(numeric)" => "e.g. '80' would set the text indent to 80 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '15%' in the Text Indent field."),
-	'w3s' => 'http://www.w3schools.com/cssref/pr_text_text-indent.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_text_text-indent.asp');
 // letter spacing
 $ref['text']['letter_spacing'] = array(
 	'title' => 'Letter Spacing', 
 	'desc' => "The letter-spacing property increases or decreases the space between characters in text.",
 	'values' => array(
 		"(numeric)" => "e.g. '2' would set the letter spacing to 2 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified)."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_text_text-indent.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_text_text-indent.asp');
 // word spacing
 $ref['text']['word_spacing'] = array(
 	'title' => 'Word Spacing', 
 	'desc' => "The word-spacing property increases or decreases the white space between words.",
 	'values' => array(
 		"(numeric)" => "e.g. '10' would set the font size to 10 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '1em' in the Word Spacing field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_text_word-spacing.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_text_word-spacing.asp');
 // list style
 $ref['text']['list_style'] = array(
 	'title' => 'List Style', 
@@ -146,7 +146,7 @@ $ref['text']['list_style'] = array(
 		"upper-latin" => "upper-latin	The marker is upper-latin (A, B, C, D, E, etc.)",
 		"upper-roman" => "The marker is upper-roman (I, II, III, IV, V, etc.)",
 		"none" => ""), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_list-style.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_list-style.asp');
 // text shadow color
 $ref['text']['text_shadow_color'] = array(
 	'title' => 'Text Shadow Color', 
@@ -182,7 +182,7 @@ $ref['forecolor']['color'] = array(
 	'desc' => "The color property specifies the color of text.",
 	'values' => array(
 		"(hex code)" => "Microthemer provides a color picker for specifying color without having to remember hex codes. Just click your mouse in the Color text field to reveal the color picker."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_text_color.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_text_color.asp');
 /*** Background ***/
 // background color
 $ref['background']['background_color'] = array(
@@ -190,14 +190,14 @@ $ref['background']['background_color'] = array(
 	'desc' => "The background-color property sets the background color of an element.",
 	'values' => array(
 		"(hex code)" => "Microthemer provides a color picker for specifying color without having to remember hex codes. Just click your mouse in the Color text field to reveal the color picker."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_background-color.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_background-color.asp');
 // background image
 $ref['background']['background_image'] = array(
 	'title' => 'Background Image', 
 	'desc' => "The background-image property sets the background image for an element.",
 	'values' => array(
 		"(image)" => "Microthemer lists all the images contained within micro themes in a dropdown menu. You can also click the 'view images' link at the top right of the images menu to browse the images visually. Tip: the image slidehow will start from the image selected in the menu and will iterate through in the same order."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_background-image.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_background-image.asp');
 // background position
 $ref['background']['background_position'] = array(
 	'title' => 'Background Position', 
@@ -212,7 +212,7 @@ $ref['background']['background_position'] = array(
 		"center top" => "The top edge of the background image is flush againt the top edge of the element and is horizontally centered",
 		"center center" => "The center of the background image is aligned with the center of the element",
 		"center bottom" => "The bottom edge of the background image is flush againt the bottom edge of the element and is horizontally centered"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_background-position.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_background-position.asp');
 // background repeat
 $ref['background']['background_repeat'] = array(
 	'title' => 'Background Repeat', 
@@ -222,7 +222,7 @@ $ref['background']['background_repeat'] = array(
 		"repeat-x" => "The background image will be repeated only horizontally",
 		"repeat-y" => "The background image will be repeated only vertically",
 		"no-repeat" => "The background-image will not be repeated"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_background-repeat.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_background-repeat.asp');
 // background position x
 $ref['background']['background_position_x'] = array(
 	'title' => 'Horizontal Background Position', 
@@ -247,7 +247,7 @@ $ref['background']['background_attachment'] = array(
 	'values' => array(
 		"scroll" => "The background image scrolls with the rest of the page. This is default",
 		"fixed" => "The background image is fixed"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_background-attachment.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_background-attachment.asp');
 /*** Dimensions ***/
 // width
 $ref['dimensions']['width'] = array(
@@ -256,7 +256,7 @@ $ref['dimensions']['width'] = array(
 	width + padding + borders + margins. But there is an exception to this rule. If the width hasn't been set for an element it defaults to the width of it's parent element (incidently, defining the value 'auto' is the same as not setting a width).  Applying padding, margin and border values when width is 'auto' or hasn't been defined, causes the browser to decrease the value it calculates for width (otherwise the element would be too big for it's parent element - which is what happens if you enter a value of '100%' for width and then add margins, padding or borders).",
 	'values' => array(
 		"(numeric)" => "e.g. '400' would set the width to 400 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '50%' in the Width field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_dim_width.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_dim_width.asp');
 // height
 $ref['dimensions']['height'] = array(
 	'title' => 'Height', 
@@ -264,7 +264,7 @@ $ref['dimensions']['height'] = array(
 	height + padding + borders + margins.",
 	'values' => array(
 		"(numeric)" => "e.g. '200' would set the height to 400 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '10em' in the Height field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_dim_height.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_dim_height.asp');
 // min-width
 $ref['dimensions']['min_width'] = array(
 	'title' => 'Minimum Width', 
@@ -300,28 +300,28 @@ $ref['padding']['padding_top'] = array(
 	'desc' => "The padding-top property sets the top padding (space) of an element. The space is created <i>inside</i> the element's border.",
 	'values' => array(
 		"(numeric)" => "e.g. '15' would set the top padding for an element to 15 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%' in the Top Padding field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_padding-top.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_padding-top.asp');
 // padding right
 $ref['padding']['padding_right'] = array(
 	'title' => 'Padding Right', 
 	'desc' => "The padding-right property sets the right padding (space) of an element. The space is created <i>inside</i> the element's border.",
 	'values' => array(
 		"(numeric)" => "e.g. '15' would set the right padding for an element to 15 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%' in the Right Padding field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_padding-right.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_padding-right.asp');
 // padding bottom
 $ref['padding']['padding_bottom'] = array(
 	'title' => 'Padding Bottom', 
 	'desc' => "The padding-bottom property sets the bottom padding (space) of an element. The space is created <i>inside</i> the element's border.",
 	'values' => array(
 		"(numeric)" => "e.g. '15' would set the bottom padding for an element to 15 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%' in the Bottom Padding field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_padding-bottom.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_padding-bottom.asp');
 // padding left
 $ref['padding']['padding_left'] = array(
 	'title' => 'Padding Left', 
 	'desc' => "The padding-left property sets the left padding (space) of an element. The space is created <i>inside</i> the element's border.",
 	'values' => array(
 		"(numeric)" => "e.g. '15' would set the left padding for an element to 15 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%' in the Left Padding field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_padding-left.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_padding-left.asp');
 /*** Margin ***/	
 // margin top
 $ref['margin']['margin_top'] = array(
@@ -329,28 +329,28 @@ $ref['margin']['margin_top'] = array(
 	'desc' => "The margin-top property sets the top margin (space) of an element. The space is created <i>outside</i> the element's border.",
 	'values' => array(
 		"(numeric)" => "e.g. '15' would set the top margin for an element to 15 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%' in the Top Margin field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_margin-top.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_margin-top.asp');
 // margin right
 $ref['margin']['margin_right'] = array(
 	'title' => 'Margin Right', 
 	'desc' => "The margin-right property sets the right margin (space) of an element. The space is created <i>outside</i> the element's border.",
 	'values' => array(
 		"(numeric)" => "e.g. '15' would set the right margin for an element to 15 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%' in the Right Margin field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_margin-right.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_margin-right.asp');
 // margin bottom
 $ref['margin']['margin_bottom'] = array(
 	'title' => 'Margin Bottom', 
 	'desc' => "The margin-bottom property sets the bottom margin (space) of an element. The space is created <i>outside</i> the element's border.",
 	'values' => array(
 		"(numeric)" => "e.g. '15' would set the bottom margin for an element to 15 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%' in the Bottom Margin field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_margin-bottom.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_margin-bottom.asp');
 // margin left
 $ref['margin']['margin_left'] = array(
 	'title' => 'Margin Left', 
 	'desc' => "The margin-left property sets the left margin (space) of an element. The space is created <i>outside</i> the element's border.",
 	'values' => array(
 		"(numeric)" => "e.g. '15' would set the left margin for an element to 15 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%' in the Left Margin field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_margin-left.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_margin-left.asp');
 /*** Border ***/	
 // border top color
 $ref['border']['border_top_color'] = array(
@@ -358,56 +358,56 @@ $ref['border']['border_top_color'] = array(
 	'desc' => "The border-top-color property sets the top border color of an element. <b>Note</b>: the Border Style property must be set for any of the other border properties to work.",
 	'values' => array(
 		"(hex code)" => "Microthemer provides a color picker for specifying color without having to remember hex codes. Just click your mouse in the Top Border Color text field to reveal the color picker."),
-	'w3s' => 'http://www.w3schools.com/cssref/pr_border-top_color.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_border-top_color.asp');
 // border right color
 $ref['border']['border_right_color'] = array(
 	'title' => 'Border Right Color', 
 	'desc' => "The border-right-color property sets the right border color of an element. <b>Note</b>: the Border Style property must be set for any of the other border properties to work.",
 	'values' => array(
 		"(hex code)" => "Microthemer provides a color picker for specifying color without having to remember hex codes. Just click your mouse in the Right Border Color text field to reveal the color picker."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_border-right_color.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_border-right_color.asp');
 // border bottom color
 $ref['border']['border_bottom_color'] = array(
 	'title' => 'Border Bottom Color', 
 	'desc' => "The border-bottom-color property sets the bottom border color of an element. <b>Note</b>: the Border Style property must be set for any of the other border properties to work.",
 	'values' => array(
 		"(hex code)" => "Microthemer provides a color picker for specifying color without having to remember hex codes. Just click your mouse in the Bottom Border Color text field to reveal the color picker."),
-	'w3s' => 'http://www.w3schools.com/cssref/pr_border-bottom_color.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_border-bottom_color.asp');
 // border left color
 $ref['border']['border_left_color'] = array(
 	'title' => 'Border Left Color', 
 	'desc' => "The border-left-color property sets the left border color of an element. <b>Note</b>: the Border Style property must be set for any of the other border properties to work.",
 	'values' => array(
 		"(hex code)" => "Microthemer provides a color picker for specifying color without having to remember hex codes. Just click your mouse in the Left Border Color text field to reveal the color picker."),
-	'w3s' => 'http://www.w3schools.com/cssref/pr_border-left_color.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_border-left_color.asp');
 // border top width
 $ref['border']['border_top_width'] = array(
 	'title' => 'Border Top Width', 
 	'desc' => "The border-top-width property sets the top border width of an element. <b>Note</b>: the Border Style property must be set for any of the other border properties to work.",
 	'values' => array(
 		"(numeric)" => "e.g. '15' would set the top border width for an element to 15 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%' in the Top Border Width field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_border-top_width.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_border-top_width.asp');
 // border right width
 $ref['border']['border_right_width'] = array(
 	'title' => 'Border Right Width', 
 	'desc' => "The border-right-width property sets the right border width of an element. <b>Note</b>: the Border Style property must be set for any of the other border properties to work.",
 	'values' => array(
 		"(numeric)" => "e.g. '15' would set the right border for an element to 15 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%' in the Right Border Width field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_border-right_width.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_border-right_width.asp');
 // border bottom width
 $ref['border']['border_bottom_width'] = array(
 	'title' => 'Border Bottom Width', 
 	'desc' => "The border-bottom-width property sets the bottom border width of an element. <b>Note</b>: the Border Style property must be set for any of the other border properties to work.",
 	'values' => array(
 		"(numeric)" => "e.g. '15' would set the bottom border for an element to 15 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%' in the Bottom Border Width field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_border-bottom_width.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_border-bottom_width.asp');
 // border left width
 $ref['border']['border_left_width'] = array(
 	'title' => 'Border Left Width', 
 	'desc' => "The border-left-width property sets the left border width of an element. <b>Note</b>: the Border Style property must be set for any of the other border properties to work.",
 	'values' => array(
 		"(numeric)" => "e.g. '15' would set the left border for an element to 15 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%' in the Left Border Width field."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_border-left_width.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_border-left_width.asp');
 // border style
 $ref['border']['border_style'] = array(
 	'title' => 'Border Style', 
@@ -423,7 +423,7 @@ $ref['border']['border_style'] = array(
 		"inset" => "Specifies a 3D inset border. The effect depends on the border-color value",
 		"outset" => "Specifies a 3D outset border. The effect depends on the border-color value",
 		"none" => "Specifies no border"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_background-position.asp');	
+	'w3s' => 'http://www.w3schools.com/css/pr_background-position.asp');	
 /*** Behaviour ***/
 // display
 $ref['behaviour']['display'] = array(
@@ -434,7 +434,7 @@ $ref['behaviour']['display'] = array(
 		"inline" => "The element will generate an inline box (no line break before or after the element)",
 		"inline-block" => "The element will generate a block box, laid out as an inline box",
 		"none" => "The element doesn't appear on the page at all"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_class_display.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_class_display.asp');
 // float
 $ref['behaviour']['float'] = array(
 	'title' => 'Float', 
@@ -443,7 +443,7 @@ $ref['behaviour']['float'] = array(
 		"left" => "The element floats to the left",
 		"right" => "The element floats to the right",
 		"none" => "The element is not floated. This is the default."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_class_float.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_class_float.asp');
 // clear
 $ref['behaviour']['clear'] = array(
 	'title' => 'Clear', 
@@ -453,7 +453,7 @@ $ref['behaviour']['clear'] = array(
 		"right" => "No floating elements allowed on the right side",
 		"both" => "No floating elements allowed on the left or the right side",
 		"none" => "Default. Allows floating elements on both sides"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_class_clear.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_class_clear.asp');
 // overflow
 $ref['behaviour']['overflow'] = array(
 	'title' => 'Overflow', 
@@ -463,7 +463,7 @@ $ref['behaviour']['overflow'] = array(
 		"scroll" => "The overflow is clipped, but a scroll-bar is added to see the rest of the content",
 		"auto" => "If overflow is clipped, a scroll-bar should be added to see the rest of the content",
 		"hidden" => "The overflow is clipped, and the rest of the content will be invisible"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_pos_overflow.asp');	
+	'w3s' => 'http://www.w3schools.com/css/pr_pos_overflow.asp');	
 // visibility
 $ref['behaviour']['visibility'] = array(
 	'title' => 'Visibility', 
@@ -502,7 +502,7 @@ $ref['behaviour']['opacity'] = array(
 	'desc' => "The opacity property sets the opacity level for an element. You can enter any numeric value between 0 and 1 (e.g. 0.25 or 0.9)",
 	'values' => array(
 		"(decimal 0 - 1)" => "e.g. '0.5' would set the opacity to 50% (half transparent)."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_border-top_width.asp');		
+	'w3s' => 'http://www.w3schools.com/css/pr_border-top_width.asp');		
 /*** Position ***/		
 // position
 $ref['position']['position'] = array(
@@ -513,14 +513,14 @@ $ref['position']['position'] = array(
 		"relative" => "	Generates a relatively positioned element, positioned relative to its normal position. The element's position is specified with the 'left', 'top', 'right', and 'bottom' properties",
 		"fixed" => "Generates an absolutely positioned element, positioned relative to the browser window. The element's position is specified with the 'left', 'top', 'right', and 'bottom' properties",
 		"static" => "Default. No position, the element occurs in the normal flow (ignores any top, bottom, left, right, or z-index declarations)"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_class_position.asp');		
+	'w3s' => 'http://www.w3schools.com/css/pr_class_position.asp');		
 // z-index
 $ref['position']['z_index'] = array(
 	'title' => 'Z-index', 
 	'desc' => "The z-index property specifies the stack order of an element. An element with greater stack order is always in front of an element with a lower stack order. Note: z-index only works on positioned elements (position:absolute, position:relative, or position:fixed).",
 	'values' => array(
 		"(numeric)" => "If you had 2 absolutely positioned elements that overlapped and you gave element A a z-index value of 5 and element B a z-index value of 10, element B would show in front of element A."), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_pos_z-index.asp');	
+	'w3s' => 'http://www.w3schools.com/css/pr_pos_z-index.asp');	
 // top
 $ref['position']['top'] = array(
 	'title' => 'Top', 
@@ -528,7 +528,7 @@ $ref['position']['top'] = array(
 	<p><b>Note</b>: the way an element moves on screen when you apply a positive 'top' value may seem counterintuitive. It moves down on the screen when given a positive value because the browser increases the distance between the top of the element and some reference point. If in doubt, just look at the directional icon <img src='../images/position_top.gif' />. The icon depicts the direction the element will move on the page as you increase the value for 'top'.",
 	'values' => array(
 		"(numeric)" => "e.g. '75' would move an element 75 pixels below the top edge of its parent element (if the element is absolutely positioned), or 75px below it's normal position (if the element is relatively positioned)"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_pos_top.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_pos_top.asp');
 // right
 $ref['position']['right'] = array(
 	'title' => 'Right', 
@@ -536,7 +536,7 @@ $ref['position']['right'] = array(
 	<p><b>Note</b>: the way an element moves on screen when you apply a positive 'right' value may seem counterintuitive. It moves left on the screen when given a positive value because the browser increases the distance between the right of the element and some reference point. If in doubt, just look at the directional icon <img src='../images/position_right.gif' />. The icon depicts the direction the element will move on the page as you increase the value for 'right'.",
 	'values' => array(
 		"(numeric)" => "e.g. '20' would move an element 20 pixels to the left of the right edge of its parent element (if the element is absolutely positioned), or 20px to the left of it's normal position (if the element is relatively positioned)"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_pos_right.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_pos_right.asp');
 // bottom
 $ref['position']['bottom'] = array(
 	'title' => 'Bottom', 
@@ -544,7 +544,7 @@ $ref['position']['bottom'] = array(
 	<p><b>Note</b>: the way an element moves on screen when you apply a positive 'bottom' value may seem counterintuitive. It moves up on the screen when given a positive value because the browser increases the distance between the bottom of the element and some reference point. If in doubt, just look at the directional icon <img src='../images/position_bottom.gif' />. The icon depicts the direction the element will move on the page as you increase the value for 'bottom'.",
 	'values' => array(
 		"(numeric)" => "e.g. '75' would move an element 75 pixels below the bottom edge of its parent element (if the element is absolutely positioned), or 75px below it's normal position (if the element is relatively positioned)"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_pos_bottom.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_pos_bottom.asp');
 // left
 $ref['position']['left'] = array(
 	'title' => 'Left', 
@@ -553,7 +553,7 @@ $ref['position']['left'] = array(
 	<p><b>Note</b>: the way an element moves on screen when you apply a positive 'left' value may seem counterintuitive. It moves right on the screen when given a positive value because the browser increases the distance between the left of the element and some reference point. If in doubt, just look at the directional icon <img src='../images/position_left.gif' />. The icon depicts the direction the element will move on the page as you increase the value for 'left'.",
 	'values' => array(
 		"(numeric)" => "e.g. '20' would move an element 20 pixels to the right of the left edge of its parent element (if the element is absolutely positioned), or 20px to the right of it's normal position (if the element is relatively positioned)"), 
-	'w3s' => 'http://www.w3schools.com/cssref/pr_pos_left.asp');
+	'w3s' => 'http://www.w3schools.com/css/pr_pos_left.asp');
 /*** CSS3 ***/
 // Gradient A
 $ref['CSS3']['gradient_a'] = array(
@@ -604,29 +604,28 @@ $ref['CSS3']['radius_top_left'] = array(
 	'desc' => "The top left radius property defines the shape of the border of the top-left corner. A higher value creates a more rounded curve.",
 	'values' => array(
 		"(numeric)" => "e.g. '5' would set the top left border radius for an element to 5 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%'."), 
-	'w3s' => 'http://www.w3schools.com/cssref/css3_pr_border-top-left-radius.asp');	
-	
+	'w3s' => 'http://www.w3schools.com/css3/css3_pr_border-top-left-radius.asp');	
 // border radius top right
 $ref['CSS3']['radius_top_right'] = array(
 	'title' => 'Top Right Border Radius', 
 	'desc' => "The top right radius property defines the shape of the border of the top-right corner. A higher value creates a more rounded curve.",
 	'values' => array(
 		"(numeric)" => "e.g. '5' would set the top right border radius for an element to 5 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%'."), 
-	'w3s' => 'http://www.w3schools.com/cssref/css3_pr_border-top-right-radius.asp');
+	'w3s' => 'http://www.w3schools.com/css3/css3_pr_border-top-right-radius.asp');
 // border radius bottom left
 $ref['CSS3']['radius_bottom_left'] = array(
 	'title' => 'Bottom Left Border Radius', 
 	'desc' => "The bottom left radius property defines the shape of the border of the bottom-left corner. A higher value creates a more rounded curve.",
 	'values' => array(
 		"(numeric)" => "e.g. '5' would set the bottom left border radius for an element to 5 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%'."), 
-	'w3s' => 'http://www.w3schools.com/cssref/css3_pr_border-bottom-left-radius.asp');	
+	'w3s' => 'http://www.w3schools.com/css3/css3_pr_border-bottom-left-radius.asp');	
 // border radius bottom right
 $ref['CSS3']['radius_bottom_right'] = array(
 	'title' => 'Bottom Right Border Radius', 
 	'desc' => "The bottom right radius property defines the shape of the border of the bottom-right corner. A higher value creates a more rounded curve.",
 	'values' => array(
 		"(numeric)" => "e.g. '5' would set the bottom right border radius for an element to 5 pixels (Microthemer automatically adds the 'px' unit if a unit isn't specified). Other commonly used units include 'em' and '%'. So you could enter '5%'."), 
-	'w3s' => 'http://www.w3schools.com/cssref/css3_pr_border-bottom-right-radius.asp');
+	'w3s' => 'http://www.w3schools.com/css3/css3_pr_border-bottom-right-radius.asp');
 // box shadow color
 $ref['CSS3']['box_shadow_color'] = array(
 	'title' => 'Box Shadow Color', 

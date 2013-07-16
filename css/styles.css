@@ -706,8 +706,15 @@ input.prominent-action {
 }
 
 
-#tvr-ui .view-bg-images {
+#tvr-ui .view-bg-images,
+#tvr-ui .g-font {
 	float:right;
+}
+#tvr-ui .g-font {
+	display:inline-block;
+	padding-right:5px;
+	position:relative;
+	top:3px;
 }
 #cboxContent a.insert-bg {
 	text-decoration: none;
@@ -723,7 +730,8 @@ input.prominent-action {
 	padding-top:3px;
 }
 
-#tvr-ui .bg-position-hide {
+#tvr-ui .bg-position-hide,
+#tvr-ui .google-font-hide {
 	display:none; /* custom bg options are hidden by default */
 }
 #tvr-ui .input-span-2 {
@@ -764,7 +772,8 @@ input.prominent-action {
 #tvr-ui .property-fields select.bg-image-select {
 	font-weight: normal;
 }
-#tvr-ui .input-span-2 select {
+#tvr-ui .input-span-2 select,
+#tvr-ui .input-span-2 input {
 	width:241px;
 }
 #tvr-ui .input-span-3 select {

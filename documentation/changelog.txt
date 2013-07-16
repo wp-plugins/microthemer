@@ -1,6 +1,19 @@
 CHANGELOG
 
+2.2.9 (July 16, 2013)
+
+# Enhancement
+* Support for Google Web Fonts added
+* Trial Mode now permits editing/creating 3 Sections and 9 Selectors (3 per section)
+* Added in-program video tutorial for adding Google Web Fonts
+
+# Bugs Fixed
+* Microthemer permited section names to be in camelCase. This caused downstream problems when trying to rename a section.
+* Links to W3 Schools website in the CSS Reference were broken
+* Ctrl+S shortcut failed if focus remained on iframe (after interacting with a menu in the iframe for instance)
+
 2.2.3 (July 9, 2013)
+
 # Enhancement
 * Custom CSS style properties can now be added to Selectors in the CSS Selector textarea. Microthemer will look for the use of curly braces and include any CSS properties it finds in between the curly braces.
 
