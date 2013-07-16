@@ -95,7 +95,7 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 == Upgrade Notice ==
 
 = 2.2.9 = 
-Added support for Google Web Fonts
+Added support for Google Web Fonts - visual font-browser
 
 = 2.2.3 = 
 Custom CSS style properties can now be added to Selectors in the CSS Selector textarea. Microthemer will look for the use of curly braces and include any CSS properties it finds in between the curly braces.
