@@ -2,7 +2,7 @@
 
 Contributors: bastywebb
 Donate link: http://themeover.com/microthemer/
-Tags: microthemer, theme customizer, theme editor, theme tweaker, theme generator, css plugin, css editor, css code generator, visual css editor, visual design tool, css3 pie, stylesheet, style.css, micro themes, microloader, wordpress
+Tags: microthemer, theme customizer, theme editor, theme tweaker, theme generator, css plugin, css editor, css code generator, visual css editor, visual design tool, css3 pie, stylesheet, style.css, micro themes, microloader, wordpress, google fonts, google web fonts, web fonts, wordpress web fonts, google fonts plugin
 Requires at least: 3.2.1
 Tested up to: 3.5.2
 Stable tag: trunk
