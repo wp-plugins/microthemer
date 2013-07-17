@@ -2,7 +2,7 @@
 
 Contributors: bastywebb
 Donate link: http://themeover.com/microthemer/
-Tags: microthemer, theme customizer, theme editor, theme tweaker, theme generator, css plugin, css editor, css code generator, visual css editor, visual design tool, css3 pie, stylesheet, style.css, micro themes, microloader, wordpress, google fonts, google web fonts, web fonts, wordpress web fonts, google fonts plugin
+Tags: microthemer, theme customizer, theme editor, theme tweaker, theme generator, css plugin, css editor, css code generator, visual css editor, visual design tool, css3 pie, stylesheet, style.css, micro themes, microloader, wordpress, google fonts, google web fonts, web fonts, wordpress web fonts, google fonts plugin, wp google fonts, google
 Requires at least: 3.2.1
 Tested up to: 3.5.2
 Stable tag: trunk
@@ -14,7 +14,7 @@ Customize the appearance of absolutely ANY WordPress Theme (no coding required).
 
 == Description ==
 
-**NEW:** Microthemer Lite is more than just a "Trial". As a tool for easily applying Google Web Fonts, this free Lite version is a great application in it's own right - checkout this <a target="_blank" href="http://www.youtube.com/watch?v=gxnE-XCEYvo&feature=youtu.be">Google Fonts video tutorial</a> to see how easy it is!
+**NEW:** Microthemer Lite is more than just a "Trial". As a tool for easily applying Google Web Fonts, this free Lite version is a great application in it's own right - checkout this <a target="_blank" href="http://themeover.com/easily-add-google-web-fonts-to-wordpress-with-free-microthemer-plugin/">Google Fonts video tutorial</a> to see how easy it is!
 
 **Microthemer Lite** is a free trial of the much loved Microthemer plugin. It's fully functional, but you're limited to restyling 9 "elements" on your WordPress website e.g:
 
