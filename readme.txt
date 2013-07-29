@@ -94,11 +94,15 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+= 2.3.2 = 
+- Works with MP6
+- Transparency on mouseout can now be configured
+
 = 2.2.9 = 
-Added support for Google Web Fonts - visual font-browser
+- Added support for Google Web Fonts - visual font-browser
 
 = 2.2.3 = 
-Custom CSS style properties can now be added to Selectors in the CSS Selector textarea. Microthemer will look for the use of curly braces and include any CSS properties it finds in between the curly braces.
+- Custom CSS style properties can now be added to Selectors in the CSS Selector textarea. Microthemer will look for the use of curly braces and include any CSS properties it finds in between the curly braces.
 
 = 2.2.2 = 
 The first release of Microthemer Lite on wordpress.org

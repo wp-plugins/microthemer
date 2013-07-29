@@ -345,6 +345,44 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
              /> Disable
             </p> 
             
+            <p><label>Editing Options Transparency: </label>
+            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[trans_editing]' value='1'
+            <?php
+			if ($this->preferences['trans_editing'] == '1') {
+				echo 'checked="checked"';
+			}
+			?>
+             /> Enable transparency when mouse cursor moves away from options
+             </p>
+             <p><label>&nbsp;</label>
+            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[trans_editing]' value='0' 
+            <?php
+			if ($this->preferences['trans_editing'] == '0') {
+				echo 'checked="checked"';
+			}
+			?>
+             /> Disable transparency when mouse cursor moves away from options
+            </p> 
+            
+            <p><label>Selector Wizard Transparency: </label>
+            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[trans_wizard]' value='1'
+            <?php
+			if ($this->preferences['trans_wizard'] == '1') {
+				echo 'checked="checked"';
+			}
+			?>
+             /> Enable transparency when mouse cursor moves off Selector Wizard
+             </p>
+             <p><label>&nbsp;</label>
+            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[trans_wizard]' value='0' 
+            <?php
+			if ($this->preferences['trans_wizard'] == '0') {
+				echo 'checked="checked"';
+			}
+			?>
+             /> Disable transparency when mouse cursor moves off Selector Wizard
+            </p>
+            
             <?php 
 			if ($this->preferences['buyer_email'] != 'mojo') {
 				?>

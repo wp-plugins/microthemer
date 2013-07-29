@@ -63,6 +63,18 @@ foreach ($this->filtered_images as $dir => $array) {
         <span id='auto-visual-pref' rel='<?php echo $this->preferences['load_visual']; ?>'></span>
         <span id='plugin-url' rel='<?php echo $this->thispluginurl; ?>'></span>
         <span id='plugin-trial' rel='<?php echo $this->preferences['buyer_validated']; ?>'></span>
+        <?php
+		// if transparency hasn't been configured (e.g. existing users have updated the plugin) default
+		// to on - even though the defualt for new installs is off. Keep things the same for exisiting users.
+		if ($this->preferences['trans_editing'] == '') {
+			$this->preferences['trans_editing'] = 1;
+		}
+		if ($this->preferences['trans_wizard'] == '') {
+			$this->preferences['trans_wizard'] = 1;
+		}
+		?>
+        <span id='trans-editing' rel='<?php echo $this->preferences['trans_editing']; ?>'></span>
+        <span id='trans-wizard' rel='<?php echo $this->preferences['trans_wizard']; ?>'></span>
         
         
         <div id="add-new-section">

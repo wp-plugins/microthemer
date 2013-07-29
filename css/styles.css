@@ -422,6 +422,7 @@ input.prominent-action {
 }
 #stan-vis-tabs span {
 	border-bottom:1px solid #fff;
+	background:#fff;
 	
 }
 #stan-vis-tabs a {
@@ -599,9 +600,10 @@ input.prominent-action {
 }
 
 .tvr-transparent,
+.section-wrap.trial-disabled .reveal-add-selector,
 .not-disabled .trial-disabled,
-.section-wrap.trial-disabled .selector-wrap,
-.section-wrap.trial-disabled .reveal-add-selector {
+.section-wrap.trial-disabled .selector-wrap 
+{
 	/* Theoretically for IE 8 & 9 (more valid) */	
 	/* ...but not required as filter works too */
 	/* should come BEFORE filter */

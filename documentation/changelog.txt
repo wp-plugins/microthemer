@@ -1,5 +1,14 @@
 CHANGELOG
 
+2.3.2 (July 26, 2013)
+
+# Enhancement
+* Transparency on mouseout in visual view is now configurable via Preferences page
+* Microthemer now compatible with MP6 (the new WordPress interface design that will be released in future version of wordPress). Some additional design tweaks will be introduced once the new MP6 design becomes the norm.
+
+# Bugs Fixed
+* Transparency with editing options intermitantly caused z-index problem when scroller was used in Firefox. This is now a configurable option as not sure whether the transparency feature is just a distraction
+
 2.2.9 (July 16, 2013)
 
 # Enhancement

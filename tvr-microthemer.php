@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.2.9
+Version: 2.3.2
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -41,7 +41,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.2.9';
+			var $version = '2.3.2';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -84,8 +84,8 @@ if ( is_admin() ) {
 				"disable_parent_css" => 0,
 				"css_important" => 1,
 				"first_and_last" => 1,
-				"bar" => "foo",
-				"bar" => "foo"
+				"trans_editing" => 0,
+				"trans_wizard" => 0
 			);
 			
 			// @var strings dir/url paths
