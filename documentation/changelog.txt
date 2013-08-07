@@ -1,5 +1,15 @@
 CHANGELOG
 
+2.3.5 (Aug 7, 2013)
+
+# Enhancement
+* Email validation method now more reliable.
+
+# Bugs Fixed
+* When extracted, the directory for the plugin was 'crothemer' (with version 2.3.2). Upon upgrading WordPress deactivated the plugin. This will happen again if you are upgrading from 2.3.2 (because the directory name has changed - this time back to normal though).
+* Google Font variations can now be correctly used (click the variation before clicking the "Use this Font" link)
+* Google Font url uses https if necessary to prevent mixed content warnings on SSL sites.
+
 2.3.2 (July 26, 2013)
 
 # Enhancement

@@ -383,9 +383,20 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
              /> Disable transparency when mouse cursor moves off Selector Wizard
             </p>
             
+            <br />
+            <p><input name="tvr_preferences_submit" type="submit" value="Save Preferences" class="button-primary submit" /></p>
+                  
+                  
+             </form>
+             
+             
+            
             <?php 
-			if ($this->preferences['buyer_email'] != 'mojo') {
+			if ($this->preferences['buyer_email'] != 'mojo' and $this->preferences['buyer_email'] != 'inky') {
 				?>
+                
+                <form name='tvr_validate_form' method="post" class='float-form' autocomplete="off"
+       action="admin.php?page=<?php echo $this->preferencespage;?>" >
                 <a name='validate'></a>
                 <br />
                 <h3>Disable Free Trial Mode - Unlock The Full Program!</h3>
@@ -395,13 +406,14 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
                 value='<?php echo esc_attr($this->preferences['buyer_email']); ?>' />
                 </p>
                 <p><label>Manually Check for Updates Now: </label>
-                <input type='checkbox' autocomplete="off" class='checkbox' name='tvr_preferences_one_off[manual_update]' value='1' /> Yes
+                <input type='checkbox' autocomplete="off" class='checkbox' name='tvr_validate_one_off[manual_update]' value='1' /> Yes
                  </p>
                 <p><b>Note:</b> Themeover will record your domain name when you submit your email address for license verification purposes. Microthemer can be used on multiple domains, but you must own the domains - unless you purchase a Developer License, which allows you to use Microthemer on Client Websites.
                 <a target='_blank' href='http://themeover.com/microthemer/'>Purchase a Standard or Developer License for Microthemer</a>.</p>
                 
-                <input name="tvr_preferences_submit" type="submit" value="Save Settings & Validate Purchase" class="button-primary submit" />
+                <input name="tvr_validate_submit" type="submit" value="Validate Purchase" class="button-primary submit" />
                 
+                </form>
                 <?php
 			}
 			?>
@@ -416,8 +428,7 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
            <div>
                <h3>Save Preferences</h3>
                <div class='menu-option-wrap'>
-                  <input name="tvr_preferences_submit" type="submit" value="Save Preferences" class="button-primary submit" />
-                  </form>
+                  
                </div>
            </div>
            

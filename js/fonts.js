@@ -20,6 +20,7 @@ jQuery(document).ready(function($){
 			dummyText: "Grumpy wizards make toxic brew for the evil Queen and Jack.",
 			first: true,
 			str: '',
+			chosenVariant: '',
 			// change font variation
 			formatVariant: function($clicked) {
 				$clicked.addClass('active').siblings().removeClass('active');
@@ -37,10 +38,17 @@ jQuery(document).ready(function($){
 				} else {
 					$fontDiv.css('font-style', 'normal');
 				}
+				// save the chosen variant for inserting
+				TvrFonts.chosenVariant = '('+$clicked.text()+')';
 			},
 			// insert font into Microthemer UI
 			insertFont: function($clicked) {
 				var fontFam = $clicked.attr('rel');
+				// default to normal if no variant set
+				if (TvrFonts.chosenVariant == '') {
+					TvrFonts.chosenVariant = '(400 normal)';
+				}
+				fontFam = fontFam+' '+TvrFonts.chosenVariant;
 				window.parent.TvrSharedVars.insert_google_font(fontFam);
 			},
 			handle_ajax_error: function(x,e) {
@@ -118,7 +126,7 @@ jQuery(document).ready(function($){
 				var fontFam = Fonts['items'][num]['family'];
 				TvrFonts.fontList+= '<li class="font-entry '+itemClass+'">';
 				TvrFonts.fontList+= '<div class="font" style="font-family:\''+fontFam+'\';">'+TvrFonts.dummyText+'</div>';
-				TvrFonts.fontList+= '<span class="font-name">'+fontFam+' - <span class="link use-font" rel="'+fontFam+'">Use This Font</span></span>';
+				TvrFonts.fontList+= '<span class="font-name">'+fontFam+' - <span class="link use-font" rel="'+fontFam+'">Use This Font </span></span>';
 				// format variants
 				var variant = Fonts['items'][num]['variants']
 				.join('</span> | <span class="variant link">');

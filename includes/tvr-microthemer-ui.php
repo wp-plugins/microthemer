@@ -66,10 +66,10 @@ foreach ($this->filtered_images as $dir => $array) {
         <?php
 		// if transparency hasn't been configured (e.g. existing users have updated the plugin) default
 		// to on - even though the defualt for new installs is off. Keep things the same for exisiting users.
-		if ($this->preferences['trans_editing'] == '') {
+		if ($this->preferences['trans_editing'] === '') {
 			$this->preferences['trans_editing'] = 1;
 		}
-		if ($this->preferences['trans_wizard'] == '') {
+		if ($this->preferences['trans_wizard'] === '') {
 			$this->preferences['trans_wizard'] = 1;
 		}
 		?>

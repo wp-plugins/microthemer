@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.3.2
+Version: 2.3.5
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -41,7 +41,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.3.2';
+			var $version = '2.3.5';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -961,24 +961,6 @@ if ( is_admin() ) {
 					// update preferences 
 					if (isset($_POST['tvr_preferences_submit'])) {
 						check_admin_referer('tvr_preferences_submit');
-						// if buyer email has been updated, validate
-						if ($_POST['tvr_preferences']['buyer_email'] != $this->preferences['buyer_email']) {
-							$params = 'email='.$_POST['tvr_preferences']['buyer_email'].'&domain='.home_url();
-							$validation = wp_remote_fopen('http://themeover.com/wp-content/tvr-auto-update/validate.php?'.$params);
-							if ($validation) {
-								$_POST['tvr_preferences']['buyer_validated'] = 1;
-								$this->trial = 0;
-								$this->globalmessage.= '<p><b>Your email address has been successfully validated.</b> 
-								Microthemer\'s full program features have been unlocked!</p>
-								<p><b>Tip</b>: from now on, if you reset the Microthemer UI the default (and more useful) Sections will load 
-								instead of the "Free Trial Example Section".</p>';
-							}
-							else {
-								$_POST['tvr_preferences']['buyer_validated'] = 0;
-								$this->trial = true;
-								$this->globalmessage.= '<p>Your email address could not be validated.</p>';
-							}
-						}
 						$pref_array = $_POST['tvr_preferences'];
 						if ($this->savePreferences($pref_array)) {
 							$this->globalmessage.= '<p>Preferences saved.</p>';
@@ -997,7 +979,33 @@ if ( is_admin() ) {
 								$this->load_json_file($json_file, $theme_name);
 							}
 						}
-						
+					}
+					
+					// validate email
+					if (isset($_POST['tvr_validate_submit'])) {	
+						$params = 'email='.$_POST['tvr_preferences']['buyer_email'].'&domain='.home_url();
+						$validation = wp_remote_fopen('http://themeover.com/wp-content/tvr-auto-update/validate.php?'.$params);
+						if ($validation) {
+							$_POST['tvr_preferences']['buyer_validated'] = 1;
+							$this->trial = 0;
+							if (!$this->preferences['buyer_validated']) { // not already validated
+								$this->globalmessage.= '<p><b>Your email address has been successfully validated.</b> 
+								Microthemer\'s full program features have been unlocked!</p>
+								<p><b>Tip</b>: from now on, if you reset the Microthemer UI the default (and more useful) Sections will load 
+								instead of the "Free Trial Example Section".</p>';
+							} else {
+								$this->globalmessage.= '<p>Your email address has already been validated. The full program is active.</p>';
+							}
+						}
+						else {
+							$_POST['tvr_preferences']['buyer_validated'] = 0;
+							$this->trial = true;
+							$this->globalmessage.= '<p>Your email address could not be validated.</p>';
+						}
+						$pref_array = $_POST['tvr_preferences'];
+						if (!$this->savePreferences($pref_array)) {
+							$this->globalmessage.= '<p>Your validation status could not be saved</p>';
+						}
 					}
 					
 					// reset default preferences
@@ -1789,12 +1797,17 @@ $css_selector {
 															// exception for google font
 															elseif ($property == 'google-font') {
 																$g_fonts_used = true;
+																// separate variant from font name
+																$fv = explode(" (", $value);
+																$f_name = $fv[0];
+																$f_var = str_replace(' ', '', $fv[1]);
+																$f_var = str_replace(')', '', $f_var);
 																// save unique fonts in array for building Google CSS URL
-																$url_font_value = str_replace(' ', '+', $value);
-																if (!in_array($url_font_value, $g_fonts)) {
-																	$g_fonts[] = $url_font_value;
+																$url_font_value = str_replace(' ', '+', $f_name);
+																if ($g_fonts[$url_font_value][$f_var] != 1) {
+																	$g_fonts[$url_font_value][$f_var] = 1;
 																}
-																$data.= "	font-family: '$value'{$css_important};
+																$data.= "	font-family: '$f_name'{$css_important};
 ";
 															}
 															// exception for custom bg x/y coordinates
@@ -1908,21 +1921,41 @@ $css_selector {
 					$pref_array = array();
 					// build google font url
 					if ($g_fonts_used) {
-						$g_url = 'http://fonts.googleapis.com/css?family=';
+						$g_url = '//fonts.googleapis.com/css?family=';
 						$first = true;
-						foreach ($g_fonts as $key => $url_font_value) {
+						$g_ie_array = array();
+						foreach ($g_fonts as $url_font_value => $v_array) {
 							if ($first) {
 								$first = false;
 							} else {
 								$g_url.='|';
 							}
 							$g_url.= $url_font_value;
+							// add any variations to string
+							$v_first = true;
+							$v_string = '';
+							foreach ($v_array as $f_var => $val) {
+								if ($f_var == '') {
+									continue;
+								}
+								if ($v_first) {
+									$v_string.= ':';
+									$v_first = false;
+								} else {
+									$v_string.=',';
+								}
+								$v_string.= $f_var.'';	
+								$g_ie_array[] = $url_font_value . ':' . $f_var;
+							}
+							$g_url.= $v_string;
+							
 						}
 					} else {
 						$g_url = '';
 					}
 					$pref_array['g_fonts_used'] = $g_fonts_used;
 					$pref_array['g_url'] = $g_url;
+					$pref_array['g_ie_array'] = $g_ie_array;
 					
 					if ($activated_from != 'customised' and $context != 'Merge') {
 						$pref_array['theme_in_focus'] = $activated_from;
@@ -3158,9 +3191,25 @@ if (!is_admin()) {
 					
 					// check if Google Fonts stylesheet needs to be called
 					if ($this->preferences['g_fonts_used']) {
-						wp_register_style( 'micro'.TVR_MICRO_VARIANT.'g_font', $this->preferences['g_url'], false ); 
+						wp_register_style( 'micro'.TVR_MICRO_VARIANT.'_g_font', $this->preferences['g_url'], false ); 
+						global $is_IE;
 						// enqueue
-						wp_enqueue_style( 'micro'.TVR_MICRO_VARIANT.'g_font' );
+						wp_enqueue_style( 'micro'.TVR_MICRO_VARIANT.'_g_font' );
+						// register ie conditional google fonts for faux fix: (doesn't work)
+						// http://www.smashingmagazine.com/2012/07/11/avoiding-faux-weights-styles-google-web-fonts/
+						/*if ( $is_IE ) {
+							global $wp_styles;
+							$k = 0;
+							foreach ($this->preferences['g_ie_array'] as $font_and_var) {
+								// echo $font_and_var;
+								// IE8 and below
+								wp_register_style( 'g_font_ie-'.$k, '//fonts.googleapis.com/css?family='.$font_and_var, false);
+								wp_enqueue_style( 'g_font_ie-'.$k );
+								// $wp_styles->add_data('g_font_ie-'.$k, 'conditional', '(lte IE 8)'); // ie8 or lower
+								++$k;
+							}
+						}*/
+						
 					}
 					
 					wp_register_style( 'micro'.TVR_MICRO_VARIANT, $this->micro_root_url.'active-styles.css'.$append, $deps ); 
