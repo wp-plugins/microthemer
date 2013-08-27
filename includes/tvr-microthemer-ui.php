@@ -115,7 +115,7 @@ foreach ($this->filtered_images as $dir => $array) {
 			// display section management options
 			$this->manage_section($section_name, $array, $view_state);
             ?>
-            <div id='<?php echo $section_name; ?>-selectors' class='hidden-options view-state-<?php echo $view_state;?>'>
+            <div id='<?php echo $section_name; ?>-selectors' class='hidden-options clearfix view-state-<?php echo $view_state;?>'>
             <?php 
 			// display the section selectors if previously saved open
 			if ($view_state == 2) {
@@ -258,10 +258,16 @@ foreach ($this->filtered_images as $dir => $array) {
 			$vmenu_selectors.= '</select>';
 			?>
     	</ul>
+        <?php
+		// store the active media queries so they can be shared with micro themes
+		foreach ($this->preferences['m_queries'] as $key => $m_query) {
+			echo '
+			<input type="hidden" name="tvr_mcth[non_section][active_queries]['.$key.'][label]" value="'.esc_attr($m_query['label']).'" />
+			<input type="hidden" name="tvr_mcth[non_section][active_queries]['.$key.'][query]" value="'.esc_attr($m_query['query']).'" />';	
+		}
+		?>
         </form>
     </div><!-- end tvr-ui -->
-    
-    <?php // echo 'here' . $vmenu_selectors; ?>
      
     <div id='fixed-menu'>
     
@@ -430,7 +436,7 @@ foreach ($this->filtered_images as $dir => $array) {
         <h2 class="main-options-heading"><input class="export-section" type="checkbox" title="Selectively export this section" rel="off" value="1" name="export_sections[selector_section]"></h2>
         <input type='hidden' class='register-section' name='tvr_mcth[selector_section]' value='' />
         <?php $this->manage_section('selector_section', $array); ?>
-        <div id='selector_section-selectors' class='hidden-options'>
+        <div id='selector_section-selectors' class='hidden-options clearfix'>
         	<div class="add-sel-wrap">
             	<a href='#' class='reveal-add-selector prominent-action'>Add New Selector</a>
                 <?php $this->add_new_selectors('selector_section'); ?>
@@ -445,12 +451,12 @@ foreach ($this->filtered_images as $dir => $array) {
         <h3 class='sub-options-heading'></h3>
         <input type='hidden' class='register-selector' name='tvr_mcth[selector_section][selector_css]' value='' />
          <?php $this->manage_selector('selector_section', 'selector_css', '', ''); ?>
-        <div class='hidden-options'>
+        <div class='hidden-options clearfix'>
             <input type='hidden' class='selector-label' name='' value='' />
             <?php // loop through property groups
             foreach ($this->propertyoptions as $property_group_name => $array) {
                 ?>
-                <div class="row">
+                <div class="row clearfix">
                     <div class='main-label'>
                     <input type='hidden' class='register-group' 
                     name='tvr_mcth[selector_section][selector_css][styles][<?php echo $property_group_name; ?>]' value='' />
@@ -466,7 +472,7 @@ foreach ($this->filtered_images as $dir => $array) {
 					}
 					?>:
                     <span class='property-group-state' rel='off'></span>
-                    
+
                     <?php 
 					// if CSS3 - include option for turning pie off (on by default)
 					if ($property_group_name == 'CSS3') {
@@ -485,7 +491,9 @@ foreach ($this->filtered_images as $dir => $array) {
                     
                     </div>
                     <div id='group-selector_section-selector_css-<?php echo $property_group_name;?>' 
-                    class='tvr-ui-right'></div>
+                    class='tvr-ui-right'>
+                    <?php echo $this->media_query_tabs('selector_section', 'selector_css', $property_group_name); ?>
+                    </div>
                 </div><!-- end row -->
                 <?php
             }
@@ -504,7 +512,10 @@ foreach ($this->filtered_images as $dir => $array) {
             // format input fields
             $this->resolve_input_fields('selector_section', 'selector_css', $property_group_array, $property_group_name, $property, '');
         } // ends foreach property
-        ?>
+        
+		
+		?>
+        
         </div><!-- end property-fields -->
         <?php
     }

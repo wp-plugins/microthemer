@@ -30,7 +30,7 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
 		$this->ie_notice();
 	   ?>
                  
-       <form name='preferences_form' method="post" class='float-form' autocomplete="off"
+       <form id="tvr-preferences" name='preferences_form' method="post" class='float-form' autocomplete="off"
        action="admin.php?page=<?php echo $this->preferencespage;?>" >
        		<?php wp_nonce_field('tvr_preferences_submit'); ?>
             <h3>General</h3>
@@ -383,11 +383,54 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
              /> Disable transparency when mouse cursor moves off Selector Wizard
             </p>
             
-            <br />
+            
+                  
+             <a name="m_queries"></a>
+             <div id="m-queries">
+             <h3>Responsive CSS Media Queries</h3>
+                 <ul id="mq-list">
+					 <?php 
+					 $i = 0;
+                     foreach ($this->preferences['m_queries'] as $key => $m_query) {
+                        ?>
+                        <li class="mq-row mq-row-<?php echo $i; ?>">
+                            <p><label>Label:</label>
+                            <input class="m-label" type="text" name="tvr_preferences[m_queries][<?php echo $key; ?>][label]" 
+                            value="<?php echo esc_attr($m_query['label']); ?>" /></p>
+                            <p><label>Media Query:</label>
+                            <input class="m-code" type="text" name="tvr_preferences[m_queries][<?php echo $key; ?>][query]" 
+                            value="<?php echo esc_attr($m_query['query']); ?>" /></p>
+                        	<p class="del-m-para"><span class="del-m-query link">delete</span></p>
+                        </li>
+                        <?php
+						++$i;
+                     }
+                     ?>
+                 </ul>
+                 
+                 <input type="hidden" name="tvr_preferences[user_set_mq]" value="1" />
+                 
+                 <span id="add-m-query" class="prominent-action add-m-query" rel="<?php echo $i; ?>">+ Add Another Media Query</span>
+                 
+                 <?php /*<pre><?php print_r($this->preferences['m_queries']); ?></pre> */ ?>
+             </div>
+
+             <br />
             <p><input name="tvr_preferences_submit" type="submit" value="Save Preferences" class="button-primary submit" /></p>
-                  
-                  
+             
              </form>
+             
+             <span id="unq-base" rel="<?php echo $this->unq_base; ?>"></span>
+             
+             <ul id="m-query-hidden">
+             <li class="mq-row m-query-tpl">
+                <p><label>Label:</label>
+                <input class="m-label" type="text" name="tvr_preferences[m_queries][key][label]" value="" /></p>
+                <p><label>Media Query:</label>
+                <input class="m-code" type="text" name="tvr_preferences[m_queries][key][query]" value="" /></p>
+                <p class="del-m-para"><span class="del-m-query link">delete</span></p>
+            </li>
+            </ul>
              
              
             

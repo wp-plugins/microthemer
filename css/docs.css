@@ -93,10 +93,11 @@ h4 {
 	font-size:16px;
 	font-weight:bold;
 }
-a, a:link {
+a, a:link, span.link {
 	color: #21759B;
+	cursor:pointer;
 }
-a:hover {
+a:hover, span.link:hover {
 	color: #d54e21;
 }
 #docs-wrap {

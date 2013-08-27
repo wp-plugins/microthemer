@@ -4,8 +4,6 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 	die('Please do not call this page directly.'); 
 }
 
-
-
 // gradient
 if ( ($property == 'gradient_a' or 
 $property == 'gradient_b' or 
@@ -15,7 +13,8 @@ $property == 'gradient_angle')
 and !$array['styles']['gradient']['rendered'] ) {
 	
 	// !important is a bit different for css3 - only one "i" per line - do another check
-	$css_important = $this->tvr_css3_imp($section_name_slug, $css_selector_slug, $property_group_name, 'gradient_c');
+	$sty['css_important'] = $this->tvr_css3_imp($section_name_slug, $css_selector_slug, $property_group_name, 'gradient_c', $con, $mq_key);
+	//$sty['data'].= "$section_name_slug, $css_selector_slug, $property_group_name, 'gradient_c', $con, $mq_key - ".$sty['css_important'];
 	
 	// get Gradient A or default to other gradient
 	if ($property_group_array['gradient_a'] != '') {
@@ -142,14 +141,14 @@ and !$array['styles']['gradient']['rendered'] ) {
 	}
 	
 	// render the gradient
-	$data.= "	$fallback_bg_color
-	background: {$user_bg_image}-webkit-gradient(linear, $wbkold_angle, from($gradient_a), {$wbkold_bstop}to($gradient_c)){$css_important};
-	background: {$user_bg_image}-webkit-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$css_important}; 
-	background: {$user_bg_image}-moz-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$css_important}; 
-	background: {$user_bg_image}-ms-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$css_important}; 
-	background: {$user_bg_image}-o-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$css_important};
-	background: {$user_bg_image}linear-gradient($non_prefix_angle, $gradient_a, {$new_bstop}$gradient_c){$css_important}; 
-	-pie-background: {$user_bg_image}linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$css_important}; 
+	$sty['data'].= "	{$tab}$fallback_bg_color
+	{$tab}background: {$user_bg_image}-webkit-gradient(linear, $wbkold_angle, from($gradient_a), {$wbkold_bstop}to($gradient_c)){$sty['css_important']};
+	{$tab}background: {$user_bg_image}-webkit-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']}; 
+	{$tab}background: {$user_bg_image}-moz-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']}; 
+	{$tab}background: {$user_bg_image}-ms-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']}; 
+	{$tab}background: {$user_bg_image}-o-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']};
+	{$tab}background: {$user_bg_image}linear-gradient($non_prefix_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']}; 
+	{$tab}-pie-background: {$user_bg_image}linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']}; 
 ";
 	// record that this property group has been rendered
 	$array['styles']['gradient']['rendered'] = true;
@@ -163,7 +162,7 @@ $property == 'radius_bottom_left') and
 !$array['styles']['radius']['rendered'] ) {
 	
 	// !important is a bit different for css3 - only one "i" per line - do another check
-	$css_important = $this->tvr_css3_imp($section_name_slug, $css_selector_slug, $property_group_name, 'radius_bottom_left');
+	$sty['css_important'] = $this->tvr_css3_imp($section_name_slug, $css_selector_slug, $property_group_name, 'radius_bottom_left', $con, $mq_key);
 
 	// top left
 	if ($property_group_array['radius_top_left'] != '') {
@@ -198,9 +197,9 @@ $property == 'radius_bottom_left') and
 	}
 	$radius_bottom_left.= $this->check_unit($property_group_name, 'radius_bottom_left', $radius_bottom_left);
 	
-	$data.= "	-webkit-border-radius: $radius_top_left $radius_top_right $radius_bottom_right $radius_bottom_left{$css_important};
-	-moz-border-radius: $radius_top_left $radius_top_right $radius_bottom_right $radius_bottom_left{$css_important};
-	border-radius: $radius_top_left $radius_top_right $radius_bottom_right $radius_bottom_left{$css_important};
+	$sty['data'].= $tab."	-webkit-border-radius: $radius_top_left $radius_top_right $radius_bottom_right $radius_bottom_left{$sty['css_important']};
+	{$tab}-moz-border-radius: $radius_top_left $radius_top_right $radius_bottom_right $radius_bottom_left{$sty['css_important']};
+	{$tab}border-radius: $radius_top_left $radius_top_right $radius_bottom_right $radius_bottom_left{$sty['css_important']};
 ";
 	// record that this property group has been rendered
 	$array['styles']['radius']['rendered'] = true;
@@ -214,7 +213,7 @@ $property == 'box_shadow_blur') and
 !$array['styles']['box_shadow']['rendered']) {
 	
 	// !important is a bit different for css3 - only one "i" per line - do another check
-	$css_important = $this->tvr_css3_imp($section_name_slug, $css_selector_slug, $property_group_name, 'box_shadow_blur');
+	$sty['css_important'] = $this->tvr_css3_imp($section_name_slug, $css_selector_slug, $property_group_name, 'box_shadow_blur', $con, $mq_key);
 
 	// shadow color
 	if ($property_group_array['box_shadow_color'] != '') {
@@ -248,9 +247,9 @@ $property == 'box_shadow_blur') and
 	}
 	$box_shadow_blur.= $this->check_unit($property_group_name, 'box_shadow_blur', $box_shadow_blur);
 	
-	$data.= "	-webkit-box-shadow: $box_shadow_color $box_shadow_x $box_shadow_y $box_shadow_blur{$css_important};
-	-moz-box-shadow: $box_shadow_color $box_shadow_x $box_shadow_y $box_shadow_blur{$css_important};
-	box-shadow: $box_shadow_color $box_shadow_x $box_shadow_y $box_shadow_blur{$css_important};
+	$sty['data'].= $tab."	-webkit-box-shadow: $box_shadow_color $box_shadow_x $box_shadow_y $box_shadow_blur{$sty['css_important']};
+	{$tab}-moz-box-shadow: $box_shadow_color $box_shadow_x $box_shadow_y $box_shadow_blur{$sty['css_important']};
+	{$tab}box-shadow: $box_shadow_color $box_shadow_x $box_shadow_y $box_shadow_blur{$sty['css_important']};
 ";
  // record that this property group has been rendered
 	$array['styles']['box_shadow']['rendered'] = true;
@@ -297,7 +296,7 @@ $property == 'text_shadow_blur') and
 	}
 	$text_shadow_blur.= $this->check_unit($property_group_name, 'text_shadow_blur', $text_shadow_blur);
 	
-	$data.= "	text-shadow: $text_shadow_color $text_shadow_x $text_shadow_y $text_shadow_blur{$css_important};
+	$sty['data'].= $tab."	text-shadow: $text_shadow_color $text_shadow_x $text_shadow_y $text_shadow_blur{$sty['css_important']};
 ";
  // record that this property group has been rendered
 	$array['styles']['text_shadow']['rendered'] = true;

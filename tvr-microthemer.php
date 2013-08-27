@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.3.5
+Version: 2.3.8
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -19,6 +19,12 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 if (!defined('TVR_MICRO_VARIANT')) {
 	define('TVR_MICRO_VARIANT', 'themer');
 }
+
+// define unique id for media query keys
+if (!defined('UNQ_BASE')) {
+	define('UNQ_BASE', uniqid());
+}
+
 // if already defined, tell user to disable microloader
 else {
 	add_action(
@@ -31,7 +37,6 @@ else {
 	define('TVR_MICROBOTH', true);
 }
 
-
 // only run plugin admin code on admin pages
 if ( is_admin() ) {
 			
@@ -41,7 +46,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.3.5';
+			var $version = '2.3.8';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -69,8 +74,9 @@ if ( is_admin() ) {
 			var $file_structure = array();
 			// @var array $filtered_images stores a list of user-filtered background images
 			var $filtered_images = array();
+			// set defualt preferences
 			var $default_preferences = array(
-				"admin_bar" => 0,
+				"admin_bar" => 1,
     			"jquery_source" => "native",
 				"gzip" => 1,
 				"auto_relative" => 1,
@@ -87,7 +93,10 @@ if ( is_admin() ) {
 				"trans_editing" => 0,
 				"trans_wizard" => 0
 			);
-			
+			// default media queries
+			var $unq_base = '';
+			var $default_m_queries = array();
+
 			// @var strings dir/url paths
 			var $wp_content_url = '';
 			var $wp_content_dir = '';
@@ -129,8 +138,40 @@ if ( is_admin() ) {
 					add_action("admin_menu", array(&$this,"microloader_menu_link"));
 				}  
 				
+				// populate the default media queries
+				$this->unq_base = uniqid();
+				$this->default_m_queries = array(
+					$this->unq_base.'1' => array(
+						"label" => "Large Desktop",
+						"query" => "@media (min-width: 1200px)",
+						"min" => 1200,
+						"max" => 0),
+					$this->unq_base.'2' => array(
+						"label" => "Desktop & Tablet",
+						"query" => "@media (min-width: 768px) and (max-width: 979px)",
+						"min" => 768,
+						"max" => 979),
+					$this->unq_base.'3' => array(
+						"label" => "Tablet & Phone",
+						"query" => "@media (max-width: 767px)",
+						"min" => 0,
+						"max" => 767),
+					$this->unq_base.'4' => array(
+						"label" => "Phone",
+						"query" => "@media (max-width: 480px)",
+						"min" => 0,
+						"max" => 480)	
+				);
+				
 				// get the preferences here for the sake of the validator (all users get automatic updates now)
 				$this->getPreferences();
+				
+				// if no media queries yet, assign default
+				if ( !$this->preferences['user_set_mq'] and $_POST['tvr_preferences']['user_set_mq'] != 1 ) {
+					$pref_array['m_queries'] = $this->default_m_queries;
+					$this->savePreferences($pref_array);
+				}
+				
 				$ext_updater_file = dirname(__FILE__) .'/includes/plugin-updates/plugin-update-checker.php';
 				if ( TVR_MICRO_VARIANT == 'themer' and file_exists($ext_updater_file) ) {
 					require $ext_updater_file;
@@ -286,7 +327,7 @@ if ( is_admin() ) {
 					wp_enqueue_script( 'tvr_mcth_colorbox' );
 					wp_enqueue_script( 'tvr_mcth_tabs' );
 					// load relevant plugin page script 
-					if ( $_GET['page'] == $this->microthemeruipage ) {		
+					if ( $_GET['page'] == $this->microthemeruipage) {		
 						wp_register_script( 'tvr_mcth_custom_ui', $this->thispluginurl.'js/min/microthemer.js?v='.$this->version ); 
 						//wp_register_script( 'tvr_mcth_custom_ui', $this->thispluginurl.'js/tvr-microthemer.js?v='.$this->version ); 
 						wp_enqueue_script( 'tvr_mcth_custom_ui' );	
@@ -394,6 +435,7 @@ if ( is_admin() ) {
 					$thePreferences['active_theme'] = 'customised';
 					$thePreferences['theme_in_focus'] = '';
 					$thePreferences['preview_url'] = site_url();
+					$thePreferences['user_set_mq'] = false;
 					// add_option rather than update_option (so autoload can be set to no)
 					add_option($this->preferencesName, $thePreferences, '', 'no');
 				}
@@ -431,7 +473,7 @@ if ( is_admin() ) {
 					  time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
 					  user_action VARCHAR(55) DEFAULT '' NOT NULL,
 					  data_size VARCHAR(10) DEFAULT '' NOT NULL,
-					  settings longtext DEFAULT '' NOT NULL,
+					  settings longtext NOT NULL,
 					  UNIQUE KEY id (id)
 					  ) $charset_collate;";
 					require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
@@ -962,10 +1004,21 @@ if ( is_admin() ) {
 					if (isset($_POST['tvr_preferences_submit'])) {
 						check_admin_referer('tvr_preferences_submit');
 						$pref_array = $_POST['tvr_preferences'];
+						// reset default media queries if all empty
+						if (empty($_POST['tvr_preferences']['m_queries'])) {
+							$pref_array['m_queries'] = $this->default_m_queries;
+							$this->globalmessage.= '<p>Default media queries were reset.</p>';
+						} else {
+							// check the media query min/max values
+							foreach($pref_array['m_queries'] as $key => $mq_array) {
+								$pref_array['m_queries'][$key]['min'] = $this->get_screen_size($mq_array['query'], 'min');
+								$pref_array['m_queries'][$key]['max'] = $this->get_screen_size($mq_array['query'], 'max');
+							}
+						}
 						if ($this->savePreferences($pref_array)) {
 							$this->globalmessage.= '<p>Preferences saved.</p>';
 						}
-						// if the active_theme has been changed, invoke the relevant functions
+						// if the active_theme has been changed, invoke the relevant functions - redundant code
 						if ($_POST['tvr_preferences']['active_theme'] != $_POST['prev_active_theme'] and 
 						$_POST['tvr_preferences']['active_theme'] != '') {
 							// if custom, just update active styles
@@ -1012,6 +1065,7 @@ if ( is_admin() ) {
 					if (isset($_POST['tvr_preferences_reset'])) {
 						check_admin_referer('tvr_preferences_reset');
 						$pref_array = $this->default_preferences;
+						$pref_array['m_queries'] = $this->default_m_queries;
 						if ($this->savePreferences($pref_array)) {
 							$this->globalmessage.= '<p>The default preferences were reset.</p>';
 						}
@@ -1030,6 +1084,16 @@ if ( is_admin() ) {
 			/*** 
 			Generic Functions 
 			***/
+			
+			// get min/max media query screen size
+			function get_screen_size($q, $minmax) {
+				$pattern = "/$minmax-width:\s*([0-9]+)\s*px/";
+				if (preg_match($pattern, $q, $matches)) {
+					return $matches[1];
+				} else {
+					return 0;
+				}
+			}
 			
 			// show plugin menu
 			function plugin_menu() {
@@ -1203,6 +1267,16 @@ if ( is_admin() ) {
 				}
 			}
 			
+			// check a multi-dimentional array for a value
+			function in_2dim_array($elem, $array, $target_key){
+				foreach ($array as $key => $val) {
+				   if ($val[$target_key] == $elem) {
+					   return true;
+				   }
+			   }
+			   return false;
+    		}
+			
 			//check if the file is acceptable
 			function is_acceptable($file) {
 				$ext = $this->get_extension($file);
@@ -1221,6 +1295,7 @@ if ( is_admin() ) {
 					return false;
 				}
 			}
+			
 			
 			// get list of acceptable file types
 			function get_acceptable() {
@@ -1282,10 +1357,11 @@ if ( is_admin() ) {
 			***/
 			
 			// Resolve property/value input fields
-			function resolve_input_fields($section_name, $css_selector, $property_group_array, $property_group_name, $property, $value) {
-				include $this->thisplugindir . 'includes/resolve-input-fields.inc.php';
+			function resolve_input_fields($section_name, $css_selector, $property_group_array, $property_group_name, $property, $value, 
+			$con = 'reg', $key=1) {
+				include $this->thisplugindir . 'includes/resolve-input-fields.inc.php';	
 			}
-			
+
 			// Add options for adding section
 			function add_new_section() {
 				?>
@@ -1375,7 +1451,7 @@ if ( is_admin() ) {
 						// output selector management options
 						$this->manage_selector($section_name, $css_selector, $label_array, $array, $view_state); 
 						?>
-						<div class='hidden-options view-state-<?php echo $view_state;?>'>
+						<div class='hidden-options clearfix view-state-<?php echo $view_state;?>'>
 						<?php
 						// only load style options if left open on last save (or need to force load for section rename)
 						if ($view_state == 2 or $force_load == 1) {
@@ -1497,32 +1573,36 @@ if ( is_admin() ) {
                         foreach ( $array['styles'] as $property_group_name => $property_group_array ) { 
                         $property_group_name = esc_attr($property_group_name); //=esc
                         ?>
-                        <div class="row">
+                        <div class="row clearfix">
                             <?php
                             // check if the properties group is checked
                             if ($array['style_config'][$property_group_name] == $property_group_name) {
                                 $checked = 'checked="checked"';
                                 $property_group_state = 'on';
+								$show_class = 'show';
                             }
                             else {
                                 $checked='';
                                 $property_group_state = 'off';
+								$show_class = '';
                             }
+							$main_label_show_class = $show_class;
                             ?>
                             <div class='main-label'>
                             <input type='hidden' class='register-group' name='tvr_mcth[<?php echo $section_name; ?>][<?php echo $css_selector; ?>][styles][<?php echo $property_group_name; ?>]' value='' />
-                            <input type='checkbox' class='style-config checkbox' name='tvr_mcth[<?php echo $section_name; ?>][<?php echo $css_selector; ?>][style_config][<?php echo $property_group_name; ?>]' value='<?php echo $property_group_name; ?>' <?php echo $checked; ?> autocomplete="off" /> <?php 
-					if ($property_group_name != 'forecolor') {
-						 echo ucwords($property_group_name); 
-					}
-					else {
-						echo 'Color';
-					}
-					?>:
-                            
+                            <input type='checkbox' class='style-config checkbox main-checkbox' name='tvr_mcth[<?php echo $section_name; ?>][<?php echo $css_selector; ?>][style_config][<?php echo $property_group_name; ?>]' value='<?php echo $property_group_name; ?>' <?php echo $checked; ?> autocomplete="off" 
+                             /> <?php 
+							if ($property_group_name != 'forecolor') {
+								 echo ucwords($property_group_name); 
+							}
+							else {
+								echo 'Color';
+							}
+							?>:
                             <span class='property-group-state' rel='<?php echo $property_group_state; ?>'></span>
                             
                             <?php 
+							 
 							// if CSS3 - include option for turning pie off (on by default)
 							if ($property_group_name == 'CSS3') {
 								?>
@@ -1557,11 +1637,21 @@ if ( is_admin() ) {
                             
                             </div>
                             <div id='group-<?php echo $section_name.'-'.$css_selector.'-'.$property_group_name;?>' 
-                            class='tvr-ui-right'>
-                            <?php 
-                            // loop through each properties in a group if set
-                            if ( is_array( $property_group_array ) ) {
-                                ?><div class='property-fields property-<?php echo $property_group_name; ?>'><?php
+                            class='tvr-ui-right <?php echo $show_class; ?>'>
+								<?php 
+								
+                                $this->media_query_tabs($section_name, $css_selector, $property_group_name, $main_label_show_class);
+                                // loop through each properties in a group if set
+                                if ( is_array( $property_group_array ) ) {
+                                   // determine which tab to show
+								   $device_tab = $this->options[$section_name][$css_selector]['device_focus'][$property_group_name];
+								   if ($device_tab == '' or $device_tab == 'all-devices') {
+									   $show_class = 'show';
+									} else {
+										$show_class = '';
+									}
+							    ?><div class='property-fields property-<?php echo $property_group_name; ?> 
+                                property-mq-all-devices <?php echo $show_class; ?> '><?php
 								// merge to allow for new properties added to property-options.inc.php (array with values must come 2nd)
 								$property_group_array = array_merge($this->propertyoptions[$property_group_name], $property_group_array);
                                 foreach ($property_group_array as $property => $value) {
@@ -1574,16 +1664,189 @@ if ( is_admin() ) {
 										$value = '';
 									}
 									// format input fields
-									$this->resolve_input_fields($section_name, $css_selector, $property_group_array, $property_group_name, $property, $value);
+									$this->resolve_input_fields($section_name, $css_selector, $property_group_array, $property_group_name, $property, $value);	
                                 }
                                 echo '</div><!-- end property-fields -->';
                             } // ends foreach property
-                            echo '
+                            // output any media query settings
+							$this->media_query_fields($section_name, $css_selector, $property_group_name);
+							echo '
                             </div><!-- end tvr-ui-right -->
                          </div><!-- end row -->';
                         } // ends foreach styles
                     } // ends if $array['styles'] is array
 			}
+			
+			// on upgrading, the all-devices won't be checked even if only the main is checked. 
+			// Solution = check if any mqs are checked. If the main label is checked but nothing else is, this is an identifying symptom
+			function fix_for_mq_update($section_name, $css_selector, $property_group_name, $main_label_show_class) {
+				if ($main_label_show_class == 'show') {
+					$any_checked = false;
+					foreach ($this->preferences['m_queries'] as $key => $m_query) {
+						if ($this->options['non_section']['m_query'][$key][$section_name][$css_selector]['style_config'][$property_group_name] 
+						== $property_group_name) {
+							$any_checked = true;
+						}
+					}
+					if (!$any_checked) {
+						$show_class = 'show';
+					}
+					else {
+						$show_class = '';
+					}
+				} 
+				else {
+					$show_class = '';
+				}
+				return $show_class;
+			}
+			
+			
+			// output media query tabs
+			function media_query_tabs($section_name, $css_selector, $property_group_name, $main_label_show_class = '') {
+				?>
+                <div class="query-tabs">
+                <span class="add-mq" title="Add a Media Query Tab">
+                +
+                <?php $this->media_query_checkboxes($section_name, $css_selector, $property_group_name, $main_label_show_class); ?>
+                </span>
+				
+				<?php
+				// save the configuration of the device tab
+				$device_tab = $this->options[$section_name][$css_selector]['device_focus'][$property_group_name];
+				if ($device_tab == '') {
+					$device_tab = 'all-devices';
+				}
+				// should the tab be visible
+				if ($this->options[$section_name][$css_selector]['all_devices'][$property_group_name] == $property_group_name) {
+					$show_class = 'show';
+				}
+				else {
+					$show_class = $this->fix_for_mq_update($section_name, $css_selector, $property_group_name, $main_label_show_class);
+				}
+				?>
+                <input class="device-focus" type="hidden" 
+                name="tvr_mcth[<?php echo $section_name; ?>][<?php echo $css_selector; ?>][device_focus][<?php echo $property_group_name; ?>]"
+                value="<?php echo $device_tab; ?>" />
+                <span class="mq-tab tab-mq-all-devices <?php echo $show_class. ' '; if ($device_tab == 'all-devices') { echo 'active'; } ?>" 
+                rel="all-devices" title="General CSS that will apply to all devices">All Devices</span>
+                <?php
+				foreach ($this->preferences['m_queries'] as $key => $m_query) {
+					// should the tab be visible
+					if ($this->options['non_section']['m_query'][$key][$section_name][$css_selector]['style_config'][$property_group_name] 
+                    == $property_group_name) {
+						$show_class = 'show';
+					}
+					else {
+						$show_class = '';
+					}
+					// should the tab be active
+					if (intval($device_tab) === $key) {
+						$class = 'active';
+					} else {
+						$class = '';
+					}
+					echo '<span class="mq-tab tab-mq-'.$key.' '.$class.' '.$show_class.'" rel="'.$key.'" 
+					title="Target '.$m_query['label'].' Screens">'.$m_query['label'].'</span>';
+				}
+				
+				?>
+                
+                
+                <div class="clear"></div>
+                </div>
+                <?php
+			}
+			
+			// output the media query checkboxes
+			function media_query_checkboxes($section_name, $css_selector, $property_group_name, $main_label_show_class) {
+				
+				// All devices checkbox
+				?>
+                <span class="mq-options">
+                
+                <span class="mq-button" title="No Media Query">
+					<?php
+                    if ($this->options[$section_name][$css_selector]['all_devices'][$property_group_name] == $property_group_name or 
+					$this->fix_for_mq_update($section_name, $css_selector, $property_group_name, $main_label_show_class == 'show') 
+					) {
+                        $checked = 'checked="checked"';
+                        $property_group_state = 'on';
+                    }
+                    else {
+                        $checked='';
+                        $property_group_state = 'off';
+                    }
+                    ?>
+                    <input class="style-config checkbox all-toggle" type="checkbox" autocomplete="off"  value="<?php echo $property_group_name; ?>" 
+                    name="tvr_mcth[<?php echo $section_name; ?>][<?php echo $css_selector; ?>][all_devices][<?php echo $property_group_name; ?>]" 
+                    <?php echo $checked; ?> > All Devices
+                    <span class="property-group-state" rel="<?php echo $property_group_state; ?>"></span>
+                </span>
+                
+                <?php
+				// Media query checkboxes
+                foreach ($this->preferences['m_queries'] as $key => $m_query) {
+                    // may need to register the group like the regular checkbox (but if no bugs, may be much more efficient not to)
+                    // check if the properties group is checked
+                    if ($this->options['non_section']['m_query'][$key][$section_name][$css_selector]['style_config'][$property_group_name] 
+                    == $property_group_name) {
+                        $checked = 'checked="checked"';
+                        $property_group_state = 'on';
+                    }
+                    else {
+                        $checked='';
+                        $property_group_state = 'off';
+                    }
+                    echo '<span class="mq-button mqb-'.$key.'" title="'.$m_query['query'].'"> 
+                    <input class="checkbox mq-toggle style-config" type="checkbox" name="tvr_mcth[non_section][m_query]['.
+                    $key.']['.$section_name.']['.$css_selector.'][style_config]['.$property_group_name.']" 
+                    value="'.$property_group_name.'" '.$checked.' rel="'.$key.'|'.$m_query['label'].'" />
+                    '.$m_query['label'].'
+                    <span class="property-group-state" rel="'.$property_group_state.'"></span>
+                    
+                    </span>'; 
+                }
+                ?>
+                </span> 
+   			<?php
+			}
+			
+			// output the media query form fields (or empty container divs)
+			function media_query_fields($section_name, $css_selector, $property_group_name) {
+				// output 
+				 foreach ($this->preferences['m_queries'] as $key => $m_query) {
+					if ($this->options['non_section']['m_query'][$key][$section_name][$css_selector]['style_config'][$property_group_name] 
+                    == $property_group_name) {
+						// loop through each properties in a group if set
+						$property_group_array = $this->options['non_section']['m_query'][$key][$section_name][$css_selector]['styles'][$property_group_name];
+						if ( is_array( $property_group_array ) ) {
+							// determine if the tab should be showing
+							$device_tab = $this->options[$section_name][$css_selector]['device_focus'][$property_group_name];
+							if (intval($device_tab) === $key) {
+								$show_class = 'show';
+							} else {
+								$show_class = '';
+							}
+							?><div class='property-fields property-<?php echo $property_group_name; ?> 
+                            property-mq-<?php echo $key . ' ' .$show_class; ?>'><?php
+							// merge to allow for new properties added to property-options.inc.php (array with values must come 2nd)
+							$property_group_array = array_merge($this->propertyoptions[$property_group_name], $property_group_array);
+							foreach ($property_group_array as $property => $value) {
+								$property = esc_attr($property); //=esc	
+								$value = esc_attr($value); //=esc
+								if ($value == 'Array') { // esc_attr() must convert array to "Array" string
+									$value = '';
+								}
+								// format input fields
+								$this->resolve_input_fields($section_name, $css_selector, $property_group_array, 
+								$property_group_name, $property, $value, 'mq', $key);	
+							}
+							echo '</div><!-- end property-fields -->';
+						} // ends foreach property
+					}
+				}
+            }
 			
 			// check if need to default to px or %
 			function check_unit($property_group_name, $property, $value) {
@@ -1604,9 +1867,14 @@ if ( is_admin() ) {
 			}
 			
 			// check if !important should be used for CSS3 line
-			function tvr_css3_imp($section_name_slug, $css_selector_slug, $property_group_name, $prop) {
+			function tvr_css3_imp($section_name_slug, $css_selector_slug, $property_group_name, $prop, $con, $mq_key) {
 				if ($this->preferences['css_important'] != '1') {
-					if ($this->options['non_section']['important'][$section_name_slug][$css_selector_slug][$property_group_name][$prop] == '1') {
+					if ($con == 'mq') {
+						$important_val = $this->options['non_section']['important']['m_query'][$mq_key][$section_name_slug][$css_selector_slug][$property_group_name][$prop];
+					} else {
+						$important_val = $this->options['non_section']['important'][$section_name_slug][$css_selector_slug][$property_group_name][$prop];
+					}
+					if ($important_val == '1') {
 						$css_important = ' !important';
 					}
 					else {
@@ -1618,23 +1886,278 @@ if ( is_admin() ) {
 				return $css_important;
 			}
 			
+			
+			function convert_ui_data($ui_data, $sty, $con, $key = '1') {
+				if ($con == 'mq') {
+					$mq_key = $key;
+					$mq_label = $this->preferences['m_queries'][$key]['label'];
+					$mq_query = $this->preferences['m_queries'][$key]['query'];
+					$tab = "\t";
+					$sec_breaks = "";
+					$sty['data'].= "
+
+
+
+/* $mq_label 
+************************************************************************/
+$mq_query {
+";
+				} else {
+					$tab = "";
+					$sec_breaks = "\n\n";
+				}
+				
+				// loop through the sections
+				foreach ( $ui_data as $section_name => $array) { 
+					// don't output extranious data
+					if ($section_name == 'non_section') {
+						continue;
+					}
+					$section_name_slug = $section_name;
+					$section_name = ucwords(str_replace('_', ' ', $section_name));
+					// determine if there are any selectors
+					$selector_count_state = count($array);
+					$selector_count_recursive = count($array, COUNT_RECURSIVE);
+					// if the 2 values are the same, the $selector_count_state variable refers to an empty value
+					if ($selector_count_state == $selector_count_recursive) {
+						$selector_count_state = 0;
+					}
+					if ($selector_count_state > 0) {
+						$sty['data'].= $sec_breaks."
+$tab/* =$section_name
+$tab-------------------------------------------------------------- */
+
+";
+					}
+					// loop the CSS selectors if they exist
+					if ( is_array($array) ) {
+						
+						foreach ( $array as $css_selector => $array) {
+							// check if selector array contains property values, if not, break
+							$empty = true;
+							// if a selector is malformed, $array['styles'] will be a string instead of an array
+							if (!is_array($array['styles'])) {
+								$css_sel_name = ucwords(str_replace('_', ' ', $css_selector));
+								$this->globalmessage.= '<p><b id="malformed" title="To fix, delete the malformed \''.$css_sel_name.'\' selector (which may be blank) in the \''.$section_name. '\' section">Malformed Error:</b> 
+								<i>'.$section_name. ' > '.$css_sel_name.'</i></p>';
+								continue; // so script doesn't cause fatal error
+							}
+							foreach ($sty['prop_key_array'] as $key) {
+								if ($array['styles'][$key] != '') {
+									$empty = false;
+								}
+							}
+							
+							// sort out the css selector - need to get css label/code from regular ui array
+							$css_selector_slug = $css_selector;
+							if ($con == 'mq') {
+								$array['label'] = $this->options[$section_name_slug][$css_selector_slug]['label'];
+							}
+							$label_array = explode('|', $array['label']);
+							$css_label =  ucwords(str_replace('_', ' ', $label_array[0]));
+							$css_selector =  $label_array[1];
+							
+							// output comma'd selectors on different lines
+							$css_selector = str_replace(", ", ",\n", $css_selector);
+							// convert custom escaped single & double quotes back to normal ( [type="submit"] )
+							$css_selector = str_replace('cus-quot;', '"', $css_selector);
+							$css_selector = str_replace('cus-#039;', '\'', $css_selector);
+							$count_styles = count($array);
+							
+							// check for use of curly braces
+							$curly = strpos($css_selector, '{');
+							
+							// if all property values are blank, the array is completely empty
+							if ($empty and $curly === false) { continue; }  
+							
+							// adjust selector if curly braces are present
+							if ($curly!== false) {
+								$curly_array = explode("{", $css_selector);
+								$css_selector = $curly_array[0];
+								// save custom styles in an array for later output
+								$cusStyles = explode(";", str_replace('}', '', $curly_array[1]) );
+							} else {
+								$cusStyles = false;
+							}
+							
+							// media_query_buttons
+
+							// if there are styles or the user has entered hand-coded styles
+							if ( ($con != 'mq' and $count_styles > 2) or ($con != 'mq' and $curly!== false ) or ($con == 'mq' and $count_styles > 1) ) {
+								
+								$sty['data'].= $tab."/* $css_label */
+$tab$css_selector {
+";
+
+								// loop the groups of properties for the selector
+								if ( is_array( $array['styles'] ) ) {
+									foreach ( $array['styles'] as $property_group_name => $property_group_array ) {
+										if ( is_array( $property_group_array ) ) {
+											// reset $xy_done
+											$xy_done = false;
+											foreach ($property_group_array as $property => $value) {
+												// get the appropriate value for !important
+												if ($con == 'mq') {
+													$important_val = $this->options['non_section']['important']['m_query'][$mq_key][$section_name_slug][$css_selector_slug][$property_group_name][$property];
+												} else {
+													$important_val = $this->options['non_section']['important'][$section_name_slug][$css_selector_slug][$property_group_name][$property];
+												}
+												
+												if ($value != '') {
+													// check if value needs px extension
+													$unit = $this->check_unit($property_group_name, $property, $value);
+													// convert custom escaped single & double quotes back to normal (font-family)
+													$value = str_replace('cus-quot;', '"', $value);
+													$value = str_replace('cus-#039;', '\'', $value);
+													// check if !important should be added
+													if ($this->preferences['css_important'] != '1') { // don't modify if globally turned on
+														if ($important_val == '1' 
+														or (($property == 'background_position_x' or $property == 'background_position_y') 
+														and $important_val == '1' )) {
+															$sty['css_important'] = ' !important';
+														}
+														else {
+															$sty['css_important'] = '';
+														}
+													}
+													// if css3 property
+													if (in_array($property, $sty['css3'])) {
+														include $this->thisplugindir . 'includes/resolve-css3.inc.php';
+													}
+													else {
+														$property = str_replace('_', '-', $property);
+														// exception for images
+														if ($property == 'background-image' and $value != 'none') {
+															$sty['data'].= $tab."	$property: url(".$this->micro_root_url."$value){$sty['css_important']};
+";
+														}
+														// exception for custom background image position
+														elseif ($property == 'background-position' and $value == 'custom') {
+															$sty['data'].= ""; // do nothing
+														}
+														// exception for font family wit Google selected
+														elseif ($property == 'font-family' and $value == 'Google Font...') {
+															$sty['data'].= ""; // do nothing
+														}
+														// exception for google font
+														elseif ($property == 'google-font') {
+															$sty['g_fonts_used'] = true;
+															// separate variant from font name
+															$fv = explode(" (", $value);
+															$f_name = $fv[0];
+															$f_var = str_replace(' ', '', $fv[1]);
+															$f_var = str_replace(')', '', $f_var);
+															// save unique fonts in array for building Google CSS URL
+															$url_font_value = str_replace(' ', '+', $f_name);
+															if ($sty['g_fonts'][$url_font_value][$f_var] != 1) {
+																$sty['g_fonts'][$url_font_value][$f_var] = 1;
+															}
+															$sty['data'].= $tab."	font-family: '$f_name'{$sty['css_important']};
+";
+														}
+														// exception for custom bg x/y coordinates
+														elseif ($property == 'background-position-x' or $property == 'background-position-y') {
+															if ($property_group_array['background_position'] != 'custom') {
+																$sty['data'].= ""; // do nothing
+															}
+															// resolve custom x/y coordinates
+															else {
+																if ($xy_done) {
+																	$sty['data'].= ""; // do nothing (x had a value so we did it then)
+																}
+																else {
+																	// check if !important was specified next to dropdown menu
+																	$pos_x_value = $property_group_array['background_position_x'];
+																	$pos_y_value = $property_group_array['background_position_y'];
+																	// resolve x value and unit
+																	if ($pos_x_value != '') {
+																		$pos_x_unit = $this->check_unit($property_group_name, 'background_position_x',
+																		$pos_x_value);
+																		$pos_x = $pos_x_value . $pos_x_unit;
+																	}
+																	else {
+																		$pos_x = '0'; // default to 0
+																	}
+																	// resolve y value and unit
+																	if ($pos_y_value != '') {
+																		$pos_y_unit = $this->check_unit($property_group_name, 'background_position_y',
+																		$pos_y_value);
+																		$pos_y = $pos_y_value . $pos_y_unit;
+																	}
+																	else {
+																		$pos_y = '0'; // default to 0
+																	}
+																	$sty['data'].= $tab."	background-position:$pos_x $pos_y{$sty['css_important']};
+";
+																	$xy_done = true;
+																}
+															}
+														}
+														// default method
+														else {
+															$sty['data'].= $tab."	$property: $value{$unit}{$sty['css_important']};
+";
+														}
+														// if opacity property, add cross-browser rules too.
+														if ($property == 'opacity') {
+															$percent = $value*100;
+															$sty['data'].= $tab.'	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity='.$percent.')"'.$sty['css_important'].';
+'.$tab.'filter: alpha(opacity='.$percent.')'.$sty['css_important'].';
+'.$tab.'-moz-opacity:'.$value.$sty['css_important'].';
+'.$tab.'-khtml-opacity: '.$value.$sty['css_important'].';
+';
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								// determine if CSS3 PIE needs calling (don't add to body as all other pie will break)
+								if ($array['style_config']['CSS3'] == 'CSS3' 
+								and $css_selector != 'body'
+								and $css_selector != 'html'
+								and $array['pie'] != '0') {
+									$sty['data'].= $tab."	behavior: url(".$sty['pie'].");									
+";
+									// auto-apply position:relative if prefered and position hasn't been explicitly defined
+									if ($this->preferences['auto_relative'] == 1 
+									and $array['styles']['position']['position'] == '') {
+										$sty['data'].= $tab."	position: relative;									
+";
+									}
+								}
+								
+								// output the custom styles if they exist
+								if ($cusStyles and is_array($cusStyles)) {
+									$sty['data'].= "	/* Selector Custom CSS */
+";
+									foreach ($cusStyles as $rule) {
+										$clean_rule = trim($rule);
+										if ($clean_rule != '') {
+											$sty['data'].= "	$clean_rule;
+";
+										}
+									}
+										
+								}
+								
+								$sty['data'].= "$tab}
+
+";
+							}
+						}
+					}
+				}
+				// return the modified $sty array
+				if ($con == 'mq') {
+					$sty['data'].= "}";
+				}
+				return $sty;
+			}
+			
 			// update active-styles.css
 			function update_active_styles($activated_from, $context = '') {	
-			
-				$g_fonts = array();
-				$g_fonts_used = false;
-				
-				
-				// for later comparison
-				$prop_key_array = array('font', 'text', 'forecolor', 'background', 'dimensions', 
-				'padding', 'margin', 'border', 'behaviour', 'position', 'CSS3');
-				// determine if !important should be added to styles
-				if ($this->preferences['css_important'] == '1') {
-					$css_important = ' !important';
-				}
-				else {
-					$css_important = '';
-				}
 				// get path to ative-styles.css
 				$act_styles = $this->micro_root_dir.'active-styles.css';	
 				// Create new file if it doesn't already exist
@@ -1650,25 +2173,35 @@ if ( is_admin() ) {
 				}
 				else {
 					$task = 'updated';
-				}
-					
+				}	
 				// check if it's writable
-				if ( is_writable($act_styles) )  {
-					// loop through the settings - always pull from the db
-					$data = '/*** Micro'.TVR_MICRO_VARIANT.' Styles ***/';
-					
+				if ( is_writable($act_styles) )  { 
+					 // stylesheet building code needs to wrapped up in a function as it needs to run twice (again for media queries)
+					 // store values in a object that can be passed and returned to function
+					$sty['data'] = '/*** Micro'.TVR_MICRO_VARIANT.' Styles ***/';
+					// for later comparison
+					$sty['g_fonts'] = array();
+					$sty['g_fonts_used'] = false;
+					$sty['prop_key_array'] = array('font', 'text', 'forecolor', 'background', 'dimensions', 
+					'padding', 'margin', 'border', 'behaviour', 'position', 'CSS3');
+					// determine if !important should be added to styles
+					if ($this->preferences['css_important'] == '1') {
+						$sty['css_important'] = ' !important';
+					}
+					else {
+						$sty['css_important'] = '';
+					}
 					// get path to PIE.php in case it needs to be called
 					$site_url = site_url();
-					// $pie = str_replace($site_url, '', $this->thispluginurl) . 'pie/PIE.php'; // call pie relative to root so works on SSL pages
-					// $pie.= $this->thispluginurl.'pie/PIE.php'; // commented out coz it fails on ssl pages (if not full site ssl)
+					// $sty['pie'] = str_replace($site_url, '', $this->thispluginurl) . 'pie/PIE.php'; // call pie relative to root so works on SSL pages
+					// $sty['pie'].= $this->thispluginurl.'pie/PIE.php'; // commented out coz it fails on ssl pages (if not full site ssl)
 					// this will work on ssl pages & localhost with sites in sub directory of document root 
-					$pie = substr(getenv("SCRIPT_NAME"), 0, -19) . str_replace($site_url, '', $this->thispluginurl) . 'pie/PIE.php'; 
-					
+					$sty['pie'] = substr(getenv("SCRIPT_NAME"), 0, -19) . str_replace($site_url, '', $this->thispluginurl) . 'pie/PIE.php'; 
 					// css3 properties
-					$css3 = array('gradient_a', 'gradient_b', 'gradient_b_pos', 'gradient_c', 'gradient_angle','radius_top_left', 'radius_top_right', 'radius_bottom_right', 'radius_bottom_left', 'box_shadow_color', 'box_shadow_x', 'box_shadow_y', 'box_shadow_blur', 'text_shadow_color', 'text_shadow_x', 'text_shadow_y', 'text_shadow_blur' );
+					$sty['css3'] = array('gradient_a', 'gradient_b', 'gradient_b_pos', 'gradient_c', 'gradient_angle','radius_top_left', 'radius_top_right', 'radius_bottom_right', 'radius_bottom_left', 'box_shadow_color', 'box_shadow_x', 'box_shadow_y', 'box_shadow_blur', 'text_shadow_color', 'text_shadow_x', 'text_shadow_y', 'text_shadow_blur' );
 					// check if hand coded have been set - output before other css
 					if (trim($this->options['non_section']['hand_coded_css'] != '')) {
-					$data.= '
+					$sty['data'].= '
 	
 	
 /* =Hand Coded CSS
@@ -1676,237 +2209,18 @@ if ( is_admin() ) {
 					
 '.stripslashes($this->options['non_section']['hand_coded_css']);	
 					}
-					// loop through the sections
-					foreach ( $this->options as $section_name => $array) { 
-						// don't output extranious data
-						if ($section_name == 'non_section') {
-							continue;
-						}
-						$section_name_slug = $section_name;
-						$section_name = ucwords(str_replace('_', ' ', $section_name));
-						// determine if there are any selectors
-						$selector_count_state = count($array);
-						$selector_count_recursive = count($array, COUNT_RECURSIVE);
-						// if the 2 values are the same, the $selector_count_state variable refers to an empty value
-						if ($selector_count_state == $selector_count_recursive) {
-							$selector_count_state = 0;
-						}
-						if ($selector_count_state > 0) {
-							$data.= "
-	
-	
-/* =$section_name
--------------------------------------------------------------- */
-
-";
-						}
-						// loop the CSS selectors if they exist
-						if ( is_array($array) ) {
-							foreach ( $array as $css_selector => $array) {
-								// check if selector array contains property values, if not, break
-								$empty = true;
-								// if a selector is malformed, $array['styles'] will be a string instead of an array
-								if (!is_array($array['styles'])) {
-									$css_sel_name = ucwords(str_replace('_', ' ', $css_selector));
-									$this->globalmessage.= '<p><b id="malformed" title="To fix, delete the malformed \''.$css_sel_name.'\' selector (which may be blank) in the \''.$section_name. '\' section">Malformed Error:</b> 
-									<i>'.$section_name. ' > '.$css_sel_name.'</i></p>';
-									continue; // so script doesn't cause fatal error
-								}
-								foreach ($prop_key_array as $key) {
-									if ($array['styles'][$key] != '') {
-										$empty = false;
-									}
-								}
-								
-								// sort out the css selector
-								$css_selector_slug = $css_selector;
-								$label_array = explode('|', $array['label']);
-								$css_label =  ucwords(str_replace('_', ' ', $label_array[0]));
-								$css_selector =  $label_array[1];
-								// output comma'd selectors on different lines
-								$css_selector = str_replace(", ", ",\n", $css_selector);
-								// convert custom escaped single & double quotes back to normal ( [type="submit"] )
-								$css_selector = str_replace('cus-quot;', '"', $css_selector);
-								$css_selector = str_replace('cus-#039;', '\'', $css_selector);
-								$count_styles = count($array);
-								
-								// check for use of curly braces
-								$curly = strpos($css_selector, '{');
-								
-								// if all property values are blank, the array is completely empty
-								if ($empty and $curly === false) { continue; }  
-								
-								// adjust selector if curly braces are present
-								if ($curly!== false) {
-									$curly_array = explode("{", $css_selector);
-									$css_selector = $curly_array[0];
-									// save custom styles in an array for later output
-									$cusStyles = explode(";", str_replace('}', '', $curly_array[1]) );
-								} else {
-									$cusStyles = false;
-								}
-								
-								// if there are styles or the user has entered hand-coded styles
-								if ($count_styles > 2 or $curly!== false ) {
-									$data.= "/* $css_label */
-$css_selector {
-";
-
-									// loop the groups of properties for the selector
-									if ( is_array( $array['styles'] ) ) {
-										foreach ( $array['styles'] as $property_group_name => $property_group_array ) {
-											if ( is_array( $property_group_array ) ) {
-												// reset $xy_done
-												$xy_done = false;
-												foreach ($property_group_array as $property => $value) {
-													if ($value != '') {
-														// check if value needs px extension
-														$unit = $this->check_unit($property_group_name, $property, $value);
-														// convert custom escaped single & double quotes back to normal (font-family)
-														$value = str_replace('cus-quot;', '"', $value);
-														$value = str_replace('cus-#039;', '\'', $value);
-														// check if !important should be added
-														if ($this->preferences['css_important'] != '1') { // don't modify if globally turned on
-															if ($this->options['non_section']['important'][$section_name_slug][$css_selector_slug][$property_group_name][$property] == '1' 
-															or (($property == 'background_position_x' or $property == 'background_position_y') and $this->options['non_section']['important'][$section_name_slug][$css_selector_slug][$property_group_name]['background_position'] == '1' )) {
-																$css_important = ' !important';
-															}
-															else {
-																$css_important = '';
-															}
-														}
-														// if css3 property
-														if (in_array($property, $css3)) {
-															include $this->thisplugindir . 'includes/resolve-css3.inc.php';
-														}
-														else {
-															$property = str_replace('_', '-', $property);
-															// exception for images
-															if ($property == 'background-image' and $value != 'none') {
-																$data.= "	$property: url(".$this->micro_root_url."$value){$css_important};
-";
-															}
-															// exception for custom background image position
-															elseif ($property == 'background-position' and $value == 'custom') {
-																$data.= ""; // do nothing
-															}
-															// exception for font family wit Google selected
-															elseif ($property == 'font-family' and $value == 'Google Font...') {
-																$data.= ""; // do nothing
-															}
-															// exception for google font
-															elseif ($property == 'google-font') {
-																$g_fonts_used = true;
-																// separate variant from font name
-																$fv = explode(" (", $value);
-																$f_name = $fv[0];
-																$f_var = str_replace(' ', '', $fv[1]);
-																$f_var = str_replace(')', '', $f_var);
-																// save unique fonts in array for building Google CSS URL
-																$url_font_value = str_replace(' ', '+', $f_name);
-																if ($g_fonts[$url_font_value][$f_var] != 1) {
-																	$g_fonts[$url_font_value][$f_var] = 1;
-																}
-																$data.= "	font-family: '$f_name'{$css_important};
-";
-															}
-															// exception for custom bg x/y coordinates
-															elseif ($property == 'background-position-x' or $property == 'background-position-y') {
-																if ($property_group_array['background_position'] != 'custom') {
-																	$data.= ""; // do nothing
-																}
-																// resolve custom x/y coordinates
-																else {
-																	if ($xy_done) {
-																		$data.= ""; // do nothing (x had a value so we did it then)
-																	}
-																	else {
-																		// check if !important was specified next to dropdown menu
-																		$pos_x_value = $property_group_array['background_position_x'];
-																		$pos_y_value = $property_group_array['background_position_y'];
-																		// resolve x value and unit
-																		if ($pos_x_value != '') {
-																			$pos_x_unit = $this->check_unit($property_group_name, 'background_position_x',
-																			$pos_x_value);
-																			$pos_x = $pos_x_value . $pos_x_unit;
-																		}
-																		else {
-																			$pos_x = '0'; // default to 0
-																		}
-																		// resolve y value and unit
-																		if ($pos_y_value != '') {
-																			$pos_y_unit = $this->check_unit($property_group_name, 'background_position_y',
-																			$pos_y_value);
-																			$pos_y = $pos_y_value . $pos_y_unit;
-																		}
-																		else {
-																			$pos_y = '0'; // default to 0
-																		}
-																		$data.= "	background-position:$pos_x $pos_y{$css_important};
-";
-																		$xy_done = true;
-																	}
-																}
-															}
-															// default method
-															else {
-																$data.= "	$property: $value{$unit}{$css_important};
-";
-															}
-															// if opacity property, add cross-browser rules too.
-															if ($property == 'opacity') {
-																$percent = $value*100;
-																$data.= '	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity='.$percent.')"'.$css_important.';
-	filter: alpha(opacity='.$percent.')'.$css_important.';
-	-moz-opacity:'.$value.$css_important.';
-	-khtml-opacity: '.$value.$css_important.';
-';
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-									// determine if CSS3 PIE needs calling (don't add to body as all other pie will break)
-									if ($array['style_config']['CSS3'] == 'CSS3' 
-									and $css_selector != 'body'
-									and $css_selector != 'html'
-									and $array['pie'] != '0') {
-										$data.= "	behavior: url(".$pie.");									
-";
-										// auto-apply position:relative if prefered and position hasn't been explicitly defined
-										if ($this->preferences['auto_relative'] == 1 
-										and $array['styles']['position']['position'] == '') {
-											$data.= "	position: relative;									
-";
-										}
-									}
-									
-									// output the custom styles if they exist
-									if ($cusStyles and is_array($cusStyles)) {
-										$data.= "	/* Selector Custom CSS */
-";
-										foreach ($cusStyles as $rule) {
-											$clean_rule = trim($rule);
-											if ($clean_rule != '') {
-												$data.= "	$clean_rule;
-";
-											}
-										}
-											
-									}
-									
-									$data.= '}
-';
-								}
-							}
+					// convert ui data to regualr css output
+					$sty = $this->convert_ui_data($this->options, $sty, 'regular');
+					// convert ui data to media query css output
+					if (is_array($this->options['non_section']['m_query'])) {
+						foreach ($this->options['non_section']['m_query'] as $key => $ui_data) {
+							$sty = $this->convert_ui_data($ui_data, $sty, 'mq', $key);
 						}
 					}
 					// the file will be created if it doesn't exist. otherwise it is overwritten.
 					$write_file = fopen($act_styles, 'w'); 
 					// if write is unsuccessful for some reason
-					if (!fwrite($write_file, $data)) {
+					if (!fwrite($write_file, $sty['data'])) {
 						$this->globalmessage.= '<p>Writing to ' . $this->root_rel($act_styles) . ' failed for some reason.</p>';
 					}
 					fclose($write_file);
@@ -1920,11 +2234,11 @@ $css_selector {
 					// update the preferences value for active theme - custom/theme name
 					$pref_array = array();
 					// build google font url
-					if ($g_fonts_used) {
+					if ($sty['g_fonts_used']) {
 						$g_url = '//fonts.googleapis.com/css?family=';
 						$first = true;
 						$g_ie_array = array();
-						foreach ($g_fonts as $url_font_value => $v_array) {
+						foreach ($sty['g_fonts'] as $url_font_value => $v_array) {
 							if ($first) {
 								$first = false;
 							} else {
@@ -1953,7 +2267,7 @@ $css_selector {
 					} else {
 						$g_url = '';
 					}
-					$pref_array['g_fonts_used'] = $g_fonts_used;
+					$pref_array['g_fonts_used'] = $sty['g_fonts_used'];
 					$pref_array['g_url'] = $g_url;
 					$pref_array['g_ie_array'] = $g_ie_array;
 					
@@ -2119,12 +2433,37 @@ $css_selector {
 						$this->saveUiOptions($this->options);
 						// update active-styles.css
 						$this->update_active_styles($theme_name, $context); // pass the context so the function doesn't update theme_in_focus
-						// update theme_in_focus (if it's not a merge)
+						// check for new mqs
+						$mqs_imported = false;
+						$pref_array['m_queries'] = $this->preferences['m_queries'];
+						if (is_array($this->options['non_section']['active_queries'])) {
+							$i = 0;
+							foreach ($this->options['non_section']['active_queries'] as $key => $mq_array) {
+								// add the new media query if not currently in use
+								if ( !$this->in_2dim_array($mq_array['query'], $pref_array['m_queries'], 'query') ) {
+									// ensure key is unique by using unique base from last page load
+									$key = $this->unq_base.++$i;
+									$pref_array['m_queries'][$key]['label'] = $mq_array['label']. ' (imp)';
+									$pref_array['m_queries'][$key]['query'] = $mq_array['query'];
+									$mqs_imported = true;
+								}	
+							}
+						}
+						if ($mqs_imported) {
+							$this->globalmessage.= '<p><b>New media queries were imported</b>. 
+							<a href="admin.php?page='.$this->preferencespage.'#m_queries"
+							 title="Review (and relabel) imported media queries">Review them here</a></p>
+							<p>Note: imported queries are marked with "(imp)", which you can remove from the label name once you\'ve reviewed them.</p>';
+						}
+						// Only update theme_in_focus if it's not a merge
 						if ($context != 'Merge') {
-							$pref_array = array();
-							// Only update theme_in_focus if it's not a merge
-							$pref_array['theme_in_focus'] = $theme_name; 
-							// $pref_array['active_theme'] updates in update_active_styles()
+							$pref_array['theme_in_focus'] = $theme_name; 	
+						}
+						if ($mqs_imported) {
+							
+						}
+						// update the preferences if not merge or media queries need importing
+						if ($context != 'Merge' or $mqs_imported) {
 							$this->savePreferences($pref_array);
 						}
 					}
@@ -2136,6 +2475,7 @@ $css_selector {
 				}
 				
 			}
+			
 			
 			// merge the new settings with the current settings
 			function merge($orig_settings, $new_settings) {

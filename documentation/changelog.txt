@@ -1,5 +1,14 @@
 CHANGELOG
 
+2.3.8 (Aug 27, 2013)
+
+# Enhancement
+* Microthemer now supports media queries for designing/customizing responsive wordpress themes
+* WordPress admin bar shows on frontend by default (but can be turned off on preferences page)
+
+# Bugs Fixed
+* Adding a Selector could result in a PHP error on strict servers that don't allow MySQL fields of type "text/longtext" to have a default value. See more info on the issue here: http://stackoverflow.com/questions/3466872/why-cant-a-text-column-have-a-default-value-in-mysql 
+
 2.3.5 (Aug 7, 2013)
 
 # Enhancement

@@ -94,6 +94,8 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+= 2.3.8 = 
+* Microthemer now supports media queries for designing responsively
 
 = 2.3.5 = 
 * Email validation method now more reliable.

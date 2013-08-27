@@ -3,6 +3,16 @@
 if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { 
 	die('Please do not call this page directly.'); 
 }
+
+// add media query stem for form fields if necessary
+if ($con == 'mq') {
+	$mq_stem = '[non_section][m_query]['.$key.']';
+	$imp_key = '[m_query]['.$key.']';
+	$important_val = $this->options['non_section']['important']['m_query'][$key][$section_name][$css_selector][$property_group_name][$property];
+} else {
+	$important_val = $this->options['non_section']['important'][$section_name][$css_selector][$property_group_name][$property];
+}
+
 ?>
 <div class='field-wrap 
 	<?php
@@ -64,22 +74,21 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
     <?php
 	if ($property != 'background_position_x' and $property != 'background_position_y') {
 		// check status of !important - only create dom element if positive result (optimisation purposes)
-		if ($this->options['non_section']['important'][$section_name][$css_selector][$property_group_name][$property] == 1) {
+		if ($important_val == 1) {
 			echo '<input class="important-tracker" type="hidden" 
-			name="tvr_mcth[non_section][important]['.$section_name.']['.$css_selector.']['.$property_group_name.']['.$property.']" value="1" />';
+			name="tvr_mcth[non_section][important]'.$imp_key.'['.$section_name.']['.$css_selector.']['.$property_group_name.']['.$property.']" value="1" />';
 			$class_rel = 'on';	
 		}
 		else {
 			$class_rel = 'off';	
 		}
-		
 		// don't show i on all css3 props
 		if ($property_group_name != 'CSS3' 
 		or $property == 'gradient_c'
 		or $property == 'radius_bottom_left'
 		or $property == 'box_shadow_blur') { 
 			?>
-			<span class="important-toggle tvr-toggle-<?php echo $class_rel; ?>" title="Click to add/remove !important declaration" rel="<?php echo $class_rel; ?>">i</span>
+			<span class="important-toggle tvr-toggle-<?php echo $class_rel; ?> imp-<?php echo $con; ?> " title="Click to add/remove !important declaration" rel="<?php echo $class_rel; ?>">i</span>
 			<?php
 		}
 	}
@@ -102,7 +111,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 			echo ' tvr-font-select';
 		}
 		?>' autocomplete="off" 
-        name="tvr_mcth[<?php echo $section_name; ?>][<?php echo $css_selector;?>][styles][<?php echo $property_group_name;?>][<?php echo $property; ?>]">
+        name="tvr_mcth<?php echo $mq_stem; ?>[<?php echo $section_name; ?>][<?php echo $css_selector;?>][styles][<?php echo $property_group_name;?>][<?php echo $property; ?>]">
         <option value=''></option>
         <?php
 		// dynamic background image list 
@@ -192,7 +201,7 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
         }
         
         ?>' 
-        name="tvr_mcth[<?php echo $section_name; ?>][<?php echo $css_selector; ?>][styles][<?php echo $property_group_name; ?>][<?php echo $property; ?>]" value="<?php echo $value; ?>" /> 
+        name="tvr_mcth<?php echo $mq_stem; ?>[<?php echo $section_name; ?>][<?php echo $css_selector; ?>][styles][<?php echo $property_group_name; ?>][<?php echo $property; ?>]" value="<?php echo $value; ?>" /> 
         <?php	
         }
 	?>
@@ -201,4 +210,5 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 <?php if ( $this->propertyoptions[$property_group_name][$property]['linebreak'] == '1' ) {
 		echo '<div class="clear"></div>';
 	}
+
 ?>
