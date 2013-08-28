@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.3.8
+Version: 2.4.1
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -46,7 +46,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.3.8';
+			var $version = '2.4.1';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -701,7 +701,7 @@ if ( is_admin() ) {
 							$theme = htmlentities($_POST['export_to_theme']);
 							if ($theme == 'new') {
 								$context = 'new';
-								if ($_POST['export_new_name'] != '') {
+								if ( !empty($_POST['export_new_name']) ) {
 									$theme = htmlentities($_POST['export_new_name']);
 									$do_option_insert = true;
 								}
@@ -771,7 +771,7 @@ if ( is_admin() ) {
 					}
 					
 					// if it's an import request
-					if (isset($_POST['tvr_import_from_theme']) and $_POST['tvr_import_from_theme'] != '') {
+					if ( isset($_POST['tvr_import_from_theme']) and !empty($_POST['tvr_import_from_theme']) ) {
 						check_admin_referer('tvr_import_from_theme');
 						$theme_name = htmlentities($_POST['tvr_import_from_theme']);
 						$json_file = $this->micro_root_dir . $theme_name . '/config.json';
@@ -828,7 +828,7 @@ if ( is_admin() ) {
 						fwrite($write_file, $body);
 						fclose($write_file);
 						// Determine from email address. Try to use validated customer email. Don't contact if not Microthemer customer.
-						if ($this->preferences['buyer_email'] != '') {
+						if ( !empty($this->preferences['buyer_email']) ) {
 							$from_email = $this->preferences['buyer_email'];
 							$body .= "MICROTHEMER CUSTOMER EMAIL \n" . $from_email;
 						}
@@ -1020,7 +1020,7 @@ if ( is_admin() ) {
 						}
 						// if the active_theme has been changed, invoke the relevant functions - redundant code
 						if ($_POST['tvr_preferences']['active_theme'] != $_POST['prev_active_theme'] and 
-						$_POST['tvr_preferences']['active_theme'] != '') {
+						!empty($_POST['tvr_preferences']['active_theme'])) {
 							// if custom, just update active styles
 							if ($_POST['tvr_preferences']['active_theme'] == 'customised') {
 								$this->update_active_styles('customised');
@@ -1269,9 +1269,9 @@ if ( is_admin() ) {
 			
 			// check a multi-dimentional array for a value
 			function in_2dim_array($elem, $array, $target_key){
-				foreach ($array as $key => $val) {
+				foreach ($array as $current_mq_key => $val) {
 				   if ($val[$target_key] == $elem) {
-					   return true;
+					   return $current_mq_key;
 				   }
 			   }
 			   return false;
@@ -1341,8 +1341,8 @@ if ( is_admin() ) {
 			
 			// check if the section name exists in the orig_settings or the new_settings (possible after name modification)
 			function is_name_conflict($alt_name, $orig_settings, $new_settings, $context='') {
-				if ( ($orig_settings[$alt_name] != '' // conflicts with orig settings or
-				or ($context == 'alt-check' and $new_settings[$alt_name] != '')) // conflicts with new settings (and is an alt name)
+				if ( ( !empty($orig_settings[$alt_name]) // conflicts with orig settings or
+				or ($context == 'alt-check' and !empty($new_settings[$alt_name]) )) // conflicts with new settings (and is an alt name)
 				and $alt_name != 'non_section' // and is a section
 				) { 
 					return true; // conflict
@@ -1508,7 +1508,7 @@ if ( is_admin() ) {
                         <?php 
                         // determine which style groups are active
                         $style_count_state = 0;
-                        if ( is_array($array['style_config']) ) {
+                        if ( !empty($array['style_config']) and is_array($array['style_config']) ) {
                             foreach ( $array['style_config'] as $key => $value) {
                                 if ($key == $value) {
                                     ++$style_count_state;
@@ -1614,7 +1614,7 @@ if ( is_admin() ) {
                                 value='1' 
                                 <?php
 								// check if pie swtich is on (default to on)
-								if ($array['pie'] == '1' or $array['pie'] == '') {
+								if ($array['pie'] == '1' or empty($array['pie'])) {
 									echo 'checked="checked"';
 								}
 								?>
@@ -1645,7 +1645,7 @@ if ( is_admin() ) {
                                 if ( is_array( $property_group_array ) ) {
                                    // determine which tab to show
 								   $device_tab = $this->options[$section_name][$css_selector]['device_focus'][$property_group_name];
-								   if ($device_tab == '' or $device_tab == 'all-devices') {
+								   if ( empty($device_tab) or $device_tab == 'all-devices') {
 									   $show_class = 'show';
 									} else {
 										$show_class = '';
@@ -1714,7 +1714,7 @@ if ( is_admin() ) {
 				<?php
 				// save the configuration of the device tab
 				$device_tab = $this->options[$section_name][$css_selector]['device_focus'][$property_group_name];
-				if ($device_tab == '') {
+				if ( empty($device_tab)) {
 					$device_tab = 'all-devices';
 				}
 				// should the tab be visible
@@ -1741,7 +1741,7 @@ if ( is_admin() ) {
 						$show_class = '';
 					}
 					// should the tab be active
-					if (intval($device_tab) === $key) {
+					if ($device_tab == $key) {
 						$class = 'active';
 					} else {
 						$class = '';
@@ -1823,7 +1823,7 @@ if ( is_admin() ) {
 						if ( is_array( $property_group_array ) ) {
 							// determine if the tab should be showing
 							$device_tab = $this->options[$section_name][$css_selector]['device_focus'][$property_group_name];
-							if (intval($device_tab) === $key) {
+							if ($device_tab == $key) {
 								$show_class = 'show';
 							} else {
 								$show_class = '';
@@ -1943,7 +1943,7 @@ $tab-------------------------------------------------------------- */
 								continue; // so script doesn't cause fatal error
 							}
 							foreach ($sty['prop_key_array'] as $key) {
-								if ($array['styles'][$key] != '') {
+								if ( !empty($array['styles'][$key]) ) {
 									$empty = false;
 								}
 							}
@@ -2003,7 +2003,7 @@ $tab$css_selector {
 													$important_val = $this->options['non_section']['important'][$section_name_slug][$css_selector_slug][$property_group_name][$property];
 												}
 												
-												if ($value != '') {
+												if ( !empty($value) ) {
 													// check if value needs px extension
 													$unit = $this->check_unit($property_group_name, $property, $value);
 													// convert custom escaped single & double quotes back to normal (font-family)
@@ -2070,7 +2070,7 @@ $tab$css_selector {
 																	$pos_x_value = $property_group_array['background_position_x'];
 																	$pos_y_value = $property_group_array['background_position_y'];
 																	// resolve x value and unit
-																	if ($pos_x_value != '') {
+																	if ( !empty($pos_x_value) ) {
 																		$pos_x_unit = $this->check_unit($property_group_name, 'background_position_x',
 																		$pos_x_value);
 																		$pos_x = $pos_x_value . $pos_x_unit;
@@ -2079,7 +2079,7 @@ $tab$css_selector {
 																		$pos_x = '0'; // default to 0
 																	}
 																	// resolve y value and unit
-																	if ($pos_y_value != '') {
+																	if ( !empty($pos_y_value) ) {
 																		$pos_y_unit = $this->check_unit($property_group_name, 'background_position_y',
 																		$pos_y_value);
 																		$pos_y = $pos_y_value . $pos_y_unit;
@@ -2122,7 +2122,7 @@ $tab$css_selector {
 ";
 									// auto-apply position:relative if prefered and position hasn't been explicitly defined
 									if ($this->preferences['auto_relative'] == 1 
-									and $array['styles']['position']['position'] == '') {
+									and empty($array['styles']['position']['position'])) {
 										$sty['data'].= $tab."	position: relative;									
 ";
 									}
@@ -2134,7 +2134,7 @@ $tab$css_selector {
 ";
 									foreach ($cusStyles as $rule) {
 										$clean_rule = trim($rule);
-										if ($clean_rule != '') {
+										if ( !empty($clean_rule) ) {
 											$sty['data'].= "	$clean_rule;
 ";
 										}
@@ -2200,7 +2200,7 @@ $tab$css_selector {
 					// css3 properties
 					$sty['css3'] = array('gradient_a', 'gradient_b', 'gradient_b_pos', 'gradient_c', 'gradient_angle','radius_top_left', 'radius_top_right', 'radius_bottom_right', 'radius_bottom_left', 'box_shadow_color', 'box_shadow_x', 'box_shadow_y', 'box_shadow_blur', 'text_shadow_color', 'text_shadow_x', 'text_shadow_y', 'text_shadow_blur' );
 					// check if hand coded have been set - output before other css
-					if (trim($this->options['non_section']['hand_coded_css'] != '')) {
+					if ( trim($this->options['non_section']['hand_coded_css'] != '' ) ) {
 					$sty['data'].= '
 	
 	
@@ -2249,7 +2249,7 @@ $tab$css_selector {
 							$v_first = true;
 							$v_string = '';
 							foreach ($v_array as $f_var => $val) {
-								if ($f_var == '') {
+								if ( empty($f_var) ) {
 									continue;
 								}
 								if ($v_first) {
@@ -2336,7 +2336,7 @@ $tab$css_selector {
 						}
 						$json_object = new Moxiecode_JSON();
 						// if it's a selective export, only write selected sections to json file
-						if ($_POST['only_export_selected'] != '') {
+						if ( !empty($_POST['only_export_selected']) ) {
 							// copy full options to var for editing
 							$json_data = $this->options;
 							// loop through full options
@@ -2348,7 +2348,7 @@ $tab$css_selector {
 								}
 							}
 							// set handcoded css to nothing if not marked for export
-							if ($_POST['export_sections']['hand_coded_css'] == '') {
+							if ( empty($_POST['export_sections']['hand_coded_css'])) {
 								$json_data['non_section']['hand_coded_css'] = '';
 							}
 							// create debug selective export file if specified at top of script
@@ -2406,7 +2406,7 @@ $tab$css_selector {
 					}
 					$json_object = new Moxiecode_JSON();
 					// check what import method the user specified
-					if ($context == 'Overwrite' or $context == '') {
+					if ($context == 'Overwrite' or empty($context)) {
 						// attempt to decode json into an array
 						if (!$this->options = $json_object->decode($data)) {
 							$this->globalmessage.= '<p>WordPress was not able to convert ' . $this->root_rel($json_file) . 
@@ -2429,24 +2429,23 @@ $tab$css_selector {
 					// json decode was successful
 					if (!$json_error) {
 						$this->globalmessage.= '<p>Settings successfully imported.</p>';
-						// save settings in db
-						$this->saveUiOptions($this->options);
-						// update active-styles.css
-						$this->update_active_styles($theme_name, $context); // pass the context so the function doesn't update theme_in_focus
 						// check for new mqs
 						$mqs_imported = false;
 						$pref_array['m_queries'] = $this->preferences['m_queries'];
 						if (is_array($this->options['non_section']['active_queries'])) {
 							$i = 0;
-							foreach ($this->options['non_section']['active_queries'] as $key => $mq_array) {
+							foreach ($this->options['non_section']['active_queries'] as $options_mq_key => $mq_array) {
 								// add the new media query if not currently in use
-								if ( !$this->in_2dim_array($mq_array['query'], $pref_array['m_queries'], 'query') ) {
+								$pref_mq_key = $this->in_2dim_array($mq_array['query'], $pref_array['m_queries'], 'query');
+								if ( !$pref_mq_key ) { // new media query
 									// ensure key is unique by using unique base from last page load
-									$key = $this->unq_base.++$i;
-									$pref_array['m_queries'][$key]['label'] = $mq_array['label']. ' (imp)';
-									$pref_array['m_queries'][$key]['query'] = $mq_array['query'];
+									$pref_mq_key = $this->unq_base.++$i;
+									$pref_array['m_queries'][$pref_mq_key]['label'] = $mq_array['label']. ' (imp)';
+									$pref_array['m_queries'][$pref_mq_key]['query'] = $mq_array['query'];
 									$mqs_imported = true;
-								}	
+								}
+								// If the media query was imported or not, the mq key in the options needs to match the key in the pref array
+								$this->replace_options_mq_key($options_mq_key, $pref_mq_key);	
 							}
 						}
 						if ($mqs_imported) {
@@ -2455,6 +2454,10 @@ $tab$css_selector {
 							 title="Review (and relabel) imported media queries">Review them here</a></p>
 							<p>Note: imported queries are marked with "(imp)", which you can remove from the label name once you\'ve reviewed them.</p>';
 						}
+						// save settings in db
+						$this->saveUiOptions($this->options);
+						// update active-styles.css
+						$this->update_active_styles($theme_name, $context); // pass the context so the function doesn't update theme_in_focus
 						// Only update theme_in_focus if it's not a merge
 						if ($context != 'Merge') {
 							$pref_array['theme_in_focus'] = $theme_name; 	
@@ -2474,6 +2477,27 @@ $tab$css_selector {
 					it doesn\'t exist in <i>'.$this->readable_name($theme_name).'</i>.</p>';
 				}
 				
+			}
+			
+			// ensure mq keys in pref array and options match
+			function replace_options_mq_key($options_mq_key, $pref_mq_key) {
+				$cons = array('active_queries', 'm_query');
+				// replace the relevant array keys - unset() doesn't work on $this-> so slightly convaluted solution used
+				$updated_array = array();
+				foreach ($cons as $stub => $context) {
+					unset($updated_array);
+					if (is_array($this->options['non_section'][$context])) {
+						foreach ($this->options['non_section'][$context] as $cur_key => $array) {
+							if ($cur_key == $options_mq_key) {
+								$key = $pref_mq_key;
+							} else {
+								$key = $cur_key;
+							}
+							$updated_array[$key] = $array;
+						}
+						$this->options['non_section'][$context] = $updated_array; // reassign main array with updated keys array 
+					}
+				}
 			}
 			
 			
@@ -2823,17 +2847,17 @@ $tab$css_selector {
 				$theme_data['AuthorURI'] = esc_url( $theme_data['AuthorURI'] );
 				$theme_data['Template'] = wp_kses( $theme_data['Template'], $themes_allowed_tags );
 				$theme_data['Version'] = wp_kses( $theme_data['Version'], $themes_allowed_tags );
-				if ( $theme_data['Status'] == '' )
+				if ( empty($theme_data['Status']) )
 					$theme_data['Status'] = 'publish';
 				else
 					$theme_data['Status'] = wp_kses( $theme_data['Status'], $themes_allowed_tags );
 			
-				if ( $theme_data['Tags'] == '' )
+				if ( empty($theme_data['Tags']) )
 					$theme_data['Tags'] = array();
 				else
 					$theme_data['Tags'] = array_map( 'trim', explode( ',', wp_kses( $theme_data['Tags'], array() ) ) );
 			
-				if ( $theme_data['Author'] == '' ) {
+				if ( empty($theme_data['Author']) ) {
 					$theme_data['Author'] = $theme_data['AuthorName'] = __('Anonymous');
 				} else {
 					$theme_data['AuthorName'] = wp_kses( $theme_data['Author'], $themes_allowed_tags );
@@ -3024,9 +3048,9 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
 							and copy($_FILES['upload_file']['tmp_name'], $dest_dir . $file)) {
 							  $this->globalmessage.= '<p><b><i>'.htmlentities($file).'</i></b> was successfully uploaded.</p>';
 							  // resize file if it's an image and user specifies resize dimensions
-							  if ($_POST['tvr_upload_file_resize'] != '' and $this->is_image($file)) {
+							  if ( !empty($_POST['tvr_upload_file_resize']) and $this->is_image($file)) {
 								  // if users specifies new dimesions resize
-								  if ($_POST['tvr_upload_file_width'] != '' or $_POST['tvr_upload_file_height'] != '') {
+								  if ( !empty($_POST['tvr_upload_file_width']) or !empty($_POST['tvr_upload_file_height']) ) {
 									  $img_full_path = $dest_dir . $file;
 									  if (!$final_dimensions = $this->resize($img_full_path, 
 									  intval($_POST['tvr_upload_file_width']), 
@@ -3089,10 +3113,10 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
 				$width = $imgInfo[0];
 				$height = $imgInfo[1];
 				// set proportional max_width and max_height if one or the other isn't specified
-				if ($max_width == '') { 
+				if ( empty($max_width)) { 
 					$max_width = round($width/($height/$max_height)); 
 				}
-				if ($max_height == '') { 
+				if ( empty($max_height)) { 
 					$max_height = round($height/($width/$max_width)); 
 				}
 				// abort if user tries to enlarge a pic
@@ -3398,7 +3422,7 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
 			$file_data = fread( $fp, 8192 );
 			// PHP will close file handle, but we are good citizens.
 			fclose( $fp );
-			if ( $context != '' ) {
+			if ( !empty($context) ) {
 				$extra_headers = apply_filters( "extra_{$context}_headers", array() );
 				$extra_headers = array_flip( $extra_headers );
 				foreach( $extra_headers as $key=>$value ) {
@@ -3525,7 +3549,7 @@ if (!is_admin()) {
 				if (is_user_logged_in()) {
 					$append = '?nocache=' . time();
 				}
-				if ($this->preferences['active_theme'] != '') {
+				if ( !empty($this->preferences['active_theme']) ) {
 					// register css - check theme name so relevant dependecies can be added
 					$deps = $this->dep_stylesheets();
 					

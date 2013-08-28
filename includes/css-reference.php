@@ -756,7 +756,7 @@ else {
             <?php show_css_index($ref); ?>
             <br />
 			<?php
-			if ($ref[$prop_group][$label]['w3s'] != '') {
+			if ( !empty($ref[$prop_group][$label]['w3s']) ) {
 				?>
 				<p>Detailed information at <a target='_blank' href='<?php echo $ref[$prop_group][$label]['w3s']; ?>'>W3 Schools</a></p>
 				<?php

@@ -45,7 +45,7 @@ if ($con == 'mq') {
     <label><?php
 	// provide colorbox image slider for bg images
 	if ($this->propertyoptions[$property_group_name][$property]['bg_image'] == 1) {
-		if ($value != '') {
+		if ( !empty($value)) {
 			$bg_url = $this->micro_root_url . $value;
 		}
 		else {
@@ -184,7 +184,7 @@ if ($con == 'mq') {
 	else {
 		
 		// check if input is eligable for autofill
-		if ($this->propertyoptions[$property_group_name][$property]['rel'] != '') {
+		if (!empty($this->propertyoptions[$property_group_name][$property]['rel'])) {
 			$autofill_class = 'autofillable ';
 			$autofill_rel = 'rel="'.$this->propertyoptions[$property_group_name][$property]['rel'].'"';
 		}

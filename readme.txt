@@ -94,6 +94,9 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+= 2.4.1 = 
+* Various bugs relating to media queries and illegal string offsets with PHP 5.4 were fixed
+
 = 2.3.8 = 
 * Microthemer now supports media queries for designing responsively
 

@@ -17,25 +17,25 @@ and !$array['styles']['gradient']['rendered'] ) {
 	//$sty['data'].= "$section_name_slug, $css_selector_slug, $property_group_name, 'gradient_c', $con, $mq_key - ".$sty['css_important'];
 	
 	// get Gradient A or default to other gradient
-	if ($property_group_array['gradient_a'] != '') {
+	if ( !empty($property_group_array['gradient_a'])) {
 		$gradient_a = $property_group_array['gradient_a'];
 	}
 	else {
 		// make same as B if set
-		if ($property_group_array['gradient_b'] != '') {
+		if ( !empty($property_group_array['gradient_b']) ) {
 			$gradient_a = $property_group_array['gradient_b'];
 		}
 		// else make same as C
-		elseif ($property_group_array['gradient_c'] != '') {
+		elseif ( !empty($property_group_array['gradient_c']) ) {
 			$gradient_a = $property_group_array['gradient_c'];
 		}
 	}
 	
 	// get Gradient B if set (it's optional so no default)
-	if ($property_group_array['gradient_b'] != '') {
+	if ( !empty($property_group_array['gradient_b'])) {
 		$gradient_b = $property_group_array['gradient_b'];
 		// get B Position if set
-		if ($property_group_array['gradient_b_pos'] != '') {
+		if ( !empty($property_group_array['gradient_b_pos'])) {
 			$gradient_b_pos = $property_group_array['gradient_b_pos'];
 			// give gradient_b_pos % unit if not specified
 			$gradient_b_pos.= $this->check_unit($property_group_name, 'gradient_b_pos', $gradient_b_pos);
@@ -53,22 +53,22 @@ and !$array['styles']['gradient']['rendered'] ) {
 	}
 	
 	// get Gradient C or default to other gradient
-	if ($property_group_array['gradient_c'] != '') {
+	if ( !empty($property_group_array['gradient_c'])) {
 		$gradient_c = $property_group_array['gradient_c'];
 	}
 	else {
 		// make same as B if set
-		if ($property_group_array['gradient_b'] != '') {
+		if ( !empty($property_group_array['gradient_b'])) {
 			$gradient_c = $property_group_array['gradient_b'];
 		}
 		// else make same as C
-		elseif ($property_group_array['gradient_a'] != '') {
+		elseif ( !empty($property_group_array['gradient_a']) ) {
 			$gradient_c = $property_group_array['gradient_a'];
 		}
 	}
 	
 	// get Gradient Angle or default to vertical
-	if ($property_group_array['gradient_angle'] != '') {
+	if (!empty($property_group_array['gradient_angle'])) {
 		$gradient_angle = $property_group_array['gradient_angle'];
 	}
 	else {
@@ -119,22 +119,22 @@ and !$array['styles']['gradient']['rendered'] ) {
 	} 
 	
 	// if the user didn't specify a background color, use Gradient A
-	if ($array['styles']['background']['background_color'] == '') {
+	if (empty($array['styles']['background']['background_color'])) {
 		$fallback_bg_color = "background-color: $gradient_a; /*non-CSS3 browsers will use this*/";
 	}
 	
 	// check if bg image properties need to go in 
-	if ($array['styles']['background']['background_image'] != '') {
+	if (!empty($array['styles']['background']['background_image'])) {
 		if ($array['styles']['background']['background_image'] != 'none') {
 			$user_bg_image = "url(".$array['styles']['background']['background_image'].")";
 		}
 		else {
 			$user_bg_image = "none";
 		}
-		if ($array['styles']['background']['background_position'] != '') {
+		if (!empty($array['styles']['background']['background_position'])) {
 			$user_bg_image.= ' '.$array['styles']['background']['background_position'];
 		}
-		if ($array['styles']['background']['background_repeat'] != '') {
+		if (!empty($array['styles']['background']['background_repeat'])) {
 			$user_bg_image.= ' '.$array['styles']['background']['background_repeat'];
 		}
 		$user_bg_image.= ', ';
@@ -165,7 +165,7 @@ $property == 'radius_bottom_left') and
 	$sty['css_important'] = $this->tvr_css3_imp($section_name_slug, $css_selector_slug, $property_group_name, 'radius_bottom_left', $con, $mq_key);
 
 	// top left
-	if ($property_group_array['radius_top_left'] != '') {
+	if (!empty($property_group_array['radius_top_left'])) {
 		$radius_top_left = $property_group_array['radius_top_left'];
 	}
 	else {
@@ -173,7 +173,7 @@ $property == 'radius_bottom_left') and
 	}
 	$radius_top_left.= $this->check_unit($property_group_name, 'radius_top_left', $radius_top_left);
 	// top right
-	if ($property_group_array['radius_top_right'] != '') {
+	if (!empty($property_group_array['radius_top_right'])) {
 		$radius_top_right = $property_group_array['radius_top_right'];
 	}
 	else {
@@ -181,7 +181,7 @@ $property == 'radius_bottom_left') and
 	}
 	$radius_top_right.= $this->check_unit($property_group_name, 'radius_top_right', $radius_top_right);
 	// bottom right
-	if ($property_group_array['radius_bottom_right'] != '') {
+	if (!empty($property_group_array['radius_bottom_right'])) {
 		$radius_bottom_right = $property_group_array['radius_bottom_right'];
 	}
 	else {
@@ -189,7 +189,7 @@ $property == 'radius_bottom_left') and
 	}
 	$radius_bottom_right.= $this->check_unit($property_group_name, 'radius_bottom_right', $radius_bottom_right);
 	// bottom left
-	if ($property_group_array['radius_bottom_left'] != '') {
+	if (!empty($property_group_array['radius_bottom_left'])) {
 		$radius_bottom_left = $property_group_array['radius_bottom_left'];
 	}
 	else {
@@ -216,14 +216,14 @@ $property == 'box_shadow_blur') and
 	$sty['css_important'] = $this->tvr_css3_imp($section_name_slug, $css_selector_slug, $property_group_name, 'box_shadow_blur', $con, $mq_key);
 
 	// shadow color
-	if ($property_group_array['box_shadow_color'] != '') {
+	if (!empty($property_group_array['box_shadow_color'])) {
 		$box_shadow_color = $property_group_array['box_shadow_color'];
 	}
 	else {
 		$box_shadow_color = '#CCCCCC';
 	}
 	// x-offset
-	if ($property_group_array['box_shadow_x'] != '') {
+	if (!empty($property_group_array['box_shadow_x'])) {
 		$box_shadow_x = $property_group_array['box_shadow_x'];
 	}
 	else {
@@ -231,7 +231,7 @@ $property == 'box_shadow_blur') and
 	}
 	$box_shadow_x.= $this->check_unit($property_group_name, 'box_shadow_x', $box_shadow_x);
 	// y-offset
-	if ($property_group_array['box_shadow_y'] != '') {
+	if (!empty($property_group_array['box_shadow_y'])) {
 		$box_shadow_y = $property_group_array['box_shadow_y'];
 	}
 	else {
@@ -239,7 +239,7 @@ $property == 'box_shadow_blur') and
 	}
 	$box_shadow_y.= $this->check_unit($property_group_name, 'box_shadow_y', $box_shadow_y);
 	// blur
-	if ($property_group_array['box_shadow_blur'] != '') {
+	if (!empty($property_group_array['box_shadow_blur'])) {
 		$box_shadow_blur = $property_group_array['box_shadow_blur'];
 	}
 	else {
@@ -265,14 +265,14 @@ $property == 'text_shadow_blur') and
 !$array['styles']['text_shadow']['rendered']) {
 	
 	// shadow color
-	if ($property_group_array['text_shadow_color'] != '') {
+	if (!empty($property_group_array['text_shadow_color'])) {
 		$text_shadow_color = $property_group_array['text_shadow_color'];
 	}
 	else {
 		$text_shadow_color = '#CCCCCC';
 	}
 	// x-offset
-	if ($property_group_array['text_shadow_x'] != '') {
+	if (!empty($property_group_array['text_shadow_x'])) {
 		$text_shadow_x = $property_group_array['text_shadow_x'];
 	}
 	else {
@@ -280,7 +280,7 @@ $property == 'text_shadow_blur') and
 	}
 	$text_shadow_x.= $this->check_unit($property_group_name, 'text_shadow_x', $text_shadow_x);
 	// y-offset
-	if ($property_group_array['text_shadow_y'] != '') {
+	if (!empty($property_group_array['text_shadow_y'])) {
 		$text_shadow_y = $property_group_array['text_shadow_y'];
 	}
 	else {
@@ -288,7 +288,7 @@ $property == 'text_shadow_blur') and
 	}
 	$text_shadow_y.= $this->check_unit($property_group_name, 'text_shadow_y', $text_shadow_y);
 	// blur
-	if ($property_group_array['text_shadow_blur'] != '') {
+	if (!empty($property_group_array['text_shadow_blur'])) {
 		$text_shadow_blur = $property_group_array['text_shadow_blur'];
 	}
 	else {

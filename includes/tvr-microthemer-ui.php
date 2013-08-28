@@ -183,7 +183,7 @@ foreach ($this->filtered_images as $dir => $array) {
 				}
 				echo '<li id="strk-'.$section_name.'" class="strk">';
 				$section_view_state = $this->options['non_section']['view_state'][$section_name]['this'];
-				if ($section_view_state == '' or $section_view_state == 1) { 
+				if ( empty($section_view_state) or $section_view_state == 1) { 
 					$section_view_state = 0; 
 				}
 				?>
@@ -215,7 +215,7 @@ foreach ($this->filtered_images as $dir => $array) {
 						++$sel_loop_count;
 						$selector_view_state = $this->options['non_section']['view_state'][$section_name][$css_selector];
 						// default to 0 and if styles were hidden on last save, they don't load so set tracker to 0
-						if ($selector_view_state == '' or $selector_view_state == 1) { 
+						if ( empty($selector_view_state) or $selector_view_state == 1) { 
 							$selector_view_state = 0; 
 						}
 						$labelCss = explode('|', $array['label'])
@@ -274,7 +274,7 @@ foreach ($this->filtered_images as $dir => $array) {
     <img id='loading-gif' src='<?php echo $this->thispluginurl;?>images/loading.gif' />
     <?php
 	// display any message that might appear after a page reload (e.g. settings successfully imported)
-	if ($this->globalmessage != '') {
+	if (!empty($this->globalmessage)) {
 		// $page_reload_message =  '<div id="microthemer-notice">' . $this->globalmessage . '</div>'; 
 		$page_reload_message =  $this->globalmessage . 
 		'<p>
@@ -313,7 +313,7 @@ foreach ($this->filtered_images as $dir => $array) {
 									$selected = '';
 								}
 								// under some conditions a blank value can crop up. Not sure what the cause is but this fixes problem.
-								if ($dir != '') {
+								if (!empty($dir)) {
 									echo '<option value="'.$dir.'" '.$selected.'>'.$this->readable_name($dir).'</option>';
 								}
 							}
@@ -349,7 +349,7 @@ foreach ($this->filtered_images as $dir => $array) {
 								// if theme contains .json file
 								if (file_exists($this->micro_root_dir . $dir . '/config.json')) {
 									// under some conditions a blank value can crop up. Not sure what the cause is but this fixes problem.
-									if ($dir != '') {
+									if (!empty($dir)) {
 										echo '<option value="'.$dir.'">'.$this->readable_name($dir).'</option>';
 									}
 								}
@@ -379,7 +379,7 @@ foreach ($this->filtered_images as $dir => $array) {
                         value='<?php
 						$site_url = site_url();
 						$strpos = strpos($this->preferences['preview_url'], $site_url);
-						if ($this->preferences['preview_url'] != '' and ($strpos === 0)) {
+						if ( !empty($this->preferences['preview_url']) and ($strpos === 0)) {
 							echo esc_attr($this->preferences['preview_url']); 
 						}
 						else {
@@ -555,7 +555,7 @@ foreach ($this->filtered_images as $dir => $array) {
 			// resolve iframe url
 			$site_url = site_url();
 			$strpos = strpos($this->preferences['preview_url'], $site_url);
-			if ($this->preferences['preview_url'] != '' and ($strpos === 0)) {
+			if ( !empty($this->preferences['preview_url']) and ($strpos === 0)) {
 				$iframe_url = esc_attr($this->preferences['preview_url']); 
 			}
 			else {

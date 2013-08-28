@@ -10,7 +10,7 @@ pre content php
 $append_time = '?'.time(); // to prevent file caching
 
 // get meta info from meta.txt/readme.txt if a theme has been selected
-if ($this->preferences['theme_in_focus'] != '') { 
+if ( !empty($this->preferences['theme_in_focus'])) { 
 	$meta_info = $this->read_meta_file($this->micro_root_dir . $this->preferences['theme_in_focus'] . '/meta.txt');
 	// Correct if $meta_info['Author'] == Anonymous
 	if ($meta_info['Author'] == 'Anonymous') {
@@ -47,7 +47,7 @@ if (TVR_MICRO_VARIANT == 'themer') {
         
 		<?php 
 		// display message
-		if ($this->globalmessage != '') {
+		if ( !empty($this->globalmessage) ) {
 			echo '<div id="microthemer-notice">' . $this->globalmessage . '</div>'; 
 		}
 		?>
@@ -101,7 +101,7 @@ if (TVR_MICRO_VARIANT == 'themer') {
 							$selected = '';
 						}
 						// under some conditions a blank value can crop up. Not sure what the cause is but this fixes problem.
-						if ($dir != '') {
+						if (!empty($dir)) {
 							echo '<option value="'.$dir.'" '.$selected.'>'.$this->readable_name($dir).'</option>';
 						}
 					}
@@ -140,7 +140,7 @@ if (TVR_MICRO_VARIANT == 'themer') {
 
        	<?php 
 		// if a micro theme has been selected for editing
-		if ($this->preferences['theme_in_focus'] != '') { 
+		if ( !empty($this->preferences['theme_in_focus'])) { 
 		?>
         <div class='manage-input-wrap'>       
 			<?php
@@ -149,11 +149,11 @@ if (TVR_MICRO_VARIANT == 'themer') {
             <h2><?php 
 			$h2 = $this->readable_name($this->preferences['theme_in_focus']); // $meta_info['Name']; is wrong if the theme was auto-renamed to name-1
 			// version
-			if ($meta_info['Version'] != '') {
+			if (!empty($meta_info['Version'])) {
 				$h2.=' '.$meta_info['Version'];
 			}
 			// author
-			if ($meta_info['Author'] != '') {
+			if (!empty($meta_info['Author'])) {
 				$h2.=' by '.$meta_info['Author'];
 			}
 			echo $h2;
@@ -207,7 +207,7 @@ if (TVR_MICRO_VARIANT == 'themer') {
 			// description
 			echo '<p><i>'.$meta_info['Description'].'</i></p>';
 			// parent 
-			if ($meta_info['Template'] != '') {
+			if (!empty($meta_info['Template'])) {
 				// echo '<p><b>'.$this->readable_name($this->preferences['theme_in_focus']).'</b> is a Micro Theme for <b>'.$meta_info['Template'].'</b>.</p>';
 			}
 			// Tags 

@@ -15,7 +15,7 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
 	<div id='tvr-preferences'>
 		<?php 
 		// display message
-		if ($this->globalmessage != '') {
+		if ( !empty($this->globalmessage) ) {
 			echo '<div id="microthemer-notice">' . $this->globalmessage . '</div>'; 
 		}
 		?>
@@ -54,7 +54,7 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
 						else {
 							$selected = '';
 						}
-						if ($dir != '') {
+						if (!empty($dir)) {
 							echo "<option value='$dir' $selected>".$this->readable_name($dir)."</option>";
 						}
 					}
@@ -250,7 +250,7 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
             <select multiple='multiple' name="tvr_preferences[image_filter][]" size='15' class='multiple' autocomplete="off">
             	<option value='' 
                 <?php 
-				if ($this->preferences['image_filter'][0] == '') {
+				if ( empty($this->preferences['image_filter'][0]) ) {
 					echo 'selected="selected"';
 				}
 				?>
@@ -266,7 +266,7 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
 						else {
 							$selected = '';
 						}
-						if ($dir != '') {
+						if (!empty($dir)) {
 							echo "<option value='$dir' $selected>Exclude: ".$this->readable_name($dir)."</option>";	
 						}
 					}
@@ -412,7 +412,11 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
                  
                  <span id="add-m-query" class="prominent-action add-m-query" rel="<?php echo $i; ?>">+ Add Another Media Query</span>
                  
-                 <?php /*<pre><?php print_r($this->preferences['m_queries']); ?></pre> */ ?>
+                 <?php /*<pre><?php print_r($this->preferences['m_queries']); ?></pre>
+                 
+                 <p>m_query array</p>
+                 <pre><?php print_r($this->options['non_section']['m_query']); ?></pre> */?>
+                 
              </div>
 
              <br />

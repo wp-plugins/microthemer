@@ -1,5 +1,12 @@
 CHANGELOG
 
+2.4.1 (Aug 28, 2013)
+
+# Bugs Fixed
+* Importing a settings pack with media queries didn't work properly
+* The last edited media query tab wasn't always remembered as "in focus"
+* Warnings about illegal string offsets when using PHP 5.4 - e.g. when adding a selector (previous MySQL bug fix wasn't effective against illegal string offset error)
+
 2.3.8 (Aug 27, 2013)
 
 # Enhancement
