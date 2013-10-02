@@ -94,6 +94,9 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+= 2.4.3 = 
+* MAJOR BUG FIXED - Style values of zero (0) were ignored (not written to the CSS stylesheet) in the last version of Microthemer (2.4.1). 
+
 = 2.4.1 = 
 * Various bugs relating to media queries and illegal string offsets with PHP 5.4 were fixed
 

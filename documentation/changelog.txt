@@ -1,5 +1,11 @@
 CHANGELOG
 
+2.4.3 (Oct 2, 2013)
+
+# Bugs Fixed
+* When importing with "Merge", section name conflicts were not handled if an existing section didn't have any Selectors.
+* MAJOR BUG FIXED - Style values of zero (0) were ignored (not written to the CSS stylesheet) in the last version of Microthemer (2.4.1). 
+
 2.4.1 (Aug 28, 2013)
 
 # Bugs Fixed

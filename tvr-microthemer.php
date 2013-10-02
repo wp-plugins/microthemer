@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.4.1
+Version: 2.4.3
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -46,7 +46,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.4.1';
+			var $version = '2.4.3';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -1019,8 +1019,8 @@ if ( is_admin() ) {
 							$this->globalmessage.= '<p>Preferences saved.</p>';
 						}
 						// if the active_theme has been changed, invoke the relevant functions - redundant code
-						if ($_POST['tvr_preferences']['active_theme'] != $_POST['prev_active_theme'] and 
-						!empty($_POST['tvr_preferences']['active_theme'])) {
+						if (!empty($_POST['tvr_preferences']['active_theme'])
+						and $_POST['tvr_preferences']['active_theme'] != $_POST['prev_active_theme']) {
 							// if custom, just update active styles
 							if ($_POST['tvr_preferences']['active_theme'] == 'customised') {
 								$this->update_active_styles('customised');
@@ -1341,8 +1341,8 @@ if ( is_admin() ) {
 			
 			// check if the section name exists in the orig_settings or the new_settings (possible after name modification)
 			function is_name_conflict($alt_name, $orig_settings, $new_settings, $context='') {
-				if ( ( !empty($orig_settings[$alt_name]) // conflicts with orig settings or
-				or ($context == 'alt-check' and !empty($new_settings[$alt_name]) )) // conflicts with new settings (and is an alt name)
+				if ( ( isset($orig_settings[$alt_name]) // conflicts with orig settings or
+				or ($context == 'alt-check' and isset($new_settings[$alt_name]) )) // conflicts with new settings (and is an alt name)
 				and $alt_name != 'non_section' // and is a section
 				) { 
 					return true; // conflict
@@ -1614,7 +1614,7 @@ if ( is_admin() ) {
                                 value='1' 
                                 <?php
 								// check if pie swtich is on (default to on)
-								if ($array['pie'] == '1' or empty($array['pie'])) {
+								if ($array['pie'] == '1' or !isset($array['pie'])) {
 									echo 'checked="checked"';
 								}
 								?>
@@ -1943,7 +1943,7 @@ $tab-------------------------------------------------------------- */
 								continue; // so script doesn't cause fatal error
 							}
 							foreach ($sty['prop_key_array'] as $key) {
-								if ( !empty($array['styles'][$key]) ) {
+								if ( isset($array['styles'][$key]) and $array['styles'][$key] != '' ) {
 									$empty = false;
 								}
 							}
@@ -2003,7 +2003,7 @@ $tab$css_selector {
 													$important_val = $this->options['non_section']['important'][$section_name_slug][$css_selector_slug][$property_group_name][$property];
 												}
 												
-												if ( !empty($value) ) {
+												if ( $value != '' ) {
 													// check if value needs px extension
 													$unit = $this->check_unit($property_group_name, $property, $value);
 													// convert custom escaped single & double quotes back to normal (font-family)
@@ -2070,7 +2070,7 @@ $tab$css_selector {
 																	$pos_x_value = $property_group_array['background_position_x'];
 																	$pos_y_value = $property_group_array['background_position_y'];
 																	// resolve x value and unit
-																	if ( !empty($pos_x_value) ) {
+																	if ( $pos_x_value != '' ) {
 																		$pos_x_unit = $this->check_unit($property_group_name, 'background_position_x',
 																		$pos_x_value);
 																		$pos_x = $pos_x_value . $pos_x_unit;
@@ -2079,7 +2079,7 @@ $tab$css_selector {
 																		$pos_x = '0'; // default to 0
 																	}
 																	// resolve y value and unit
-																	if ( !empty($pos_y_value) ) {
+																	if ( $pos_y_value != '' ) {
 																		$pos_y_unit = $this->check_unit($property_group_name, 'background_position_y',
 																		$pos_y_value);
 																		$pos_y = $pos_y_value . $pos_y_unit;
