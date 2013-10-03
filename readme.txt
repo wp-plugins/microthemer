@@ -94,6 +94,9 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+= 2.4.4 = 
+* Option added to preferences page to set the viewport zoom level for any device to "1". This is on by default as it is necessary for the media queries to affect mobile and tablet devices correctly.
+
 = 2.4.3 = 
 * MAJOR BUG FIXED - Style values of zero (0) were ignored (not written to the CSS stylesheet) in the last version of Microthemer (2.4.1). 
 

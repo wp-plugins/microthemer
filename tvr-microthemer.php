@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.4.3
+Version: 2.4.4
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -46,7 +46,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.4.3';
+			var $version = '2.4.4';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -91,7 +91,8 @@ if ( is_admin() ) {
 				"css_important" => 1,
 				"first_and_last" => 1,
 				"trans_editing" => 0,
-				"trans_wizard" => 0
+				"trans_wizard" => 0,
+				"initial_scale" => 1
 			);
 			// default media queries
 			var $unq_base = '';
@@ -3492,6 +3493,10 @@ if (!is_admin()) {
 				if ($this->preferences['admin_bar'] == 0 and TVR_MICRO_VARIANT == 'themer') {
 					add_action( 'show_admin_bar', '__return_false' );
 				}
+				// add viewport = 1 if set in preferences
+				if ($this->preferences['initial_scale'] !== '0') {
+					add_action( 'wp_head', array(&$this, 'viewport_meta') );
+				}
 				// add meta_tag if logged in - else undefined iframeUrl variable creates break error
 				add_action( 'wp_head', array(&$this, 'add_meta_tag'));
 				// add firebug overlay script
@@ -3600,6 +3605,14 @@ if (!is_admin()) {
 				wp_enqueue_style( 'micro_theme_preview' );	
 			}
 			
+			// add viewport intial scale = 1
+			function viewport_meta() {
+				?>
+                <!-- Microthemer viewport setting -->
+				<meta name="viewport" content="width=device-width, initial-scale=1"/>
+				<?php
+			}
+						
 			// add meta iframe-url tracker (for remembering the preview page)
 			function add_meta_tag() {
 				if ( is_user_logged_in() ) {

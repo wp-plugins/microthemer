@@ -383,11 +383,31 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
              /> Disable transparency when mouse cursor moves off Selector Wizard
             </p>
             
+            <h3>Responsive CSS Media Queries</h3>
             
+            <p><label>Device viewport zoom level:</label>
+            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[initial_scale]' value='1'
+            <?php
+			if ($this->preferences['initial_scale'] !== '0') { // default to on unless specifically disabled
+				echo 'checked="checked"';
+			}
+			?>
+             /> Set to "1". This is necessary you're <a target="_blank"
+             href="http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag/">designing for multiple devices</a> 
+             </p>
+             <p><label>&nbsp;</label>
+            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[initial_scale]' value='0' 
+            <?php
+			if ($this->preferences['initial_scale'] === '0') {
+				echo 'checked="checked"';
+			}
+			?>
+             /> Don't set. Allow the device (e.g. Phone) to set the inital zoom level.
+            </p>
                   
              <a name="m_queries"></a>
              <div id="m-queries">
-             <h3>Responsive CSS Media Queries</h3>
+            
                  <ul id="mq-list">
 					 <?php 
 					 $i = 0;
@@ -435,7 +455,9 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
                 <p class="del-m-para"><span class="del-m-query link">delete</span></p>
             </li>
             </ul>
-             
+            
+            
+              
              
             
             <?php 
