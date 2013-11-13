@@ -695,13 +695,14 @@ input.prominent-action {
 	float:left;
 }
 
-/* media query tabs */
+/* media query tabs & textara tabs */
 .query-tabs {
 	border-bottom: 1px solid #DFDFDF;
     margin-bottom: 5px;
 }
 .query-tabs span.mq-tab,
-.query-tabs span.add-mq {
+.query-tabs span.add-mq,
+#css-tab-areas span {
 	border-radius: 6px 6px 0 0;    
     float: left;
     margin-left: 5px;
@@ -720,7 +721,8 @@ span.mq-tab {
 .query-tabs span.show {
 	display: inline-block;
 }
-.query-tabs span.active {
+.query-tabs span.active,
+#css-tab-areas span.active {
 	font-weight:bold;
 	border-bottom:1px solid #F9F9F9;
 	background: -webkit-gradient(linear, center top, center bottom, from(#FFFFFF), to(#F9F9F9));
@@ -1068,6 +1070,14 @@ span.mq-tab {
 #hand-css-area {
 	display:none;
 }
+#hand-css-area textarea.show {
+	display:inline-block;
+}
+#css-tab-areas {
+	overflow:hidden;
+	border-bottom:0;
+	padding-top:8px;	
+}
 #hand-css-area.tvr-visual {
 	position:fixed;
 	bottom:55px;
@@ -1082,10 +1092,13 @@ span.mq-tab {
 	-moz-border-radius: 0 6px 0 0;
 	border-radius: 0 6px 0 0;
 }
-#hand-css-textarea {
+#hand-css-area textarea {
 	width:99%;
 	height:500px;
 	font-family:"Courier New", Courier, monospace;
+	font-size:12px;
+	margin-top:0;
+	display:none;
 }
 
 /* Revisions */

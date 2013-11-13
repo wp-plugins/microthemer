@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.4.4
+Version: 2.4.5
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -46,7 +46,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.4.4';
+			var $version = '2.4.5';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -170,6 +170,12 @@ if ( is_admin() ) {
 				// if no media queries yet, assign default
 				if ( !$this->preferences['user_set_mq'] and $_POST['tvr_preferences']['user_set_mq'] != 1 ) {
 					$pref_array['m_queries'] = $this->default_m_queries;
+					$this->savePreferences($pref_array);
+				}
+				
+				// if no ie css textareas, assign default
+				if ( !$this->preferences['ie_css']) {
+					$pref_array['ie_css'] = array('all' => '', 'nine' => '', 'eight' => '', 'seven' => '');
 					$this->savePreferences($pref_array);
 				}
 				
@@ -359,11 +365,11 @@ if ( is_admin() ) {
 					// all IE versions
 					wp_register_style( 'tvr_ie', $this->thispluginurl.'css/ie.css?v='.$this->version);
 					wp_enqueue_style( 'tvr_ie' );
-					// IE8 only
+					// IE8 and below
 					wp_register_style( 'tvr_ie8', $this->thispluginurl.'css/ie8.css?v='.$this->version);
 					wp_enqueue_style( 'tvr_ie8' );
 					$wp_styles->add_data('tvr_ie8','conditional','(lte IE 8)'); // method for enqueuing condionally
-					// IE7 only
+					// IE7 and below
 					wp_register_style( 'tvr_ie7', $this->thispluginurl.'css/ie7.css?v='.$this->version);
 					wp_enqueue_style( 'tvr_ie7' );
 					$wp_styles->add_data('tvr_ie7','conditional','(lte IE 7)'); // method for enqueuing condionally
@@ -2232,6 +2238,9 @@ $tab$css_selector {
 						for: ' . $this->root_rel($act_styles) . '. '.$this->permissionshelp.'</p>';
 							
 					}
+					// write to the ie specific stysheets if user defined
+					$this->update_ie_sheets();
+					
 					// update the preferences value for active theme - custom/theme name
 					$pref_array = array();
 					// build google font url
@@ -2285,6 +2294,52 @@ $tab$css_selector {
 					}
 					
 			}
+			
+			// update ie specific stylesheets
+			function update_ie_sheets() {
+				if ( is_array($this->options['non_section']['ie_css']) ) {
+					foreach ($this->options['non_section']['ie_css'] as $key => $val) {
+						// if has custom styles
+						$trim_val = trim($val);
+						if (!empty($trim_val)) {
+							$pref_array['ie_css'][$key] = true;
+							$stylesheet = $this->micro_root_dir.'ie-'.$key.'.css';
+							// Create new file if it doesn't already exist
+							if (!file_exists($stylesheet)) {
+								if (!$write_file = fopen($stylesheet, 'w')) {
+									$this->globalmessage.= '<p>WordPress does not have permission to 
+									create: ' . $this->root_rel($stylesheet) . '. '.$this->permissionshelp.'</p>';
+								}
+								else {
+									fclose($write_file);
+								}
+							}	
+							// writable
+							if ( is_writable($stylesheet) )  { 
+								// the file will be created if it doesn't exist. otherwise it is overwritten.
+								$write_file = fopen($stylesheet, 'w'); 
+								// if write is unsuccessful for some reason
+								if (!fwrite($write_file, stripslashes($val))) {
+									$this->globalmessage.= '<p>Writing to ' . $this->root_rel($stylesheet) . ' failed for some reason.</p>';
+								}
+								fclose($write_file);
+							} 
+							// isn't writable
+							else {
+								$this->globalmessage.= '<p>WordPress does not have "write" permission 
+								for: ' . $this->root_rel($stylesheet) . '. '.$this->permissionshelp.'</p>';
+							}
+						}
+						// no value for stylesheet specified
+						else {
+							$pref_array['ie_css'][$key] = false;
+						}
+					}
+					// update the preferences so that the stylesheets are called in the <head>
+					$this->savePreferences($pref_array);
+				}
+			}
+			
 			
 			// write settings to .json file
 			function update_json_file($theme, $context = '', $secondary_content = '') {
@@ -3561,12 +3616,14 @@ if (!is_admin()) {
 					// check if Google Fonts stylesheet needs to be called
 					if ($this->preferences['g_fonts_used']) {
 						wp_register_style( 'micro'.TVR_MICRO_VARIANT.'_g_font', $this->preferences['g_url'], false ); 
-						global $is_IE;
+						
 						// enqueue
 						wp_enqueue_style( 'micro'.TVR_MICRO_VARIANT.'_g_font' );
 						// register ie conditional google fonts for faux fix: (doesn't work)
 						// http://www.smashingmagazine.com/2012/07/11/avoiding-faux-weights-styles-google-web-fonts/
-						/*if ( $is_IE ) {
+						/*
+						global $is_IE;
+						if ( $is_IE ) {
 							global $wp_styles;
 							$k = 0;
 							foreach ($this->preferences['g_ie_array'] as $font_and_var) {
@@ -3578,12 +3635,41 @@ if (!is_admin()) {
 								++$k;
 							}
 						}*/
-						
+						// add IE only stylesheet if WordPress detects IE and user has applied ie styles
 					}
 					
 					wp_register_style( 'micro'.TVR_MICRO_VARIANT, $this->micro_root_url.'active-styles.css'.$append, $deps ); 
 					// enqueue
 					wp_enqueue_style( 'micro'.TVR_MICRO_VARIANT );	
+					
+					// check if ie-specific stylesheets need to be called
+					global $is_IE;
+					if ( $is_IE ) {
+						global $wp_styles;
+						// all IE versions
+						if ($this->preferences['ie_css']['all']) {
+							wp_register_style( 'tvr_ie', $this->micro_root_url.'ie-all.css'.$append);
+							wp_enqueue_style( 'tvr_ie' );
+						}
+						// IE9 and below
+						if ($this->preferences['ie_css']['nine']) {
+							wp_register_style( 'tvr_ie9', $this->micro_root_url.'ie-nine.css'.$append);
+							wp_enqueue_style( 'tvr_ie9' );
+							$wp_styles->add_data('tvr_ie9','conditional','lte IE 9'); // method for enqueuing condionally
+						}
+						// IE8 and below
+						if ($this->preferences['ie_css']['eight']) {
+							wp_register_style( 'tvr_ie8', $this->micro_root_url.'ie-eight.css'.$append);
+							wp_enqueue_style( 'tvr_ie8' );
+							$wp_styles->add_data('tvr_ie8','conditional','lte IE 8'); // method for enqueuing condionally
+						}
+						// IE7 and below
+						if ($this->preferences['ie_css']['seven']) {
+							wp_register_style( 'tvr_ie7', $this->micro_root_url.'ie-seven.css'.$append);
+							wp_enqueue_style( 'tvr_ie7' );
+							$wp_styles->add_data('tvr_ie7','conditional','lte IE 7'); // method for enqueuing condionally
+						}
+					}
 					
 				}
 				// only include firebug style overlay css if user is logged in

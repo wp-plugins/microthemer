@@ -4,7 +4,7 @@ Contributors: bastywebb
 Donate link: http://themeover.com/microthemer/
 Tags: microthemer, theme customizer, theme editor, theme tweaker, theme generator, css plugin, css editor, css code generator, visual css editor, visual design tool, css3 pie, stylesheet, style.css, micro themes, microloader, wordpress, google fonts, google web fonts, web fonts, wordpress web fonts, google fonts plugin, wp google fonts, google
 Requires at least: 3.2.1
-Tested up to: 3.7
+Tested up to: 3.7.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -93,6 +93,9 @@ Microthemer has built-in documentation! Just click the Tutorials icon (accessibl
 View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/#changelog" target="_blank">Microthemer's Changelog here</a>
 
 == Upgrade Notice ==
+
+= 2.4.5 = 
+* Four additional Raw CSS Code textareas added for specifically targeting versions of Internet Explorer. Microthemer only includes these additional stylesheets if you make use of the new textareas so no unecessary stylesheets are ever included.
 
 = 2.4.4 = 
 * Option added to preferences page to set the viewport zoom level for any device to "1". This is on by default as it is necessary for the media queries to affect mobile and tablet devices correctly.

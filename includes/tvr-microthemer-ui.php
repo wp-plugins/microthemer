@@ -37,11 +37,9 @@ foreach ($this->filtered_images as $dir => $array) {
 	<div id='tvr-ui'>
 		
         <h2>Microthemer UI</h2>
-        
-        
+
         <span id="ui-nonce"><?php echo wp_create_nonce('tvr_microthemer_ui_load_styles'); ?></span>
-        <span id="fonts-api" rel="<?php echo $this->thispluginurl.'includes/fonts-api.php'; ?>"></span>
-        
+        <span id="fonts-api" rel="<?php echo $this->thispluginurl.'includes/fonts-api.php'; ?>"></span>  
         
         <?php
 	
@@ -147,9 +145,34 @@ foreach ($this->filtered_images as $dir => $array) {
                 value="1" rel="off" title="Selectively export the hand-coded CSS" />
             <a href='#' class='hand-css-reveal'>Edit Hand-Coded CSS</a>
 			<div id='hand-css-area'>
-				<textarea id='hand-css-textarea' name='tvr_mcth[non_section][hand_coded_css]' autocomplete="off"><?php 
+            	<div id="css-tab-areas">
+                    <span class="css-area-tab all-browsers active" rel="hand-css-textarea">All Browsers</span>
+                    <?php
+					$tab_headings = array('all' => 'All versions of IE', 'nine' => 'IE9 and below', 'eight' => 'IE8 and below', 'seven' => 'IE7 and below');
+                    foreach ($this->preferences['ie_css'] as $key => $value) {
+                        echo '<span class="css-area-tab ie-'.$key.'" rel="ie-css-'.$key.'">'.$tab_headings[$key].'</span>';
+                    }
+                    ?>
+                </div>
+				<textarea id='hand-css-textarea' class="hand-css-textarea show" name='tvr_mcth[non_section][hand_coded_css]' 
+                autocomplete="off"><?php 
 				//=esc	
 				echo htmlentities(stripslashes($this->options['non_section']['hand_coded_css'])); ?></textarea>
+                <?php
+				foreach ($this->preferences['ie_css'] as $key => $value) {
+					?>
+                    <textarea id='ie-css-<?php echo $key; ?>' class="hand-css-textarea" name='tvr_mcth[non_section][ie_css][<?php echo $key; ?>]' 
+                    autocomplete="off"><?php 
+					//=esc	
+					if (!empty($this->options['non_section']['ie_css'][$key])) {
+						echo htmlentities(stripslashes($this->options['non_section']['ie_css'][$key])); 
+					} ?></textarea>
+                    <?php
+				}
+				// echo '<pre>';
+				// print_r($this->options['non_section']['ie_css']);
+				// echo '</pre>';
+				?>
 			</div>
 		</div>
         
