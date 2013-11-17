@@ -94,6 +94,10 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+= 2.4.7 = 
+* Under some conditions saving settings could result in an error. Servers that have a value in php.ini for max_input_vars (usually 1000) would sometimes truncate the data Microthemer sends to the server, resulting in a save error. Microthemer now warns you in advance if you are approaching your data-sending limits and suggest an easy fix - just hit the SpeedUp button in the right-hand menu.
+* By default, Microthemer no longer remembers open sections/selectors when you return to the UI page. Doing so increased the likelihood of the data-limit error described above. However, you can adjust this behaviour via a new option on the preferences page.
+
 = 2.4.5 = 
 * Four additional Raw CSS Code textareas added for specifically targeting versions of Internet Explorer. Microthemer only includes these additional stylesheets if you make use of the new textareas so no unecessary stylesheets are ever included.
 

@@ -110,6 +110,10 @@ foreach ($this->filtered_images as $dir => $array) {
             <input type='hidden' class='register-section' name='tvr_mcth[<?php echo $section_name; ?>]' value='' />
             <?php
             $view_state = $this->options['non_section']['view_state'][$section_name]['this'];
+			// don't remember view state unless the user specifically asked for it (otherwise max_input_vars can be an issue)
+			if ($this->preferences['remember_ui'] != 1) {
+				$view_state = 0; 
+			}
 			// display section management options
 			$this->manage_section($section_name, $array, $view_state);
             ?>
@@ -206,7 +210,7 @@ foreach ($this->filtered_images as $dir => $array) {
 				}
 				echo '<li id="strk-'.$section_name.'" class="strk">';
 				$section_view_state = $this->options['non_section']['view_state'][$section_name]['this'];
-				if ( empty($section_view_state) or $section_view_state == 1) { 
+				if ( empty($section_view_state) or $section_view_state == 1 or $this->preferences['remember_ui'] != 1) { 
 					$section_view_state = 0; 
 				}
 				?>
@@ -238,7 +242,7 @@ foreach ($this->filtered_images as $dir => $array) {
 						++$sel_loop_count;
 						$selector_view_state = $this->options['non_section']['view_state'][$section_name][$css_selector];
 						// default to 0 and if styles were hidden on last save, they don't load so set tracker to 0
-						if ( empty($selector_view_state) or $selector_view_state == 1) { 
+						if ( empty($selector_view_state) or $selector_view_state == 1 or $this->preferences['remember_ui'] != 1) { 
 							$selector_view_state = 0; 
 						}
 						$labelCss = explode('|', $array['label'])
@@ -438,7 +442,7 @@ foreach ($this->filtered_images as $dir => $array) {
               title="Clear all style definitions - sections and selectors will remain intact">Clear</a>
               
               
-              <a class="speed-up" id='speed-up' href='#' title="The more selectors you edit, the more data is loaded. This will collapse all open sections/selectors, save your settings, reload the interface, and speed things up (if things have slowed down).">SpeedUp</a>
+              <a class="speed-up" id='speed-up' href='#' title="The more selectors you edit, the more data is loaded. This button will collapse all open sections/selectors, save your settings, reload the interface, and speed things up (if things have slowed down).">SpeedUp</a>
           </div>
             
             <?php $this->plugin_menu(); ?>

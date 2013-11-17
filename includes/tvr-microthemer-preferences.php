@@ -383,6 +383,28 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
              /> Disable transparency when mouse cursor moves off Selector Wizard
             </p>
             
+            
+            <p><label>Open Sections & Selectors: </label>
+            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[remember_ui]' value='1'
+            <?php
+			if ($this->preferences['remember_ui'] == 1) {
+				echo 'checked="checked"';
+			}
+			?>
+             /> Remember open sections/selectors when returning to UI page
+             </p>
+             <p><label>&nbsp;</label>
+            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[remember_ui]' value='0' 
+            <?php
+			if ($this->preferences['remember_ui'] != 1) {
+				echo 'checked="checked"';
+			}
+			?>
+             /> Don't remember open sections/selectors (recommended - <a target="_blank" href="http://themeover.com/avoiding-save-errors-after-editing-lots-of-selectors-by-using-the-speed-up-button/">why?
+								</a>)
+            </p>
+            
+            
             <h3>Responsive CSS Media Queries</h3>
             
             <p><label>Device viewport zoom level:</label>

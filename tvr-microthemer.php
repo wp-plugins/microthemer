@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.4.5
+Version: 2.4.7
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -46,7 +46,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.4.5';
+			var $version = '2.4.7';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -92,7 +92,8 @@ if ( is_admin() ) {
 				"first_and_last" => 1,
 				"trans_editing" => 0,
 				"trans_wizard" => 0,
-				"initial_scale" => 1
+				"initial_scale" => 1,
+				"remember_ui" => 0
 			);
 			// default media queries
 			var $unq_base = '';
@@ -735,6 +736,22 @@ if ( is_admin() ) {
 						if (!$this->updateRevisions($this->options, $user_action)) {
 							$this->globalmessage.= '<p>Revision log could not be updated.</p>';
 						}
+						// if the user is approaching their max_input_vars limit, warn them
+						$max_input_vars = ini_get('max_input_vars');
+						if ( $max_input_vars ) {
+							$num_input_vars = count($_POST, COUNT_RECURSIVE);
+							// warn is 75% of max is bein used
+							if ( $num_input_vars >= ($max_input_vars*.75) ) {
+								$this->globalmessage.= '<p><b>Warning:</b> you are approaching a data sending 
+								limit. Click the "SpeedUp" 
+								button in the right-hand menu to resolve this issue. Read more about this issue 
+								<a target="_blank" href="http://themeover.com/avoiding-save-errors-after-editing-lots-of-selectors-by-using-the-speed-up-button/">here.
+								</a></p>';
+							}
+							$this->globalmessage.= '<p><a target="_blank" title="Read about what this means and how to overcome it" href="http://themeover.com/avoiding-save-errors-after-editing-lots-of-selectors-by-using-the-speed-up-button/">Data Limit
+								</a>: '.$num_input_vars.'/'.$max_input_vars.' </p>';
+						}
+						
 						// return the globalmessage and then kill the program - this action is always requested via ajax
 						echo '<div id="microthemer-notice">' . $this->globalmessage . '
 						<span id="sanit-export-name">'.$new_select_option.'</span></div>'; 
@@ -1455,6 +1472,10 @@ if ( is_admin() ) {
 						<?php
 						// check view state for styles
 						$view_state = $this->options['non_section']['view_state'][$section_name][$css_selector];
+						// don't remember view state unless the user specifically asked for it (otherwise max_input_vars can be an issue)
+						if ($this->preferences['remember_ui'] != 1) {
+							$view_state = 0; 
+						}
 						// output selector management options
 						$this->manage_selector($section_name, $css_selector, $label_array, $array, $view_state); 
 						?>
