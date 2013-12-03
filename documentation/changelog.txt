@@ -1,5 +1,13 @@
 CHANGELOG
 
+2.5 (Dec 3, 2013)
+
+# Bugs Fixed
+* Major bug with device-specific CSS styles disappearing. Previously saved media query styles were overwritten by new ones if the section or selector was closed. This bug was masked prior to the last release (2.4.7) because sections and selectors remained open unless explicitly closed.
+* When importing a theme pack that uses device specific css, the tabs could get messed up it focus wasn't left on 'All-devices'.
+* Increased the CSS-specificity of Microthemer's own CSS styles on hidden Elements to ensure normal Javascript functioning too.
+
+
 2.4.7 (Nov 17, 2013)
 
 # Bugs Fixed
@@ -9,7 +17,7 @@ CHANGELOG
 2.4.5 (Nov 13, 2013)
 
 # Enhancement
-* Four additional Raw CSS Code textareas added for specifically targeting versions of Internet Explorer. Microthemer only includes these additional stylesheets if you make use of the new textareas so no unecessary stylesheets are ever included.
+* Four additional Raw CSS Code textareas added for specifically targeting versions of Internet Explorer. Microthemer only includes these additional stylesheets if you make use of the new textareas so no unnecessary stylesheets are ever included.
 
 2.4.4 (Oct 3, 2013)
 
@@ -61,7 +69,7 @@ CHANGELOG
 * Microthemer now compatible with MP6 (the new WordPress interface design that will be released in future version of wordPress). Some additional design tweaks will be introduced once the new MP6 design becomes the norm.
 
 # Bugs Fixed
-* Transparency with editing options intermitantly caused z-index problem when scroller was used in Firefox. This is now a configurable option as not sure whether the transparency feature is just a distraction
+* Transparency with editing options intermittently caused z-index problem when scroller was used in Firefox. This is now a configurable option as not sure whether the transparency feature is just a distraction
 
 2.2.9 (July 16, 2013)
 
@@ -71,7 +79,7 @@ CHANGELOG
 * Added in-program video tutorial for adding Google Web Fonts
 
 # Bugs Fixed
-* Microthemer permited section names to be in camelCase. This caused downstream problems when trying to rename a section.
+* Microthemer permitted section names to be in camelCase. This caused downstream problems when trying to rename a section.
 * Links to W3 Schools website in the CSS Reference were broken
 * Ctrl+S shortcut failed if focus remained on iframe (after interacting with a menu in the iframe for instance)
 
@@ -107,7 +115,7 @@ This is the last version of Microthemer to support WordPress versions prior to 3
 * Added Free Trial Mode. Microthemer can now be downloaded as a free trial from WordPress.org
 
 # Bugs Fixed
-* Fixed various CSS layout issues that occured with older versions of WordPress.
+* Fixed various CSS layout issues that occurred with older versions of WordPress.
 * Fixed undefined function errors with older versions of WordPress.
 
 
@@ -116,10 +124,10 @@ This is the last version of Microthemer to support WordPress versions prior to 3
 # Enhancement
 * In visual view, sidebar menu is collapsed by default. A tip for saving settings with the Ctrl+S keyboard shortcut is always displayed.
 * Option in Preferences to load visual view by default
-* REMOVED Option to activate/deactive settings packs from Manage Themes page as this option is hazardous. The same can be achieved by importing via the Microthemer UI.
-* REMOVED "Edit Theme Styles" link from the Manage Themes page to minimise clutter (you can still easily go to the UI page usign the fixed menu on the right) 
+* REMOVED Option to activate/deactivate settings packs from Manage Themes page as this option is hazardous. The same can be achieved by importing via the Microthemer UI.
+* REMOVED "Edit Theme Styles" link from the Manage Themes page to minimise clutter (you can still easily go to the UI page using the fixed menu on the right) 
 * REMOVED "Create New Theme" button from Manage Themes page as it isn't particularly useful (and can be done from Microthemer UI page via Export to and the "New")
-the UI page usign the fixed menu on the right) 
+the UI page using the fixed menu on the right) 
 * REMOVED "Currently Active Theme" dropdown menu as changing this on Preferences page could have unexpected results for users.
 * Added In-program Video Guides for version 2
 

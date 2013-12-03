@@ -389,10 +389,10 @@ MICROTHEMER UI PAGE
 .template {
 	display:none;
 }
-.js .hidden-manage {
+#tvr-manage .hidden-manage {
 	display:none;
 }
-.js .hidden-options {
+#tvr-ui .hidden-options {
 	display:none;
 }
 #tvr-ui {

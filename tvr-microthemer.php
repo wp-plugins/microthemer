@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.4.7
+Version: 2.5
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -46,7 +46,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.4.7';
+			var $version = '2.5';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -169,7 +169,7 @@ if ( is_admin() ) {
 				$this->getPreferences();
 				
 				// if no media queries yet, assign default
-				if ( !$this->preferences['user_set_mq'] and $_POST['tvr_preferences']['user_set_mq'] != 1 ) {
+				if ( !$this->preferences['user_set_mq'] and $_POST['tvr_preferences']['user_set_mq'] != 1 and empty($this->preferences['m_queries'])) {
 					$pref_array['m_queries'] = $this->default_m_queries;
 					$this->savePreferences($pref_array);
 				}
@@ -615,9 +615,21 @@ if ( is_admin() ) {
 								// check if section selectors were loaded
 								if ($css_selector == 'this' and $view_state == 0) { // section
 									$theOptions[$section_name] = $this->options[$section_name];
+									// loop through any of the existing m_queries, and if they've been applied to the section, insert
+									foreach ($this->options['non_section']['m_query'] as $m_key => $array) {
+										if (is_array($array[$section_name])) {
+											$theOptions['non_section']['m_query'][$m_key][$section_name] = $array[$section_name];
+										}
+									}
 								}
 								if ($css_selector != 'this' and $view_state == 0) { // selector
 									$theOptions[$section_name][$css_selector] = $this->options[$section_name][$css_selector];
+									// loop through any of the existing m_queries, and if they've been applied to the selector, insert
+									foreach ($this->options['non_section']['m_query'] as $m_key => $array) {
+										if (is_array($array[$section_name][$css_selector])) {
+											$theOptions['non_section']['m_query'][$m_key][$section_name][$css_selector] = $array[$section_name][$css_selector];
+										}
+									}
 								}
 							}
 						}
@@ -1742,8 +1754,9 @@ if ( is_admin() ) {
 				<?php
 				// save the configuration of the device tab
 				$device_tab = $this->options[$section_name][$css_selector]['device_focus'][$property_group_name];
+
 				if ( empty($device_tab)) {
-					$device_tab = 'all-devices';
+					$device_tab = 'all-devices'; // warning all-devices tab might not exist, should fall back to one that definitely does.
 				}
 				// should the tab be visible
 				if ($this->options[$section_name][$css_selector]['all_devices'][$property_group_name] == $property_group_name) {
@@ -2511,6 +2524,7 @@ $tab$css_selector {
 						$pref_array['m_queries'] = $this->preferences['m_queries'];
 						if (is_array($this->options['non_section']['active_queries'])) {
 							$i = 0;
+							$old_new_mq_map = array();
 							foreach ($this->options['non_section']['active_queries'] as $options_mq_key => $mq_array) {
 								// add the new media query if not currently in use
 								$pref_mq_key = $this->in_2dim_array($mq_array['query'], $pref_array['m_queries'], 'query');
@@ -2521,9 +2535,28 @@ $tab$css_selector {
 									$pref_array['m_queries'][$pref_mq_key]['query'] = $mq_array['query'];
 									$mqs_imported = true;
 								}
-								// If the media query was imported or not, the mq key in the options needs to match the key in the pref array
+								// If new media queries were imported or not, the mq key in the options needs to match the key in the pref array.
 								$this->replace_options_mq_key($options_mq_key, $pref_mq_key);	
+								$old_new_mq_map[$options_mq_key] = $pref_mq_key;
+								// annoyingly, I also need to do a replace on device_focus key values for all selectors
+								foreach($this->options as $section_name => $array) {
+									if ($section_name == 'non_section') { continue; }
+									// loop through the selectors
+									if (is_array($array)) {
+										foreach ($array as $css_selector => $sub_array) { 
+											if (is_array($sub_array['device_focus'])) {
+												foreach ( $sub_array['device_focus'] as $prop_group => $value) { 
+													// replace the value if it is an old key
+													if (!empty($old_new_mq_map[$value])) {
+														$this->options[$section_name][$css_selector]['device_focus'][$prop_group] = $old_new_mq_map[$value];
+													}
+												}
+											}
+										}
+									}
+								}	
 							}
+							
 						}
 						if ($mqs_imported) {
 							$this->globalmessage.= '<p><b>New media queries were imported</b>. 
@@ -2559,6 +2592,7 @@ $tab$css_selector {
 			// ensure mq keys in pref array and options match
 			function replace_options_mq_key($options_mq_key, $pref_mq_key) {
 				$cons = array('active_queries', 'm_query');
+				$old_new_mq_map = array();
 				// replace the relevant array keys - unset() doesn't work on $this-> so slightly convaluted solution used
 				$updated_array = array();
 				foreach ($cons as $stub => $context) {
@@ -2575,6 +2609,8 @@ $tab$css_selector {
 						$this->options['non_section'][$context] = $updated_array; // reassign main array with updated keys array 
 					}
 				}
+				
+				
 			}
 			
 			
