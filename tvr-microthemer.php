@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.5
+Version: 2.5.1
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -46,7 +46,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.5';
+			var $version = '2.5.1';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -112,7 +112,6 @@ if ( is_admin() ) {
 			var $debug_merge = false;
 			var $debug_save = false;
 			var $debug_selective_export = false;
-			
 			
 			// Class Functions
 			
@@ -616,18 +615,22 @@ if ( is_admin() ) {
 								if ($css_selector == 'this' and $view_state == 0) { // section
 									$theOptions[$section_name] = $this->options[$section_name];
 									// loop through any of the existing m_queries, and if they've been applied to the section, insert
-									foreach ($this->options['non_section']['m_query'] as $m_key => $array) {
-										if (is_array($array[$section_name])) {
-											$theOptions['non_section']['m_query'][$m_key][$section_name] = $array[$section_name];
+									if (is_array($this->options['non_section']['m_query'])) {
+										foreach ($this->options['non_section']['m_query'] as $m_key => $array) {
+											if (is_array($array[$section_name])) {
+												$theOptions['non_section']['m_query'][$m_key][$section_name] = $array[$section_name];
+											}
 										}
 									}
 								}
 								if ($css_selector != 'this' and $view_state == 0) { // selector
 									$theOptions[$section_name][$css_selector] = $this->options[$section_name][$css_selector];
 									// loop through any of the existing m_queries, and if they've been applied to the selector, insert
-									foreach ($this->options['non_section']['m_query'] as $m_key => $array) {
-										if (is_array($array[$section_name][$css_selector])) {
-											$theOptions['non_section']['m_query'][$m_key][$section_name][$css_selector] = $array[$section_name][$css_selector];
+									if (is_array($this->options['non_section']['m_query'])) {
+										foreach ($this->options['non_section']['m_query'] as $m_key => $array) {
+											if (is_array($array[$section_name][$css_selector])) {
+												$theOptions['non_section']['m_query'][$m_key][$section_name][$css_selector] = $array[$section_name][$css_selector];
+											}
 										}
 									}
 								}

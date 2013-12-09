@@ -1,5 +1,10 @@
 CHANGELOG
 
+2.5.1 (Dec 9, 2013)
+
+# Bugs Fixed
+* PHP warning error when importing a settings pack that was made before Microthemer introduced media queries. Only affected Microthemer 2.5.
+
 2.5 (Dec 3, 2013)
 
 # Bugs Fixed

@@ -94,6 +94,9 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+= 5.5.1 =
+* PHP warning error when importing a settings pack that was made before Microthemer introduced media queries. Only affected Microthemer 2.5.
+
 = 2.5 = 
 * Major bug with device-specific CSS styles disappearing. Previously saved media query styles were overwritten by new ones if the section or selector was closed. This bug was masked prior to the last release (2.4.7) because sections and selectors remained open unless explicitly closed.
 * When importing a theme pack that uses device specific css, the tabs could get messed up it focus wasn't left on 'All-devices'.
