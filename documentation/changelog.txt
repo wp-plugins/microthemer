@@ -1,5 +1,10 @@
 CHANGELOG
 
+2.5.2 (Dec 14, 2013)
+
+# Enhancement
+* Various design improvements to ensure compatibility with WordPress 3.8
+
 2.5.1 (Dec 9, 2013)
 
 # Bugs Fixed

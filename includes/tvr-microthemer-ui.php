@@ -33,7 +33,7 @@ foreach ($this->filtered_images as $dir => $array) {
 
 <?php // output the user interface ?>
 
-<div class='wrap tvr-ui-wrap'>
+<div id="tvr-ui-wrap" class='wrap tvr-ui-wrap'>
 	<div id='tvr-ui'>
 		
         <h2>Microthemer UI</h2>

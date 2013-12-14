@@ -4,7 +4,7 @@ Contributors: bastywebb
 Donate link: http://themeover.com/microthemer/
 Tags: microthemer, theme customizer, theme editor, theme tweaker, theme generator, css plugin, css editor, css code generator, visual css editor, visual design tool, css3 pie, stylesheet, style.css, micro themes, microloader, wordpress, google fonts, google web fonts, web fonts, wordpress web fonts, google fonts plugin, wp google fonts, google
 Requires at least: 3.2.1
-Tested up to: 3.7.1
+Tested up to: 3.8
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -94,7 +94,10 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
-= 5.5.1 =
+= 2.5.2 =
+* Various design improvements to ensure compatibility with WordPress 3.8
+
+= 2.5.1 =
 * PHP warning error when importing a settings pack that was made before Microthemer introduced media queries. Only affected Microthemer 2.5.
 
 = 2.5 = 

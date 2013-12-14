@@ -104,9 +104,11 @@ span.help-trigger:hover {
     margin-top: 15px;
     padding-top: 10px;
 	font-weight:bold;
+	
 }
 #ui-totals-count p {
 	margin: 0 0 7px 0;
+	font-size:11px;
 }
 #ui-totals-count p span:first-child {
 	display:inline-block;
@@ -402,6 +404,15 @@ MICROTHEMER UI PAGE
 #tvr-ui .clear {
 	clear:both;
 }
+#tvr-ui-wrap input,
+#tvr-ui-wrap select,
+#tvr-ui-wrap textarea {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	box-shadow:0 0 0 #fff;
+	font-size:11px;
+}
 .prominent-action {
 	background:#F2F2F2 url(../images/v-sprite.png) repeat-x 0 -112px;
 	text-shadow:0 1px 0 #FFFFFF;
@@ -444,9 +455,8 @@ input.prominent-action {
 	border-radius: 6px 6px 0 0;
 }
 #stan-vis-tabs span {
-	border-bottom:1px solid #fff;
-	background:#fff;
-	
+	border-bottom:1px solid #F1F1F1;
+	background:#F1F1F1;
 }
 #stan-vis-tabs a {
 	border-bottom:1px solid #DFDFDF;
@@ -877,6 +887,11 @@ span.mq-tab {
 	font-weight:bold;
 	line-height:14px;
 }
+#tvr-ui-wrap select {
+	height:2em;
+}
+
+
 #tvr-ui .property-fields select.bg-image-select {
 	font-weight: normal;
 }
