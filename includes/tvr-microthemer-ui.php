@@ -253,7 +253,7 @@ foreach ($this->filtered_images as $dir => $array) {
 						// add to selectors vmenu
 						// determine which style groups are active
                         $style_count_state = 0;
-                        if ( is_array($array['style_config']) ) {
+                        if ( !empty($array['style_config']) and is_array($array['style_config']) ) {
                             foreach ( $array['style_config'] as $key => $value) {
                                 if ($key == $value) {
                                     ++$style_count_state;
@@ -594,8 +594,47 @@ foreach ($this->filtered_images as $dir => $array) {
             rel="<?php echo $iframe_url; ?>" src="<?php echo $this->thispluginurl; ?>includes/place-holder2.html"></iframe>
         </div>
   		
-
+		<div id="v-mq-controls">
+        
+        		
+        
+        		<span id="iframe-pixel-width"></span>
+                <span id="iframe-max-width"></span>
+                <div id="v-mq-slider">
+                
+                </div>
+                <span id="iframe-min-width"></span>
+                
+        		<div id="v-mq-buttons">
+                    <span id="mq-button-all-devices" class="v-mq-button active" rel="0"
+                        title="All Devices">All Devices</span>
+                    <?php
+					$min_store = '';
+					$max_store = '';
+					$first = true;
+                    foreach ($this->preferences['m_queries'] as $key => $m_query) {
+                        ?>
+                        <span id="mq-button-<?php echo $key; ?>" class="v-mq-button" rel="<?php echo $key; ?>" 
+                        title="<?php echo $m_query['query']; ?>"><?php echo $m_query['label']; ?></span>
+                        <?php
+						if (!$first) {
+							$min_store.= '|';
+							$max_store.= '|';
+						}
+						$first = false;
+						$min_store.= $key.','.$m_query['min'];
+						$max_store.= $key.','.$m_query['max'];
+                    }
+                    ?>
+                </div>
+                <span id="tvr-min-store" rel="<?php echo $min_store; ?>"></span>
+                <span id="tvr-max-store" rel="<?php echo $max_store; ?>"></span>
+         </div>
+        
         <div id="v-bottom-controls">
+        	
+            
+        
         	<div id="progress-indicator" class="v-bottom-button" title="Nothing in Progress">
             </div>
             <div id="scroll-buttons" class="v-bottom-button">

@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.5.2
+Version: 2.5.5
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -46,7 +46,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.5.2';
+			var $version = '2.5.5';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -201,7 +201,7 @@ if ( is_admin() ) {
 					$this->preferencespage
 					);
 				// only initilize on plugin admin pages 
-				if ( is_admin() and in_array($_GET['page'], $this->all_pages) ) {
+				if ( is_admin() and isset($_GET['page']) and in_array($_GET['page'], $this->all_pages) ) {
 					/* Language Setup - only english for now
 					$locale = get_locale();
 					$mo = dirname(__FILE__) . "/languages/" . $this->localizationDomain . "-".$locale.".mo";
@@ -329,8 +329,8 @@ if ( is_admin() ) {
 					wp_enqueue_script( 'tvr_mcth_jscolor' );
 					//wp_enqueue_script( 'tvr_mcth_jqueryui' );
 					wp_enqueue_script( 'jquery-ui-core' );
-					wp_enqueue_script( 'jquery-ui-sortable' );
-					
+					wp_enqueue_script( 'jquery-ui-sortable' ); 	
+					wp_enqueue_script( 'jquery-ui-slider' ); 
 					wp_enqueue_script( 'tvr_mcth_colorbox' );
 					wp_enqueue_script( 'tvr_mcth_tabs' );
 					// load relevant plugin page script 
@@ -355,8 +355,12 @@ if ( is_admin() ) {
 				// enqueue
 				wp_enqueue_style( 'tvr_mcth_styles' );
 				if (TVR_MICRO_VARIANT == 'themer') {
+					// colorbox
 					wp_register_style( 'tvr_mcth_colorbox_styles', $this->thispluginurl.'js/colorbox/1.3.19/colorbox.css?v='.$this->version ); 
 					wp_enqueue_style( 'tvr_mcth_colorbox_styles' );
+					// jquery ui styling
+					wp_register_style( 'tvr_jqui_styles', $this->thispluginurl.'css/jquery-ui-1.10.3.custom.min.css?v='.$this->version ); 
+					wp_enqueue_style( 'tvr_jqui_styles' );
 				}
 				// add IE only stylesheet if WordPress detects IE
 				global $is_IE;
@@ -615,7 +619,8 @@ if ( is_admin() ) {
 								if ($css_selector == 'this' and $view_state == 0) { // section
 									$theOptions[$section_name] = $this->options[$section_name];
 									// loop through any of the existing m_queries, and if they've been applied to the section, insert
-									if (is_array($this->options['non_section']['m_query'])) {
+									if (!empty($this->options['non_section']['m_query']) and 
+									is_array($this->options['non_section']['m_query'])) {
 										foreach ($this->options['non_section']['m_query'] as $m_key => $array) {
 											if (is_array($array[$section_name])) {
 												$theOptions['non_section']['m_query'][$m_key][$section_name] = $array[$section_name];
@@ -626,7 +631,8 @@ if ( is_admin() ) {
 								if ($css_selector != 'this' and $view_state == 0) { // selector
 									$theOptions[$section_name][$css_selector] = $this->options[$section_name][$css_selector];
 									// loop through any of the existing m_queries, and if they've been applied to the selector, insert
-									if (is_array($this->options['non_section']['m_query'])) {
+									if (!empty($this->options['non_section']['m_query']) and 
+									is_array($this->options['non_section']['m_query'])) {
 										foreach ($this->options['non_section']['m_query'] as $m_key => $array) {
 											if (is_array($array[$section_name][$css_selector])) {
 												$theOptions['non_section']['m_query'][$m_key][$section_name][$css_selector] = $array[$section_name][$css_selector];
@@ -774,7 +780,7 @@ if ( is_admin() ) {
 					}
 					
 					// ajax - load selectors and/or selector options
-					if ($_GET['action'] == 'tvr_microthemer_ui_load_styles') {
+					if ( isset($_GET['action']) and $_GET['action'] == 'tvr_microthemer_ui_load_styles') {
 						check_admin_referer('tvr_microthemer_ui_load_styles');
 						// call dir_loop to populate global class properties (for bg image list)
 						$file_structure = $this->dir_loop($this->micro_root_dir);
@@ -824,7 +830,7 @@ if ( is_admin() ) {
 					}
 					
 					// if it's a reset request
-					elseif($_GET['action'] == 'tvr_ui_reset'){
+					elseif( isset($_GET['action']) and $_GET['action'] == 'tvr_ui_reset'){
 						check_admin_referer('tvr_microthemer_ui_reset');                                          
 						if ($this->resetUiOptions()) {
 							$this->update_active_styles('customised');
@@ -838,7 +844,7 @@ if ( is_admin() ) {
 					}
 					
 					// if it's a clear styles request
-					elseif($_GET['action'] == 'tvr_clear_styles'){
+					elseif(isset($_GET['action']) and $_GET['action'] == 'tvr_clear_styles'){
 						check_admin_referer('tvr_microthemer_clear_styles');                                    
 						if ($this->clearUiOptions()) {
 							$this->update_active_styles('customised');
@@ -851,7 +857,7 @@ if ( is_admin() ) {
 					}
 					
 					// if it's an email error report request
-					elseif($_GET['action'] == 'tvr_error_email'){
+					elseif(isset($_GET['action']) and $_GET['action'] == 'tvr_error_email'){
 						check_admin_referer('tvr_microthemer_ui_load_styles');                                 
 						$body = "*** MICROTHEMER ERROR REPORT | ".date('d/m/Y h:i:s a', time())." *** \n\n";
 						$body .= "PHP ERROR \n" . stripslashes($_POST['tvr_php_error']) .  "\n\n";
@@ -893,7 +899,7 @@ if ( is_admin() ) {
 					}
 					
 					// if it's a restore revision request
-					if($_GET['action'] == 'restore_rev'){
+					if(isset($_GET['action']) and $_GET['action'] == 'restore_rev'){
 						check_admin_referer('tvr_restore_revision'); 
 						$rev_key = $_GET['tvr_rev'];
 						if ($this->restoreRevision($rev_key)) {
@@ -911,7 +917,7 @@ if ( is_admin() ) {
 					}
 					
 					// if it's a get revision ajax request
-					elseif($_GET['action'] == 'get_revisions'){
+					elseif(isset($_GET['action']) and $_GET['action'] == 'get_revisions'){
 						check_admin_referer('tvr_get_revisions'); // general ui nonce
 						echo '<div id="tmp-wrap">' . $this->getRevisions() . '</div>'; // outputs table
 						die();
@@ -1619,7 +1625,7 @@ if ( is_admin() ) {
                         <div class="row clearfix">
                             <?php
                             // check if the properties group is checked
-                            if ($array['style_config'][$property_group_name] == $property_group_name) {
+                            if (!empty($array['style_config']) and $array['style_config'][$property_group_name] == $property_group_name) {
                                 $checked = 'checked="checked"';
                                 $property_group_state = 'on';
 								$show_class = 'show';
@@ -1894,12 +1900,14 @@ if ( is_admin() ) {
 			
 			// check if need to default to px or %
 			function check_unit($property_group_name, $property, $value) {
-				if ($this->propertyoptions[$property_group_name][$property]['default_unit'] == 'px' and 
+				if (!empty($this->propertyoptions[$property_group_name][$property]['default_unit']) and 
+				$this->propertyoptions[$property_group_name][$property]['default_unit'] == 'px' and 
 				is_numeric($value) and
 				$value != 0) {
 					$unit = 'px';
 				}
-				elseif ($this->propertyoptions[$property_group_name][$property]['default_unit'] == '%' and 
+				elseif (!empty($this->propertyoptions[$property_group_name][$property]['default_unit']) and 
+				$this->propertyoptions[$property_group_name][$property]['default_unit'] == '%' and 
 				is_numeric($value) and
 				$value != 0) {
 					$unit = '%';
@@ -2041,10 +2049,14 @@ $tab$css_selector {
 											$xy_done = false;
 											foreach ($property_group_array as $property => $value) {
 												// get the appropriate value for !important
-												if ($con == 'mq') {
-													$important_val = $this->options['non_section']['important']['m_query'][$mq_key][$section_name_slug][$css_selector_slug][$property_group_name][$property];
+												if (empty($this->options['non_section']['important'])) {
+													$important_val = 0;
 												} else {
-													$important_val = $this->options['non_section']['important'][$section_name_slug][$css_selector_slug][$property_group_name][$property];
+													if ($con == 'mq') {
+														$important_val = $this->options['non_section']['important']['m_query'][$mq_key][$section_name_slug][$css_selector_slug][$property_group_name][$property];
+													} else {
+														$important_val = $this->options['non_section']['important'][$section_name_slug][$css_selector_slug][$property_group_name][$property];
+													}
 												}
 												
 												if ( $value != '' ) {
@@ -2158,7 +2170,7 @@ $tab$css_selector {
 									}
 								}
 								// determine if CSS3 PIE needs calling (don't add to body as all other pie will break)
-								if ($array['style_config']['CSS3'] == 'CSS3' 
+								if (!empty($array['style_config']['CSS3']) and $array['style_config']['CSS3'] == 'CSS3' 
 								and $css_selector != 'body'
 								and $css_selector != 'html'
 								and $array['pie'] != '0') {
@@ -2256,7 +2268,7 @@ $tab$css_selector {
 					// convert ui data to regualr css output
 					$sty = $this->convert_ui_data($this->options, $sty, 'regular');
 					// convert ui data to media query css output
-					if (is_array($this->options['non_section']['m_query'])) {
+					if (!empty($this->options['non_section']['m_query']) and is_array($this->options['non_section']['m_query'])) {
 						foreach ($this->options['non_section']['m_query'] as $key => $ui_data) {
 							$sty = $this->convert_ui_data($ui_data, $sty, 'mq', $key);
 						}
@@ -2280,11 +2292,12 @@ $tab$css_selector {
 					
 					// update the preferences value for active theme - custom/theme name
 					$pref_array = array();
+					$g_ie_array = array();
 					// build google font url
 					if ($sty['g_fonts_used']) {
 						$g_url = '//fonts.googleapis.com/css?family=';
 						$first = true;
-						$g_ie_array = array();
+						
 						foreach ($sty['g_fonts'] as $url_font_value => $v_array) {
 							if ($first) {
 								$first = false;
@@ -2334,7 +2347,8 @@ $tab$css_selector {
 			
 			// update ie specific stylesheets
 			function update_ie_sheets() {
-				if ( is_array($this->options['non_section']['ie_css']) ) {
+				if ( !empty($this->options['non_section']['ie_css']) and
+				is_array($this->options['non_section']['ie_css']) ) {
 					foreach ($this->options['non_section']['ie_css'] as $key => $val) {
 						// if has custom styles
 						$trim_val = trim($val);
@@ -2481,6 +2495,7 @@ $tab$css_selector {
 					
 			// load .json file
 			function load_json_file($json_file, $theme_name, $context = '') {
+				$json_error = false;
 				// check that config.json exists
 				if (file_exists($json_file)) {
 					// attempt to read config.json
@@ -2525,7 +2540,8 @@ $tab$css_selector {
 						// check for new mqs
 						$mqs_imported = false;
 						$pref_array['m_queries'] = $this->preferences['m_queries'];
-						if (is_array($this->options['non_section']['active_queries'])) {
+						if (!empty($this->options['non_section']['active_queries']) and 
+						is_array($this->options['non_section']['active_queries'])) {
 							$i = 0;
 							$old_new_mq_map = array();
 							foreach ($this->options['non_section']['active_queries'] as $options_mq_key => $mq_array) {
@@ -3580,6 +3596,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
+			var $version = '2.5.5';
 			
 			/**
 			* PHP 4 Compatible Constructor

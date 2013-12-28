@@ -1,5 +1,14 @@
 CHANGELOG
 
+2.5.5 (Dec 28, 2013)
+
+# Enhancement
+* Added a major new responsive design feature to the visual view. Preview the frontend in screen widths that correspond to min and max width values specified in your media queries. Also, you can easily adjust the preview screen size manually user a slider. You still have full editorial control over Microthemers default media queries.
+* Some CSS tweaks to further improve the design with WordPress 3.8.
+
+# Bugs Fixed
+* Under some conditions discarding a media query tab in the style editing options could result in the editing options for the next tab that comes into focus remaining hidden.
+
 2.5.2 (Dec 14, 2013)
 
 # Enhancement

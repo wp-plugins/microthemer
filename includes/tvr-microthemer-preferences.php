@@ -499,10 +499,14 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
                 <p><label>Manually Check for Updates Now: </label>
                 <input type='checkbox' autocomplete="off" class='checkbox' name='tvr_validate_one_off[manual_update]' value='1' /> Yes
                  </p>
-                <p><b>Note:</b> Themeover will record your domain name when you submit your email address for license verification purposes. Microthemer can be used on multiple domains, but you must own the domains - unless you purchase a Developer License, which allows you to use Microthemer on Client Websites.
+                <p><b>Note:</b> Themeover will record your domain name when you submit your email address for license verification purposes. Microthemer can be used on multiple domains, but you must own the domains - unless you purchase a Developer License, which allows you to use Microthemer on client websites.
                 <a target='_blank' href='http://themeover.com/microthemer/'>Purchase a Standard or Developer License for Microthemer</a>.</p>
                 
                 <input name="tvr_validate_submit" type="submit" value="Validate Purchase" class="button-primary submit" />
+                
+                <p><b>Note:</b> if you have any problems with the validator 
+                <a href="https://themeover.com/support/pre-sales-enquiries/" target="_blank">send Themeover a quick email</a> 
+                and we'll get you unlocked ASAP.</p>
                 
                 </form>
                 <?php
