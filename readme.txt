@@ -14,9 +14,7 @@ Customize the appearance of absolutely ANY WordPress Theme (no coding required).
 
 == Description ==
 
-**AMAZING** new responsive web design feature added! Preview your site in different screen sizes and easily apply styling for specific devices (e.g. large desktop, tablets, phones) without writing a lick of code. To celebrate this remarkable new feature, Themeover is offering the full program (standard and developer license) at a whopping 60% off for a very limited time. This our biggest discount ever. Enter the following coupon code at checkout: Responsive60
-
-<a href="http://themeover.com/microthemer/" target="_blank">Buy Microthemer for 60% less!</a>
+**AMAZING** new responsive web design feature added! Preview your site in different screen sizes and easily apply styling for specific devices (e.g. large desktop, tablets, phones) without writing a lick of code.
 
 **NEW:** Microthemer Lite is more than just a "Trial". As a tool for easily applying Google Web Fonts, this free Lite version is a great application in it's own right - checkout this <a target="_blank" href="http://themeover.com/easily-add-google-web-fonts-to-wordpress-with-free-microthemer-plugin/">Google Fonts video tutorial</a> to see how easy it is!
 
