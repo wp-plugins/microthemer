@@ -95,6 +95,9 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+= 2.5.6 =
+* Media queries could be re-ordered but re-ordering did not have an effect with regards to the order the media queries were written to the active-style.css styleheet.
+
 = 2.5.5 =
 * Added a major new responsive design feature to the visual view. Preview the frontend in screen widths that correspond to min and max width values specified in your media queries. Also, you can easily adjust the preview screen size manually user a slider. You still have full editorial control over Microthemers default media queries.
 * Some CSS tweaks to further improve the design with WordPress 3.8.

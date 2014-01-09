@@ -1,5 +1,10 @@
 CHANGELOG
 
+2.5.6 (Jan 09, 2014)
+
+# Bugs Fixed
+* Media queries could be re-ordered but re-ordering did not have an effect with regards to the order the media queries were written to the active-style.css styleheet.
+
 2.5.5 (Dec 28, 2013)
 
 # Enhancement
