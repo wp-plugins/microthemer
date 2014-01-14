@@ -95,6 +95,10 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+= 2.5.7 =
+* There is now only one important "i" icon next to the last text-shadow input field. This makes much more sense.
+* wordpress.org only - a file wasn't checked in which was necessary for the new responsive screen width slider to appear correctly.
+
 = 2.5.6 =
 * Media queries could be re-ordered but re-ordering did not have an effect with regards to the order the media queries were written to the active-style.css styleheet.
 

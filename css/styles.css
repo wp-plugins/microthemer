@@ -1343,6 +1343,7 @@ body.tvr-visual {
 }
 #v-mq-slider {
 	width:25%;
+	height:10px;
 	margin:7px 8px 7px 8px;
 	cursor:pointer;
 	background-color:#454545;

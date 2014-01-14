@@ -82,11 +82,8 @@ if ($con == 'mq') {
 		else {
 			$class_rel = 'off';	
 		}
-		// don't show i on all css3 props
-		if ($property_group_name != 'CSS3' 
-		or $property == 'gradient_c'
-		or $property == 'radius_bottom_left'
-		or $property == 'box_shadow_blur') { 
+		// don't show i on all css3 props and text shadow
+		if ($this->propertyoptions[$property_group_name][$property]['hide imp'] != 1) { 
 			?>
 			<span class="important-toggle tvr-toggle-<?php echo $class_rel; ?> imp-<?php echo $con; ?> " title="Click to add/remove !important declaration" rel="<?php echo $class_rel; ?>">i</span>
 			<?php

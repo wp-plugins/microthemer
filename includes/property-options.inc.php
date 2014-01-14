@@ -84,9 +84,9 @@ $propertyOptions['text']['list_style'] = array('label' => 'List Style','type' =>
 	'none'
 	), 'pos' => 'last');
 // text shadow
-$propertyOptions['text']['text_shadow_color'] = array('label' => 'Shadow Color', 'icon' => 'shadow', 'picker' => '1');
-$propertyOptions['text']['text_shadow_x'] = array('label' => 'Shadow x-offset', 'default_unit' => 'px', 'icon' => 'x_offset');
-$propertyOptions['text']['text_shadow_y'] = array('label' => 'Shadow y-offset', 'default_unit' => 'px', 'icon' => 'y_offset');
+$propertyOptions['text']['text_shadow_color'] = array('label' => 'Shadow Color', 'icon' => 'shadow', 'picker' => '1', 'hide imp' => 1);
+$propertyOptions['text']['text_shadow_x'] = array('label' => 'Shadow x-offset', 'default_unit' => 'px', 'icon' => 'x_offset', 'hide imp' => 1);
+$propertyOptions['text']['text_shadow_y'] = array('label' => 'Shadow y-offset', 'default_unit' => 'px', 'icon' => 'y_offset', 'hide imp' => 1);
 $propertyOptions['text']['text_shadow_blur'] = array('label' => 'Shadow Blur', 'default_unit' => 'px', 'icon' => 'shadow', 'pos' => 'last');
 // forecolor
 $propertyOptions['forecolor']['color'] = array('label' => 'Color', 'picker' => '1');
@@ -230,9 +230,9 @@ $propertyOptions['position']['left'] = array('label' => 'Left', 'default_unit' =
 $propertyOptions['position']['right'] = array('label' => 'Right', 'default_unit' => 'px', 'icon' => 'position_right', 'pos' => 'last');
 // CSS3
 // gradient
-$propertyOptions['CSS3']['gradient_a'] = array('label' => 'Gradient A', 'picker' => '1');
-$propertyOptions['CSS3']['gradient_b'] = array('label' => 'Gradient B (optional)', 'picker' => '1');
-$propertyOptions['CSS3']['gradient_b_pos'] = array('label' => 'B Position (optional)', 'default_unit' => 'px');
+$propertyOptions['CSS3']['gradient_a'] = array('label' => 'Gradient A', 'picker' => '1', 'hide imp' => 1);
+$propertyOptions['CSS3']['gradient_b'] = array('label' => 'Gradient B (optional)', 'picker' => '1', 'hide imp' => 1);
+$propertyOptions['CSS3']['gradient_b_pos'] = array('label' => 'B Position (optional)', 'default_unit' => 'px', 'hide imp' => 1);
 $propertyOptions['CSS3']['gradient_c'] = array('label' => 'Gradient C', 'picker' => '1', 'linebreak' => 1, 'pos' => 'last');
 $propertyOptions['CSS3']['gradient_angle'] = array('label' => 'Gradient Angle', 'linebreak' => 1, 'pos' => 'last', 'type' => 'select', 
 	"select_options" => array(
@@ -244,16 +244,16 @@ $propertyOptions['CSS3']['gradient_angle'] = array('label' => 'Gradient Angle', 
 	"bottom right to top left",
 	"top right to bottom left",
 	"bottom left to top right"
-	));
+	), 'hide imp' => 1);
 // note - pie only supports the shorthand border radius
-$propertyOptions['CSS3']['radius_top_left'] = array('label' => 'TL Radius', 'default_unit' => 'px', 'icon' => 'radius_top_left', 'rel' => 'border_radius');
-$propertyOptions['CSS3']['radius_top_right'] = array('label' => 'TR Radius', 'default_unit' => 'px', 'icon' => 'radius_top_right', 'rel' => 'border_radius');
-$propertyOptions['CSS3']['radius_bottom_right'] = array('label' => 'BR Radius', 'default_unit' => 'px', 'icon' => 'radius_bottom_right', 'rel' => 'border_radius');
+$propertyOptions['CSS3']['radius_top_left'] = array('label' => 'TL Radius', 'default_unit' => 'px', 'icon' => 'radius_top_left', 'rel' => 'border_radius', 'hide imp' => 1);
+$propertyOptions['CSS3']['radius_top_right'] = array('label' => 'TR Radius', 'default_unit' => 'px', 'icon' => 'radius_top_right', 'rel' => 'border_radius', 'hide imp' => 1);
+$propertyOptions['CSS3']['radius_bottom_right'] = array('label' => 'BR Radius', 'default_unit' => 'px', 'icon' => 'radius_bottom_right', 'rel' => 'border_radius', 'hide imp' => 1);
 $propertyOptions['CSS3']['radius_bottom_left'] = array('label' => 'BL Radius', 'default_unit' => 'px', 'icon' => 'radius_bottom_left', 'rel' => 'border_radius', 'pos' => 'last');
 // shadow
-$propertyOptions['CSS3']['box_shadow_color'] = array('label' => 'Shadow Color', 'icon' => 'shadow', 'picker' => '1');
-$propertyOptions['CSS3']['box_shadow_x'] = array('label' => 'Shadow x-offset', 'default_unit' => 'px', 'icon' => 'x_offset');
-$propertyOptions['CSS3']['box_shadow_y'] = array('label' => 'Shadow y-offset', 'default_unit' => 'px', 'icon' => 'y_offset');
+$propertyOptions['CSS3']['box_shadow_color'] = array('label' => 'Shadow Color', 'icon' => 'shadow', 'picker' => '1', 'hide imp' => 1);
+$propertyOptions['CSS3']['box_shadow_x'] = array('label' => 'Shadow x-offset', 'default_unit' => 'px', 'icon' => 'x_offset', 'hide imp' => 1);
+$propertyOptions['CSS3']['box_shadow_y'] = array('label' => 'Shadow y-offset', 'default_unit' => 'px', 'icon' => 'y_offset', 'hide imp' => 1);
 $propertyOptions['CSS3']['box_shadow_blur'] = array('label' => 'Shadow Blur', 'default_unit' => 'px', 'icon' => 'shadow', 'pos' => 'last');
 
 /*

@@ -264,6 +264,9 @@ $property == 'text_shadow_y' or
 $property == 'text_shadow_blur') and
 !$array['styles']['text_shadow']['rendered']) {
 	
+	// !important is a bit different for css3 - only one "i" per line - do another check
+	$sty['css_important'] = $this->tvr_css3_imp($section_name_slug, $css_selector_slug, $property_group_name, 'text_shadow_blur', $con, $mq_key);
+	
 	// shadow color
 	if (!empty($property_group_array['text_shadow_color'])) {
 		$text_shadow_color = $property_group_array['text_shadow_color'];

@@ -1,5 +1,11 @@
 CHANGELOG
 
+2.5.7 (Jan 14, 2014)
+
+# Bugs Fixed
+* There is now only one important "i" icon next to the last text-shadow input field. This makes much more sense.
+* wordpress.org only - a file wasn't checked in which was necessary for the new responsive screen width slider to appear correctly.
+
 2.5.6 (Jan 09, 2014)
 
 # Bugs Fixed
