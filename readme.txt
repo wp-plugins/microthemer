@@ -95,6 +95,9 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+= 2.5.8 = 
+* E_STRICT PHP error warnings could occur with PHP 5.4 due to code aimed at maintaining compatibility with PHP 4. This code has been removed. PHP 4 is no longer supported.
+
 = 2.5.7 =
 * There is now only one important "i" icon next to the last text-shadow input field. This makes much more sense.
 * wordpress.org only - a file wasn't checked in which was necessary for the new responsive screen width slider to appear correctly.

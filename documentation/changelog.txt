@@ -1,5 +1,10 @@
 CHANGELOG
 
+2.5.8 (Mar 17, 2014)
+
+# Bugs Fixed
+* E_STRICT PHP error warnings could occur with PHP 5.4 due to code aimed at maintaining compatibility with PHP 4. This code has been removed. PHP 4 is no longer supported.
+
 2.5.7 (Jan 14, 2014)
 
 # Bugs Fixed
