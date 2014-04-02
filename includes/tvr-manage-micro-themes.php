@@ -29,7 +29,9 @@ if (TVR_MICRO_VARIANT == 'themer') {
 	$json_file = $this->micro_root_dir . $this->preferences['theme_in_focus'] . '/config.json';
 	if ($this->check_image_paths($json_file, $this->preferences['theme_in_focus'], 'notify')) {
 		$external_image_notice = true;
-	}
+	} else {
+        $external_image_notice = false;
+    }
 }
 
 	

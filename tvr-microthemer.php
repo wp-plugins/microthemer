@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.5.8
+Version: 2.6.0
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -39,14 +39,13 @@ else {
 
 // only run plugin admin code on admin pages
 if ( is_admin() ) {
-			
 	// admin class
 	if (!class_exists('tvr_microthemer_admin')) {
 		
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.5.8';
+			var $version = '2.6.0';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -169,7 +168,9 @@ if ( is_admin() ) {
 				$this->getPreferences();
 				
 				// if no media queries yet, assign default
-				if ( !$this->preferences['user_set_mq'] and $_POST['tvr_preferences']['user_set_mq'] != 1 and empty($this->preferences['m_queries'])) {
+				if ( !$this->preferences['user_set_mq'] and
+                    (!isset($_POST['tvr_preferences']['user_set_mq']) or $_POST['tvr_preferences']['user_set_mq'] != 1)
+                    and empty($this->preferences['m_queries'])) {
 					$pref_array['m_queries'] = $this->default_m_queries;
 					$this->savePreferences($pref_array);
 				}
@@ -970,7 +971,9 @@ if ( is_admin() ) {
 					}
 					
 					// activate theme
-					if ($_GET['action'] == 'tvr_activate_micro_theme') {
+					if (
+                        !empty($_GET['action']) and
+                        $_GET['action'] == 'tvr_activate_micro_theme') {
 						check_admin_referer('tvr_activate_micro_theme');
 						$theme_name = $this->preferences['theme_in_focus'];
 						$json_file = $this->micro_root_dir . $theme_name . '/config.json';
@@ -982,7 +985,9 @@ if ( is_admin() ) {
 						}
 					}
 					// deactivate theme
-					if ($_GET['action'] == 'tvr_deactivate_micro_theme') {
+					if (
+                        !empty($_GET['action']) and
+                        $_GET['action'] == 'tvr_deactivate_micro_theme') {
 						check_admin_referer('tvr_deactivate_micro_theme');
 						$pref_array = array();
 						$pref_array['active_theme'] = '';
@@ -992,7 +997,9 @@ if ( is_admin() ) {
 					}
 					
 					// delete a theme
-					if ($_GET['action'] == 'tvr_delete_micro_theme') {
+					if (
+                        !empty($_GET['action']) and
+                        $_GET['action'] == 'tvr_delete_micro_theme') {
 						check_admin_referer('tvr_delete_micro_theme');
 						$this->tvr_delete_micro_theme();
 					}
@@ -1016,7 +1023,9 @@ if ( is_admin() ) {
 					}
 					
 					// delete a file
-					if ($_GET['action'] == 'tvr_delete_micro_file') {
+					if (
+                        !empty($_GET['action']) and
+                        $_GET['action'] == 'tvr_delete_micro_file') {
 						check_admin_referer('tvr_delete_micro_file');
 						if (unlink($this->micro_root_dir . $this->preferences['theme_in_focus'] . '/'. $_GET['file'])) {
 							$this->globalmessage.= '<p>'.htmlentities($_GET['file']).' was successfully deleted.</p>';
@@ -1024,13 +1033,17 @@ if ( is_admin() ) {
 					}
 					
 					// handle zip export
-					if ($_GET['action'] == 'tvr_export_zip_package') {
+					if (
+                        !empty($_GET['action']) and
+                        $_GET['action'] == 'tvr_export_zip_package') {
 						check_admin_referer('tvr_export_zip_package');
 						$this->create_zip($this->micro_root_dir, $this->preferences['theme_in_focus'], $this->thisplugindir.'zip-exports/');
 					}
 					
 					// handle ext img copy/correction
-					if ($_GET['action'] == 'tvr_copy_micro_images') {
+					if (
+                        !empty($_GET['action']) and
+                        $_GET['action'] == 'tvr_copy_micro_images') {
 						check_admin_referer('tvr_copy_micro_images');
 						$json_file = $this->micro_root_dir . $this->preferences['theme_in_focus'] . '/config.json';
 						$this->check_image_paths($json_file, $this->preferences['theme_in_focus'], 'correct');
@@ -1219,6 +1232,9 @@ if ( is_admin() ) {
 			
 			// get micro-theme dir file structure
 			function dir_loop($dir_name) {
+                if (empty($this->file_structure)) {
+                    $this->file_structure = array();
+                }
 				// check for micro-themes folder, create if doesn't already exist
 				if ( !is_dir($dir_name) ) {
 					if ( !wp_mkdir_p($dir_name) ) {
@@ -1588,10 +1604,15 @@ if ( is_admin() ) {
                     </div>
                     <div class='modify'>
                             <?php
-                            $selector_name_human = $label_array[0];
-                            $selector_name_human = esc_attr($selector_name_human); //=esc
-							// convert my custom quote escaping in recognised html encoded single/double quotes
-							$selector_css = esc_attr(str_replace('cus-', '&', $label_array[1])); //=esc
+                            if (is_array($label_array)) {
+                                $selector_name_human = $label_array[0];
+                                $selector_name_human = esc_attr($selector_name_human); //=esc
+                                // convert my custom quote escaping in recognised html encoded single/double quotes
+                                $selector_css = esc_attr(str_replace('cus-', '&', $label_array[1])); //=esc
+                            } else {
+                                $selector_name_human = '';
+                                $selector_css = '';
+                            }
                             ?>
                             <div class='css-selector-wrap'>
                             <label>CSS Selector: &nbsp;</label> 
@@ -1733,8 +1754,10 @@ if ( is_admin() ) {
 				if ($main_label_show_class == 'show') {
 					$any_checked = false;
 					foreach ($this->preferences['m_queries'] as $key => $m_query) {
-						if ($this->options['non_section']['m_query'][$key][$section_name][$css_selector]['style_config'][$property_group_name] 
-						== $property_group_name) {
+						if (
+                            !empty( $this->options['non_section']['m_query'][$key][$section_name][$css_selector]['style_config'][$property_group_name] )
+                            and $this->options['non_section']['m_query'][$key][$section_name][$css_selector]['style_config'][$property_group_name] == $property_group_name
+                        ) {
 							$any_checked = true;
 						}
 					}
@@ -1762,14 +1785,16 @@ if ( is_admin() ) {
                 </span>
 				
 				<?php
-				// save the configuration of the device tab
-				$device_tab = $this->options[$section_name][$css_selector]['device_focus'][$property_group_name];
-
-				if ( empty($device_tab)) {
-					$device_tab = 'all-devices'; // warning all-devices tab might not exist, should fall back to one that definitely does.
-				}
+                // save the configuration of the device tab
+                if ( empty($this->options[$section_name][$css_selector]['device_focus'][$property_group_name])) {
+                    $device_tab = 'all-devices'; // warning all-devices tab might not exist, should fall back to one that definitely does.
+                } else {
+                    $device_tab = $this->options[$section_name][$css_selector]['device_focus'][$property_group_name];
+                }
 				// should the tab be visible
-				if ($this->options[$section_name][$css_selector]['all_devices'][$property_group_name] == $property_group_name) {
+				if (
+                    !empty($this->options[$section_name][$css_selector]['all_devices'][$property_group_name]) and
+                    $this->options[$section_name][$css_selector]['all_devices'][$property_group_name] == $property_group_name) {
 					$show_class = 'show';
 				}
 				else {
@@ -1784,7 +1809,9 @@ if ( is_admin() ) {
                 <?php
 				foreach ($this->preferences['m_queries'] as $key => $m_query) {
 					// should the tab be visible
-					if ($this->options['non_section']['m_query'][$key][$section_name][$css_selector]['style_config'][$property_group_name] 
+					if (
+                        !empty($this->options['non_section']['m_query'][$key][$section_name][$css_selector]['style_config'][$property_group_name] ) and
+                        $this->options['non_section']['m_query'][$key][$section_name][$css_selector]['style_config'][$property_group_name]
                     == $property_group_name) {
 						$show_class = 'show';
 					}
@@ -1818,8 +1845,11 @@ if ( is_admin() ) {
                 
                 <span class="mq-button" title="No Media Query">
 					<?php
-                    if ($this->options[$section_name][$css_selector]['all_devices'][$property_group_name] == $property_group_name or 
-					$this->fix_for_mq_update($section_name, $css_selector, $property_group_name, $main_label_show_class == 'show') 
+                    if (
+                    ( !empty($this->options[$section_name][$css_selector]['all_devices'][$property_group_name]) and
+                        $this->options[$section_name][$css_selector]['all_devices'][$property_group_name] == $property_group_name )
+                        or
+					    $this->fix_for_mq_update($section_name, $css_selector, $property_group_name, $main_label_show_class)
 					) {
                         $checked = 'checked="checked"';
                         $property_group_state = 'on';
@@ -1831,7 +1861,7 @@ if ( is_admin() ) {
                     ?>
                     <input class="style-config checkbox all-toggle" type="checkbox" autocomplete="off"  value="<?php echo $property_group_name; ?>" 
                     name="tvr_mcth[<?php echo $section_name; ?>][<?php echo $css_selector; ?>][all_devices][<?php echo $property_group_name; ?>]" 
-                    <?php echo $checked; ?> > All Devices
+                    <?php echo $checked; ?> /> All Devices
                     <span class="property-group-state" rel="<?php echo $property_group_state; ?>"></span>
                 </span>
                 
@@ -1840,8 +1870,12 @@ if ( is_admin() ) {
                 foreach ($this->preferences['m_queries'] as $key => $m_query) {
                     // may need to register the group like the regular checkbox (but if no bugs, may be much more efficient not to)
                     // check if the properties group is checked
-                    if ($this->options['non_section']['m_query'][$key][$section_name][$css_selector]['style_config'][$property_group_name] 
-                    == $property_group_name) {
+                    if (
+                        !empty($this->options['non_section']['m_query'][$key][$section_name][$css_selector]['style_config'][$property_group_name])
+                        and
+                        $this->options['non_section']['m_query'][$key][$section_name][$css_selector]['style_config'][$property_group_name]
+                    == $property_group_name
+                    ) {
                         $checked = 'checked="checked"';
                         $property_group_state = 'on';
                     }
@@ -2690,11 +2724,11 @@ $tab$css_selector {
 			function create_micro_theme($micro_name, $action, $temp_zipfile) {
 				// sanitize dir name
 				$name = sanitize_file_name( $micro_name  );
+                $error = false;
 				// extra bit need for zip uploads (removes .zip)
 				if ($action == 'unzip') {
 					$name = substr($name, 0, -4); 
 				}
-				$content_dir = $this->preferences['content_dir'];
 				// check for micro-themes folder
 				if ( !is_dir($this->micro_root_dir) ) {
 					if ( !wp_mkdir_p( $this->micro_root_dir ) ) {
@@ -3005,6 +3039,7 @@ $tab$css_selector {
 			
 			// delete theme
 			function tvr_delete_micro_theme() {
+                $error = false;
 				// must delete files first - dir needs to be empty for rmdir() to work
 				$file_structure = $this->dir_loop($this->micro_root_dir);
 				// loop through files if they exist
@@ -3786,7 +3821,7 @@ if (!is_admin()) {
 					if (!function_exists('currentPageURL')) {
 						function currentPageURL() {
 							$curpageURL = 'http';
-							if ($_SERVER["HTTPS"] == "on") {$curpageURL.= "s";}
+							if (!empty($_SERVER["HTTPS"]) and $_SERVER["HTTPS"] == "on") {$curpageURL.= "s";}
 							$curpageURL.= "://";
 							if ($_SERVER["SERVER_PORT"] != "80") {
 							$curpageURL.= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];

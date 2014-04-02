@@ -8,9 +8,21 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 if ($con == 'mq') {
 	$mq_stem = '[non_section][m_query]['.$key.']';
 	$imp_key = '[m_query]['.$key.']';
-	$important_val = $this->options['non_section']['important']['m_query'][$key][$section_name][$css_selector][$property_group_name][$property];
+    if (!empty($this->options['non_section']['important']['m_query'][$key][$section_name][$css_selector][$property_group_name][$property])) {
+        $important_val = $this->options['non_section']['important']['m_query'][$key][$section_name][$css_selector][$property_group_name][$property];
+    } else {
+        $important_val = '';
+    }
+
 } else {
-	$important_val = $this->options['non_section']['important'][$section_name][$css_selector][$property_group_name][$property];
+    $mq_stem = '';
+    $imp_key = '';
+    if ( !empty($this->options['non_section']['important'][$section_name][$css_selector][$property_group_name][$property])) {
+        $important_val = $this->options['non_section']['important'][$section_name][$css_selector][$property_group_name][$property];
+    } else {
+        $important_val = '';
+    }
+
 }
 
 ?>
@@ -24,7 +36,9 @@ if ($con == 'mq') {
 		echo ' input-span-'.$this->propertyoptions[$property_group_name][$property]['span'];
 	}
 	// give last-field class if last
-	if ($this->propertyoptions[$property_group_name][$property]['pos'] == 'last') {
+	if (
+        !empty($this->propertyoptions[$property_group_name][$property]['pos']) and
+        $this->propertyoptions[$property_group_name][$property]['pos'] == 'last') {
 		echo ' last-field';
 	}
 	if ($property == 'background_position_x' or $property == 'background_position_y') {
@@ -44,12 +58,19 @@ if ($con == 'mq') {
 	?>'>      
     <label><?php
 	// provide colorbox image slider for bg images
-	if ($this->propertyoptions[$property_group_name][$property]['bg_image'] == 1) {
+	if (
+        !empty($this->propertyoptions[$property_group_name][$property]['bg_image']) and
+        $this->propertyoptions[$property_group_name][$property]['bg_image'] == 1) {
 		if ( !empty($value)) {
 			$bg_url = $this->micro_root_url . $value;
 		}
 		else {
-			$bg_url = $this->first_bg_url;
+            if (!empty($this->first_bg_url)) {
+                $bg_url = $this->first_bg_url;
+            } else {
+                $bg_url = '';
+            }
+
 		}
 		echo '<a href="#" class="view-bg-images" rel="'.$this->micro_root_url.'" alt="'.$bg_url.'"  title="'.$value.'">view images&nbsp;</a>';
 	}
@@ -83,7 +104,9 @@ if ($con == 'mq') {
 			$class_rel = 'off';	
 		}
 		// don't show i on all css3 props and text shadow
-		if ($this->propertyoptions[$property_group_name][$property]['hide imp'] != 1) { 
+		if (
+            !empty($this->propertyoptions[$property_group_name][$property]['hide imp']) and
+            $this->propertyoptions[$property_group_name][$property]['hide imp'] != 1) {
 			?>
 			<span class="important-toggle tvr-toggle-<?php echo $class_rel; ?> imp-<?php echo $con; ?> " title="Click to add/remove !important declaration" rel="<?php echo $class_rel; ?>">i</span>
 			<?php
@@ -92,11 +115,15 @@ if ($con == 'mq') {
 	 
 	
 	// if select
-	if ($this->propertyoptions[$property_group_name][$property]['type'] == 'select') {
+	if (
+        !empty($this->propertyoptions[$property_group_name][$property]['type']) and
+        $this->propertyoptions[$property_group_name][$property]['type'] == 'select') {
 		?>
         <select class='<?php echo $property_input_class; 
 		// add bg-image class if appropriate
-		if ($this->propertyoptions[$property_group_name][$property]['bg_image'] == 1) {
+		if (
+            !empty($this->propertyoptions[$property_group_name][$property]['bg_image']) and
+            $this->propertyoptions[$property_group_name][$property]['bg_image'] == 1) {
 			echo ' bg-image-select';
 		}
 		// bg-position-select class
@@ -112,7 +139,9 @@ if ($con == 'mq') {
         <option value=''></option>
         <?php
 		// dynamic background image list 
-		if ($this->propertyoptions[$property_group_name][$property]['bg_image'] == 1) {
+		if (
+            !empty($this->propertyoptions[$property_group_name][$property]['bg_image']) and
+            $this->propertyoptions[$property_group_name][$property]['bg_image'] == 1) {
 			// add none option
 			echo '<option value="none"';
 			if ($value == 'none') {
@@ -123,6 +152,7 @@ if ($con == 'mq') {
 			foreach ($this->filtered_images as $dir => $array) {
 				// sort the background images alphabetically
 				sort($array);
+                $prev_dir = '';
 				foreach ($array as $file) {
 					$dir = esc_attr($dir);
 					$optgroup = $this->readable_name($dir);
@@ -193,7 +223,9 @@ if ($con == 'mq') {
         <input type="text" autocomplete="off" <?php echo $autofill_rel; ?> 
         class='<?php echo $autofill_class . $property_input_class; 
         // check if color picker needed
-        if ( $this->propertyoptions[$property_group_name][$property]['picker'] == '1' ) {
+        if (
+            !empty($this->propertyoptions[$property_group_name][$property]['picker']) and
+            $this->propertyoptions[$property_group_name][$property]['picker'] == '1' ) {
             echo ' color';
         }
         
@@ -204,7 +236,9 @@ if ($con == 'mq') {
 	?>
     
 </div><!-- end field-wrap -->
-<?php if ( $this->propertyoptions[$property_group_name][$property]['linebreak'] == '1' ) {
+<?php if (
+    !empty($this->propertyoptions[$property_group_name][$property]['linebreak']) and
+    $this->propertyoptions[$property_group_name][$property]['linebreak'] == '1' ) {
 		echo '<div class="clear"></div>';
 	}
 

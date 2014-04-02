@@ -9,6 +9,8 @@ pre content php
 // get micro-themes dir file structure - unset $this->file_structure so it can be populated with fresh scan
 unset($this->file_structure);
 $file_structure = $this->dir_loop($this->micro_root_dir);
+
+
 ?>
 
 <div class='wrap'>

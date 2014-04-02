@@ -1,5 +1,10 @@
 CHANGELOG
 
+2.6 (Apr 2, 2014)
+
+# Bugs Fixed
+* Various PHP notices that could display on servers with strict error reporting have been fixed.
+
 2.5.8 (Mar 17, 2014)
 
 # Bugs Fixed

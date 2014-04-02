@@ -95,6 +95,9 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+= 2.6.0 =
+* Various PHP notices that could display on servers with strict error reporting have been fixed.
+
 = 2.5.8 = 
 * E_STRICT PHP error warnings could occur with PHP 5.4 due to code aimed at maintaining compatibility with PHP 4. This code has been removed. PHP 4 is no longer supported.
 
