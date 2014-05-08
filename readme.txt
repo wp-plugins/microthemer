@@ -95,6 +95,13 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+
+2.6.1.1
+* Found another call to the missing json class the previous version aimed to fix (2.6.1).
+
+2.6.1
+* When exporting settings to a settings pack, or invoking any function that used the json class, an error message was thrown in WordPress 3.9.
+
 = 2.6.0 =
 * Various PHP notices that could display on servers with strict error reporting have been fixed.
 

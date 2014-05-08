@@ -1,5 +1,15 @@
 CHANGELOG
 
+2.6.1.1 (May 8, 2014)
+
+# Bugs Fixed
+* Found another call to the missing json class the previous version aimed to fix (2.6.1).
+
+2.6.1 (May 8, 2014)
+
+# Bugs Fixed
+* When exporting settings to a settings pack, or invoking any function that used the json class, an error message was thrown in WordPress 3.9.
+
 2.6 (Apr 2, 2014)
 
 # Bugs Fixed
