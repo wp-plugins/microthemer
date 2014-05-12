@@ -1,5 +1,11 @@
 CHANGELOG
 
+2.6.3 (May 12, 2014)
+
+# Enhancement
+* Style changes appear much quicker now (almost instantly). As such, auto-save is now the default mode (although it can be disabled). Also, auto-save is trggered when you finish typing into text fields (after a 700ms delay, rather than when focus is removed). 
+* Microthemer remembers the last page you viewed when you return to the visual view site preview
+
 2.6.1.1 (May 8, 2014)
 
 # Bugs Fixed

@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.6.1.1
+Version: 2.6.3
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -45,7 +45,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.6.1.1';
+			var $version = '2.6.3';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -81,7 +81,7 @@ if ( is_admin() ) {
 				"auto_relative" => 1,
 				"ie_notice" => 1,
 				"auto_scroll" => 1,
-				"auto_save" => 0,
+				"auto_save" => 1,
 				"load_visual" => 0,
 				"need_help" => 1,
 				"safe_mode_notice" => 1,
@@ -337,8 +337,8 @@ if ( is_admin() ) {
 					wp_enqueue_script( 'tvr_mcth_tabs' );
 					// load relevant plugin page script 
 					if ( $_GET['page'] == $this->microthemeruipage) {		
-						wp_register_script( 'tvr_mcth_custom_ui', $this->thispluginurl.'js/min/microthemer.js?v='.$this->version ); 
-						//wp_register_script( 'tvr_mcth_custom_ui', $this->thispluginurl.'js/tvr-microthemer.js?v='.$this->version ); 
+						wp_register_script( 'tvr_mcth_custom_ui', $this->thispluginurl.'js/min/microthemer.js?v='.$this->version );
+						//wp_register_script( 'tvr_mcth_custom_ui', $this->thispluginurl.'js/tvr-microthemer.js?v='.$this->version );
 						wp_enqueue_script( 'tvr_mcth_custom_ui' );	
 					}
 					// manage micro themes script
@@ -3632,7 +3632,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '2.6.1.1';
+			var $version = '2.6.3';
 			
 			/**
 			* PHP 4 Compatible Constructor

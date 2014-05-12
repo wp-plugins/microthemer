@@ -4,7 +4,7 @@ Contributors: bastywebb
 Donate link: http://themeover.com/microthemer/
 Tags: microthemer, theme customizer, theme editor, theme tweaker, theme generator, css plugin, css editor, css code generator, visual css editor, visual design tool, css3 pie, stylesheet, style.css, micro themes, microloader, wordpress, google fonts, google web fonts, web fonts, wordpress web fonts, google fonts plugin, wp google fonts, google
 Requires at least: 3.2.1
-Tested up to: 3.9
+Tested up to: 3.9.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -95,6 +95,9 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+2.6.3
+* Style changes appear much quicker now (almost immediately). As such, auto-save is now the default mode (although it can be disabled). Also, auto-save is trggered when you finish typing into text fields (after a 700ms delay, rather than when focus is removed). 
+* Microthemer remembers the last page you viewed when you return to the visual view site preview
 
 2.6.1.1
 * Found another call to the missing json class the previous version aimed to fix (2.6.1).

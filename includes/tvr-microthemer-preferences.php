@@ -331,16 +331,16 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
             <p><label>Enable Auto-save by default: </label>
             <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[auto_save]' value='1'
             <?php
-			if ($this->preferences['auto_save'] == '1') {
+			if ($this->preferences['auto_save'] !== '0-manual') {
 				echo 'checked="checked"';
 			}
 			?>
              /> Enable
              </p>
              <p><label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[auto_save]' value='0' 
+            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[auto_save]' value='0-manual'
             <?php
-			if ($this->preferences['auto_save'] == '0') {
+			if ($this->preferences['auto_save'] === '0-manual') {
 				echo 'checked="checked"';
 			}
 			?>

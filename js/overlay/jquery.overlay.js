@@ -2,8 +2,8 @@
 try { window.parent.document; 
 if (window.parent.TvrSharedVars) {
 	(function($){
-		$.fn.extend({	
-			add_hover_overlay: function() {
+		$.fn.extend({
+            add_hover_overlay: function() {
 				var defaults = {};
 				var options = $.extend(defaults, options);
 				return this.each(function() {
@@ -135,6 +135,15 @@ if (window.parent.TvrSharedVars) {
 			var TvrSugCSS = {};
 			// Main Frontend UI Object
 			var TvrUiF = {
+                // switch highlight function
+                refreshCSS: function() {
+                    var $stylesheet = $('#microthemer-css');
+                    var newSheet = $stylesheet.attr('href').replace(/\?.*|$/, '?reload=' + new Date().getTime());
+                    $stylesheet.attr('href', newSheet);
+                    if (window.parent.TvrSharedVars.progCount > 0) {
+                        window.parent.TvrSharedVars.update_prog_indicator('minus');
+                    }
+                },
 				// remove any artificial microthemer classes and extra spaces
 				clean_classes: function(classString) {
 					classString = classString.replace('  ', ' ')
@@ -546,6 +555,7 @@ if (window.parent.TvrSharedVars) {
 			window.TvrExportVars.showOverlays = TvrUiF.showOverlays;
 			window.TvrExportVars.hideOverlays = TvrUiF.hideOverlays;
 			window.TvrExportVars.build_selector_suggestions = TvrUiF.build_selector_suggestions;
+            window.TvrExportVars.refreshCSS = TvrUiF.refreshCSS;
 			
 			// need to make sure images are loaded before calling add_overlay()
 			$(window).load(function() {	
@@ -558,6 +568,8 @@ if (window.parent.TvrSharedVars) {
 				else { 
 					TvrUiF.allocateOverlayMode('reg');
 				}
+                // save the previewed page
+                window.parent.TvrSharedVars.remember_page_viewed();
 			});
 		}
 	});

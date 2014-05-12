@@ -426,7 +426,8 @@ foreach ($this->filtered_images as $dir => $array) {
 					$preview_url = trailingslashit(site_url()).'wp-admin/admin.php?page='.$this->microthemeruipage.'&_wpnonce='.wp_create_nonce('tvr_microthemer_ui_preview_url');
 					//=esc
 					echo esc_url($preview_url); ?>" />
-                    <?php /*
+                        <span id='site-url' rel="<?php echo site_url(); ?>"></span>
+                        <?php /*
                     <input id='previewbutton' type="button" value="View Site" class="button-primary" rel="<?php echo site_url(); ?>" />   
 					*/
 					?>                 
