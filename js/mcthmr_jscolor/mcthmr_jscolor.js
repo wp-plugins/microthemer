@@ -335,7 +335,7 @@ var mcthmr_jscolor = {
 		this.hash = true; // prefix color with # symbol?
 		this.caps = true; // uppercase?
 		this.slider = true; // show the value/saturation slider?
-		this.valueElement = target; // value holder
+        this.valueElement = target; // value holder
 		this.styleElement = target; // where to reflect current color
 		this.hsv = [0, 0, 1]; // read-only  0-6, 0-1, 0-1
 		this.rgb = [1, 1, 1]; // read-only  0-1, 0-1, 0-1
@@ -371,6 +371,14 @@ var mcthmr_jscolor = {
 
 		this.showPicker = function() {
 			if(!isPickerOwner()) {
+                //=sebcus autopopulate color with existing computed value
+                if (!valueElement.value){
+                    var tvrCompCol = jQuery(valueElement).next('span.comp-style').text();
+                    if (tvrCompCol && tvrCompCol != '[mixed]'){
+                        valueElement.value = tvrCompCol;
+                        updateField();
+                    }
+                }
 				var tp = mcthmr_jscolor.getElementPos(target); // target pos
 				var ts = mcthmr_jscolor.getElementSize(target); // target size
 				var vp = mcthmr_jscolor.getViewPos(); // view pos
@@ -553,6 +561,7 @@ var mcthmr_jscolor = {
 
 
 		function drawPicker(x, y) {
+
 			if(!mcthmr_jscolor.picker) {
 				mcthmr_jscolor.picker = {
 					box : document.createElement('div'),

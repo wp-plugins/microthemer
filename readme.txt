@@ -95,6 +95,19 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+2.7.1
+# Enhancement
+* Microthemer can now be used as a substitute for firebug as a tool for analysing an element's existing computed CSS values. Microthemer now shows the computed values as overlays on the editing options so you can view CSS value reporting and make an edit in exactly the same place.
+* Font weight can be applied as a century number from 100 to 900.
+
+# Bugs Fixed
+* The little "i"s for manually applying the !important CSS declaration got lost for a while.
+* When exporting to a theme, it was possible to not select anything from the dropdown menu.
+* Custom google font still rendered if the field wasn't cleared before switching back to a regular web safe font in the dropdown.
+* Auto-save was a bit sketchy with Google Fonts too
+* Microthemer auto-saves when property options are deleted or a selector is modified now to more accurately present the state of things.
+* Microthemer now includes the background-color in the CSS3 gradient declaration. It will always be trumped by the gradient but not doing this resulting in incorrect reporting of the background-color property (now that Microthemer reports this information)
+
 2.6.3
 * Style changes appear much quicker now (almost immediately). As such, auto-save is now the default mode (although it can be disabled). Also, auto-save is trggered when you finish typing into text fields (after a 700ms delay, rather than when focus is removed). 
 * Microthemer remembers the last page you viewed when you return to the visual view site preview

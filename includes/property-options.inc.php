@@ -6,7 +6,19 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 $propertyOptions = array();
 // font
 $propertyOptions['font']['font_weight'] = array('label' => 'Font Weight', 'type' => 'select', 
-	'select_options' => array("normal","bold"));
+	'select_options' => array(
+        "normal",
+        "bold",
+        "100",
+        "200",
+        "300",
+        "400",
+        "500",
+        "600",
+        "700",
+        "800",
+        "900"
+    ));
 $propertyOptions['font']['font_style'] = array('label' => 'Font Style', 'type' => 'select', 
 	'select_options' => array("normal","italic","oblique"));
 $propertyOptions['font']['font_variant'] = array('label' => 'Font Variant', 'type' => 'select', 
@@ -146,6 +158,7 @@ $propertyOptions['border']['border_top_width'] = array('label' => 'Top Width', '
 $propertyOptions['border']['border_right_width'] = array('label' => 'Right Width', 'default_unit' => 'px', 'icon' => 'right', 'rel' => 'border_width');
 $propertyOptions['border']['border_bottom_width'] = array('label' => 'Bottom Width', 'default_unit' => 'px', 'icon' => 'bottom', 'rel' => 'border_width');
 $propertyOptions['border']['border_left_width'] = array('label' => 'Left Width', 'default_unit' => 'px', 'icon' => 'left', 'rel' => 'border_width', 'pos' => 'last');
+/*
 $propertyOptions['border']['border_style'] = array('label' => 'Border Style', 'type' => 'select',
 	'select_options' => array(
 	'hidden',
@@ -159,6 +172,27 @@ $propertyOptions['border']['border_style'] = array('label' => 'Border Style', 't
 	'outset',
 	'none'
 	));
+*/
+$border_style_options = array(
+    'hidden',
+    'dotted',
+    'dashed',
+    'solid',
+    'double',
+    'groove',
+    'ridge',
+    'inset',
+    'outset',
+    'none'
+);
+$propertyOptions['border']['border_top_style'] = array('label' => 'Border Top Style', 'type' => 'select',
+    'select_options' => $border_style_options);
+$propertyOptions['border']['border_right_style'] = array('label' => 'Border Right Style', 'type' => 'select',
+    'select_options' => $border_style_options);
+$propertyOptions['border']['border_bottom_style'] = array('label' => 'Border Bottom Style', 'type' => 'select',
+    'select_options' => $border_style_options);
+$propertyOptions['border']['border_left_style'] = array('label' => 'Border Left Style', 'type' => 'select',
+    'select_options' => $border_style_options, 'pos' => 'last');
 // behaviour
 $propertyOptions['behaviour']['display'] = array('label' => 'Display','type' => 'select', 
 	'select_options' => array(
@@ -234,7 +268,7 @@ $propertyOptions['CSS3']['gradient_a'] = array('label' => 'Gradient A', 'picker'
 $propertyOptions['CSS3']['gradient_b'] = array('label' => 'Gradient B (optional)', 'picker' => '1', 'hide imp' => 1);
 $propertyOptions['CSS3']['gradient_b_pos'] = array('label' => 'B Position (optional)', 'default_unit' => 'px', 'hide imp' => 1);
 $propertyOptions['CSS3']['gradient_c'] = array('label' => 'Gradient C', 'picker' => '1', 'linebreak' => 1, 'pos' => 'last');
-$propertyOptions['CSS3']['gradient_angle'] = array('label' => 'Gradient Angle', 'linebreak' => 1, 'pos' => 'last', 'type' => 'select', 
+$propertyOptions['CSS3']['gradient_angle'] = array('label' => 'Gradient Angle', 'linebreak' => 1, 'span' => '2', 'pos' => 'last', 'type' => 'select',
 	"select_options" => array(
 	"top to bottom",
 	"bottom to top",
@@ -257,6 +291,8 @@ $propertyOptions['CSS3']['box_shadow_y'] = array('label' => 'Shadow y-offset', '
 $propertyOptions['CSS3']['box_shadow_blur'] = array('label' => 'Shadow Blur', 'default_unit' => 'px', 'icon' => 'shadow', 'pos' => 'last');
 
 /*
+
+
 
 */
 ?>

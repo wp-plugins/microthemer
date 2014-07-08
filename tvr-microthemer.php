@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.6.3
+Version: 2.7.1
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -45,7 +45,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.6.3';
+			var $version = '2.7.1';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -181,7 +181,8 @@ if ( is_admin() ) {
 					$this->savePreferences($pref_array);
 				}
 				
-				$ext_updater_file = dirname(__FILE__) .'/includes/plugin-updates/plugin-update-checker.php';
+				// $ext_updater_file = dirname(__FILE__) .'/includes/plugin-updates/plugin-update-checker.php';
+                $ext_updater_file = dirname(__FILE__) .'/includes/plugin-updates/1.5/plugin-update-checker.php';
 				if ( TVR_MICRO_VARIANT == 'themer' and file_exists($ext_updater_file) ) {
 					require $ext_updater_file;
 					$MyUpdateChecker = new PluginUpdateChecker(
@@ -325,11 +326,11 @@ if ( is_admin() ) {
 					
 					// register and enqueue plugin scripts
 					wp_register_script( 'tvr_mcth_jscolor', $this->thispluginurl.'js/mcthmr_jscolor/mcthmr_jscolor.js?v='.$this->version );
-					//wp_register_script( 'tvr_mcth_jqueryui', $this->thispluginurl.'js/jquery-ui-1.10.2.custom.min.js?v='.$this->version, 'jquery' );
+					wp_register_script( 'tvr_mcth_cssprops', $this->thispluginurl.'js/css-properties-'.$this->version.'.js' );
 					wp_register_script( 'tvr_mcth_colorbox', $this->thispluginurl.'js/colorbox/1.3.19/jquery.colorbox-min.js?v='.$this->version, 'jquery' );
 					wp_register_script( 'tvr_mcth_tabs', $this->thispluginurl.'js/enable-tabs.js?v='.$this->version, 'jquery' ); 
 					wp_enqueue_script( 'tvr_mcth_jscolor' );
-					//wp_enqueue_script( 'tvr_mcth_jqueryui' );
+					wp_enqueue_script( 'tvr_mcth_cssprops' );
 					wp_enqueue_script( 'jquery-ui-core' );
 					wp_enqueue_script( 'jquery-ui-sortable' ); 	
 					wp_enqueue_script( 'jquery-ui-slider' ); 
@@ -386,7 +387,133 @@ if ( is_admin() ) {
 			function getPropertyOptions() {
 				include $this->thisplugindir . 'includes/property-options.inc.php';
 				$this->propertyoptions = $propertyOptions;
+                // Make the property options array available to scripts by writing the JS to a new JS file.
+                $this->properties_to_js();
 			}
+
+            function properties_to_js() {
+                // Create new file if it doesn't already exist
+                $js_file = $this->thisplugindir . 'js/css-properties-'.$this->version.'.js';
+                // But only create JS file if it doesn't already exists for this version of Microthemer
+                if (!file_exists($js_file) or 1) { // get rid of "or 1" after testing
+                    if (!$write_file = fopen($js_file, 'w')) {
+                        $this->globalmessage.= '<p>WordPress does not have permission to create: '
+                            . $this->root_rel($js_file) . '. '.$this->permissionshelp.'</p>';
+                    }
+                    else {
+                        // write the properties to the js file as json object (filter junk first)
+
+                        // some properties need adjustment for jQuery .css() call
+                        $exceptions = array(
+                            'font-family'  => 'google-font',
+                            'list-style-type'  => 'list-style',
+                            'text-shadow'  => array(
+                                'text-shadow-color',
+                                'text-shadow-x',
+                                'text-shadow-y',
+                                'text-shadow-blur'),
+                            'background-img-full'  => array(
+                                'background-image',
+                                'gradient-angle',
+                                'gradient-a',
+                                'gradient-b',
+                                'gradient-b-pos',
+                                'gradient-c'
+                                ),
+                            'background-position' => 'background-position',
+                            'background-position-custom' => array(
+                                'background-position-x',
+                                'background-position-y'
+                            ),
+                            'background-repeat' => 'background-repeat',
+                            'background-attachment' => 'background-attachment',
+                            'border-top-left-radius' => 'radius-top-left',
+                            'border-top-right-radius' => 'radius-top-right',
+                            'border-bottom-right-radius' => 'radius-bottom-right',
+                            'border-bottom-left-radius' =>'radius-bottom-left',
+                            'box-shadow'  => array(
+                                'box-shadow-color',
+                                'box-shadow-x',
+                                'box-shadow-y',
+                                'box-shadow-blur'),
+                            'keys' => array(
+                                'background-position-x' => array(
+                                    '0%' => 'left',
+                                    '100%' => 'right',
+                                    '50%' => 'center'
+                                ),
+                                'background-position-y' => array(
+                                    '0%' => 'top',
+                                    '100%' => 'bottom',
+                                    '50%' => 'center'
+                                ),
+                                'gradient-angle' => array(
+                                    '180deg' => 'top to bottom',
+                                    '0deg' => 'bottom to top',
+                                    '90deg' => 'left to right',
+                                    '-90deg' => 'right to left',
+                                    '135deg' => 'top left to bottom right',
+                                    '-45deg' => 'bottom right to top left',
+                                    '-135deg' => 'top right to bottom left',
+                                    '45deg' => 'bottom left to top right'
+                                ),
+                                // webkit has a different interpretation of the degrees - doh!
+                                'webkit-gradient-angle' => array(
+                                    '-90deg' => 'top to bottom',
+                                    '90deg' => 'bottom to top',
+                                    '0deg' => 'left to right',
+                                    '180deg' => 'right to left',
+                                    '-45deg' => 'top left to bottom right',
+                                    '135deg' => 'bottom right to top left',
+                                    '-135deg' => 'top right to bottom left',
+                                    '45deg' => 'bottom left to top right'
+                                )
+                            )
+                        );
+
+                        $i = 0;
+                        $data = '';
+                        $done = array();
+                        $input_props = array();
+                        $css_props = '[';
+                        foreach ($this->propertyoptions as $prop_group => $array) {
+                            foreach ($array as $prop => $junk) {
+                                if (array_key_exists($prop, $exceptions)) {
+                                    $val = $exceptions[$prop];
+                                } else {
+                                    $val = str_replace('_', '-', $prop);
+                                }
+                                $input_props[$prop_group][$prop] = $val;
+                                if (empty($done[$val])) {
+                                    $css_props.= '"' . $val . '",';
+                                    $done[$val] = true;
+                                    ++$i;
+                                }
+                            }
+                        }
+                        // text/box-shadow need to be called as one - border-radius has different syntax (my bad)
+                        $css_props.= '"direction",';
+                        $css_props.= '"list-style-type",';
+                        $css_props.= '"text-shadow",';
+                        $css_props.= '"border-top-left-radius",';
+                        $css_props.= '"border-top-right-radius",';
+                        $css_props.= '"border-bottom-right-radius",';
+                        $css_props.= '"border-bottom-left-radius",';
+                        $css_props.= '"background-img-full",'; // for storing full string (inc gradient)
+                        $css_props.= '"extracted-gradient",'; // for storing just gradient (for mixed-comp check)
+                        $css_props.= '"box-shadow"';
+
+                        //$css_props = rtrim($css_props, ",");
+                        $css_props.= ']';
+                        $data.= 'var TvrPropExceptions = ' . json_encode($exceptions) . ';' . "\n\n";
+                        $data.= 'var TvrInputProps = ' . json_encode($input_props) . ';' . "\n\n";
+                        $data.= 'var TvrCSSProps = ' . $css_props . ';' . "\n\n";
+                        $data.= 'var TvrInputCompProps = {};' . "\n\n";
+                        fwrite($write_file, $data);
+                        fclose($write_file);
+                    }
+                }
+            }
 			
 			// @return array - Retrieve the plugin options from the database.
 			function getOptions() {
@@ -1708,7 +1835,7 @@ if ( is_admin() ) {
                             
                             </div>
                             <div id='group-<?php echo $section_name.'-'.$css_selector.'-'.$property_group_name;?>' 
-                            class='tvr-ui-right <?php echo $show_class; ?>'>
+                            class='tvr-ui-right <?php echo $show_class; ?> clearfix'>
 								<?php 
 								
                                 $this->media_query_tabs($section_name, $css_selector, $property_group_name, $main_label_show_class);
@@ -2131,7 +2258,7 @@ $tab$css_selector {
 															$sty['data'].= ""; // do nothing
 														}
 														// exception for google font
-														elseif ($property == 'google-font') {
+														elseif ($property == 'google-font' and $value) {
 															$sty['g_fonts_used'] = true;
 															// separate variant from font name
 															$fv = explode(" (", $value);
@@ -3632,7 +3759,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '2.6.3';
+			var $version = '2.7.1';
 			
 			/**
 			* PHP 4 Compatible Constructor
@@ -3726,7 +3853,7 @@ if (!is_admin()) {
                     $append = '';
                 }
 				if ( !empty($this->preferences['active_theme']) ) {
-					// register css - check theme name so relevant dependecies can be added
+					// register css - check theme name so relevant dependencies can be added
 					$deps = $this->dep_stylesheets();
 					
 					// check if Google Fonts stylesheet needs to be called
@@ -3839,8 +3966,8 @@ if (!is_admin()) {
 			function add_js() {
 				if ( is_user_logged_in() and TVR_MICRO_VARIANT == 'themer') {
 					wp_enqueue_script( 'jquery' );
-					wp_register_script( 'tvr_mcth_overlay', $this->thispluginurl.'js/overlay/jquery.overlay.js?v='.$this->version, 
-					array('jquery') ); // this last param enqueues jquery even if it wasn't enqueued above (FYI)
+					//wp_register_script( 'tvr_mcth_overlay', $this->thispluginurl.'js/overlay/jquery.overlay.js?v='.$this->version, array('jquery') );
+                    wp_register_script( 'tvr_mcth_overlay', $this->thispluginurl.'js/overlay/min/jquery.overlay.js?v='.$this->version, array('jquery') );
 					wp_enqueue_script( 'tvr_mcth_overlay' );
 				}
 			}

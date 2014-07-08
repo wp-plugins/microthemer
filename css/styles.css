@@ -759,7 +759,8 @@ span.mq-tab {
 	display: inline-block;
 	position: relative; 
 }
-.mq-options {  
+.mq-options,
+.comp-mixed-table {
 	visibility: hidden;
 	display:block;
 	width: 130px; 
@@ -797,7 +798,8 @@ span.mq-tab {
 	  float:left;
 	  padding-bottom:10px;
 	  margin-right:8px;
-	  overflow:hidden;
+	  /* overflow:hidden; */
+      position:relative;
   }
 #tvr-ui .last-field {
 	  margin-right:0px;
@@ -850,7 +852,7 @@ span.mq-tab {
 }
 #tvr-ui .property-fields {
 	margin-bottom:10px;
-	overflow:hidden;
+	/* overflow:hidden; */
 	padding-top:3px;
 	display:none;
 }
@@ -896,10 +898,84 @@ span.mq-tab {
 	width:114px; /* FF, Chrome, Safari actual width = 106 (-8px) - see ie.css for ie computed width */
 	font-weight:bold;
 	line-height:14px;
+    background-color:#F7F7F7;
 }
 #tvr-ui-wrap select {
 	height:2em;
 }
+#tvr-ui .property-fields .manual-val input,
+#tvr-ui .property-fields .manual-val select,
+#tvr-ui .property-fields input:hover,
+#tvr-ui .property-fields select:hover {
+    background-color:#FFFFFF;
+}
+span.comp-style {
+    position:absolute;
+    bottom:16px;
+    left:7px;
+    color:#9E9E9E;
+    line-height: 1;
+}
+.colorize-hash span.comp-style {
+    left:25px;
+}
+.colorize-hash.mixed-cp span.comp-style {
+    left:7px;
+}
+span.colored-hash {
+    position:absolute;
+    bottom:-1px;
+    left:-17px;
+    font-weight:bold;
+    display:inline-block;
+    padding:2px 4px;
+    margin-right:2px;
+    color:#fff;
+}
+.colorize-hash.mixed-cp span.colored-hash,
+span.comp-mixed-table span.colored-hash{
+    position:static;
+    padding:0 4px;
+}
+span.comp-style.hidden {
+    visibility: hidden;
+}
+span.comp-mixed-table {
+
+    visibility: visible;
+    display: none;
+    top:42px;
+    left:2px;
+    width:auto;
+    min-width: 120px;
+    max-width:400px;
+    max-height:150px;
+    overflow: scroll;
+    padding:7px;
+}
+span.comp-mixed-table h5 {
+    font-size:12px;
+    font-weight:bold;
+    margin:0 0 .5em 0;
+}
+span.comp-mixed-table table {
+   border-collapse: collapse;
+}
+span.comp-mixed-table td,
+span.comp-mixed-table th {
+    padding:3px 6px;
+}
+span.comp-mixed-table tbody tr:hover {
+    background: #eee;
+    cursor: default;
+}
+.field-wrap.mixed-cp:hover .comp-mixed-table {
+    display: block;
+}
+.field-wrap.mixed-cp.manual-val:hover .comp-mixed-table {
+   /* display: none; */
+}
+
 
 
 #tvr-ui .property-fields select.bg-image-select {

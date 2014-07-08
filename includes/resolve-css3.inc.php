@@ -37,7 +37,7 @@ and !$array['styles']['gradient']['rendered'] ) {
 		// get B Position if set
 		if ( !empty($property_group_array['gradient_b_pos'])) {
 			$gradient_b_pos = $property_group_array['gradient_b_pos'];
-			// give gradient_b_pos % unit if not specified
+			// give gradient_b_pos px unit if not specified
 			$gradient_b_pos.= $this->check_unit($property_group_name, 'gradient_b_pos', $gradient_b_pos);
 		}
 		else {
@@ -122,8 +122,19 @@ and !$array['styles']['gradient']['rendered'] ) {
 	if (empty($array['styles']['background']['background_color'])) {
 		$fallback_bg_color = "background-color: $gradient_a; /*non-CSS3 browsers will use this*/";
 	}
-	
-	// check if bg image properties need to go in 
+
+    // check if bg-color property need to go in
+    if (!empty($array['styles']['background']['background_color'])) {
+        if ($array['styles']['background']['background_color'] != 'none' and
+            $array['styles']['background']['background_color'] != '') {
+            $user_bg_color = $array['styles']['background']['background_color']. ' ';
+        }
+        else {
+            $user_bg_color = '';
+        }
+    }
+
+	// check if bg image properties need to go in
 	if (!empty($array['styles']['background']['background_image'])) {
 		if ($array['styles']['background']['background_image'] != 'none') {
 			$user_bg_image = "url(".$array['styles']['background']['background_image'].")";
@@ -142,13 +153,13 @@ and !$array['styles']['gradient']['rendered'] ) {
 	
 	// render the gradient
 	$sty['data'].= "	{$tab}$fallback_bg_color
-	{$tab}background: {$user_bg_image}-webkit-gradient(linear, $wbkold_angle, from($gradient_a), {$wbkold_bstop}to($gradient_c)){$sty['css_important']};
-	{$tab}background: {$user_bg_image}-webkit-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']}; 
-	{$tab}background: {$user_bg_image}-moz-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']}; 
-	{$tab}background: {$user_bg_image}-ms-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']}; 
-	{$tab}background: {$user_bg_image}-o-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']};
-	{$tab}background: {$user_bg_image}linear-gradient($non_prefix_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']}; 
-	{$tab}-pie-background: {$user_bg_image}linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']}; 
+	{$tab}background: {$user_bg_color}{$user_bg_image}-webkit-gradient(linear, $wbkold_angle, from($gradient_a), {$wbkold_bstop}to($gradient_c)){$sty['css_important']};
+	{$tab}background: {$user_bg_color}{$user_bg_image}-webkit-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']};
+	{$tab}background: {$user_bg_color}{$user_bg_image}-moz-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']};
+	{$tab}background: {$user_bg_color}{$user_bg_image}-ms-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']};
+	{$tab}background: {$user_bg_color}{$user_bg_image}-o-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']};
+	{$tab}background: {$user_bg_color}{$user_bg_image}linear-gradient($non_prefix_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']};
+	{$tab}-pie-background: {$user_bg_color}{$user_bg_image}linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']};
 ";
 	// record that this property group has been rendered
 	$array['styles']['gradient']['rendered'] = true;

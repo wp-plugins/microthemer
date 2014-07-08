@@ -1,36 +1,66 @@
 <?php
 // Stop direct call
 if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { 
-	die('Please do not call this page directly.'); 
+	die('Please do not call this page directly.');
+}
+
+// border-style was removed for separate 4 values
+if ($property == 'border_style') {
+    //return
 }
 
 // add media query stem for form fields if necessary
 if ($con == 'mq') {
 	$mq_stem = '[non_section][m_query]['.$key.']';
 	$imp_key = '[m_query]['.$key.']';
+    if ($property_group_name == 'border'){
+        $border_style_val = $this->options['non_section']['important']['m_query'][$key][$section_name][$css_selector]['styles']['border']['border_style'];
+    } else {
+        $border_style_val = false;
+    }
+
     if (!empty($this->options['non_section']['important']['m_query'][$key][$section_name][$css_selector][$property_group_name][$property])) {
         $important_val = $this->options['non_section']['important']['m_query'][$key][$section_name][$css_selector][$property_group_name][$property];
     } else {
         $important_val = '';
     }
-
 } else {
     $mq_stem = '';
     $imp_key = '';
+    if ($property_group_name == 'border'){
+        $border_style_val = $this->options[$section_name][$css_selector]['styles']['border']['border_style'];
+
+    } else {
+        $border_style_val = false;
+    }
     if ( !empty($this->options['non_section']['important'][$section_name][$css_selector][$property_group_name][$property])) {
         $important_val = $this->options['non_section']['important'][$section_name][$css_selector][$property_group_name][$property];
     } else {
         $important_val = '';
     }
-
 }
 
+// 4 values for border style should use legacy border-style if it was set
+/*if (!empty($border_style_val) and (
+        $property == 'border_top_style' or
+        $property == 'border_right_style' or
+        $property == 'border_bottom_style' or
+        $property == 'border_left_style'
+    )) {
+    $value = $border_style_val;
+}*/
+
+if (!empty($value) or $value === '0') {
+    $man_class = ' manual-val';
+} else {
+    $man_class = '';
+}
 ?>
-<div class='field-wrap 
+<div class='field-wrap clearfix <?php echo $man_class; ?>
 	<?php
 	// give input a common css class for jQuery traversing
 	$property_input_class = 'property-input';
-	
+
 	// if the input is wider than normal add a span class
 	if (isset($this->propertyoptions[$property_group_name][$property]['span'])) {
 		echo ' input-span-'.$this->propertyoptions[$property_group_name][$property]['span'];
@@ -105,8 +135,7 @@ if ($con == 'mq') {
 		}
 		// don't show i on all css3 props and text shadow
 		if (
-            !empty($this->propertyoptions[$property_group_name][$property]['hide imp']) and
-            $this->propertyoptions[$property_group_name][$property]['hide imp'] != 1) {
+            empty($this->propertyoptions[$property_group_name][$property]['hide imp'])) {
 			?>
 			<span class="important-toggle tvr-toggle-<?php echo $class_rel; ?> imp-<?php echo $con; ?> " title="Click to add/remove !important declaration" rel="<?php echo $class_rel; ?>">i</span>
 			<?php
@@ -233,8 +262,25 @@ if ($con == 'mq') {
         name="tvr_mcth<?php echo $mq_stem; ?>[<?php echo $section_name; ?>][<?php echo $css_selector; ?>][styles][<?php echo $property_group_name; ?>][<?php echo $property; ?>]" value="<?php echo $value; ?>" /> 
         <?php	
         }
-	?>
-    
+
+    $comp_class = 'comp-style cprop-' . str_replace('_', '-', $property);
+    if (!empty($value) or $value === '0') {
+       $comp_class.= ' hidden';
+    }
+    ?>
+    <span class="<?php echo $comp_class; ?>"></span>
+    <span class="comp-mixed-table">
+        <h5 title="Hover over the rows to highlight the individual elements on the page">Page Analysis</h5>
+        <table>
+            <thead>
+            <tr>
+                <th><i>n</i></th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </span>
 </div><!-- end field-wrap -->
 <?php if (
     !empty($this->propertyoptions[$property_group_name][$property]['linebreak']) and
