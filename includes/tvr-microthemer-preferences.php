@@ -103,6 +103,18 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
 			?>
              /> No
             </p>
+
+            <p><label>Google Font subset URL parameter: </label>
+                <input type='text' autocomplete="off" name='tvr_preferences[gfont_subset]'
+                       value='<?php echo esc_attr($this->preferences['gfont_subset']); ?>' />
+            <p class='option-info'>
+                You can instruct google fonts to include a font subset by entering an URL parameter here.
+                For example "<b>&subset=latin,latin-ext</b>" (without the quotes). Note: Microthemer only generates a google font url
+                if it detects that you have applied Google Fonts in your design.
+            </p>
+
+
+
             
             <p><label>WordPress Frontend Admin Bar: </label>
             <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[admin_bar]' value='1'
@@ -286,7 +298,7 @@ $file_structure = $this->dir_loop($this->micro_root_dir);
 			?>
              /> always add <i>position:relative</i> to the element in question.
             </p>
-            <p id='auto-relative-exp'>
+            <p class='option-info'>
             This is a fixed setting. But worth notifying you about here so that you can override it on individual elements. To stop Microthemer from automatically adding <i>position:relative</i> to an element that you have applied CSS3 styles to, simply set <i>position:static</i> on it (or set CSS3 PIE to off).
             </p>
             

@@ -1,5 +1,13 @@
 CHANGELOG
 
+2.7.2 (Aug 6, 2014)
+
+# Enhancement
+* Google font subsets e.g. "subset=latin,latin-ext" can now be set on the Microthemer > Preferences page
+
+# Bugs Fixed
+* An error occured when using single or double quotes in selectors e.g. input[type="text"]
+
 2.7.1 (July 8, 2014)
 
 # Enhancement

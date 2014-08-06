@@ -2002,7 +2002,7 @@ PREFERENCES
 #tvr-preferences .float-form .submit {
 	width:auto;
 }
-p#auto-relative-exp {
+p.option-info {
 	padding-left:34%;
 	font-size:11px;
 }

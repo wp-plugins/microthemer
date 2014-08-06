@@ -95,6 +95,10 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+2.7.2
+* Google font subsets e.g. "subset=latin,latin-ext" can now be set on the Microthemer > Preferences page
+* An error occured when using single or double quotes in selectors e.g. input[type="text"]
+
 2.7.1
 # Enhancement
 * Microthemer can now be used as a substitute for firebug as a tool for analysing an element's existing computed CSS values. Microthemer now shows the computed values as overlays on the editing options so you can view CSS value reporting and make an edit in exactly the same place.
