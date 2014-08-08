@@ -1,12 +1,17 @@
 CHANGELOG
 
+2.7.3 (Aug 8, 2014)
+
+# Bugs Fixed
+* Computed CSS reporting failed if the CSS selector code contained one of the following pseudo selectors - :hover, :active, :visited
+
 2.7.2 (Aug 6, 2014)
 
 # Enhancement
 * Google font subsets e.g. "subset=latin,latin-ext" can now be set on the Microthemer > Preferences page
 
 # Bugs Fixed
-* An error occured when using single or double quotes in selectors e.g. input[type="text"]
+* An error occurred when using single or double quotes in selectors e.g. input[type="text"]
 
 2.7.1 (July 8, 2014)
 

@@ -95,6 +95,9 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+2.7.3
+* Computed CSS reporting failed if the CSS selector code contained one of the following pseudo selectors - :hover, :active, :visited
+
 2.7.2
 * Google font subsets e.g. "subset=latin,latin-ext" can now be set on the Microthemer > Preferences page
 * An error occured when using single or double quotes in selectors e.g. input[type="text"]
