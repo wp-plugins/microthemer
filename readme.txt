@@ -95,6 +95,14 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+2.7.5
+* The new feature of computing the CSS could slow, and potentially crash the browser. 
+This could happen when analysing high numbers of page elements (e.g. 30 links on the page) combined with lots of properties having mixed values (e.g. a font-size of 12px, 18px, 21px). 
+As A quick fix, we have set the maximum number of elements on the page that can be scanned to 10 (instead of 50). We will increase this figure (to around 30) when we release version 3 in about one month. 
+Version 3 will segment the display of property groups (e.g. just padding or just behaviour) rather than displaying all properties at once and so will be able to analyse more elements on the page without resulting in performance issues.
+* Also, related to the above, Microthemer now excludes the WP admin bar from restyling for performance reasons.
+* If a selector contained the :link pseudo selector, this wasn't correctly filtered when constructing selector highlighting divs.
+
 2.7.3
 * Computed CSS reporting failed if the CSS selector code contained one of the following pseudo selectors - :hover, :active, :visited
 
