@@ -4,7 +4,7 @@ Contributors: bastywebb
 Donate link: http://themeover.com/microthemer/
 Tags: microthemer, theme customizer, theme editor, theme tweaker, theme generator, css plugin, css editor, css code generator, visual css editor, visual design tool, css3 pie, stylesheet, style.css, micro themes, microloader, wordpress, google fonts, google web fonts, web fonts, wordpress web fonts, google fonts plugin, wp google fonts, google
 Requires at least: 3.2.1
-Tested up to: 3.9.1
+Tested up to: 4.0
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -94,6 +94,13 @@ Microthemer has built-in documentation! Just click the Tutorials icon (accessibl
 View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/#changelog" target="_blank">Microthemer's Changelog here</a>
 
 == Upgrade Notice ==
+
+2.7.8
+* Text-shadow colour could not be set to "none" to effectively disable any existing text-shadow values.
+* RGB AND RGBA colour values could not be set without Microthemer auto-adjusting them to solid hex values. 
+RGB/RGBA values can now be manually added. The color picker will receive some proper attention in the near future to ensure maximum flexibility and ease of use.
+* A call to an undefined javascript function caused an error in the browser console. Although the error didn't seem to disrupt normal functioning of the program.
+
 
 2.7.5
 * The new feature of computing the CSS could slow, and potentially crash the browser. 

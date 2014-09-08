@@ -309,8 +309,15 @@ $property == 'text_shadow_blur') and
 		$text_shadow_blur = 0;
 	}
 	$text_shadow_blur.= $this->check_unit($property_group_name, 'text_shadow_blur', $text_shadow_blur);
+
+    // allow for disabling text-shadow with "none" in color field
+    if ($text_shadow_color == 'none'){
+        $resolved_text_shadow = 'none';
+    } else {
+        $resolved_text_shadow = "$text_shadow_color $text_shadow_x $text_shadow_y $text_shadow_blur";
+    }
 	
-	$sty['data'].= $tab."	text-shadow: $text_shadow_color $text_shadow_x $text_shadow_y $text_shadow_blur{$sty['css_important']};
+	$sty['data'].= $tab."	text-shadow: $resolved_text_shadow{$sty['css_important']};
 ";
  // record that this property group has been rendered
 	$array['styles']['text_shadow']['rendered'] = true;

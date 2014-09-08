@@ -412,7 +412,8 @@ var mcthmr_jscolor = {
 			} else {
 				// if(!this.adjust) {
 				//=sebcus add excpetion for transparent background property value
-				if(!this.adjust || valueElement.value == 'transparent') {	
+				if(!this.adjust || valueElement.value == 'transparent' || valueElement.value == 'none'
+                    || valueElement.value.match(/rgb\(|rgba\(/i)) {
 					if(!this.fromString(valueElement.value, leaveValue)) {
 						styleElement.style.backgroundColor = styleElement.jscStyle.backgroundColor;
 						styleElement.style.color = styleElement.jscStyle.color;
