@@ -340,7 +340,7 @@ if (TVR_MICRO_VARIANT == 'themer') {
             	<td class="file-name">
     			
                 <?php echo $file; ?>
-                </th>
+                </td>
                 <td><a class='non-image-file' href='<?php echo $this->micro_root_url . $this->preferences['theme_in_focus'].'/'.$file . $append_time;?>'
                  <?php echo $rel.' '.$target; ?>>View</a></td>
                 <td><a class='delete-file' href='admin.php?page=<?php echo $this->microthemespage;?>&action=tvr_delete_micro_file&file=<?php echo $file; ?>&_wpnonce=<?php echo wp_create_nonce('tvr_delete_micro_file'); ?>'>

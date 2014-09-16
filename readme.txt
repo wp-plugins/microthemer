@@ -95,6 +95,14 @@ View <a title="Microthemer Demos Videos" href="http://themeover.com/microthemer/
 
 == Upgrade Notice ==
 
+2.8.2
+* The helps links to the videos, tutorials, and forum were not working on the Preferences or Manage Themes pages.
+* Microthemer no longer displays your email address on the unlock page once you have successfully validated your email address. 
+This is useful if you have purchased a developer license and you do not want your clients to see your email address.
+* Also, the free trial notice disappears after unlocking the program. 
+* The "Free Trial Example Section" is now just called "Example Section" to avoid confusion over whether or not the program is really unlocked after validating your email address.
+
+
 2.7.8
 * Text-shadow colour could not be set to "none" to effectively disable any existing text-shadow values.
 * RGB AND RGBA colour values could not be set without Microthemer auto-adjusting them to solid hex values. 

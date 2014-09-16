@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. contact forms) down to the smallest detail (unlike typical Theme Options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress Theme. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced Theme customization.
-Version: 2.7.8
+Version: 2.8.2
 Author: Themeover
 Author URI: http://www.themeover.com
 */   
@@ -45,7 +45,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 	
-			var $version = '2.7.8';
+			var $version = '2.8.2';
 			var $minimum_wordpress = '3.2.1';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
@@ -338,15 +338,15 @@ if ( is_admin() ) {
 					wp_enqueue_script( 'tvr_mcth_colorbox' );
 					wp_enqueue_script( 'tvr_mcth_tabs' );
 					// load relevant plugin page script 
-					if ( $_GET['page'] == $this->microthemeruipage) {		
+					if ( $_GET['page'] == $this->microthemeruipage) {
 						wp_register_script( 'tvr_mcth_custom_ui', $this->thispluginurl.'js/min/microthemer.js?v='.$this->version );
 						//wp_register_script( 'tvr_mcth_custom_ui', $this->thispluginurl.'js/tvr-microthemer.js?v='.$this->version );
-						wp_enqueue_script( 'tvr_mcth_custom_ui' );	
+						wp_enqueue_script( 'tvr_mcth_custom_ui' );
 					}
 					// manage micro themes script
 					else {
-						wp_register_script( 'tvr_mcth_custom_man', $this->thispluginurl.'js/min/manage-micro.js?v='.$this->version ); 
-						//wp_register_script( 'tvr_mcth_custom_man', $this->thispluginurl.'js/tvr-manage-micro.js?v='.$this->version ); 
+						wp_register_script( 'tvr_mcth_custom_man', $this->thispluginurl.'js/min/manage-micro.js?v='.$this->version );
+						//wp_register_script( 'tvr_mcth_custom_man', $this->thispluginurl.'js/tvr-manage-micro.js?v='.$this->version );
 						wp_enqueue_script( 'tvr_mcth_custom_man' );	
 					}	
 				}
@@ -555,9 +555,9 @@ if ( is_admin() ) {
 						$theOptions['non_section']['view_state']['footer_widget_areas']['this'] = '0';
 						$theOptions['non_section']['view_state']['contact_form_7']['this'] = '0';
 					} else {
-						$theOptions['free_trial_example_section'] = '';
+						$theOptions['example_section'] = '';
 						$theOptions['non_section']['hand_coded_css'] = '';
-						$theOptions['non_section']['view_state']['free_trial_example_section']['this'] = '0';
+						$theOptions['non_section']['view_state']['example_section']['this'] = '0';
 					}
 					
 					// add_option rather than update_option (so autoload can be set to no)
@@ -1229,12 +1229,14 @@ if ( is_admin() ) {
 							$_POST['tvr_preferences']['buyer_validated'] = 1;
 							$this->trial = 0;
 							if (!$this->preferences['buyer_validated']) { // not already validated
-								$this->globalmessage.= '<p><b>Your email address has been successfully validated.</b> 
-								Microthemer\'s full program features have been unlocked!</p>
-								<p><b>Tip</b>: from now on, if you reset the Microthemer UI the default (and more useful) Sections will load 
-								instead of the "Free Trial Example Section".</p>';
+								$this->globalmessage.= '<p><b>Your email address has been successfully validated.</b></p>
+								<p>Microthemer\'s full program features have been unlocked!</p>
+								<p><b>Tip</b>: from now on, if you reset the Microthemer UI the default (and more useful)
+								Sections will load instead of just the "Example Section". You can do this using the option in the
+								fixed right-hand menu on the <b>Microthemer UI page</b></p>';
 							} else {
-								$this->globalmessage.= '<p>Your email address has already been validated. The full program is active.</p>';
+								$this->globalmessage.= '<p>Your email address has already been validated.
+								The full program is active.</p>';
 							}
 						}
 						else {
@@ -3760,7 +3762,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '2.7.8';
+			var $version = '2.8.2';
 			
 			/**
 			* PHP 4 Compatible Constructor

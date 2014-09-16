@@ -10,6 +10,10 @@ span.link:hover {
 	color: #d54e21;
 }
 
+.hidden.show {
+    display: block;
+}
+
 /*clearfix*/
 .clearfix {
   width: 100%;
