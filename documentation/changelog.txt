@@ -1,31 +1,112 @@
 CHANGELOG
 
-2.8.2 (Sept 16, 2014)
+3.1 (Feb 8, 2015)
+
+# Bugs Fixed
+* Some alternative media query 'sets' can be loaded. These encourage the use of mobile-first/semantic breakpoints.
+* Deleting all media queries will actually reset the default media queries (rather than just purporting to)
+* Hovering your mouse over a media query tab shows the underlying media query code.
+* The color picker didn't allow RGB or RGBA values if there was a space before the brackets e.g. "RGBA ()".
+* Navigating to selector from the main menu or quick edit menus closes the open menu
+* The 'Double-click an element to create editing options for it' title attribute is no longer dynamically added to the <body> element of the preview iframe.
+* The in-program docs now link to the new online support index page, taking this version out of beta.
+* Each CSS property has a direct link to the online CSS reference by clicking the CSS property icon
+* Microthemer recalculates and reports the correct computed CSS following actions that change the preview screen width (e.g. adjusting the slider or switching between media query tabs). Thanks for reporting this Rob.
+* Selector highlighting is recalculated instantly when a new style is applied that affects the dimensions of the targets element(s). Thanks again to Rob for spotting this.
+* Cursor options no longer have a scrollbar in the dropdown menu, which partially obscured the options.
+
+3.0.16 beta (Jan 17, 2015)
+
+# Note: this is a beta because it has been released without updated documentation
+
+# Bugs Fixed
+* The pre-populated selector name value for all selectors in a folder was overwritten by the most recent selector created via the selector wizard. Thanks for spotting this Antonio!
+* Importing a design pack made with Microthemer 1.x (before media query tabs were added) would result in PHP errors.
+
+3.0.14 beta (Jan 13, 2015)
+
+# Note: this is a beta because it has been released without updated documentation
+
+# Enhancement
+* Improved the icon and description for the media query tab management menu. A few more improvements for this feature are on the way.
+
+# Bugs Fixed
+* If a media query tab (e.g. "Phone") was used in the absence of the default "All Devices" tab, settings applied to the media query tab would not save.
+* When importing 2.x settings, media query tabs did not always display correctly.
+* Dropdown menu toggle arrows were misaligned by one pixel in Firefox.
+
+3.0.11 beta (Jan 10, 2015)
+
+# Note: this is a beta because it has been released without updated documentation
+
+# Bugs Fixed
+* The appearance of the slider handle for the selector wizard element targeting tab also needed fixing in WP 4.1
+* The notification about disabling highlighting when double-clicking something that is already highlighted was confusing.
+* In rare cases Microthemer was not remembering the last frontend page viewed in the preview window.
+
+3.0.8 beta (Dec 30, 2014)
+
+# Note: this is a beta because it has been released without updated documentation
+
+# Bugs Fixed
+* On multi-site, the "back to WordPress dashboard" icon in the left toolbar took the user back to the root admin dashboard instead of the intended blog dashboard.
+* With WordPress 4.1 there were a few display issues relating to jQuery UI widgets like sliders and pseudo select comboboxes.
+- The preview screen width slider handle was not correctly styled (it was too big).
+- The dropdown menus looked a bit ugly and it wasn't possible to specify an empty value to clear the field.
+* With jquery versions older than 1.9, a javascript error could prevent the selector wizard from loading when double-clicking an element. Now Microthemer warns you to update jQuery.
+* Microthemer was sometimes creating a debug-save.txt file in the root /micro-themes/ folder. This caused a blank design pack to be displayed on the manage design packs page that could not be deleted via the delete button. If you installed version 3.0 and you see a nameless design pack on the manage packs page, please delete the following file via FTP: /wp-content/micro-themes/debug-save.txt (or ask Themeover for help with this).
+* Microthemer will not run with versions earlier than 3.6 (it will warn you to upgrade WordPress)
+* The reported CSS could sometimes be too big for the input field and looked messy. If there is not enough room the value is truncated with a ... suffix. The full computed CSS value can still be viewed by hovering your mouse over the input field.
+* The icons for text-shadow X and Y offset were wrong. "Spread" will be added to these shadow options soon.
+* An innocuous javascript error was generated if exporting the first design pack when no others exist.
+
+3.0 beta (Dec 26, 2014)
+
+# Note: this is a beta because it has been released without updated documentation
+
+# Enhancement
+* Much nicer icon-based UI with far more space available for seeing the site your designing and NO overlap of editing options.
+* Everything is accessible from the Microthemer UI page (e.g. design pack installation and management, updating global preferences and media queries)
+* Much easier management of sections (now called folders) and selectors. You can copy and move selectors between folders with drag and drop too.
+* Code editor with syntax highlighting for those that still like to program. You can still see the frontend site while you write your code. Clicking control+S to save means that you see your changes instantly.
+* Some new style options (e.g. box-sizing, background-size) with more (animation/transition) options on the way in a later release.
+* Background images are now managed via the WordPress media manager. On installing a pack with images, they are extracted to the library and image paths are updated automatically. When you download a pack, linked imaged are downloaded from the image library and included in the zip package. It should make working with background images much easier.
+* The selector wizard is now easier to use. It has a slider for tweaking your targeting instead of the dropdown menu. And computed CSS is reported at the wizard stage too. In a later release the HTML inspection will be improved further.
+* Import/Export of settings has been improved.
+
+# Bugs Fixed
+* limits caused by PHP's max_input_vars settings which could cause problems saving your settings if the number of input vars exceeded the limit (typically 1000) is no longer an issue. Microthemer serializes input values into one and then splits them back to normal on the server side.
+* background images can have spaces in the names e.g. "my images with spaces.jpg"
+* Resetting, importing, and restoring settings used to pass parameters in the URL. Refreshing the page (which some of us do habitually) could cause unwanted old actions (like resetting the interface) to be repeated accidentally. Now all actions are submitted via ajax and the Microthemer URL remains clean at all times.
+
+# Changes
+* Microthemer doesn't set viewport to 1 by default. If you plan to make use of the media query feature please set this to 1 on the media queries management page.
+* CSS3 PIE isn't turned on globally by default.
+
+
+
+2.8.2 (Sept 16, 2014
 
 # Bugs Fixed
 * The helps links to the videos, tutorials, and forum were not working on the Preferences or Manage Themes pages.
-# Enhancement
-* Microthemer no longer displays your email address on the unlock page once you have successfully validated your email address. 
-This is useful if you have purchased a developer license and you do not want your clients to see your email address.
-* Also, the free trial notice disappears after unlocking the program. 
-* The "Free Trial Example Section" is now just called "Example Section" to avoid confusion over whether or not the program is really unlocked after validating your email address.
 
+# Enhancement
+* Microthemer no longer displays your email address on the unlock page once you have successfully validated your email address.
+This is useful if you have purchased a developer license and you do not want your clients to see your email address.
+* Also, the free trial notice disappears after unlocking the program.
+* The "Free Trial Example Section" is now just called "Example Section" to avoid confusion over whether or not the program is really unlocked after validating your email address.
 
 2.7.8 (Sept 8, 2014)
 
 # Bugs Fixed
 * Text-shadow colour could not be set to "none" to effectively disable any existing text-shadow values.
-* RGB AND RGBA colour values could not be set without Microthemer auto-adjusting them to solid hex values. 
-RGB/RGBA values can now be manually added. The color picker will receive some proper attention in the near future to ensure maximum flexibility and ease of use.
+* RGB AND RGBA colour values could not be set without Microthemer auto-adjusting them to solid hex values. RGB/RGBA values can now be manually added. The color picker will receive some proper attention in the near future to ensure maximum flexibility and ease of use.
 * A call to an undefined javascript function caused an error in the browser console. Although the error didn't seem to disrupt normal functioning of the program.
 
 2.7.5 (Sept 1, 2014)
 
 # Bugs Fixed
-* The new feature of computing the CSS could slow, and potentially crash the browser. 
-This could happen when analysing high numbers of page elements (e.g. 30 links on the page) combined with lots of properties having mixed values (e.g. a font-size of 12px, 18px, 21px). 
-As A quick fix, we have set the maximum number of elements on the page that can be scanned to 10 (instead of 50). We will increase this figure (to around 30) when we release version 3 in about one month. 
-Version 3 will segment the display of property groups (e.g. just padding or just behaviour) rather than displaying all properties at once and so will be able to analyse more elements on the page without resulting in performance issues.
+* The new feature of computing the CSS could slow, and potentially crash the browser. This could happen when analysing high numbers of page elements (e.g. 30 links on the page) combined with lots of properties having mixed values (e.g. a font-size of 12px, 18px, 21px). As A quick fix, we have set the maximum number of elements on the page that can be scanned to 10 (instead of 50). We will increase this figure (to around 30) when we release version 3 in about one month. Version 3 will segment the display of property groups (e.g. just padding or just behaviour) rather than displaying all properties at once and so will be able to analyse more elements on the page without resulting in performance issues.
 * Also, related to the above, Microthemer now excludes the WP admin bar from restyling for performance reasons.
 * If a selector contained the :link pseudo selector, this wasn't correctly filtered when constructing selector highlighting divs.
 
@@ -34,7 +115,7 @@ Version 3 will segment the display of property groups (e.g. just padding or just
 # Bugs Fixed
 * Computed CSS reporting failed if the CSS selector code contained one of the following pseudo selectors - :hover, :active, :visited
 
-2.7.2 (Aug 6, 2014)
+2.7.2 (Aug 06, 2014)
 
 # Enhancement
 * Google font subsets e.g. "subset=latin,latin-ext" can now be set on the Microthemer > Preferences page
@@ -42,7 +123,7 @@ Version 3 will segment the display of property groups (e.g. just padding or just
 # Bugs Fixed
 * An error occurred when using single or double quotes in selectors e.g. input[type="text"]
 
-2.7.1 (July 8, 2014)
+2.7.1 (July 08, 2014)
 
 # Enhancement
 * Microthemer can now be used as a substitute for firebug as a tool for analysing an element's existing computed CSS values. Microthemer now shows the computed values as overlays on the editing options so you can view CSS value reporting and make an edit in exactly the same place.
@@ -57,11 +138,10 @@ Version 3 will segment the display of property groups (e.g. just padding or just
 * Microthemer now includes the background-color in the CSS3 gradient declaration. It will always be trumped by the gradient but not doing this resulting in incorrect reporting of the background-color property (now that Microthemer reports this information)
 * The plugin update checker (not shipped with wordpress.org version) needed updating.
 
-
 2.6.3 (May 12, 2014)
 
 # Enhancement
-* Style changes appear much quicker now (almost instantly). As such, auto-save is now the default mode (although it can be disabled). Also, auto-save is trggered when you finish typing into text fields (after a 700ms delay, rather than when focus is removed). 
+* Style changes appear much quicker now (almost instantly). As such, auto-save is now the default mode (although it can be disabled). Also, auto-save is trggered when you finish typing into text fields (after a 700ms delay, rather than when focus is removed).
 * Microthemer remembers the last page you viewed when you return to the visual view site preview
 
 2.6.1.1 (May 8, 2014)
@@ -82,7 +162,7 @@ Version 3 will segment the display of property groups (e.g. just padding or just
 2.5.8 (Mar 17, 2014)
 
 # Bugs Fixed
-* E_STRICT PHP error warnings could occur with PHP 5.4 due to code aimed at maintaining compatibility with PHP 4. This code has been removed. PHP 4 is no longer supported.
+* E_STRICT PHP error warnings could occur with PHP 5.4 due to code aimed at maintaining compatibility with PHP 4. This code has been removed. PHP 4 is no longer supported
 
 2.5.7 (Jan 14, 2014)
 
@@ -98,7 +178,7 @@ Version 3 will segment the display of property groups (e.g. just padding or just
 2.5.5 (Dec 28, 2013)
 
 # Enhancement
-* Added a major new responsive design feature to the visual view. Preview the frontend in screen widths that correspond to min and max width values specified in your media queries. Also, you can easily adjust the preview screen size manually user a slider. You still have full editorial control over Microthemers default media queries.
+* Added a major new responsive design feature to the visual view. Preview the frontend in screen widths that correspond to min and max width values specified in your media queries. Also, you can easily adjust the preview screen size manually using a slider. You still have full editorial control over Microthemer's default media queries.
 * Some CSS tweaks to further improve the design with WordPress 3.8.
 
 # Bugs Fixed
@@ -106,8 +186,7 @@ Version 3 will segment the display of property groups (e.g. just padding or just
 
 2.5.2 (Dec 14, 2013)
 
-# Enhancement
-* Various design improvements to ensure compatibility with WordPress 3.8
+# Enhancement * Various design improvements to ensure compatibility with WordPress 3.8
 
 2.5.1 (Dec 9, 2013)
 
@@ -120,7 +199,6 @@ Version 3 will segment the display of property groups (e.g. just padding or just
 * Major bug with device-specific CSS styles disappearing. Previously saved media query styles were overwritten by new ones if the section or selector was closed. This bug was masked prior to the last release (2.4.7) because sections and selectors remained open unless explicitly closed.
 * When importing a theme pack that uses device specific css, the tabs could get messed up it focus wasn't left on 'All-devices'.
 * Increased the CSS-specificity of Microthemer's own CSS styles on hidden Elements to ensure normal Javascript functioning too.
-
 
 2.4.7 (Nov 17, 2013)
 
@@ -142,13 +220,7 @@ Version 3 will segment the display of property groups (e.g. just padding or just
 
 # Bugs Fixed
 * When importing with "Merge", section name conflicts were not handled if an existing section didn't have any Selectors.
-* MAJOR BUG FIXED - Style values of zero (0) were ignored (not written to the CSS stylesheet) in the last version of Microthemer (2.4.1). 
-
-2.4.3 (Oct 2, 2013)
-
-# Bugs Fixed
-* When importing with "Merge", section name conflicts were not handled if an existing section didn't have any Selectors.
-* MAJOR BUG FIXED - Style values of zero (0) were ignored (not written to the CSS stylesheet) in the last version of Microthemer (2.4.1). 
+* MAJOR BUG FIXED - Style values of zero (0) were ignored (not written to the CSS stylesheet) in the last version of Microthemer (2.4.1).
 
 2.4.1 (Aug 28, 2013)
 
@@ -164,7 +236,7 @@ Version 3 will segment the display of property groups (e.g. just padding or just
 * WordPress admin bar shows on frontend by default (but can be turned off on preferences page)
 
 # Bugs Fixed
-* Adding a Selector could result in a PHP error on strict servers that don't allow MySQL fields of type "text/longtext" to have a default value. See more info on the issue here: http://stackoverflow.com/questions/3466872/why-cant-a-text-column-have-a-default-value-in-mysql 
+* Adding a Selector could result in a PHP error on strict servers that don't allow MySQL fields of type "text/longtext" to have a default value. See more info on the issue here: http://stackoverflow.com/questions/3466872/why-cant-a-text-column-have-a-default-value-in-mysql
 
 2.3.5 (Aug 7, 2013)
 
@@ -176,14 +248,14 @@ Version 3 will segment the display of property groups (e.g. just padding or just
 * Google Font variations can now be correctly used (click the variation before clicking the "Use this Font" link)
 * Google Font url uses https if necessary to prevent mixed content warnings on SSL sites.
 
-2.3.2 (July 26, 2013)
+2.3.2 (July 29, 2013)
 
 # Enhancement
 * Transparency on mouseout in visual view is now configurable via Preferences page
 * Microthemer now compatible with MP6 (the new WordPress interface design that will be released in future version of wordPress). Some additional design tweaks will be introduced once the new MP6 design becomes the norm.
 
 # Bugs Fixed
-* Transparency with editing options intermittently caused z-index problem when scroller was used in Firefox. This is now a configurable option as not sure whether the transparency feature is just a distraction
+* Transparency with editing options intermitantly caused z-index problem when scroller was used in Firefox. This is now a configurable option as not sure whether the transparency feature is just a distraction
 
 2.2.9 (July 16, 2013)
 
@@ -193,7 +265,7 @@ Version 3 will segment the display of property groups (e.g. just padding or just
 * Added in-program video tutorial for adding Google Web Fonts
 
 # Bugs Fixed
-* Microthemer permitted section names to be in camelCase. This caused downstream problems when trying to rename a section.
+* Microthemer permited section names to be in camelCase. This caused downstream problems when trying to rename a section.
 * Links to W3 Schools website in the CSS Reference were broken
 * Ctrl+S shortcut failed if focus remained on iframe (after interacting with a menu in the iframe for instance)
 
@@ -229,19 +301,17 @@ This is the last version of Microthemer to support WordPress versions prior to 3
 * Added Free Trial Mode. Microthemer can now be downloaded as a free trial from WordPress.org
 
 # Bugs Fixed
-* Fixed various CSS layout issues that occurred with older versions of WordPress.
+* Fixed various CSS layout issues that occured with older versions of WordPress.
 * Fixed undefined function errors with older versions of WordPress.
-
 
 2.1.2 (June 27, 2013)
 
 # Enhancement
 * In visual view, sidebar menu is collapsed by default. A tip for saving settings with the Ctrl+S keyboard shortcut is always displayed.
 * Option in Preferences to load visual view by default
-* REMOVED Option to activate/deactivate settings packs from Manage Themes page as this option is hazardous. The same can be achieved by importing via the Microthemer UI.
-* REMOVED "Edit Theme Styles" link from the Manage Themes page to minimise clutter (you can still easily go to the UI page using the fixed menu on the right) 
-* REMOVED "Create New Theme" button from Manage Themes page as it isn't particularly useful (and can be done from Microthemer UI page via Export to and the "New")
-the UI page using the fixed menu on the right) 
+* REMOVED Option to activate/deactive settings packs from Manage Themes page as this option is hazardous. The same can be achieved by importing via the Microthemer UI.
+* REMOVED "Edit Theme Styles" link from the Manage Themes page to minimise clutter (you can still easily go to the UI page usign the fixed menu on the right)
+* REMOVED "Create New Theme" button from Manage Themes page as it isn't particularly useful (and can be done from Microthemer UI page via Export to and the "New") the UI page usign the fixed menu on the right)
 * REMOVED "Currently Active Theme" dropdown menu as changing this on Preferences page could have unexpected results for users.
 * Added In-program Video Guides for version 2
 
@@ -249,85 +319,79 @@ the UI page using the fixed menu on the right)
 * z-index erroneously applied px unit
 * Microthemer artificial highlighting classes were being suggested by Selector Wizard on parent elements with a class.
 * Selector Wizard didn't display after double-click if section selectors needed loading first, or if the section was empty.
-* Microthemer's main stylesheet didn't always load on new Installs of Microthemer, or following Theme Deactivation (if no other Micro Theme  was subsequently activated or the Microthemer UI settings were reset)
+* Microthemer's main stylesheet didn't always load on new Installs of Microthemer, or following Theme Deactivation (if no other Micro Theme was subsequently activated or the Microthemer UI settings were reset)
 * Manually adding a selector failed if section selectors hadn't been loaded or section was empty.
-
 
 2.0 beta (May 8, 2013)
 
 # Enhancement
 * Complete redesign of the Visual View. Now, absolutely everything can be done from the visual view
-* Killer feature added. Microthemer can now be used with ANY WORDPRESS THEME. Just double click on something (e.g. an image) in the visual view and Microthemer will display a "Selector Wizard" to help you target exactly what you want (e.g. all images, just images in the sidebar etc etc). 
-* "SpeedUp" button added to side menu. This can speed up the interface if it slows down after extensive editing. Hover your mouse over the SpeedUp button for more on this.
-* Auto-save when style options change (easily configurable on/ff)
+* Killer feature added. Microthemer can now be used with ANY WORDPRESS THEME. Just double click on something (e.g. an image) in the visual view and Microthemer will display a "Selector Wizard" to help you target exactly what you want (e.g. all images, just images in the sidebar etc etc).
+* "SpeedUp" button added to side menu. This can speed up the interface if it slows down after extensive editing. Hover your mouse over the
+SpeedUp button for more on this. * Auto-save when style options change (easily configurable on/off)
 * Easy manual save by clicking Ctrl+S keyboard shortcut
 * In-program docs improved. Can now search/post in forum right from the app. Also, CSS Reference is more accessible.
 
 # Bugs Fixed
-* Resetting the Microthemer UI and clearing styles didn't automatically update the active-styles.css stylesheet to reflect the new state of affairs (an additional save was required to do this). 
-
+* Resetting the Microthemer UI and clearing styles didn't automatically update the active-styles.css stylesheet to reflect the new state of affairs (an additional save was required to do this).
 
 1.4.1 (Dec 6, 2012)
 
 # Bugs Fixed
 * The angle of CSS3 linear gradients was not consistent across browsers.
 
-
 1.4 (Sept 6, 2012)
 
 # Enhancement
-* Revision History - Settings can now be restored form the previous 20 user actions that changed the Microthemer UI settings (e.g. saving, importing, resetting, activating a micro theme). Useful for undoing any mistakes or recovering from a glitch in the UI.
+* Revision History – Settings can now be restored from the previous 20 user actions that changed the Microthemer UI settings (e.g. saving, importing, resetting, activating a micro theme). Useful for undoing any mistakes or recovering from a glitch in the UI.
 
 # Bugs Fixed
-* Resetting the Microthemer UI and clearing styles didn't automatically update the active-styles.css stylesheet to reflect the new state of affairs (an additional save was required to do this). 
-
+* Resetting the Microthemer UI and clearing styles didn’t automatically update the active-styles.css stylesheet to reflect the new state of affairs (an additional save was required to do this).
 
 1.3.8 (Aug 5, 2012)
 
 # Enhancement
-* Microthemer now has a better method of ensuring that it's stylesheet loads after other stylesheets (so that it can override styles without resorting to !important). 
+* Microthemer now has a better method of ensuring that it’s stylesheet loads after other stylesheets (so that it can override styles without resorting to !important).
 * If Microthemer encounters a problem when trying to save your settings, it will prompt you to email an error report to Themeover. We can use these reports to diagnose problems and release fixes quickly.
 
 # Bugs Fixed
 * CSS Property description popup was missing for the custom background image position values.
-* Selector Editing options in visual view didn't appear when switching selector under some conditions.
-* When using the "Next" and "Previous" buttons in the visual view, dynamically added sections were missed out.
-* Fixed some issues with the Enable sortable sections/selectors buttons. They didn't always appear or disappear when they were meant to.
-* Dynamically created sections didn't have the selective export checkbox
+* Selector Editing options in visual view didn’t appear when switching selector under some conditions.
+* When using the “Next” and “Previous” buttons in the visual view, dynamically added sections were missed out.
+* Fixed some issues with the “Enable sortable sections/selectors” buttons. They didn’t always appear or disappear when they were meant to.
+* Dynamically created sections didn’t have the selective export checkbox
 
 1.3.2 (July 21, 2012)
 
 # Enhancement
-* Microthemer can now be used on Multisite WordPress installs thanks to Abland's work: http://themeover.com/forum/topic/settings-options-in-admin/
+* Microthemer can now be used on Multisite WordPress installs thanks to Abland’s work: http://themeover.com/forum/topic/settings-options-in-admin/
 * After closing the visual view, scrolling to the last edited or triggering selector is now 4 x faster.
-* Updated colorbox (for loading visual view) to version 1.3.19 with faster setup procedure
+* Updated colorbox (for loading visual view) to version 1.3.19 with faster set up procedure
 
 # Bugs Fixed
-* When merging settings in the Microthemer UI, the active theme is set to "Custom Configuration" to more accurately describe the action taken by the user (it used to be set to the theme being imported, which didn't make much sense).
+* When merging settings in the Microthemer UI, the active theme is set to “Custom Configuration” to more accurately describe the action taken by the user (it used to be set to the theme being imported, which didn’t make much sense).
 * Renaming a Section was not working. This resulted in downstream errors that negatively affected the Microthemer UI.
-* Javascript errors in the Microthemer UI may result in selectors being malformed. In turn, this can create problems saving your settings. Whenever we identify JS errors we fix them. However, we wanted to implement a contingency plan. So now, Microthemer looks for malformed selectors and alerts you to exactly which selector you need to delete in order to restore normal functionality.
+* Javascript errors in the Microthemer UI may result in selectors being malformed. In turn, this can create problems saving your settings. Whenever we identify JS errors we fix them. However, we wanted to implement a contingency plan. So now Microthemer looks for malformed selectors and alerts you to exactly which selector you need to delete in order to restore normal functionality.
 * Fixed a JS error that occurred after modifying a selector in the visual view under some circumstances
-* After closing the visual view, the window didn't scroll to the triggering selector if nothing was edited.
-
+* After closing the visual view, the window didn’t scroll to the triggering selector if nothing was edited.
 
 1.3 (June 7, 2012)
 
 # Enhancement
 * Made the textarea for entering CSS selector code full width as I found it often needed manually resizing
 * Added option to manually add !important declaration on a per style basis.
-* When exporting to a new Micro Theme, the new theme is also available in the import select menu. Useful for when you want to selectively export sections and then easily copy them back into the UI using import with merge (no naming conflicts occur when you do this). 
-* Updated CSS3 PIE to version 1.0 - first non-beta release.
+* When exporting to a new Micro Theme, the new theme is also available in the import select menu. Useful for when you want to selectively export sections and then easily copy them back into the UI using import with merge (no naming conflicts occur when you do this).
+* Updated CSS3 PIE to version 1.0 – first non-beta release.
 * You can now specify custom x-axis and y-axis units for background image position
-* Added an option to clear CSS style definitions in the Microthemer UI while keeping the sections and selectors intact. It's a useful way to easily update a Blank Slate Micro Theme after discovering the need for additional selectors during the design process.
+* Added an option to clear CSS style definitions in the Microthemer UI while keeping the sections and selectors intact. It’s a useful way to easily update a Theme Pack after discovering the need for additional selectors during the design process.
 * (minor) Moved dependent css styles condition into seperate function for more flexible use
 
 # Bugs Fixed
-* Renaming a selector that has the same name as it's parent section caused javascript errors in the Microthemer UI which presented as buttons not working etc.
-* Under some circumstances, installing a Micro Theme resulted in the Theme being renamed as "None".
-* When a Theme enqueues it's stylesheets there is a possibility that it's stylesheets will be called after Microthemer's stylesheet. Microthemer now checks the name of the theme so that it can specify which stylesheets should load BEFORE the Microthemer stylesheet. This was found to be necessary after adding support for ClassiPress.
-* Selective export checkbox disappeared after renaming a section 
+* Renaming a selector that has the same name as it’s parent section caused javascript errors in the Microthemer UI which presented as buttons not working etc.
+* Under some circumstances, installing a Micro Theme resulted in the Theme being renamed as “None”.
+* When a Theme enqueues it’s stylesheets there is a possibility that it’s stylesheets will be called after Microthemer’s stylesheet. Microthemer now checks the name of the theme so that it can specify which stylesheets should load BEFORE the Microthemer stylesheet. This was found to be necessary after adding support for ClassiPress.
+* Selective export checkbox disappeared after renaming a section
 * When Microthemer checks for incorrect image paths, it presented the same image multiple times if it was used multiple times in the design.
-
 
 1.1.9 (Apr 24, 2012)
 
@@ -346,34 +410,34 @@ the UI page using the fixed menu on the right)
 
 # Enhancement
 * Background image lists are now organised alphabetically
-* Microthemer reminds you to activate the automatic update checker so that you can always have the most featur-rich and bug-free version of Microthemer
+* Microthemer reminds you to activate the automatic update checker so that you can always have the most feature-rich and bug-free version of Microthemer
 
 # Bugs Fixed
-* Enabling !important on the Preferences page caused CSS3 PIE gradients to stop working in Internet Explorer 
+* Enabling !important on the Preferences page caused CSS3 PIE gradients to stop working in Internet Explorer
 
 1.1.4 (March 21, 2012)
 
 # Enhancement
 * HTML can now be added to the Readme.txt instructions textarea
 * Micro Themes can be merged together by an additional import method in the Microthemer UI
-* Microthemer UI Sections can be selectively exported to a Micro Theme - useful when combined with the merge method
+* Microthemer UI Sections can be selectively exported to a Micro Theme – useful when combined with the merge method
 
 # Bugs Fixed
-* No code was changed, but a procedural problem to do with the plugin directory name changing with updates was found. This caused problem with CSS3 styles in Internet Explorer. This fix is discussed here: http://themeover.com/forum/topic/css3-styles-suddenly-stop-working-in-internet-explorer/
+* No code was changed, but a procedural problem to do with the plugin directory name changing with updates was found. This caused problems with CSS3 styles in Internet Explorer. The fix is provided in this forum topic.
 
 1.1.2 (March 12, 2012)
 
 # Enhancement
 * Auto-update feature added (needs activating on Preferences page)
-* Added 'visibility' and 'cursor' CSS properties to the behaviour group in the microthemer UI
+* Added ‘visibility’ and ‘cursor’ CSS properties to the behaviour group in the microthemer UI
 
 # Bugs Fixed
-* The text-transform "capitalize" property was mis-spelt with an "s" so didn't work
+* The text-transform “capitalize” property was mis-spelt with an “s” so didn’t work
 * A call to an undefined jQuery object in jquery.overlay.js caused javascript problems
 * On Windows Servers, erroneous https URLs caused server to hang
-* Microthemer erroneously offerred to copy background images that were set to 'none' to a newly exported Micro Theme
+* Microthemer erroneously offerred to copy background images that were set to ‘none’ to a newly exported Micro Theme
 * WordPress admin bar only hidden on Microthemer pages when visual view loads in Microthemer UI
-* Creating a new theme from the Manage Themes page wasn't generating the necessary config.json file
+* Creating a new theme from the Manage Themes page wasn’t generating the necessary config.json file
 * Auto-adding classes to first and last menu item can now be disabled via the preference page if it causes problems
 
 1.0.7 (March 2, 2012)
@@ -383,9 +447,9 @@ the UI page using the fixed menu on the right)
 * Option to globally add !important to CSS styles (needed to override some Artisteer CSS styles)
 
 # Bugs Fixed
-* position styles didn't register if applied without other style properties
-* under some circumstances, javascript 'undefined' error killed script when modifying a CSS selector
-* Added JS try-catch so rougue clicks don't trigger 'undefined' errors
+* position styles didn’t register if applied without other style properties
+* under some circumstances, javascript ‘undefined’ error killed script when modifying a CSS selector
+* Added JS try-catch so rougue clicks don’t trigger ‘undefined’ errors
 * Prevented screenshot on Manage Themes page from being cached to avoid possible confusion
 
 1.0 (February 24, 2012)

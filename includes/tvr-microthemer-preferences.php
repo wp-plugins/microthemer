@@ -3,594 +3,138 @@
 if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { 
 	die('Please do not call this page directly.'); 
 }
-/*** 
-pre content php 
-***/
-// get micro-themes dir file structure - unset $this->file_structure so it can be populated with fresh scan
-unset($this->file_structure);
-$file_structure = $this->dir_loop($this->micro_root_dir);
-
-
 ?>
 
-<div class='wrap'>
-	<div id='tvr-preferences'>
-		<?php 
-		// display message
-		if ( !empty($this->globalmessage) ) {
-			echo '<div id="microthemer-notice">' . $this->globalmessage . '</div>'; 
-		}
-		?>
-       <h2>Microthemer Preferences</h2>
-       
-       <?php
-	   // show help message
-	   $this->need_help_notice();
-	   // show validation reminder
-	   $this->validate_reminder();
-	   // ie notice
-		$this->ie_notice();
-	   ?>
+<!-- Edit Preferences -->
+            <form id="tvr-preferences" name='preferences_form' method="post" autocomplete="off"
+                  action="admin.php?page=<?php echo $page_context;?>" >
+                <?php wp_nonce_field('tvr_preferences_submit'); ?>
+<?php echo $this->start_dialog('display-preferences', 'Edit your Microthemer preferences', 'small-dialog'); ?>
 
-                 
-       <form id="tvr-preferences" name='preferences_form' method="post" class='float-form' autocomplete="off"
-       action="admin.php?page=<?php echo $this->preferencespage;?>" >
-       		<?php wp_nonce_field('tvr_preferences_submit'); ?>
-            <h3>General</h3>
-            <p style="display:none;"><label>Currently Active Theme:</label>
-            <select name="tvr_preferences[active_theme]" autocomplete="off">
-            	<option value=''>Nothing Active</option>
-                <option value='customised'
-                <?php 
-				if ($this->preferences['active_theme'] == 'customised') { 
-					echo 'selected="selected"';
-				} 
-				?>
-                >Custom Configuration</option>
-            	<?php
-				if (is_array($file_structure)) {
-					foreach ($file_structure as $dir => $array) {
-						// highlight if filtered
-						if ($this->preferences['active_theme'] == $dir) {
-							$selected = 'selected="selected"';
-						}
-						else {
-							$selected = '';
-						}
-						if (!empty($dir)) {
-							echo "<option value='$dir' $selected>".$this->readable_name($dir)."</option>";
-						}
-					}
-				}
-				?>
-            </select>
-            <input type='hidden' name='prev_active_theme' value='<?php echo $this->preferences['active_theme'];?>' />
-            </p>
-            
-            <p><label>Show links to help videos etc: </label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[need_help]' value='1'
-            <?php
-			if ($this->preferences['need_help'] == '1') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Yes
-             </p>
-             <p><label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[need_help]' value='0' 
-            <?php
-			if ($this->preferences['need_help'] == '0') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> No
-            </p>
-            
-             <p><label>Disable WP Theme's style.css: </label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[disable_parent_css]' value='1'
-            <?php
-			if ($this->preferences['disable_parent_css'] == '1') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Yes
-             </p>
-             <p><label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[disable_parent_css]' value='0' 
-            <?php
-			if ($this->preferences['disable_parent_css'] == '0') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> No
-            </p>
+<div class="content-main">
+    <ul class="form-field-list">
+        <?php
+        // yes no options
+        $yes_no = array(
+            'first_and_last' => array(
+                'label' => 'Add "first" and "last" classes to menu items',
+                'explain' => 'Microthemer can insert "first" and "last" classes on WordPress menus so that you can style the first or last menu items a bit differently from the rest. Note: this only works with "Custom Menus" created on the  Appearance > Menus page.'
+            ),
 
-            <p><label>Google Font subset URL parameter: </label>
-                <input type='text' autocomplete="off" name='tvr_preferences[gfont_subset]'
-                       value='<?php echo esc_attr($this->preferences['gfont_subset']); ?>' />
-            <p class='option-info'>
-                You can instruct google fonts to include a font subset by entering an URL parameter here.
-                For example "<b>&subset=latin,latin-ext</b>" (without the quotes). Note: Microthemer only generates a google font url
-                if it detects that you have applied Google Fonts in your design.
-            </p>
+            'gzip' => array(
+                'label' => 'Gzip the Microthemer UI page for faster loading',
+                'explain' => 'The Microthemer interface generates quite a bit of HTML. Having this gzip option enabled will speed up the initial page loading.'
+            ),
+            'ie_notice' => array(
+                'label' => 'Display Internet Explorer notice',
+                'explain' => 'Microthemer can be a bit clunky when run in Internet Explorer. And it just plain doesn\'t work in old versions of IE like IE8. But if you insist on using IE you might want to disable the notice telling you to use Firefox or Chrome instead.'
+            ),
+            'safe_mode_notice' => array(
+                'label' => 'Display PHP safe mode warnings',
+                'explain' => 'If your server has the PHP settings "safe mode" on, you may encounter permission errors when Microthemer tries to create directories. Microthemer will alert you to safe-mode being on. But if that\'s old news to you, you may want to disable the warnings about it.'
+            ),
+            'css_important' => array(
+                'label' => 'Always add !important to CSS styles',
+                'label_no' => '(configure manually)',
+                'explain' => 'Always add the "!important" CSS declaration to CSS styles.This largely solves the issue of having to understand how CSS specificity works. But if you prefer, you can disable this functionality and still apply "!important" on a per style basis by clicking the faint "i\'s" that will appear to the right of every style input.'
+            ),
+            'pie_by_default' => array(
+                'label' => 'Always use CSS3 PIE pollyfill where relevant',
+                'label_no' => '(configure manually)',
+                'explain' => 'Always include to the CSS3 PIE htc file if gradients, rounded corners, or box-shadow have been applied to make them work in Internet Explorer 6-8. Note: a "position" value of "relative" will automatically be applied to the selector unless you explicitly set the position property to "static" or some other value. Set this option to "No" if you would like to enable this pollyfill on a per selector basis.'
+            )
+            /*'boxsizing_by_default' => array(
+                'label' => 'Always use the box-sizing pollyfill where relevant',
+                'label_no' => '(configure manually)',
+                'explain' => 'Always include to the box-sizing htc file if the box-sizing property has been applied to make it work in Internet Explorer 6 and 7.
+Set this option to "No" if you would like to enable this pollyfill on a per selector basis.
+Note: this pollyfill doesn\'t work on text inputs.'
+            )*/
+        );
+        // text options
+        $text_input = array(
+            'preview_url' => array(
+                'label' => 'Frontend preview URL Microthemer should load',
+                'explain' => 'Manually specify a link to the page you would like Microthemer to load for editing when it first starts. By default Microthemer will load your home page or the last page you visited. This option is useful if you want to style a page that can\'t be navigated to from the home page or other pages.'
+            ),
+            'gfont_subset' => array(
+                'label' => 'Google Font subset URL parameter',
+                'explain' => 'You can instruct Google Fonts to include a font subset by entering an URL parameter here. For example "&subset=latin,latin-ext" (without the quotes). Note: Microthemer only generates a Google Font URL if it detects that you have applied Google Fonts in your design.'
+            )
+        );
+        foreach ($yes_no as $key => $array) {
+            if (empty($array['label_no'])){
+                $array['label_no'] = '';
+            }
+            ?>
+            <li class="fake-radio-parent">
+                <label title="<?php echo htmlentities($array['explain']); ?>"><?php echo $array['label']; ?>:</label>
 
-
-
-            
-            <p><label>WordPress Frontend Admin Bar: </label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[admin_bar]' value='1'
-            <?php
-			if ($this->preferences['admin_bar'] == '1') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Show
-             </p>
-             <p><label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[admin_bar]' value='0' 
-            <?php
-			if ($this->preferences['admin_bar'] == '0') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Don't Show
-            </p>
-            
-            <p><label>jQuery Source: </label>
-            <?php 
-			/* WORDPRESS WOULDN'T ALLOW THIS FEATURE
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[jquery_source]' value='plugin'
-            <?php
-			if ($this->preferences['jquery_source'] == 'plugin') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Load plugin version of jQuery
-             </p>
-             <p><label>&nbsp;</label>
-			 */
-			 ?>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[jquery_source]' value='native' 
-            <?php
-			// if ($this->preferences['jquery_source'] == 'native') {
-				echo 'checked="checked"';
-			// }
-			?>
-             /> WordPress (fixed option as of version 2.2.2)
-            </p>
-                        
-            <p><label>PHP Safe Mode Warning: </label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[safe_mode_notice]' value='1'
-            <?php
-			if ($this->preferences['safe_mode_notice'] == '1') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Show
-             </p>
-             <p><label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[safe_mode_notice]' value='0' 
-            <?php
-			if ($this->preferences['safe_mode_notice'] == '0') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Don't Show
-            </p>
-            
-            <p><label>Add "first" and "last" classes to Menus: </label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[first_and_last]' value='1'
-            <?php
-			if ($this->preferences['first_and_last'] == '1') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Yes (only works with Custom Menus)
-             </p>
-             <p><label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[first_and_last]' value='0' 
-            <?php
-			if ($this->preferences['first_and_last'] == '0') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> No
-            </p>
-           
-            <br />
-            <h3>Microthemer UI</h3>
-            
-            <p><label>Auto-load Visual View: </label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[load_visual]' value='1' 
-             <?php
-			if ($this->preferences['load_visual'] == '1') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Yes
-            </p>
-            <p><label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[load_visual]' value='0' 
-             <?php
-			if ($this->preferences['load_visual'] == '0') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> No
-            </p>
-            
-            <p><label>Gzip Microthemer UI Page: </label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[gzip]' value='1' 
-             <?php
-			if ($this->preferences['gzip'] == '1') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Yes
-            </p>
-            <p><label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[gzip]' value='0' 
-             <?php
-			if ($this->preferences['gzip'] == '0') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> No
-            </p>
-            <p><label>Auto-add <b>!important</b> to CSS Styles: </label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[css_important]' value='1' 
-             <?php
-			if ($this->preferences['css_important'] == '1') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Yes
-            </p>
-            <p><label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[css_important]' value='0' 
-             <?php
-			if ($this->preferences['css_important'] == '0') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> No
-            </p>
-            <p><label>View Site URL: </label>
-            <input type='text' autocomplete="off" name='tvr_preferences[preview_url]' 
-            value='<?php echo esc_attr($this->preferences['preview_url']); ?>' />
-            </p>
-            
-            <p><label>Filter Background Image List:<br /><br />
-            <span class='tipbit'>Hold Control and Click or <br />Hold Shift and Click to <br />Select Multiple Items</span></label>
-            <select multiple='multiple' name="tvr_preferences[image_filter][]" size='15' class='multiple' autocomplete="off">
-            	<option value='' 
-                <?php 
-				if ( empty($this->preferences['image_filter'][0]) ) {
-					echo 'selected="selected"';
-				}
-				?>
-                >Don't Filter Out Any Themes</option>
-            	<?php
-				if (is_array($file_structure)) {
-					foreach ($file_structure as $dir => $array) {
-						// highlight if filtered
-						$array_key = array_search($dir, $this->preferences['image_filter']);
-						if ($array_key != false or $array_key === 0) {
-							$selected = 'selected="selected"';
-						}
-						else {
-							$selected = '';
-						}
-						if (!empty($dir)) {
-							echo "<option value='$dir' $selected>Exclude: ".$this->readable_name($dir)."</option>";	
-						}
-					}
-				}
-				?>
-            </select>
-            </p>
-            
-            <p><label>When CSS3 Styles Are Defined</label>
-            <input type='radio' class='radio' name='tvr_preferences[auto_relative]' value='1' 
-             <?php
-			if ($this->preferences['auto_relative'] == '1') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> always add <i>position:relative</i> to the element in question.
-            </p>
-            <p class='option-info'>
-            This is a fixed setting. But worth notifying you about here so that you can override it on individual elements. To stop Microthemer from automatically adding <i>position:relative</i> to an element that you have applied CSS3 styles to, simply set <i>position:static</i> on it (or set CSS3 PIE to off).
-            </p>
-            
-            <p><label>Internet Explorer Notice: </label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[ie_notice]' value='1'
-            <?php
-			if ($this->preferences['ie_notice'] == '1') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Show
-             </p>
-             <p> <label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[ie_notice]' value='0' 
-            <?php
-			if ($this->preferences['ie_notice'] == '0') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Don't Show
-            </p>
-            
-           <p><label>Auto-scroll to Selector after editing: </label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[auto_scroll]' value='1'
-            <?php
-			if ($this->preferences['auto_scroll'] == '1') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Enable (happens when you close the Visual View)
-             </p>
-             <p><label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[auto_scroll]' value='0' 
-            <?php
-			if ($this->preferences['auto_scroll'] == '0') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Disable
-            </p> 
-            
-            <p><label>Enable Auto-save by default: </label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[auto_save]' value='1'
-            <?php
-			if ($this->preferences['auto_save'] !== '0-manual') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Enable
-             </p>
-             <p><label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[auto_save]' value='0-manual'
-            <?php
-			if ($this->preferences['auto_save'] === '0-manual') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Disable
-            </p> 
-            
-            <p><label>Editing Options Transparency: </label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[trans_editing]' value='1'
-            <?php
-			if ($this->preferences['trans_editing'] == '1') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Enable transparency when mouse cursor moves away from options
-             </p>
-             <p><label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[trans_editing]' value='0' 
-            <?php
-			if ($this->preferences['trans_editing'] == '0') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Disable transparency when mouse cursor moves away from options
-            </p> 
-            
-            <p><label>Selector Wizard Transparency: </label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[trans_wizard]' value='1'
-            <?php
-			if ($this->preferences['trans_wizard'] == '1') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Enable transparency when mouse cursor moves off Selector Wizard
-             </p>
-             <p><label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[trans_wizard]' value='0' 
-            <?php
-			if ($this->preferences['trans_wizard'] == '0') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Disable transparency when mouse cursor moves off Selector Wizard
-            </p>
-            
-            
-            <p><label>Open Sections & Selectors: </label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[remember_ui]' value='1'
-            <?php
-			if ($this->preferences['remember_ui'] == 1) {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Remember open sections/selectors when returning to UI page
-             </p>
-             <p><label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[remember_ui]' value='0' 
-            <?php
-			if ($this->preferences['remember_ui'] != 1) {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Don't remember open sections/selectors (recommended - <a target="_blank" href="http://themeover.com/avoiding-save-errors-after-editing-lots-of-selectors-by-using-the-speed-up-button/">why?
-								</a>)
-            </p>
-            
-            
-            <h3>Responsive CSS Media Queries</h3>
-            
-            <p><label>Device viewport zoom level:</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[initial_scale]' value='1'
-            <?php
-			if ($this->preferences['initial_scale'] !== '0') { // default to on unless specifically disabled
-				echo 'checked="checked"';
-			}
-			?>
-             /> Set to "1". This is necessary you're <a target="_blank"
-             href="http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag/">designing for multiple devices</a> 
-             </p>
-             <p><label>&nbsp;</label>
-            <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[initial_scale]' value='0' 
-            <?php
-			if ($this->preferences['initial_scale'] === '0') {
-				echo 'checked="checked"';
-			}
-			?>
-             /> Don't set. Allow the device (e.g. Phone) to set the inital zoom level.
-            </p>
-                  
-             <a name="m_queries"></a>
-             <div id="m-queries">
-            
-                 <ul id="mq-list">
-					 <?php 
-					 $i = 0;
-                     foreach ($this->preferences['m_queries'] as $key => $m_query) {
-                        ?>
-                        <li class="mq-row mq-row-<?php echo $i; ?>">
-                            <p><label>Label:</label>
-                            <input class="m-label" type="text" name="tvr_preferences[m_queries][<?php echo $key; ?>][label]" 
-                            value="<?php echo esc_attr($m_query['label']); ?>" /></p>
-                            <p><label>Media Query:</label>
-                            <input class="m-code" type="text" name="tvr_preferences[m_queries][<?php echo $key; ?>][query]" 
-                            value="<?php echo esc_attr($m_query['query']); ?>" /></p>
-                        	<p class="del-m-para"><span class="del-m-query link">delete</span></p>
-                        </li>
-                        <?php
-						++$i;
-                     }
-                     ?>
-                 </ul>
-                 
-                 <input type="hidden" name="tvr_preferences[user_set_mq]" value="1" />
-                 
-                 <span id="add-m-query" class="prominent-action add-m-query" rel="<?php echo $i; ?>">+ Add Another Media Query</span>
-                 
-                 <?php /*<pre><?php print_r($this->preferences['m_queries']); ?></pre>
-                 
-                 <p>m_query array</p>
-                 <pre><?php print_r($this->options['non_section']['m_query']); ?></pre> */?>
-                 
-             </div>
-
-             <br />
-            <p><input name="tvr_preferences_submit" type="submit" value="Save Preferences" class="button-primary submit" /></p>
-             
-             </form>
-             
-             <span id="unq-base" rel="<?php echo $this->unq_base; ?>"></span>
-             
-             <ul id="m-query-hidden">
-             <li class="mq-row m-query-tpl">
-                <p><label>Label:</label>
-                <input class="m-label" type="text" name="tvr_preferences[m_queries][key][label]" value="" /></p>
-                <p><label>Media Query:</label>
-                <input class="m-code" type="text" name="tvr_preferences[m_queries][key][query]" value="" /></p>
-                <p class="del-m-para"><span class="del-m-query link">delete</span></p>
+                            <span class="yes-wrap p-option-wrap">
+                            <input type='radio' autocomplete="off" class='radio'
+                                   name='tvr_preferences[<?php echo $key; ?>]' value='1'
+                                <?php
+                                if ($this->preferences[$key] == 1) {
+                                    echo 'checked="checked"';
+                                    $on = 'on';
+                                } else {
+                                    $on = '';
+                                }
+                                ?>
+                                />
+                                <span class="fake-radio <?php echo $on; ?>"></span>
+                                <span class="ef-label">Yes</span>
+                            </span>
+                            <span class="no-wrap p-wrap-wrap">
+                                <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[<?php echo $key; ?>]' value='0'
+                                    <?php
+                                    if ($this->preferences[$key] == 0) {
+                                        echo 'checked="checked"';
+                                        $on = 'on';
+                                    } else {
+                                        $on = '';
+                                    }
+                                    ?>
+                                    />
+                                    <span class="fake-radio <?php echo $on; ?>"></span>
+                                    <span class="ef-label">No <?php echo $array['label_no']; ?></span>
+                            </span>
             </li>
-            </ul>
-            
-            
-              
-             
-            
+        <?php
+        }
+        foreach ($text_input as $key => $array) {
+            ?>
+            <li>
+                <label title="<?php echo htmlentities($array['explain']); ?>" class="text-label">
+                    <?php echo $array['label']; ?>:</label>
+                <input type='text' autocomplete="off" name='tvr_preferences[<?php echo $key; ?>]'
+                       value='<?php echo esc_attr($this->preferences[$key]); ?>' />
+
+            </li>
+        <?php
+        }
+        ?>
+    </ul>
+    <?php echo $this->dialog_button('Save Preferences', 'input', 'save-preferences'); ?>
+
+    <div class="explain">
+        <div class="heading link explain-link">About this feature</div>
+
+        <div class="full-about">
+            <p>Set your global Microthemer preferences on this page. Hover your mouse over the option labels for further information on each option.</p>
             <?php
-            if ($this->preferences['buyer_validated']){
-                ?>
-                <h3>Microthemer Has Been Successfully Unlocked!</h3>
-                <?php
-                if (!empty($this->preferences['license_type'])){
-                    echo '<p>License Type: <b>'.$this->preferences['license_type'].'</b></p>';
-                }
-                ?>
-                <p><span class="link reveal-unlock">Reveal program unlock form again</span>
-                    (in case you want to validate with a different email address)</p>
-                <?php
-            }
-            // show form if not already validated
             if (!$this->preferences['buyer_validated']){
-                $class = 'show';
-            }
-
-            if ($this->preferences['buyer_email'] != 'mojo' and $this->preferences['buyer_email'] != 'inky') {
                 ?>
-
-                <form id='tvr_validate_form' name='tvr_validate_form' method="post" class='float-form hidden <?php echo $class; ?>' autocomplete="off"
-                      action="admin.php?page=<?php echo $this->preferencespage;?>" >
-                    <a name='validate'></a>
-                    <br />
-                    <h3>Disable Free Trial Mode - Unlock The Full Program!</h3>
-                    <p>To disable Free Trial Mode and unlock the full program, please enter the email address that Themeover sent your Microthemer download link to. If you purchased Microthemer from CodeCanyon, please send us a "Validate my email" message via the contact form on the right hand side of <a target='_blank' href='http://codecanyon.net/user/themeover '>this page</a> (you will need to log in to CodeCanyon first).</p>
-                    <?php
-                    if (!$this->preferences['buyer_validated']){
-                        $attempted_email = esc_attr($this->preferences['buyer_email']);
-                    } else {
-                        $attempted_email = '';
-                    }
-                    ?>
-                    <p><label>Your Email Address: </label>
-                        <input type='text' autocomplete="off" name='tvr_preferences[buyer_email]'
-                               value='<?php echo $attempted_email; ?>' />
-                    </p>
-                    <p><label>Manually Check for Updates Now: </label>
-                        <input type='checkbox' autocomplete="off" class='checkbox' name='tvr_validate_one_off[manual_update]' value='1' /> Yes
-                    </p>
-                    <p><b>Note:</b> Themeover will record your domain name when you submit your email address for license verification purposes. Microthemer can be used on multiple domains, but you must own the domains - unless you purchase a Developer License, which allows you to use Microthemer on client websites.
-                        <a target='_blank' href='http://themeover.com/microthemer/'>Purchase a Standard or Developer License for Microthemer</a>.</p>
-
-                    <input name="tvr_validate_submit" type="submit" value="Validate Purchase" class="button-primary submit" />
-
-                    <p><b>Note:</b> if you have any problems with the validator
-                        <a href="https://themeover.com/support/pre-sales-enquiries/" target="_blank">send Themeover a quick email</a>
-                        and we'll get you unlocked ASAP.</p>
-
-                </form>
+                <p>Please unlock the full program by entering your PayPal email address on
+                    <span class="link show-dialog" rel="unlock-microthemer">this page</span>.</p>
             <?php
             }
-
-
-
-			?>
-          
-        
-            
-   </div><!-- tvr-preferences -->
+            ?>
+            <p>You may also wan to customise the default media queries Microthemer suggests on
+                <span class="link show-dialog" rel="edit-media-queries">this page</span>.</p>
+        </div>
+    </div>
+</div>
+</form>
+<?php echo $this->end_dialog('Save Preferences', 'input', 'save-preferences'); ?>
    
-   <div id='preferences-menu-wrap'>
-   <div id='fixed-menu'>
-    	<div id='fixed-menu-inner'>      
-           <div>
-               <h3>Save Preferences</h3>
-               <div class='menu-option-wrap'>
-                  
-               </div>
-           </div>
-           
-           <div>
-               <h3>Server Settings</h3>
-               <div id='tvr-server-settings' class='menu-option-wrap'>
-                  <?php $this->server_info(); ?>
-               </div>
-           </div>
-           
-           <?php $this->plugin_menu(); ?> 
-      
-    </div><!-- fixed-menu-inner -->
-    
-    <!-- reset preferences -->
-        <form method="post">
-            <?php wp_nonce_field('tvr_preferences_reset'); ?>
-            <p class="submit reset-options">
-              <input name="tvr_preferences_reset" type="submit" value="Reset Preferences" class='reset prominent-action' />
-            </p>
-        </form>
-    
-   </div>
-   <!-- fixed-menu-inner -->
-   </div>
-   <!-- preferences-menu-wrap -->
-   
-</div><!-- wrap -->

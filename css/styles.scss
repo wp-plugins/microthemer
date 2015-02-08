@@ -1,0 +1,3143 @@
+/*--------------------------------------------------------------
+Set up scss environment
+--------------------------------------------------------------*/
+@import "scss/susy";
+@import "scss/breakpoint";
+@import "scss/css3-mixins";
+@import "scss/scroll";
+
+//set up colour scheme
+$white: #fff;
+$nearlyWhite: #fbfbfb;
+//$red: #dd3d36;
+$red: #f0636d;
+$darkRed: #c64f63;
+$orange: #FFBA42;
+$lightGreen: #94d3af;
+$green: #77a38c;
+$darkGreen: #6f937f;
+
+$darkBlue:#18202a;
+$mediumBlue: #2f3846;
+$lightBlue: #3b4658;
+$lighterBlue: #768293;
+
+// wordpress link color
+$wp_link: #0074a2;
+$wp_link_hover: #2ea2cc;
+$wp_link_focus: #124964;
+
+$shadowColor:#999998;
+$mediumGrey: #cbcbcb;
+$lightGrey: #e6e6e6;
+$lightestGrey: #f6f6f6;
+
+$sliderAtRest: #d4d4d4;
+$sliderActive: #cfcfcf;
+
+$appFont: 'Open Sans', sans-serif;
+$codeFont: $appFont;
+
+// semantically describe key layout breakpoints
+$style_groups_drop: max-width 600px;
+$options_split: max-width 600px;
+$options_split_again: max-width 400px;
+
+// other variables
+$sprite: url('../images/MT_sprite.png?v=23');
+$largeLoadingGif: url('../images/logo-loader-30.gif?v=1') no-repeat center center;
+$background_size: 1920px 1120px; // half the actual size so high res screens render well.
+
+/*--------------------------------------------------------------
+Mixins - see also css3 mixins import above
+--------------------------------------------------------------*/
+// sprite
+@mixin sprite($left, $top) {
+  background-image:$sprite;
+  background-repeat: no-repeat;
+  background-position: ($left*-40)+40+px ($top*-40)+40+px;
+  background-size: $background_size;
+}
+// sprite for icons with 3 states
+@mixin state-sprite($left, $top) {
+  background-image:$sprite;
+  background-repeat: no-repeat;
+  background-position: ($left*-40)+40+px ($top*-40)+40+px;
+  &:hover,
+  &.on {
+    background-position: ($left*-40)+40+px (($top+1)*-40)+40+px;
+  }
+  &.active {
+    background-position: ($left*-40)+40+px (($top+2)*-40)+40+px;
+  }
+  background-size: $background_size;
+}
+
+// exception for pg-icon which uses 'on' a bit differently - when html has loaded (blue bg only when values exist for pg group).
+@mixin state-sprite-pg($left, $top) {
+  background-image:$sprite;
+  background-repeat: no-repeat;
+  background-position: ($left*-40)+40+px ($top*-40)+40+px;
+  &:hover,
+  &.hasValues {
+    background-position: ($left*-40)+40+px (($top+1)*-40)+40+px;
+  }
+  &.active {
+    background-position: ($left*-40)+40+px (($top+2)*-40)+40+px;
+  }
+  background-size: $background_size;
+}
+
+// grey shadow
+@mixin grey-shadow() {
+  @include box-shadow(0, 0, 6px, $shadowColor);
+}
+
+// dialog shadow
+@mixin dialog-shadow() {
+  @include box-shadow(0, 0, 6px, #000000);
+
+}
+
+// button
+
+/*--------------------------------------------------------------
+Global styles affecting all pages
+--------------------------------------------------------------*/
+
+// chrome double-click selection is a bit annoying on some elements: JS fix: http://stackoverflow.com/questions/4117466/javascript-disable-text-selection-via-doubleclick
+body.tvr-visual { // refine to only sels that need it - also add to frontend
+  .scroll-buttons,
+  #toggle-highlighting,
+  .tvr-icon {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+  }
+
+}
+
+.tvr-clearfix {
+  @include susy-clearfix();
+}
+.clear {
+  clear:both;
+}
+
+body.tvr-visual {
+  position: fixed; /* position:fixed; needed to fix color picker bug */
+  overflow:hidden;
+  width:100%;
+  margin:0 !important;
+  top:0 !important;
+}
+
+/* hide left sidebar on pages that don't need it */
+.toplevel_page_tvr-microthemer,
+.admin_page_tvr-manage-micro-themes,
+.admin_page_tvr-manage-single {
+  #wpadminbar,
+  #adminmenuback,
+  #adminmenuwrap,
+  .update-nag,
+  div.updated,
+  #wpfooter {
+    display:none;
+  }
+  #wpcontent {
+    margin-left: 0;
+    padding-left: 0;
+  }
+}
+
+#wpwrap {
+  background: $lightestGrey;
+}
+a.no-line {
+  text-decoration: none;
+
+}
+// I failed to set a min-width on this, maybe later...
+#cboxContent {
+  #cboxLoadedContent {
+    img {
+
+    }
+  }
+}
+
+.trial-disabled {
+  opacity: 0.5; //- this interferes with the main menu for some reason
+}
+
+
+#tvr {
+  margin:0;
+  #visual-view, p, li, input, select, code {
+    font-size:12px;
+    line-height: 1.5; /* 18px */
+    font-family: $appFont;
+    color:$darkBlue;
+  }
+  code {
+    font-family: $codeFont !important;
+    font-style:normal;
+    font-size:11px;
+    background: none;
+    padding:0;
+    color:$lightBlue;
+  }
+  .heading {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+  input[type="text"], select, textarea,.tvr-button {
+    font-weight: bold;
+    margin:0;
+    padding:3px 6px;
+    border:1px solid $lightGrey;
+    line-height: 1.5;
+    box-shadow:none;
+    background:$nearlyWhite;
+    width: auto;
+    height:26px;
+    display: inline-block;
+
+    &.text-label {
+      font-style:italic;
+    }
+    @include border-radius(3px);
+    @include box-sizing(border-box);
+  }
+  input[type="file"] {
+    font-weight: bold;
+    cursor: pointer;
+    margin:0;
+    padding:0
+  }
+  input.text-label {
+    color:$shadowColor;
+  }
+  input.combobox {
+    float:left;
+    @include border-radius-separate(3px, 0, 0, 3px);
+    &.adjusted-corner-radius {
+      @include border-radius-separate(3px, 0, 0, 0);
+    }
+  }
+  .combo-arrow {
+    display: inline-block;
+    cursor: pointer;
+    @include box-sizing();
+    height:26px;
+    width:26px;
+
+    @include sprite(5.2, 7.2);
+    background-color:$lightestGrey;
+    border: 1px solid $lightGrey;
+    @include border-radius-separate(0, 3px, 3px, 0);
+    float:left;
+    border-left:0;
+    &.on {
+      @include sprite(6.2, 7.2);
+    }
+  }
+
+  .ui-autocomplete.ui-menu {
+    background:$white;
+    @include border-radius-separate(0, 0, 3px, 3px);
+    border-color:$lightGrey;
+    border-top:0;
+    max-height:400px;
+    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 999913 !important; // needs to be more than mix comp table
+    padding:0;
+    margin:0;
+    li {
+      overflow:hidden; // needed for chrome/safari fix
+    }
+    // WP 4.1 uses new jquery ui with different element rendering li with no child a, or span instead of a etc
+    li.empty,
+    a {
+      overflow: visible;
+      font-family: $appFont;
+      color:$lighterBlue;
+      height: 22px;
+      // needed for chrome/safari fix
+      padding: 2px 4px;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+    a {
+      // needed for chrome/safari fix
+      float: left;
+      width:100%;
+    }
+    .ui-state-focus {
+      margin:0;
+      border:0;
+      background: $darkBlue;
+      color:$nearlyWhite !important;
+      @include border-radius(0);
+      //font-weight:bold;
+
+    }
+  }
+  input[type="checkbox"],
+  input[type="radio"]{
+    display:none !important;
+    &:checked {
+      display:none !important;
+    }
+  }
+  .fake-checkbox,
+  .fake-radio {
+    float:left;
+    margin-right: 8px;
+    width:14px;
+    height:14px;
+    cursor: pointer;
+
+   // border:1px solid $lightGrey;
+    //display: inline-block;
+    //background:$white;
+
+    @include sprite(26.325, 2.325);
+
+
+    &.on {
+      @include sprite(26.325, 1.325);
+    }
+    &.hover {
+
+    }
+  }
+  .fake-radio {
+    @include sprite(25.325, 2.325);
+    &.on {
+      @include sprite(25.325, 1.325);
+    }
+  }
+  .ef-label {
+    line-height: 1;
+    float:left;
+  }
+
+  textarea {
+    font-family: $codeFont;
+    font-size:12px;
+    line-height: 1.5;
+    font-weight: normal;
+  }
+  .float-form {
+    clear:both;
+    padding:1em;
+    @include susy-clearfix;
+    p {
+      clear:left;
+      margin-bottom:.5em;
+    }
+    label {
+      display: block;
+      float: left;
+      padding: 6px 0;
+      width: 28%;
+      margin-right:5%;
+    }
+    input, textarea, select {
+      width:67%;
+    }
+    textarea {
+      min-height:75px;
+    }
+    span.tvr-button,
+    .cancel {
+      float:right;
+      margin-left:5px;
+    }
+  }
+  .ajax-loader {
+    &.small {
+      max-width:16px;
+    }
+  }
+  #a-loaders {
+    img {
+      display: none;
+    }
+  }
+
+  .tvr-button {
+    color:$white;
+    font-weight:bold;
+    text-transform: uppercase;
+    cursor:pointer;
+    background: $green;
+    border-color:$lightGrey;
+    text-decoration: none;
+    &:hover {
+      background: $darkGreen;
+    }
+    &.red-button {
+      background: $red;
+      &:hover {
+        background: $darkRed;
+      }
+    }
+  }
+  table {
+    border-spacing: 0;
+    margin: 0 0 1em 0;
+    width: 100%;
+    background:$white;
+    border-bottom: 1px solid $lightestGrey;
+    a {
+      text-decoration: none;
+    }
+    thead th {
+      border-bottom: 1px solid $lightestGrey;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 8px 10px;
+    }
+    tfoot th {
+      border-bottom: 0 none;
+      border-top: 1px solid $lightestGrey;
+    }
+    td {
+      vertical-align: top;
+      padding: 4px 10px;
+    }
+    th {
+      text-align: left;
+    }
+  }
+
+
+  .tvr-icon {
+    display:inline-block;
+    width:18px;
+    height:18px;
+    cursor: pointer;
+  }
+  .menu-arrow {
+    @include sprite(5.4, 4.28);
+    &:hover {
+      @include sprite(5.4, 5.28);
+    }
+    &.on {
+      @include sprite(6.35, 4.28);
+      &:hover {
+        @include sprite(6.35, 5.28);
+      }
+    }
+  }
+  .folder-icon {
+    @include sprite(1.3, 4.28);
+    &:hover {
+      @include sprite(1.3, 5.28);
+    }
+  }
+  .code-icon {
+    @include sprite(15.3, 1.28);
+  }
+  .delete-icon {
+    @include sprite(4.3, 7.28);
+    &:hover {
+      @include sprite(4.3, 8.28);
+    }
+  }
+  .edit-icon {
+    @include sprite(1.3, 7.28);
+    &:hover {
+      @include sprite(1.3, 8.28);
+    }
+  }
+  .copy-icon {
+    @include sprite(14.3, 4.28);
+    &:hover {
+      @include sprite(14.3, 5.28);
+    }
+  }
+  .add-icon {
+    @include sprite(2.3, 4.28);
+    &:hover {
+      @include sprite(2.3, 5.28);
+    }
+  }
+  .selector-icon {
+    @include sprite(24.3, 4.28);
+    &:hover {
+      @include sprite(24.3, 5.28);
+    }
+  }
+  .info-icon {
+    @include sprite(8.3, 7.28);
+    &:hover {
+      @include sprite(8.3, 8.28);
+    }
+  }
+  .view-icon {
+    @include sprite(11.24, 7.28);
+    /* needs hover state &:hover {
+      @include sprite(8.3, 8.28);
+    }*/
+  }
+  .download-icon {
+    width:22px;
+    @include sprite(3.26, 7.28);
+    &:hover {
+      @include sprite(3.26, 8.28);
+    }
+  }
+  p {
+    margin:0 0 1em 0;
+  }
+  .link {
+    color:$wp_link;
+    cursor:pointer;
+    text-decoration: underline;
+    &:hover {
+      color: $wp_link_hover
+    }
+    a:focus {
+      color: $wp_link_focus;
+    }
+    a:active, a:focus {
+      outline: thin dotted;
+    }
+  }
+  .bright.link {
+    color:$green;
+  }
+  .tip {
+    font-style:italic;
+  }
+  p.tip {
+    margin-bottom:2em;
+
+  }
+  .hidden {
+    display:none;
+    &.show {
+      display:block;
+    }
+  }
+  .inner-wrap {
+    padding:1em;
+    @include susy-clearfix;
+  }
+  /*--------------------------------------------------------------
+  Notifications
+  --------------------------------------------------------------*/
+  .tvr-message {
+    padding:12px;
+    padding-bottom:0;
+    margin-bottom:12px;
+    background:$white;
+    border-left: 4px solid $lightGreen;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    .short {
+      font-weight:bold;
+      display: block;
+    }
+    &.tvr-warning {
+      border-left-color: $orange;
+    }
+    &.tvr-error {
+      border-left-color: $red;
+    }
+
+    .long {
+      font-style:italic;
+      p,ul,ol {
+        margin-bottom:0;
+        padding-bottom:12px;
+      }
+    }
+  }
+
+
+}
+
+
+#pref-standalone {
+  margin-top:20px;
+  .tvr-dialog {
+    display:block;
+    position:static;
+    height:auto;
+    cursor: pointer;
+    background: none;
+    padding:0 20px 0 0;
+    margin:0 20px 0 0;
+    .dialog-main {
+      box-shadow: none;
+      padding:0;
+    }
+    .dialog-content {
+      padding:10px 0;
+    }
+    .close-icon,
+    .dialog-footer,
+    .explain {
+      display: none;
+    }
+  }
+}
+
+
+/*--------------------------------------------------------------
+  Dialogs
+  --------------------------------------------------------------*/
+.tvr-dialog {
+  position:fixed;
+  @include box-sizing();
+  top:0;
+  left:0;
+  z-index:999911 !important;
+  width:100%;
+  height:100%;
+  cursor: pointer;
+  background: rgba(0, 0, 0, .85);
+  padding:40px;
+  padding-bottom:90px; //  padding-bottom:50px; needs to be added to 80 for some reason
+
+  &.small-dialog {
+     padding:80px 25%;
+     padding-bottom:130px;
+   }
+  &.medium-dialog {
+    padding:80px 15%;
+    padding-bottom:130px;
+  }
+  .dialog-main {
+    cursor: default;
+    padding-bottom:40px;
+    height:100%;
+    max-height:600px;
+    position:relative;
+    background:$lightestGrey;
+    @include dialog-shadow();
+  }
+  .dialog-header,
+  .dialog-footer {
+    background:$lightGrey;
+
+  }
+  .dialog-header {
+    height:40px;
+    margin:0 !important;
+    .dialog-icon {
+      float:left;
+      width:40px;
+      height:40px;
+      cursor:default !important;
+      &.active {
+        background-size:auto !important;
+        background:$darkGreen $largeLoadingGif !important;
+        margin-right:1em;
+      }
+    }
+    .text {
+      margin:11px;
+      margin-left:0;
+      display: inline-block;
+    }
+    .close-icon {
+      float:right;
+      margin:11px;
+      @include state-sprite(7.3, 4.28);
+    }
+  }
+  .dialog-footer {
+    @include susy-clearfix;
+    @include box-sizing();
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:40px;
+    .v-left-button {
+      width:40px;
+      float:left
+    }
+    .dialog-button {
+      float:right;
+      margin:8px !important;
+    }
+  }
+  .dialog-inner {
+    @include box-sizing();
+    padding-bottom:40px;
+    height:100%;
+  }
+  .dialog-content {
+    max-height:100%;
+    height:100%;
+    @include box-sizing();
+    padding:24px;
+    .mCSB_container {
+
+    }
+  }
+
+  .explain {
+    .heading {
+      clear:both;
+      margin-top:2.5em;
+    }
+    .full-about {
+      display: none;
+    }
+    ul {
+      margin-left:15px;
+    }
+  }
+  .content-main {
+    box-sizing: border-box;
+    //padding:20px;
+  }
+  &.sidebar {
+    .explain {
+      display: block;
+      box-sizing: border-box;
+      float:right;
+      width:40%;
+      padding:20px;
+    }
+    .content-main {
+      float:left;
+      width:60%;
+    }
+  }
+  .button-wrap {
+    clear:left;
+    padding-top:1em;
+  }
+
+  ul {
+    margin-left:1em;
+  }
+  li {
+    list-style: disc;
+    margin-bottom: 1em;
+
+  }
+  .ajax-loader {
+    margin-top:14px;
+    float:right;
+  }
+  ul.checkboxes {
+    margin:0 0 1em 0;
+    max-width:700px;
+    clear:left;
+    li {
+      list-style:none;
+      margin-bottom: 0.5em;
+      width:33%;
+      float:left;
+      line-height: 18px;
+    }
+    .tvr-icon {
+      float: left;
+      margin:-2px 8px 0 0;
+    }
+  }
+  .enter-name-explain {
+    clear:left;
+    padding-top:1em;
+  }
+
+}
+// export
+#export-to-pack-dialog {
+  p.enter-name-explain {
+    padding-top:0;
+  }
+  p.combobox-wrap {
+    @include susy-clearfix();
+    margin-bottom:2em;
+    display: inline-block;
+  }
+  input.combobox {
+    text-transform: capitalize;
+  }
+  .ui-autocomplete.ui-menu {
+    max-height: 250px;
+  }
+  .dialog-icon {
+    @include sprite(14, 1);
+  }
+
+  ul.checkboxes {
+    clear:both;
+    overflow:hidden;
+    margin-bottom:1em;
+    &#toggle-checked-folders {
+      margin-bottom:6px;
+    }
+    li {
+      padding-bottom:0;
+    }
+  }
+
+
+}
+// import
+#import-from-pack-dialog {
+  .dialog-icon {
+    @include sprite(14, 1);
+  }
+  input.combobox {
+    text-transform: capitalize;
+  }
+  .ui-autocomplete.ui-menu {
+    max-height: 250px;
+  }
+  #overwrite-merge {
+    li {
+      float:none;
+      clear:left;
+      padding: 1em 0;
+    }
+  }
+
+}
+
+
+// view css
+#display-css-code-dialog {
+  .dialog-icon {
+    @include sprite(16, 1);
+  }
+  #generated-css {
+    font-family: "Courier New", Courier, monospace;
+    background: transparent;
+    font-size:13px;
+    //min-height:400px;
+    width: 100%;
+    white-space: pre-wrap;
+  }
+  pre {
+    margin-top:0;
+  }
+}
+
+// show revisions
+#display-revisions-dialog {
+  .dialog-icon {
+    @include sprite(17, 1);
+  }
+}
+
+// edit preferences
+#display-preferences-dialog {
+  .dialog-icon {
+    @include sprite(20, 1);
+  }
+
+}
+.form-field-list {
+  margin:0 0 2em 0 !important;
+  li {
+    list-style:none;
+    clear:left;
+    @include susy-clearfix;
+    &.show {
+      display: block;
+    }
+  }
+  label {
+    display: block;
+    float: left;
+    min-width:300px;
+    line-height: 1;
+    cursor: help;
+    // border-bottom: 1px dotted $mediumGrey;
+    &.text-label {
+      padding-top:7px;
+    }
+  }
+  .p-option-wrap {
+    float:left;
+    display: block;
+    width:70px;
+
+  }
+  input {
+    min-width:300px;
+    font-weight: normal;
+    &.combobox {
+      min-width:274px;
+    }
+  }
+  .reveal-mq-sets {
+
+  }
+}
+
+// responsive media queries
+#edit-media-queries-dialog {
+  .dialog-icon {
+    @include sprite(10, 4);
+      width:40px;
+      height:40px;
+      margin:0;
+  }
+  form {
+    display:block;
+    @include susy-clearfix;
+  }
+
+  #add-m-query {
+    float:right;
+    margin-bottom: 1em;
+  }
+}
+#m-queries {
+  margin:1em 0;
+  clear:both;
+  #mq-list {
+    margin-left:0;
+  }
+  li {
+    list-style: none;
+    background: $lightGrey;
+    @include border-radius(4px);
+    padding:1em;
+    margin-bottom:1em;
+    cursor: move;
+  }
+  .mq-edit-wrap {
+    margin-right:24px;
+    input {
+      display: inline-block;
+      width:75%;
+    }
+  }
+  .mq-label-wrap {
+    margin-bottom:1em;
+
+  }
+  label {
+    cursor: move;
+    display: inline-block;
+    width:20%;
+  }
+
+  input.m-label {
+
+  }
+  input.m-code {
+    font-weight:normal;
+  }
+  #m-query-hidden,
+  .m-query-tpl {
+    display:none;
+  }
+  .del-m-query {
+    float:right;
+  }
+}
+
+// unlock microthemer
+#unlock-microthemer-dialog {
+  .dialog-icon {
+    @include sprite(9, 7);
+  }
+}
+
+// manage packs
+#manage-design-packs-dialog {
+  .dialog-icon {
+    @include sprite(21, 1);
+  }
+  .dialog-content {
+    padding:0;
+  }
+}
+
+// docs
+#program-docs-dialog {
+  .dialog-icon {
+    @include sprite(19, 1);
+  }
+  .dialog-content {
+    padding:0;
+  }
+}
+
+.microthemer-iframe {
+  width:100%;
+  height:100%;
+}
+
+
+
+
+
+/*--------------------------------------------------------------
+Visual View Areas
+--------------------------------------------------------------*/
+#visual-view {
+  position:fixed;
+  top:0;
+  left:0;
+  height: 100%;
+  width: 100%;
+  z-index:9999;
+  background:$lightGrey;
+
+}
+
+
+/*--------------------------------------------------------------
+Top Toolbar
+--------------------------------------------------------------*/
+
+#v-top-controls {
+  min-height:40px;
+  background:$lightestGrey;
+  position: relative;
+  z-index:99997;
+  // to fix bug when options are opacity 50 (disabled)
+  .right-stuff-wrap {
+    position: relative;
+    z-index:99998;
+  }
+}
+
+#starter-message {
+  line-height: 40px;
+  font-style: italic;
+  margin-left:50px;
+  .show-wizard & {
+    display: none;
+  }
+}
+#help-on-right,
+.edit-css-code {
+  float:right;
+  width:40px;
+}
+.cta-button {
+  float:right;
+  margin:7px !important;
+  .tvr-icon {
+    margin-right:5px;
+  }
+  &.unlock-cta {
+    @include border-radius-separate(3px, 0, 0, 3px);
+    span {
+      float:left;
+      &.tvr-icon {
+        @include sprite(9.3, 10.3);
+      }
+    }
+  }
+  &.buy-cta {
+    margin-left:0 !important;
+    @include border-radius-separate(0, 3px, 3px, 0);
+    span {
+      float:left;
+      &.tvr-icon {
+        @include sprite(10.3, 10.3);
+      }
+    }
+  }
+}
+.frame-shadow {
+  position:absolute;
+  bottom:-8px;
+  left:0;
+  width:100%;
+  height:8px;
+  background: url(../images/drop-shadow-top.png);
+  #tvr-options & {
+    top:40px;
+  }
+}
+
+/*--------------------------------------------------------------
+Scrollable area
+--------------------------------------------------------------*/
+.scrollable-area,
+.scrollable-area-not-live {
+  overflow: hidden;
+  max-height: 340px;
+  //height: 340px; // because safari doesn't take into account max-height when creating scrollbar divs
+  //box-sizing: border-box;
+  padding:12px;
+  margin-top:0;
+}
+.mCSB_scrollTools {
+  width:6px;
+}
+.mCSB_dragger_bar {
+  background-color:$lighterBlue !important;
+}
+.mCSB_draggerRail {
+  cursor:pointer;
+}
+// prevent main menu from jumping when scollbars appear or dissappear
+#tvr-main-menu {
+  .mCSB_inside > .mCSB_container,
+  .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
+    margin-right: 18px; // same as with scrollbar
+  }
+}
+
+
+
+
+/* for dropdowns */
+.ui-menu {
+  .mCSB_container {
+    margin-right:10px;
+  }
+  .mCSB_scrollTools,
+  .mCSB_draggerRail,
+  .mCSB_dragger_bar {
+    @include border-radius(3px!important);
+  }
+}
+
+
+/*--------------------------------------------------------------
+Popdown/right menu
+--------------------------------------------------------------*/
+.tvr-popdown-wrap {
+  height:40px;
+}
+.tvr-popdown {
+  //visibility: hidden;
+  position: fixed;
+  z-index:99995;
+  top:-99999px;
+  // top:40px;
+  width: 500px;
+  max-height:400px;
+  overflow:hidden;
+  background:$lightGrey url(../images/drop-shadow-top.png) repeat-x;
+  @include box-shadow(0, 3px, 3px, $shadowColor);
+  .tvr-popdown-wrap:hover & {
+   // visibility: visible
+    top:40px;
+  }
+}
+
+.tvr-popright-wrap {
+  height:40px;
+  position: relative;
+}
+.tvr-popright {
+  visibility: hidden;
+  position: absolute;
+  z-index:99995;
+  top:-5px;
+  left:40px;
+  width: 80px;
+  overflow:hidden;
+  padding:5px 5px 5px 0;
+  .tvr-dialog & {
+    top:40px;
+    left:0;
+    padding:0;
+    .popright-sub {
+      background: $lightGrey;
+    }
+  }
+  .tvr-popright-wrap:hover & {
+    visibility: visible
+  }
+
+}
+.popright-sub {
+  width: 80px;
+  overflow: hidden;
+  background:$lightestGrey;
+  @include box-shadow(0, 3px, 3px, $shadowColor);
+  .v-left-button {
+    width:40px;
+    float:left;
+  }
+}
+
+/*--------------------------------------------------------------
+Status board and full logs
+--------------------------------------------------------------*/
+#status-board {
+  @include susy-clearfix;
+  float:right;
+  display:inline-block;
+  cursor:pointer;
+  .tvr-popdown {
+    right:0px;
+  }
+  #status-short {
+    float:right;
+    display:inline-block;
+    line-height: 1;
+    &.active {
+      color:$darkGreen;
+    }
+    &.active,
+    &.tvr-message {
+      padding:5px 8px;
+      margin:9px 0;
+    }
+  }
+  .info-icon {
+    float:right;
+    margin:11px;
+  }
+  .logs {
+    margin-bottom:0;
+
+  }
+
+}
+#full-logs {
+  text-align: left;
+  .logs {
+    ul {
+      list-style: disc;
+      margin-left:15px;
+    }
+  }
+}
+#tvr-manage {
+  #full-logs {
+    margin:1em;
+  }
+}
+#log-item-template {
+  display: none;
+}
+#script-feedback {
+  display: none;
+}
+
+/*--------------------------------------------------------------
+Quick Selector Nav Arrows
+--------------------------------------------------------------*/
+
+#tvr-nav {
+  .show-code-editor &,
+  .show-wizard & {
+    display: none;
+  }
+  border-left:1px solid $lightGrey;
+  padding-left:10px;
+  position: absolute;
+  z-index:99998;
+  height:40px;
+  left:480px;
+  #toggle-highlighting {
+    width:40px;
+    height:40px;
+    display: block;
+    float:left;
+    cursor: pointer;
+    @include sprite(23, 1);
+    opacity:.4;
+    &:hover {
+      opacity:.6;
+    }
+    &.on {
+      opacity:1;
+    }
+  }
+  #quick-nav {
+    float:left;
+  }
+  .scroll-buttons {
+    float:left;
+    margin:11px 5px 11px 10px;
+  }
+  #vb-focus-prev {
+    @include state-sprite(17.3, 4.28);
+    &.disabled {
+      opacity: .3;
+      &:hover {
+        @include sprite(17.3, 4.28);
+      }
+    }
+  }
+  #vb-focus-next {
+    margin-left:0;
+    @include state-sprite(18.3, 4.28);
+    &.disabled {
+      opacity: .3;
+      &:hover {
+        @include sprite(18.3, 4.28);
+      }
+    }
+  }
+  #current-selector {
+    line-height: 40px;
+    display:inline-block;
+    float:left;
+    @include susy-clearfix;
+    span {
+      float:left;
+      display: inline-block;
+      margin-left:10px;
+      cursor: pointer;
+      &.first-breadcrumb {
+        margin-left:0;
+      }
+
+    }
+    .sec-in-focus {
+      font-weight:bold;
+    }
+
+  }
+}
+
+
+/*--------------------------------------------------------------
+Folder navigation menu
+--------------------------------------------------------------*/
+#tvr-main-menu {
+  float:left;
+  width:40px;
+  height:40px;
+  cursor: pointer;
+  @include sprite(1, 4);
+  input, textarea {
+    background:$white;
+  }
+  .main-menu-popdown {
+    cursor: default;
+    left:481px;
+    position: fixed;
+    z-index:99995;
+    top:-99999px;
+    // top:40px;
+    width: 500px;
+    max-height:500px;
+    overflow:hidden;
+    background:$lightGrey url(../images/drop-shadow-top.png) repeat-x;
+    @include box-shadow(0, 3px, 3px, $shadowColor);
+    &.bye-for-now {
+      overflow:visible;
+    }
+  }
+  &.on .main-menu-popdown {
+    top:40px;
+  }
+
+}
+
+
+
+
+#add-new-section {
+  width:100%;
+  border-bottom:1px solid $lightestGrey;
+  .inner-wrap {
+    @include susy-clearfix;
+  }
+  .new-section {
+    float:left;
+    input {
+      width:70%;
+    }
+  }
+}
+#tvr-menu {
+  margin:0;
+}
+/* Make Folder/Selector names capitalised */
+#add-new-section .new-section input,
+.rename-input,
+.selector-name-input,
+#wizard-name,
+#wizard_folder
+{
+  text-transform: capitalize;
+}
+
+.strk {
+  margin:0 0 0 0;
+  vertical-align: top;
+  .ajax-loader {
+    float:right;
+    margin-top:2px;
+  }
+  .item-row {
+    @include susy-clearfix;
+    padding:4px 6px;
+    &:hover {
+      background: $lightestGrey;
+    }
+
+  }
+  .add-selector-list-item .item-row {
+    padding:0;
+  }
+  .item-row {
+    .item-name {
+      cursor:pointer;
+    }
+  }
+  .section-name {
+    font-weight:bold;
+  }
+  .sel-row {
+    margin-left:44px;
+  }
+
+  .edit-section-form {
+    display: inline-block;
+    float:left;
+    .span, input {
+      float:left;
+    }
+  }
+  .cancel {
+    margin:4px 0 0 5px;
+  }
+  .menu-arrow,
+  .folder-icon,
+  .section-name,
+  .selector-icon {
+    float:left;
+  }
+  .folder-icon,
+  .selector-icon {
+    margin-right:8px;
+    cursor: default !important;
+  }
+  .sortable-icon{
+    cursor: move !important;
+
+  }
+  .manage-icons {
+    float:right;
+    display:none;
+    span {
+      float:right;
+      margin-left:6px;
+    }
+  }
+  .item-row:hover .manage-icons {
+    display:inline;
+  }
+  .selector-sub {
+    display: none;
+    clear:both;
+    margin:0 0 0 0;
+    padding-bottom: 5px;
+  }
+  // pollyfills
+  .pollyfills {
+    .input-icon-toggle {
+      float:left;
+      margin:3px 8px 0 0;
+      &.pie-toggle {
+        @include state-sprite(26.28, 4.28);
+      }
+      &.boxsizing-toggle {
+        @include state-sprite(25.28, 4.28);
+      }
+    }
+
+  }
+  .add-selector-list-item .pollyfills {
+    display: none;
+  }
+
+}
+#ui-totals-count {
+  font-weight:bold;
+  vertical-align: bottom;
+  padding:1em;
+  border-top:1px solid $lightestGrey;
+  @include susy-clearfix;
+  span {
+    display:block;
+    float:left;
+    margin-right:5px;
+  }
+  .total-stats,
+  .total-folders {
+    margin-right:1em;
+  }
+
+}
+
+
+/*--------------------------------------------------------------
+  Quick Edit
+  --------------------------------------------------------------*/
+.bye-for-now {
+  #add-new-section,
+  .section-tag,
+  #ui-totals-count {
+    display:none;
+  }
+  .scrollable-area {
+    padding:0;
+  }
+  .hello-me {
+    display: block;
+    &.scrollable-area,
+    .scrollable-area {
+      padding:12px 12px 20px 12px;
+    }
+  }
+  // selector content only
+  .goodbye-section {
+    .sec-row,
+    .add-selector-list-item,
+    .selector-tag {
+      display:none;
+    }
+    .hello-me {
+      display:block;
+    }
+    .sel-row:hover {
+      background:$lightGrey;
+    }
+    .selector-name {
+      cursor: default;
+    }
+    // disable copy for folder and single sel - gets tricky otherwise, and you can't see the copy appear
+    // also hide the toggle as there is no need for them to close the selector
+    .copy-selector {
+      display:none !important;
+    }
+    .manage-icons {
+      display: inline;
+    }
+
+  }
+  .copy-section {
+    display:none !important;
+  }
+  .sec-row .manage-icons {
+    display: inline !important;
+  }
+  // adjusted styling for section/selector
+  .quick-edit-mode {
+    position:fixed;
+    z-index:999911 !important;
+    top:40px;
+    left:481px;
+    width:500px;
+    background: $lightGrey;
+    @include grey-shadow();
+    .hide-top-shadow {
+      position:fixed;
+      top:32px;
+      left:481px;
+      width:530px;
+      height:8px;
+      background:$lightestGrey;
+      z-index:999912 !important;
+    }
+    .sel-row {
+      margin-left:0;
+    }
+
+  }
+}
+
+.quick-edit-mode.selector-tag {
+  .toggle-modify-selector {
+    display: none !important;
+  }
+}
+
+
+
+
+/*--------------------------------------------------------------
+Frontend
+--------------------------------------------------------------*/
+#v-frontend-wrap {
+  position:relative;
+  z-index:99992;
+  .show-advanced & {
+    padding-right:350px;
+  }
+}
+#v-frontend {
+  margin:0 auto;
+  height: 100%;
+  max-width: 100%;
+}
+#viframe {
+  background: #FFFFFF;
+  border: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+  position:relative;
+}
+
+
+
+/*--------------------------------------------------------------
+Left Toolbar
+--------------------------------------------------------------*/
+#v-left-controls-wrap {
+  position:absolute;
+  z-index:99998;
+  left:0;
+  top:0;
+  width:40px;
+  @include grey-shadow();
+}
+#toggle-left-menu {
+  cursor: pointer;
+  height:15px;
+  background-color:$lightGrey;
+  @include sprite(3, 4.3);
+  &.showing {
+    @include sprite(4, 4.3);
+  }
+}
+#v-left-controls {
+  background: $lightestGrey;
+  .program-docs {
+    display: none;
+  }
+}
+.v-left-button {
+  height:40px;
+  cursor: pointer;
+}
+#m-logo {
+  cursor: pointer;
+  background:$darkBlue;
+  @include sprite(9, 5);
+  &.active {
+    background-size:auto;
+    background:$darkGreen $largeLoadingGif;
+  }
+}
+.program-docs {
+  @include state-sprite(19, 1);
+}
+.save-interface {
+  @include state-sprite(12, 1);
+}
+.export-to-pack {
+   @include state-sprite(13, 1);
+}
+.import-from-pack {
+  @include state-sprite(14, 1);
+  &.descriptive-icon {
+    width:40px;
+    height:40px;
+    display: inline-block;
+  }
+}
+.edit-css-code {
+  @include state-sprite(15, 1);
+}
+.display-css-code {
+  @include state-sprite(16, 1);
+}
+.display-revisions {
+  @include state-sprite(17, 1);
+}
+.edit-media-queries {
+  @include state-sprite(13, 7);
+}
+.display-preferences {
+  @include state-sprite(20, 1);
+}
+.manage-design-packs {
+  @include state-sprite(21, 1);
+}
+.unlock-microthemer {
+  @include state-sprite(9, 7);
+
+}
+.reset-tools {
+  @include state-sprite(30, 1);
+}
+.folder-reset{
+  @include state-sprite(31, 1);
+}
+.styles-reset {
+  @include state-sprite(32, 1);
+}
+
+#v-left-controls .unlock-microthemer.unlocked {
+  display: none;
+}
+.display-share {
+  @include state-sprite(18, 1);
+}
+.back-to-wordpress {
+  @include state-sprite(24, 1);
+}
+
+/*--------------------------------------------------------------
+iframe width slider
+--------------------------------------------------------------*/
+// we don't need to display the buttons anymore but they are sueful for storeing values
+#v-mq-buttons {
+  display:none;
+}
+#v-mq-controls {
+  position:absolute;
+  top:48px;
+  right:10px;
+  width:550px;
+  @include susy-clearfix();
+  color:$mediumBlue;
+}
+#v-mq-slider,
+#iframe-pixel-width,
+#iframe-max-width,
+#iframe-min-width  {
+  float:right;
+  display:inline-block;
+}
+#v-mq-slider {
+  width:300px;
+  height:6px;
+  margin:9px 4px;
+  cursor:pointer;
+  background: $sliderAtRest;
+  border:1px solid $sliderAtRest;
+
+  .ui-slider-handle {
+    background: $lighterBlue;
+    border:1px solid $lighterBlue;
+    height:6px;
+    top:-1px;
+    width:15px;
+    cursor:pointer;
+    @include border-radius(3px);
+  }
+}
+#iframe-pixel-width {
+  font-weight:bold;
+  padding:2px 8px;
+  min-width:40px;
+  text-align:center;
+}
+#iframe-max-width,
+#iframe-min-width  {
+  float:right;
+  display:inline-block;
+  margin:4px 8px;
+  font-size:11px;
+}
+
+/*--------------------------------------------------------------
+The selector wizard
+--------------------------------------------------------------*/
+#selector-wizard {
+  display: none;
+
+  .show-wizard & {
+    display: block;
+  }
+  .explain-wizard,
+  .quick-create,
+  .query-tabs,
+  .wizard-panes {
+    padding:0 0 0 50px;
+  }
+  .explain-wizard {
+    margin-right:250px;
+    p {
+      line-height:40px;
+      margin: 0;
+    }
+
+  }
+  .quick-create {
+    height:33px;
+    padding-top:7px;
+    background: $lightGrey;
+  }
+  label,
+  input,
+  .combo-arrow,
+  .wizard-add,
+  .cancel-wizard {
+    float:left;
+  }
+  input.combobox {
+    margin-right: 0;
+  }
+  label {
+    display: inline-block;
+    margin-right:8px;
+    line-height: 26px;
+    font-weight: bold;
+}
+  input.wizard-input {
+    width:200px;
+  }
+  input.wizard-name,
+  .combo-arrow {
+    margin-right:16px;
+  }
+  .wizard-add {
+    margin-right:8px;
+  }
+
+  .slider-with-wizard {
+    height:40px;
+    background: $lightestGrey;
+  }
+
+  // firebug style inspector
+  .inspector {
+    display: none;
+    background: $lightGrey;
+    border-top:1px solid $white;
+  }
+}
+
+// adv icons
+#adv-wizard-toggle {
+  display: none;
+  .show-wizard & {
+    display: block;
+  }
+  float:right;
+  line-height:1;
+  margin-right: 16px;
+  padding:13px 16px;
+  font-weight: bold;
+  border-right:1px solid $lightGrey;
+  span {
+    float:left;
+  }
+  .always-adv-wrap {
+    display: block;
+    padding-left:10px;
+  }
+}
+
+/*--------------------------------------------------------------
+The advanced selector wizard
+--------------------------------------------------------------*/
+
+// Accordion styling
+.accordion-heading {
+  cursor: pointer;
+}
+.accordion-item {
+  display: none;
+  .show-content & {
+    display: block;
+  }
+}
+
+#advanced-wizard {
+  display: none;
+  position: absolute;
+  top:0;
+  right:0;
+  width:350px;
+  height:100%;
+  background: $lightestGrey;
+  .show-advanced & {
+    display: block;
+  }
+  .wizard-panes {
+    .scrollable-refined {
+      position:relative;
+      max-height: 100%;
+      overflow: hidden;
+    }
+  }
+}
+#adv-tabs {
+  padding:0 0 0 2px;
+  background: $lightGrey;
+}
+.adv-area-refine-targeting,
+.adv-area-html-inspector {
+  padding:12px;
+  @include box-sizing();
+  height: 100%;
+}
+
+// Refine targeting slider
+.refine-inner-wrap {
+  padding:3px 0;
+}
+$sliderHeight: 26px;
+.code-suggestion-wrap {
+  float:left;
+  width:8px;
+  margin:0 0 0 2px;
+  @include border-radius(4px);
+  padding-bottom:$sliderHeight;
+  background: $sliderAtRest;
+}
+#code-suggestion-slider {
+  width:6px;
+  padding-top:$sliderHeight;
+  cursor:pointer;
+  background: $sliderAtRest;
+  border:1px solid $sliderAtRest;
+  .ui-slider-handle {
+    background: $lighterBlue;
+    border:1px solid $lighterBlue;
+    margin-bottom:0;
+    height:$sliderHeight;
+    left:-1px;
+    margin-bottom:-$sliderHeight;
+    width:6px;
+    cursor:pointer;
+    @include border-radius(3px);
+    &.ui-state-focus {
+      box-shadow: none;
+    }
+  }
+}
+#code-suggestions {
+  margin:0 0 0 16px;
+  li {
+    margin-bottom: 0;
+  }
+  .selector-category {
+    display: none;
+  }
+  textarea {
+    width:100%;
+    background: transparent;
+    border-color:$lightestGrey;
+    resize: none;
+    display: block;
+    height:26px;
+    padding:3px;
+    line-height: 18px;
+
+  }
+  .in-focus textarea {
+    background: $white;
+    border-color:$lightGrey;
+    resize: vertical;
+  }
+}
+
+// HTML inspector controls
+.refine-target-controls {
+  overflow:hidden;
+  margin:0 auto 12px auto;
+  width:50px;
+
+  span {
+    float:left;
+    cursor: pointer;
+    display: block;
+    height: 18px;
+    width: 18px;
+    margin-top:9px;
+  }
+  .updown-wrap {
+    overflow:hidden;
+    width:18px;
+    float:left;
+    margin:0 -2px;
+    span {
+      margin-top:0;
+    }
+  }
+  // prev sibling
+  span.tvr-prev-sibling {
+    @include state-sprite(17.3, 4.28);
+    &.disabled {
+      opacity: .3;
+      &:hover {
+        @include sprite(17.3, 4.28);
+      }
+    }
+  }
+  // next sibling
+  span.tvr-next-sibling {
+    @include state-sprite(18.3, 4.28);
+    &.disabled {
+      opacity: .3;
+      &:hover {
+        @include sprite(18.3, 4.28);
+      }
+    }
+  }
+  // parent
+  span.tvr-parent {
+    margin-bottom:2px;
+    @include state-sprite(19.3, 4.28);
+    &.disabled {
+      opacity: .3;
+      &:hover {
+        @include sprite(19.3, 4.28);
+      }
+    }
+  }
+  // child
+  span.tvr-child {
+    @include state-sprite(20.3, 4.28);
+    &.disabled {
+      opacity: .3;
+      &:hover {
+        @include sprite(20.3, 4.28);
+      }
+    }
+  }
+}
+
+.refine-target-html {
+  padding:8px;
+  background: $nearlyWhite;
+  border:1px solid $lightGrey;
+  margin-bottom: 1em;
+  min-height: 17px;
+}
+
+// Computed CSS accordion
+#html-computed-css {
+  .scrollable-area {
+    padding:0;
+  }
+  .accordion-menu {
+    margin:0;
+  }
+  li {
+    overflow:hidden;
+    &.css-group-heading {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    &.property-item {
+      padding:3px 6px;
+      margin:0;
+      &.row-odd {
+        background:$nearlyWhite;
+      }
+      &.last-row {
+        margin-bottom: 1em;
+      }
+
+      &:hover {
+        background: $lightGrey;
+      }
+      &.bottom-gap:hover {
+        background: transparent;
+      }
+
+    }
+    span {
+      float:left;
+    }
+  }
+  .comp-prop-label {
+    min-width: 115px;
+    text-transform: capitalize;
+  }
+  #comp-background {
+    .comp-prop-label {
+      min-width: 150px;
+    }
+  }
+  #comp-border {
+    .comp-prop-label {
+      min-width: 170px;
+    }
+  }
+  .comp-prop-value {
+    font-weight: bold;
+
+  }
+}
+
+
+/*--------------------------------------------------------------
+The custom code editor
+--------------------------------------------------------------*/
+// custom code editor
+#code-editors-wrap pre {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+#hand-css-area {
+  display: none;
+  .show-code-editor & {
+    display: block;
+  }
+  .show-wizard & {
+    display: none;
+  }
+  .css-code-tabs,
+  #code-editors-wrap {
+    padding:0 570px 0 50px; // 570px to account for mq slider on the right
+  }
+  #code-editors-wrap {
+    padding-top:8px;
+    padding-bottom:8px;
+  }
+  .css-code-wrap {
+    position: relative;
+    margin:0 0 0 6px;
+    min-height:160px;
+  }
+  textarea {
+    min-height: 75px;
+  }
+}
+
+/*--------------------------------------------------------------
+  Media Query & Custom CSS Tabs
+  --------------------------------------------------------------*/
+.query-tabs {
+  padding-right:590px; /* to allow for slider on the right */
+  padding-left:43px;
+  background:$lightGrey;
+  height:40px;
+  .edit-mq {
+    display: block;
+    float:left;
+    width:40px;
+    height:27px;
+    margin-top:13px;
+    @include sprite(10, 4.22);
+    cursor:pointer;
+  }
+  .mq-tab,
+  .add-mq {
+    border-radius: 6px 6px 0 0;
+    float: left;
+    margin-left: 6px;
+    margin-top: 6px;
+    padding: 7px 10px;
+    line-height:18px;
+    position: relative;
+    top: 2px;
+    cursor:pointer;
+  }
+  .mq-tab {
+    display:none;
+  }
+  .show {
+    display: inline-block;
+  }
+  .active,
+  .add-mq {
+    border: 1px solid $lightGrey;
+    border-bottom:0;
+    background: $lightestGrey;
+  }
+  .add-mq {
+    display: inline-block;
+  }
+  .add-mq-icon {
+    @include state-sprite(21.28, 7.28);
+    float:left;
+  }
+
+  /*--------------------------------------------------------------
+  Media Query Checkboxes
+  --------------------------------------------------------------*/
+  .mq-options,
+  .comp-mixed-table {
+    visibility: hidden;
+    display:block;
+    width: 160px;
+    text-align:left;
+    position: absolute;
+    font-weight:normal;
+    z-index: 39999;
+    top:31px;
+    left:0;
+    background: $lightestGrey;
+    border: 1px solid $lightGrey;
+    // @include grey-shadow();
+  }
+  .add-mq.on .mq-options {
+    visibility: visible
+  }
+  .mq-button {
+    display:block;
+    padding:3px 9px;
+    border-top:1px solid $lightGrey;
+    color:$mediumBlue;
+    &:first-child {
+      border-top:0;
+    }
+    @include susy-clearfix;
+  }
+  .mq-add-remove {
+    float:left;
+    margin-right:6px;
+    @include state-sprite(2.3, 4.28);
+  }
+  .mq-button-text {
+    float:left;
+    cursor: default;
+  }
+  .mq-button.on {
+    font-weight:bold;
+    color:$darkBlue;
+    .mq-add-remove {
+      @include state-sprite(7.3, 7.28);
+    }
+  }
+  .mq-button.remove-all {
+    cursor: pointer;
+    span {
+      float:right;
+      margin-left:7px;
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+The editing options
+--------------------------------------------------------------*/
+#tvr-options {
+  margin:0;
+  .show-code-editor &,
+  .show-wizard & {
+    display: none;
+  }
+  ul, li {
+    margin:0;
+    padding:0;
+  }
+  li.selector-tag {
+    display: none;
+    &.in-focus {
+      display: block;
+    }
+  }
+
+  /*--------------------------------------------------------------
+  Style Group Icons
+  --------------------------------------------------------------*/
+  .styling-option-icons {
+    margin-left:40px;
+    width:440px;
+    float:left;
+    li {
+      cursor: pointer;
+      float:left;
+      width:40px;
+      height:40px;
+      &.pg-icon-font {
+        @include state-sprite-pg(1, 1);
+      }
+      &.pg-icon-text {
+        @include state-sprite-pg(2, 1);
+      }
+      &.pg-icon-list {
+        @include state-sprite-pg(29, 1);
+      }
+      &.pg-icon-shadow {
+        @include state-sprite-pg(3, 1);
+      }
+      &.pg-icon-background {
+        @include state-sprite-pg(4, 1);
+      }
+      &.pg-icon-dimensions {
+        @include state-sprite-pg(5, 1);
+      }
+      &.pg-icon-padding_margin {
+        @include state-sprite-pg(11, 1);
+      }
+      &.pg-icon-border {
+        @include state-sprite-pg(6, 1);
+      }
+      &.pg-icon-behaviour {
+        @include state-sprite-pg(9, 1);
+      }
+      &.pg-icon-position {
+        @include state-sprite-pg(10, 1);
+      }
+      &.pg-icon-gradient {
+        @include state-sprite-pg(27, 1);
+      }
+    }
+  }
+  .style-config {
+    display: none;
+  }
+  .styling-options {
+    clear:left;
+    max-height:160px;
+  }
+
+
+  /*--------------------------------------------------------------
+  Property Fields
+  --------------------------------------------------------------*/
+  .property-fields {
+    position: relative;
+    padding-left:50px;
+    padding-left:135px;
+
+    @include susy-clearfix;
+    &.show {
+      display:block;
+    }
+
+    &.property-font{
+      padding-left:84px;
+    }
+    &.property-text,
+    &.property-list {
+      padding-left:80px;
+    }
+    &.property-shadow {
+      padding-left:145px;
+      .sub-label {
+        margin: 0 5px 0 30px;
+      }
+    }
+    &.property-background {
+      padding-left:138px;
+    }
+    &.property-dimensions {
+      padding-left:95px;
+      .sub-label {
+        margin: 0 0 0 30px;
+      }
+    }
+    &.property-padding_margin {
+      padding-left:106px;
+      .sub-label {
+        margin: 0 0 0 30px;
+      }
+    }
+    &.property-border {
+      padding-left:145px;
+      .sub-label {
+        min-width:101px;
+        margin: 0 0 0 30px;
+      }
+      input {
+        width:85px;
+      }
+      .combobox {
+        width:60px;
+      }
+    }
+    &.property-behaviour {
+      padding-left:123px;
+    }
+    &.property-position {
+      padding-left:112px;
+    }
+    &.property-gradient {
+      padding-left:117px;
+    }
+    .field-wrap {
+      display:inline-block;
+      position:relative;
+      &.hidden {
+        display: none;
+      }
+      &.always-label .text-label {
+        display: inline-block;
+      }
+      float:left;
+      margin-right:0;
+      max-height:40px; // for google font field in chrome
+      @include susy-clearfix;
+      // some icons are wider and need a bit of left padding to even the spacing
+      &.icon-size-0b {
+        .tvr-icon {
+          margin-left:-12px;
+        }
+      }
+      &.icon-size-0a {
+        .tvr-icon {
+          margin-left:-8px;
+        }
+
+      }
+      &.icon-size-0 {
+        .tvr-icon {
+          margin-left:-4px;
+        }
+
+      }
+      // icon-size-1 is the unadjusted, gives about 20px gap
+      &.icon-size-2 {
+        margin-left:4px;
+      }
+      &.icon-size-3 {
+        margin-left:8px;
+      }
+      &.icon-size-4 {
+        margin-left:12px;
+      }
+      &.icon-size-5 {
+        margin-left:16px;
+      }
+    }
+    .group-label {
+      text-transform: uppercase;
+      color:$mediumBlue;
+      font-weight:bold;
+      line-height:40px;
+      position:absolute;
+      left:50px;
+    }
+    .sub-label {
+      font-weight: bold;
+      text-transform: uppercase;
+      line-height: 40px;
+      margin: 0 5px 0 15px;
+    }
+    label {
+      float:left;
+      display: inline-block;
+      span {
+        float:left;
+        display: inline-block;
+      }
+    }
+    .text-label {
+      display: none;
+      &.show-labels {
+        display: inline-block;
+      }
+      vertical-align: middle;
+      margin-right:6px;
+      line-height: 40px;
+    }
+    .input-wrap {
+      position:relative;
+      display: inline-block;
+      font-family: $codeFont;
+      margin-top:7px;
+      float:left;
+    }
+    input {
+      width:60px;
+      font-weight: normal;
+      float:left;
+      font-family: inherit;
+      &.size-0c {
+        width:30px;
+      }
+      &.size-0b {
+        width:45px; // needs to accomodate [mix]
+      }
+      &.size-0 {
+        width:50px; /* the size for number values not more than 999px */
+      }
+      &.size-1 {
+        width:55px; /* the size for number values */
+      }
+      &.size-2 {
+        width:60px; /*** the default size ***/
+      }
+      &.size-3 {
+        width:70px;
+      }
+      &.size-3a {
+        width:75px; /* the size for slightly larger dropdowns */
+      }
+      &.size-4 {
+        width:80px;
+      }
+      &.size-4a {
+        width:85px;
+      }
+      &.size-5 {
+        width:90px;
+      }
+      &.size-5a {
+        width:95px;
+      }
+      &.size-6 {
+        width:100px;
+      }
+      &.size-big {
+        width:160px;
+      }
+      &.size-very-big {
+        width:220px;
+      }
+      /* outliers */
+      &.color {
+        min-width:80px;
+      }
+    }
+    .g-font,
+    .tvr-image-upload {
+      margin-left:4px;
+      width:26px;
+      height:26px;
+      @include sprite(48.18, 11.175);
+      @include border-radius(3px);
+      background-color:$green;
+      &:hover {
+        background-color:$darkGreen;
+      }
+    }
+    .img_display {
+      //padding-right:26px;
+    }
+    .clear-bg-image {
+      display: none; // we just let the user change by setting empty value
+      position: absolute;
+      top:3px;
+      right:31px;
+    }
+    .tvr-image-upload {
+      @include sprite(46.18, 11.175);
+    }
+    .important-toggle,
+    .imp-placeholder {
+      display: none;
+      cursor: pointer;
+      float: right;
+      font-family: Georgia,"Times New Roman",Times,serif;
+      margin:0 4px;
+      line-height:40px;
+      color:$lightGrey;
+      font-weight: bold;
+      width:4px;
+      &.active {
+        color:$red;
+      }
+    }
+    .imp-placeholder {
+      visibility: hidden !important;
+    }
+
+    /*--------------------------------------------------------------
+    Computed Values
+    --------------------------------------------------------------*/
+
+    .manual-val input,
+    .manual-val select,
+    input:hover,
+    select:hover {
+      background-color:$white;
+      font-weight: bold;
+    }
+    span.comp-style {
+      position:absolute;
+      top:7px;
+      left:7px;
+      color:$shadowColor;
+      line-height: 1;
+      font-family: inherit;
+    }
+    .colorize-hash span.comp-style {
+      left:22px;
+    }
+    .colorize-hash.mixed-cp span.comp-style {
+      left:7px;
+    }
+    span.colored-hash {
+      position:absolute;
+      top:-2px;
+      left:-17px;
+      font-weight:bold;
+      display:inline-block;
+      padding:2px 4px 2px 4px;
+      margin-right:2px;
+      color:#fff;
+    }
+    .colorize-hash.mixed-cp span.colored-hash,
+    span.comp-mixed-table span.colored-hash {
+      position:static;
+      padding:0 4px;
+    }
+    span.comp-style.hidden {
+      visibility: hidden;
+    }
+    // mixed dropdown table
+    span.comp-mixed-table {
+      visibility: visible;
+      display: none;
+      background:$lightestGrey;
+      position:absolute;
+      z-index:999912 !important;
+      top:40px;
+      left:15px;
+      width:auto;
+      min-width: 130px;
+      max-width:400px;
+      max-height:155px;
+      overflow: auto;
+      overflow-x: hidden;
+      padding:7px;
+    }
+    span.comp-mixed-table h5 {
+      font-size:12px;
+      font-weight:bold;
+      margin:0 0 .5em 0;
+    }
+    span.comp-mixed-table table {
+      border-collapse: collapse;
+      background: transparent;
+      margin-bottom:0;
+    }
+    span.comp-mixed-table td,
+    span.comp-mixed-table th {
+      padding:3px 6px;
+    }
+    span.comp-mixed-table tbody tr:hover {
+      background: $lightGrey;
+      cursor: default;
+    }
+    .field-wrap.mixed-cp:hover .comp-mixed-table {
+      display: block;
+    }
+    .field-wrap.mixed-cp:hover .comp-mixed-table.manual-menu-showing {
+      display: none; // we don't want the hover comp table when user is setting a value
+    }
+    .field-wrap.mixed-cp.manual-val:hover .comp-mixed-table {
+      display: none;
+    }
+
+
+  }
+
+}
+
+// show important toggles if user wants to this manually
+.manual-css-important {
+  .important-toggle,
+  .imp-placeholder {
+    display: inline-block !important;
+  }
+}
+
+
+/*--------------------------------------------------------------
+Options Icons
+--------------------------------------------------------------*/
+.o-icon-wrap {
+  overflow: hidden;
+  display: inline-block;
+}
+.option-icon {
+  width:40px !important;
+  height:40px !important;
+}
+// font
+.option-icon-font_family { @include state-sprite(33,  14); }
+.option-icon-google_font { @include state-sprite(30, 11); }
+.option-icon-color { @include state-sprite(26, 11); }
+.option-icon-font_size { @include state-sprite(21, 11); }
+.option-icon-line_height { @include state-sprite(22, 11); }
+.option-icon-font_weight { @include state-sprite(27, 11); }
+.option-icon-font_style { @include state-sprite(28, 11); }
+.option-icon-text_decoration { @include state-sprite(31, 11); }
+.option-icon-font_variant { @include state-sprite(29, 11); }
+// text
+.option-icon-text_align { @include state-sprite(38,  14); }
+.option-icon-text_indent { @include state-sprite(23,  4); }
+.option-icon-text_transform { @include state-sprite(32, 11); }
+.option-icon-word_spacing { @include state-sprite(22,  4); }
+.option-icon-letter_spacing { @include state-sprite(24, 11); }
+.option-icon-word_wrap { @include state-sprite(41,  14); }
+.option-icon-white_space { @include state-sprite(43,  14); }
+.option-icon-direction { @include state-sprite(42,  14); }
+// list
+.option-icon-list_style_type { @include state-sprite(23, 11); }
+.option-icon-list_style_image { @include state-sprite(28,  14); }
+.option-icon-list_style_position { @include state-sprite(27,  14); }
+// shadow
+.option-icon-text_shadow_color { @include state-sprite(41, 11); }
+.option-icon-text_shadow_x { @include state-sprite(39, 11); }
+.option-icon-text_shadow_y { @include state-sprite(40, 11); }
+.option-icon-text_shadow_blur { @include state-sprite(42, 11); }
+.option-icon-box_shadow_color { @include state-sprite(36, 11); }
+.option-icon-box_shadow_x { @include state-sprite(34, 11); }
+.option-icon-box_shadow_y { @include state-sprite(35, 11); }
+.option-icon-box_shadow_blur { @include state-sprite(37, 11); }
+// background
+.option-icon-background_color { @include state-sprite(25, 11); }
+.option-icon-background_image { @include state-sprite(39,  14); }
+.option-icon-background_position { @include state-sprite(3,  14); }
+.option-icon-background_repeat { @include state-sprite(1,  14); }
+.option-icon-background_attachment { @include state-sprite(2,  14); }
+.option-icon-background_size { @include state-sprite(25,  14); }
+.option-icon-background_clip { @include state-sprite(26,  14); }
+// dimensions
+.option-icon-width { @include state-sprite(9, 11); }
+.option-icon-min_width { @include state-sprite(36,  14); }
+.option-icon-max_width { @include state-sprite(34,  14); }
+.option-icon-height { @include state-sprite(10, 11); }
+.option-icon-min_height { @include state-sprite(37,  14); }
+.option-icon-max_height { @include state-sprite(35,  14); }
+.option-icon-box_sizing { @include state-sprite(32,  14); }
+// padding_margin
+.option-icon-padding_top { @include state-sprite(3, 11); }
+.option-icon-padding_right { @include state-sprite(2, 11); }
+.option-icon-padding_bottom { @include state-sprite(4, 11); }
+.option-icon-padding_left { @include state-sprite(1, 11); }
+.option-icon-margin_top { @include state-sprite(7, 11); }
+.option-icon-margin_right { @include state-sprite(6, 11); }
+.option-icon-margin_bottom { @include state-sprite(8, 11); }
+.option-icon-margin_left { @include state-sprite(5, 11); }
+// border
+.option-icon-border_top_color { @include state-sprite(10,  14); }
+.option-icon-border_right_color { @include state-sprite(13,  14); }
+.option-icon-border_bottom_color { @include state-sprite(11,  14); }
+.option-icon-border_left_color { @include state-sprite(12,  14); }
+.option-icon-border_top_width { @include state-sprite(6,  14); }
+.option-icon-border_right_width { @include state-sprite(9,  14); }
+.option-icon-border_bottom_width { @include state-sprite(7,  14); }
+.option-icon-border_left_width { @include state-sprite(8,  14); }
+.option-icon-border_top_style { @include state-sprite(14,  14); }
+.option-icon-border_right_style { @include state-sprite(17,  14); }
+.option-icon-border_bottom_style { @include state-sprite(15,  14); }
+.option-icon-border_left_style { @include state-sprite(16,  14); }
+.option-icon-border_top_left_radius { @include state-sprite(17, 11); }
+.option-icon-border_top_right_radius { @include state-sprite(18, 11); }
+.option-icon-border_bottom_right_radius { @include state-sprite(20, 11); }
+.option-icon-border_bottom_left_radius { @include state-sprite(19, 11); }
+// behaviour
+.option-icon-display { @include state-sprite(23,  14); }
+.option-icon-overflow { @include state-sprite(20,  14); }
+.option-icon-overflow_x { @include state-sprite(29,  14); }
+.option-icon-overflow_y { @include state-sprite(30,  14); }
+.option-icon-visibility { @include state-sprite(24,  14); }
+.option-icon-cursor { @include state-sprite(22,  14); }
+.option-icon-opacity { @include state-sprite(4,  14); }
+// position
+.option-icon-position { @include state-sprite(40,  14); }
+.option-icon-top { @include state-sprite(11, 11); }
+.option-icon-bottom { @include state-sprite(12, 11); }
+.option-icon-left { @include state-sprite(13, 11); }
+.option-icon-right { @include state-sprite(14, 11); }
+.option-icon-z_index { @include state-sprite(21,  14); }
+.option-icon-float { @include state-sprite(18,  14); }
+.option-icon-clear { @include state-sprite(19,  14); }
+// gradient
+.option-icon-gradient_angle { @include state-sprite(28,  1); }
+.option-icon-gradient_a { @include state-sprite(25, 11); }
+.option-icon-gradient_b { @include state-sprite(25, 11); }
+.option-icon-gradient_b_pos { @include state-sprite(40,  14); }
+.option-icon-gradient_c { @include state-sprite(25, 11); }
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------------------------------------
+Manage Packs Header
+--------------------------------------------------------------*/
+ul.pack-manage-options{
+  overflow: hidden;
+  background: $white;
+  border-bottom:1px solid $mediumGrey;
+  padding:.5em 1em;
+  margin-top:0;
+  li {
+    float:right;
+    margin-bottom: 0;
+    margin-left:8px;
+    &.upload {
+      float:left;
+      margin-left:0;
+    }
+  }
+  .tvr-button {
+    border-color: $darkGreen !important;
+  }
+}
+.tvr-manage-single {
+  .pack-manage-options {
+    margin-bottom: 0;
+  }
+}
+
+
+/*--------------------------------------------------------------
+Manage Packs Page (multiple/single common styling)
+--------------------------------------------------------------*/
+
+.title-text {
+  display: block;
+  font-size:16px;
+  font-weight: bold;
+  line-height:1.5;
+  color:$darkGreen !important;
+  text-decoration: none;
+  .version {
+    color:$mediumGrey !important;
+  }
+}
+.author-name {
+  font-style:italic;
+  a {
+    text-decoration: none;
+  }
+}
+
+
+/*--------------------------------------------------------------
+Manage Packs Page (multiple)
+--------------------------------------------------------------*/
+
+// design packs pagination
+.tvr-pagination {
+  margin:0 1em .5em 1em;
+  overflow:hidden;
+  li {
+    float:right;
+    text-align: center;
+    width: 25px;
+    margin: 0 0 5px 5px;
+    line-height: 25px !important;
+    &.displaying-x {
+      width: auto;
+      display: inline-block;
+      margin-right:.5em;
+    }
+    &.page-item {
+      a, span {
+        display: block;
+        border: 1px solid $lightGrey;
+        font-weight:bold;
+      }
+      a {
+        background:$white;
+        text-decoration: none;
+        color:$darkBlue;
+        &:hover {
+          background:$darkBlue;
+          color:white;
+        }
+      }
+    }
+    &.last-modified {
+      float:left;
+      width: auto;
+      display: inline-block;
+    }
+  }
+}
+
+// design packs grid
+#all-packs {
+  clear:both;
+  padding:0 .5em;
+  overflow:hidden;
+  margin:0;
+  li {
+    @include box-sizing();
+    padding:0 .5em .5em .5em;
+    min-height: 91px;
+    float:left;
+    width:50%;
+    #loading-gif-active {
+      float:right;
+      display: block;
+      margin-left:2px;
+      margin-right:0;
+    }
+  }
+  .pack {
+    border:1px solid $lightGrey;
+    background:$white;
+    padding:3px;
+    @include border-radius(3px);
+    overflow:hidden;
+  }
+  img {
+    float:left;
+    display: block;
+    margin-right:1em;
+  }
+  .pack-quick-icons {
+    float:right;
+    width:150px;
+    padding:.5em;
+    overflow:hidden;
+    span {
+      float:right;
+      margin-left:8px;
+    }
+  }
+
+}
+
+
+/*--------------------------------------------------------------
+Manage Packs Page (single)
+--------------------------------------------------------------*/
+#tvr-manage-single {
+  padding:1em;
+  #loading-gif-active {
+     float:left;
+     margin-right:8px;
+     margin-left:-4px;
+   }
+}
+#pack-summary {
+  @include border-radius(3px);
+  border:1px solid $mediumGrey;
+  background: $white;
+  padding:1em;
+  position:relative;
+  min-height:300px;
+  #micro-screenshot {
+    position: absolute;
+    top:1em;
+    left:1em;
+    background: url(../images/screenshot-placeholder.gif);
+    width:524px;
+    height:300px;
+    img {
+      max-width:100%;
+      display:block;
+      cursor:pointer;
+    }
+  }
+  .summary-text {
+    margin-left:548px;
+    position:relative;
+    min-height:260px;
+    padding-bottom:40px;
+  }
+
+  p.attach-summary {
+    overflow: hidden;
+    padding-top:.4em;
+  }
+  .attachment-icon {
+    @include sprite(2.3, 7.28);
+
+  }
+  .attachment-icon,
+  .attachment-count {
+    margin-right:8px;
+    display: inline-block;
+    float:left;
+  }
+  .heading {
+    margin-bottom:0;
+    clear:left;
+  }
+  #main-theme-actions {
+    position: absolute;
+    bottom:0;
+    margin:0;
+    li {
+      display:block;
+      float:left;
+      margin:0 8px 0 0;
+      padding:3px 6px;
+      border:1px solid $mediumGrey;
+      background:$lightGrey;
+      width: auto;
+      cursor: pointer;
+      @include border-radius(3px);
+      &.on,
+      &:hover {
+        border:1px solid $mediumBlue;
+        background:$mediumBlue;
+        color:$white;
+      }
+    }
+    .icon {
+      float:left;
+      margin-right:2px;
+    }
+    .pack-action-info {
+      .icon {
+        @include sprite(1.3, 7.28);
+      }
+      &.on,
+      &:hover {
+        .icon {
+          @include sprite(1.3, 10.28);
+        }
+      }
+    }
+    .pack-action-instructions {
+      .icon {
+        @include sprite(1.3, 7.28)
+      }
+      &.on,
+      &:hover {
+        .icon {
+          @include sprite(1.3, 10.28);
+        }
+      }
+    }
+    .pack-action-attachments {
+      .icon {
+        @include sprite(2.3, 7.28)
+      }
+      &.on,
+      &:hover {
+        .icon {
+          @include sprite(2.3, 10.28);
+        }
+      }
+    }
+    .pack-action-download {
+      .icon {
+        width:22px;
+        margin-right:3px;
+        @include sprite(3.28, 7.28)
+      }
+      &.on,
+      &:hover {
+        .icon {
+          @include sprite(3.28, 10.28);
+        }
+      }
+    }
+    .pack-action-delete {
+      .icon {
+        @include sprite(4.3, 7.28)
+      }
+      &.on,
+      &:hover {
+        .icon {
+          @include sprite(4.3, 10.28);
+        }
+      }
+    }
+    .action-text {
+      float:left;
+      display: inline-block;
+      text-transform: uppercase;
+    }
+  }
+}
+
+#single-content-areas {
+  position:relative;
+  .explain {
+    position: absolute;
+    top:0;
+    left:0;
+    width:504px;
+  }
+  .manage-content-wrap {
+    margin:2em 0 0 562px;
+    min-height: 305px; // the height of the explain text
+    .float-form {
+      padding: 0;
+      textarea {
+        width:100%;
+      }
+      p {
+        label {
+          width:20%
+        }
+        input[type="text"], textarea {
+          @include box-sizing();
+          width:75%;
+          background:$white;
+
+        }
+        textarea {
+          min-height:100px;
+        }
+      }
+      input[type="submit"]{
+        width:auto;
+      }
+
+    }
+  }
+
+}
+#edit-info {
+  label {
+    cursor: help;
+  }
+  p.combobox-wrap {
+    @include susy-clearfix;
+  }
+  input.combobox {
+    width:200px !important;
+  }
+}
+
+#edit-attachments {
+  #upload-file-form {
+    display: block;
+    float:right;
+    width:75%;
+    text-align:right;
+  }
+  .design-packs-table-heading {
+    line-height:31px;
+  }
+  .file-types {
+    overflow: hidden;
+    img {
+      display:block;
+      float:left;
+      margin-right:8px;
+    }
+  }
+  .library-heading {
+    padding-top:1em;
+    padding-bottom:.5em;
+  }
+  .file-name {
+    color:$lighterBlue;
+    font-weight: bold;
+    span {
+      color:$darkBlue;
+
+    }
+  }
+
+}
+.dialog-header {
+  #loading-gif-active {
+    float:left;
+  }
+}
+
+
+#pack-file-content,
+#pack-file-content-active {
+  box-sizing: border-box;
+  width:100%;
+  height:95%;
+}
+
+
+#edit-instructions {
+  textarea {
+    min-height:500px !important;
+    background:$white;
+  }
+  p.button-wrap {
+    padding-top:1em;
+  }
+}
+
+
+
+
+
+

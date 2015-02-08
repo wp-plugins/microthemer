@@ -39,13 +39,14 @@ jQuery(document).ready(function($){
 					$fontDiv.css('font-style', 'normal');
 				}
 				// save the chosen variant for inserting
-				TvrFonts.chosenVariant = '('+$clicked.text()+')';
+				TvrFonts.chosenVariant = '('+$clicked.text().trim()+')';
 			},
 			// insert font into Microthemer UI
 			insertFont: function($clicked) {
 				var fontFam = $clicked.attr('rel');
-				// default to normal if no variant set
-				if (TvrFonts.chosenVariant == '') {
+				// default to normal if no variant set (must be an active font variant for the actual font in question)
+                var variantDefined = $clicked.closest('.font-entry').find('span.variant.active').length;
+				if (TvrFonts.chosenVariant == '' || variantDefined < 1) {
 					TvrFonts.chosenVariant = '(400 normal)';
 				}
 				fontFam = fontFam+' '+TvrFonts.chosenVariant;

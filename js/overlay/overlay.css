@@ -17,6 +17,16 @@
 .tvr-padding-overlay { z-index: 111110003; }
 .tvr-content-overlay { z-index: 111110004; }
 
+/* might be good to disable text-highlighting on double-click as it can confuse highlighting
+body.tvr-crosshair {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+*/
+
 body.tvr-crosshair,
 body.tvr-crosshair a,
 body.tvr-crosshair label,
@@ -32,4 +42,10 @@ body.tvr-crosshair #art-main {
 body.tvr-crosshair .tvr-overlay {
 	cursor: default !important;
 }
-
+html.no-admin-bar-please {
+    margin-top:0 !important;
+}
+html.no-admin-bar-please #wpadminbar,
+html.no-admin-bar-please #adminmenuwrap {
+    display: none !important;
+}

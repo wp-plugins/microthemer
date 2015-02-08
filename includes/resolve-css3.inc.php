@@ -120,8 +120,12 @@ and !$array['styles']['gradient']['rendered'] ) {
 	
 	// if the user didn't specify a background color, use Gradient A
 	if (empty($array['styles']['background']['background_color'])) {
-		$fallback_bg_color = "background-color: $gradient_a; /*non-CSS3 browsers will use this*/";
-	}
+		//$fallback_bg_color = "	{$tab}background-color: $gradient_a; /*non-CSS3 browsers will use this*/
+//";
+        $fallback_bg_color = ''; // this may interfere in an unwanted way
+	} else {
+        $fallback_bg_color = '';
+    }
 
     // check if bg-color property need to go in
     if (!empty($array['styles']['background']['background_color'])) {
@@ -135,6 +139,7 @@ and !$array['styles']['gradient']['rendered'] ) {
     }
 
 	// check if bg image properties need to go in
+    $user_bg_image = '';
 	if (!empty($array['styles']['background']['background_image'])) {
 		if ($array['styles']['background']['background_image'] != 'none') {
 			$user_bg_image = "url(".$array['styles']['background']['background_image'].")";
@@ -142,18 +147,27 @@ and !$array['styles']['gradient']['rendered'] ) {
 		else {
 			$user_bg_image = "none";
 		}
+        if (!empty($array['styles']['background']['background_repeat'])) {
+            $user_bg_image.= ' '.$array['styles']['background']['background_repeat'];
+        }
+        if (!empty($array['styles']['background']['background_attachment'])) {
+            $user_bg_image.= ' '.$array['styles']['background']['background_attachment'];
+        }
 		if (!empty($array['styles']['background']['background_position'])) {
 			$user_bg_image.= ' '.$array['styles']['background']['background_position'];
 		}
-		if (!empty($array['styles']['background']['background_repeat'])) {
-			$user_bg_image.= ' '.$array['styles']['background']['background_repeat'];
-		}
+        // size and clip are sep with /
+        if (!empty($array['styles']['background']['background_size'])) {
+            $user_bg_image.= ' / '.$array['styles']['background']['background_size'];
+        }
+        if (!empty($array['styles']['background']['background_clip'])) {
+            $user_bg_image.= ' '.$array['styles']['background']['background_clip'];
+        }
 		$user_bg_image.= ', ';
 	}
 	
 	// render the gradient
-	$sty['data'].= "	{$tab}$fallback_bg_color
-	{$tab}background: {$user_bg_color}{$user_bg_image}-webkit-gradient(linear, $wbkold_angle, from($gradient_a), {$wbkold_bstop}to($gradient_c)){$sty['css_important']};
+	$sty['data'].= $fallback_bg_color . "{$tab}        background: {$user_bg_color}{$user_bg_image}-webkit-gradient(linear, $wbkold_angle, from($gradient_a), {$wbkold_bstop}to($gradient_c)){$sty['css_important']};
 	{$tab}background: {$user_bg_color}{$user_bg_image}-webkit-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']};
 	{$tab}background: {$user_bg_color}{$user_bg_image}-moz-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']};
 	{$tab}background: {$user_bg_color}{$user_bg_image}-ms-linear-gradient($new_angle, $gradient_a, {$new_bstop}$gradient_c){$sty['css_important']};
@@ -163,50 +177,51 @@ and !$array['styles']['gradient']['rendered'] ) {
 ";
 	// record that this property group has been rendered
 	$array['styles']['gradient']['rendered'] = true;
+    $pie_relevant = true;
 }
 
 // border radius
-if ( ($property == 'radius_top_left' or 
-$property == 'radius_top_right' or 
-$property == 'radius_bottom_right' or 
-$property == 'radius_bottom_left') and
+if ( ($property == 'border_top_left_radius' or
+$property == 'border_top_right_radius' or
+$property == 'border_bottom_right_radius' or
+$property == 'border_bottom_left_radius') and
 !$array['styles']['radius']['rendered'] ) {
 	
 	// !important is a bit different for css3 - only one "i" per line - do another check
-	$sty['css_important'] = $this->tvr_css3_imp($section_name_slug, $css_selector_slug, $property_group_name, 'radius_bottom_left', $con, $mq_key);
+	$sty['css_important'] = $this->tvr_css3_imp($section_name_slug, $css_selector_slug, $property_group_name, 'border_bottom_left_radius', $con, $mq_key);
 
 	// top left
-	if (!empty($property_group_array['radius_top_left'])) {
-		$radius_top_left = $property_group_array['radius_top_left'];
+	if (!empty($property_group_array['border_top_left_radius'])) {
+		$radius_top_left = $property_group_array['border_top_left_radius'];
 	}
 	else {
 		$radius_top_left = 0;
 	}
-	$radius_top_left.= $this->check_unit($property_group_name, 'radius_top_left', $radius_top_left);
+	$radius_top_left.= $this->check_unit($property_group_name, 'border_top_left_radius', $radius_top_left);
 	// top right
-	if (!empty($property_group_array['radius_top_right'])) {
-		$radius_top_right = $property_group_array['radius_top_right'];
+	if (!empty($property_group_array['border_top_right_radius'])) {
+		$radius_top_right = $property_group_array['border_top_right_radius'];
 	}
 	else {
 		$radius_top_right = 0;
 	}
-	$radius_top_right.= $this->check_unit($property_group_name, 'radius_top_right', $radius_top_right);
+	$radius_top_right.= $this->check_unit($property_group_name, 'border_top_right_radius', $radius_top_right);
 	// bottom right
-	if (!empty($property_group_array['radius_bottom_right'])) {
-		$radius_bottom_right = $property_group_array['radius_bottom_right'];
+	if (!empty($property_group_array['border_bottom_right_radius'])) {
+		$radius_bottom_right = $property_group_array['border_bottom_right_radius'];
 	}
 	else {
 		$radius_bottom_right = 0;
 	}
-	$radius_bottom_right.= $this->check_unit($property_group_name, 'radius_bottom_right', $radius_bottom_right);
+	$radius_bottom_right.= $this->check_unit($property_group_name, 'border_bottom_right_radius', $radius_bottom_right);
 	// bottom left
-	if (!empty($property_group_array['radius_bottom_left'])) {
-		$radius_bottom_left = $property_group_array['radius_bottom_left'];
+	if (!empty($property_group_array['border_bottom_left_radius'])) {
+		$radius_bottom_left = $property_group_array['border_bottom_left_radius'];
 	}
 	else {
 		$radius_bottom_left = 0;
 	}
-	$radius_bottom_left.= $this->check_unit($property_group_name, 'radius_bottom_left', $radius_bottom_left);
+	$radius_bottom_left.= $this->check_unit($property_group_name, 'border_bottom_left_radius', $radius_bottom_left);
 	
 	$sty['data'].= $tab."	-webkit-border-radius: $radius_top_left $radius_top_right $radius_bottom_right $radius_bottom_left{$sty['css_important']};
 	{$tab}-moz-border-radius: $radius_top_left $radius_top_right $radius_bottom_right $radius_bottom_left{$sty['css_important']};
@@ -214,6 +229,7 @@ $property == 'radius_bottom_left') and
 ";
 	// record that this property group has been rendered
 	$array['styles']['radius']['rendered'] = true;
+    $pie_relevant = true;
 }
 
 // box shadow
@@ -264,6 +280,7 @@ $property == 'box_shadow_blur') and
 ";
  // record that this property group has been rendered
 	$array['styles']['box_shadow']['rendered'] = true;
+    $pie_relevant = true;
 	
 }
 
@@ -310,15 +327,17 @@ $property == 'text_shadow_blur') and
 	}
 	$text_shadow_blur.= $this->check_unit($property_group_name, 'text_shadow_blur', $text_shadow_blur);
 
+
     // allow for disabling text-shadow with "none" in color field
     if ($text_shadow_color == 'none'){
         $resolved_text_shadow = 'none';
     } else {
         $resolved_text_shadow = "$text_shadow_color $text_shadow_x $text_shadow_y $text_shadow_blur";
     }
-	
-	$sty['data'].= $tab."	text-shadow: $resolved_text_shadow{$sty['css_important']};
+
+    $sty['data'].= $tab."	text-shadow: $resolved_text_shadow{$sty['css_important']};
 ";
+
  // record that this property group has been rendered
 	$array['styles']['text_shadow']['rendered'] = true;
 }

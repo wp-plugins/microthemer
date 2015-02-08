@@ -374,7 +374,7 @@ var mcthmr_jscolor = {
                 //=sebcus autopopulate color with existing computed value
                 if (!valueElement.value){
                     var tvrCompCol = jQuery(valueElement).next('span.comp-style').text();
-                    if (tvrCompCol && tvrCompCol != '[mixed]'){
+                    if (tvrCompCol && tvrCompCol != '[mix]'){
                         valueElement.value = tvrCompCol;
                         updateField();
                     }
@@ -411,9 +411,9 @@ var mcthmr_jscolor = {
 				this.exportColor();
 			} else {
 				// if(!this.adjust) {
-				//=sebcus add excpetion for transparent background property value
-				if(!this.adjust || valueElement.value == 'transparent' || valueElement.value == 'none'
-                    || valueElement.value.match(/rgb\(|rgba\(/i)) {
+                //=sebcus add excpetion for transparent background property value
+                if(!this.adjust || valueElement.value == 'transparent' || valueElement.value == 'none'
+                    || valueElement.value.match(/rgb\s?\(|rgba\s?\(/i)) {
 					if(!this.fromString(valueElement.value, leaveValue)) {
 						styleElement.style.backgroundColor = styleElement.jscStyle.backgroundColor;
 						styleElement.style.color = styleElement.jscStyle.color;

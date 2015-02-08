@@ -1,0 +1,54 @@
+/*
+Syntax error: File to import not found or unreadable: susy/language/susy.
+              Load path: C:/Dropbox/www/clients/woats.co.uk/responsive/wp-content/themes/swdesign/scss/susy (DEPRECATED)
+        on line 4 of _susy.scss
+
+1: // Susy
+2: // ====
+3: 
+4: @import "susy/language/susy";
+
+Backtrace:
+_susy.scss:4
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/import_node.rb:66:in `rescue in import'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/import_node.rb:45:in `import'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/import_node.rb:28:in `imported_file'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/import_node.rb:37:in `css_import?'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/visitors/perform.rb:283:in `visit_import'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/stack.rb:79:in `block in with_base'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/stack.rb:121:in `with_frame'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/stack.rb:79:in `with_base'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/visitors/perform.rb:152:in `visit'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/visitors/base.rb:52:in `map'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/visitors/perform.rb:161:in `block in visit_children'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/visitors/perform.rb:173:in `with_environment'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/visitors/perform.rb:160:in `visit_children'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/visitors/perform.rb:180:in `visit_root'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/visitors/perform.rb:151:in `visit'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/visitors/perform.rb:8:in `visit'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/root_node.rb:36:in `css_tree'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/tree/root_node.rb:20:in `render'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/engine.rb:274:in `render'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/plugin/compiler.rb:414:in `update_stylesheet'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/plugin/compiler.rb:189:in `block in update_stylesheets'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/plugin/compiler.rb:186:in `each'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/plugin/compiler.rb:186:in `update_stylesheets'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/plugin.rb:82:in `update_stylesheets'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/exec.rb:489:in `watch_or_update'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/exec.rb:346:in `process_result'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/exec.rb:43:in `parse'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/lib/sass/exec.rb:22:in `parse!'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/sass-3.3.6/bin/scss:13:in `<top (required)>'
+C:/RailsInstaller/Ruby1.9.3/bin/scss:23:in `load'
+C:/RailsInstaller/Ruby1.9.3/bin/scss:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: File to import not found or unreadable: susy/language/susy.\A               Load path: C:/Dropbox/www/clients/woats.co.uk/responsive/wp-content/themes/swdesign/scss/susy (DEPRECATED)\A         on line 4 of _susy.scss\A \A 1: // Susy\A 2: // ====\A 3: \A 4: @import \"susy/language/susy\";"; }
