@@ -21,23 +21,24 @@ https://www.youtube.com/watch?v=HFxyzoMl-Ro
 **Microthemer Lite**
 
 Is a free trial that gives you full editing features and the same customer support paying users receive. The only difference is that it limits you to editing/creating 9 'selectors’ e.g.
-1. The site title
-2. The site description
-3. An image, or all images
-4. A link, or all links
-5. The search site input field
-6. The search site button
-7. A Post/Page
-8. The Sidebar
-9. The Footer
-10. **Or any other 9 elements/type of element, these are just examples**
+
+1. The site title.
+2. The site description.
+3. An image, or all images.
+4. A link, or all links.
+5. The search site input field.
+6. The search site button.
+7. A post/page.
+8. The sidebar.
+9. The footer.
+10. **Or any other 9 elements you choose, these are just examples**.
  
-(The full program allows you to edit an **unlimited** number of elements – read on to find out how)
+The full program allows you to edit an **unlimited** number of elements – read on to find out how.
 
 
 = What Can You Do With Microthemer & Who Is It For? =
 
-To style your theme simply double-click the thing you want to edit, and choose from over 80 style options to apply. This versatility means that you can use Microthemer to customize the appearance of any WordPress Theme or plugin content such as Contact Form 7 forms, or BuddyPress, or eCommerce shopping carts.
+To style your theme simply double-click the thing you want to edit, and choose from over 80 styling options to apply. This versatility means that you can use Microthemer to customize the appearance of any WordPress theme or plugin content such as Contact Form 7 forms, or BuddyPress, or eCommerce shopping carts.
 
 = Main Features = 
 
