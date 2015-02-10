@@ -2791,7 +2791,15 @@ Left Toolbar
 
 .v-left-button {
   height: 40px;
-  cursor: pointer; }
+  cursor: pointer;
+  display: block;
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important; }
+  .v-left-button:focus {
+    outline: none;
+    box-shadow: none; }
 
 #m-logo {
   cursor: pointer;
@@ -3079,7 +3087,6 @@ The selector wizard
   display: none;
   float: right;
   line-height: 1;
-  margin-right: 16px;
   padding: 13px 16px;
   font-weight: bold;
   border-right: 1px solid #e6e6e6; }
@@ -3088,7 +3095,7 @@ The selector wizard
   #adv-wizard-toggle span {
     float: left; }
   #adv-wizard-toggle .always-adv-wrap {
-    display: block;
+    display: none;
     padding-left: 10px; }
 
 /*--------------------------------------------------------------
@@ -3395,7 +3402,7 @@ The custom code editor
   .query-tabs .comp-mixed-table {
     visibility: hidden;
     display: block;
-    width: 160px;
+    min-width: 200px;
     text-align: left;
     position: absolute;
     font-weight: normal;
@@ -3417,17 +3424,46 @@ The custom code editor
       content: " ";
       display: block;
       clear: both; }
-  .query-tabs .mq-add-remove {
-    float: left;
-    margin-right: 6px;
+    .query-tabs .mq-button .tvr-icon {
+      float: right;
+      margin-left: 6px;
+      display: none !important; }
+      .query-tabs .mq-button .tvr-icon.mq-remove-all {
+        display: inline-block !important; }
+    .query-tabs .mq-button:hover .tvr-icon {
+      display: inline-block !important; }
+  .query-tabs .mq-add {
     background-image: url("../images/MT_sprite.png?v=23");
     background-repeat: no-repeat;
     background-position: -52px -131.2px;
     background-size: 1920px 1120px; }
-    .query-tabs .mq-add-remove:hover, .query-tabs .mq-add-remove.on {
+    .query-tabs .mq-add:hover, .query-tabs .mq-add.on {
       background-position: -52px -171.2px; }
-    .query-tabs .mq-add-remove.active {
+    .query-tabs .mq-add.active {
       background-position: -52px -211.2px; }
+  .query-tabs .mq-clear {
+    background-image: url("../images/MT_sprite.png?v=23");
+    background-repeat: no-repeat;
+    background-position: -852px -251.2px;
+    background-size: 1920px 1120px; }
+    .query-tabs .mq-clear:hover, .query-tabs .mq-clear.on {
+      background-position: -852px -291.2px; }
+    .query-tabs .mq-clear.active {
+      background-position: -852px -331.2px; }
+  .query-tabs .mq-remove {
+    background-image: url("../images/MT_sprite.png?v=23");
+    background-repeat: no-repeat;
+    background-position: -132px -251.2px;
+    background-size: 1920px 1120px;
+    opacity: .3; }
+    .query-tabs .mq-remove:hover, .query-tabs .mq-remove.on {
+      background-position: -132px -291.2px; }
+    .query-tabs .mq-remove.active {
+      background-position: -132px -331.2px; }
+  .query-tabs .mq-button.on .mq-add {
+    opacity: .3; }
+  .query-tabs .mq-button.on .mq-remove {
+    opacity: 1; }
   .query-tabs .mq-button-text {
     float: left;
     cursor: default; }

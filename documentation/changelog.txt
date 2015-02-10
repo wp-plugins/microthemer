@@ -1,5 +1,13 @@
 CHANGELOG
 
+3.1.6 (Feb 10, 2015)
+* Microthemer remembers your preference for showing/unshowing the advanced options of the selector wizard. No need for the checkbox now.
+* Microthemer remembers which tab of the advanced wizard you last used.
+* Microthemer remembers your preference for having the left toolbar expanded or closed.
+* Microthemer remembers the last viewed selector when reloading the page, even if you didn't apply styles to it.
+* The link back to the WordPress dashboard is a real link so that you can open it in a new tab with right-click.
+* The media query tabs editing menu options are more similar to the format used for editing folders and selectors. An additional 'clear' option has been added for clearing all the styles for a style group at once.
+
 3.1 (Feb 8, 2015)
 
 # Bugs Fixed

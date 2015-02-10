@@ -1615,6 +1615,16 @@ Left Toolbar
 .v-left-button {
   height:40px;
   cursor: pointer;
+  display: block;
+  -webkit-transition:none !important;
+  -moz-transition:none !important;
+  -o-transition:none !important;
+  transition:none !important;
+  &:focus {
+    outline: none;
+    box-shadow:none;
+  }
+
 }
 #m-logo {
   cursor: pointer;
@@ -1814,7 +1824,6 @@ The selector wizard
   }
   float:right;
   line-height:1;
-  margin-right: 16px;
   padding:13px 16px;
   font-weight: bold;
   border-right:1px solid $lightGrey;
@@ -1822,7 +1831,7 @@ The selector wizard
     float:left;
   }
   .always-adv-wrap {
-    display: block;
+    display: none; // it just remembers
     padding-left:10px;
   }
 }
@@ -2157,7 +2166,7 @@ The custom code editor
   .comp-mixed-table {
     visibility: hidden;
     display:block;
-    width: 160px;
+    min-width: 200px;
     text-align:left;
     position: absolute;
     font-weight:normal;
@@ -2180,11 +2189,39 @@ The custom code editor
       border-top:0;
     }
     @include susy-clearfix;
+    .tvr-icon {
+      float:right;
+      margin-left:6px;
+      display: none !important;
+      &.mq-remove-all {
+        display: inline-block !important;
+      }
+    }
+    &:hover {
+      .tvr-icon {
+        display: inline-block !important;
+      }
+    }
   }
-  .mq-add-remove {
-    float:left;
-    margin-right:6px;
+
+  .mq-add {
     @include state-sprite(2.3, 4.28);
+  }
+  .mq-clear {
+    @include state-sprite(22.3, 7.28);
+  }
+  .mq-remove {
+    @include state-sprite(4.3, 7.28);
+    opacity: .3;
+  }
+
+  .mq-button.on {
+    .mq-add {
+      opacity: .3;
+    }
+    .mq-remove {
+      opacity: 1;
+    }
   }
   .mq-button-text {
     float:left;

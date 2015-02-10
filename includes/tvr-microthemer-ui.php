@@ -100,12 +100,19 @@ if ($refresh_css){
 		$this->ie_notice();
 
         /*** Build Visual View ***/
+        if (empty($this->preferences['last_viewed_selector'])){
+            $last_viewed_selector = '';
+        } else {
+            $last_viewed_selector = $this->preferences['last_viewed_selector'];
+        }
         ?>
         <form method="post" name="tvr_microthemer_ui_save" id="tvr_microthemer_ui_save" autocomplete="off">
         <?php wp_nonce_field('tvr_microthemer_ui_save');?>
         <input type="hidden" name="action" value="tvr_microthemer_ui_save" />
         <input id="last-edited-selector" type="hidden" name="tvr_mcth[non_section][meta][last_edited_selector]"
                value="<?php echo $this->options['non_section']['meta']['last_edited_selector']; ?>" />
+        <input id="last-viewed-selector" type="hidden" name="tvr_mcth[non_section][meta][last_viewed_selector]"
+               value="<?php echo $last_viewed_selector; ?>" />
         <div id="visual-view" class="<?php echo $main_class; ?>">
 
             <div id="v-top-controls">
@@ -188,8 +195,16 @@ if ($refresh_css){
                     <span id="adv-wizard-toggle" class="adv-wizard-toggle">
                         <span class="adv-main-label link">Advanced options:</span>
                         <span class="always-adv-wrap">
-                            <input type="checkbox" id="always-adv-checkbox" name="always_advanced" value="1" />
-                            <span class="fake-checkbox"></span>
+                            <input type="checkbox" id="always-adv-checkbox" name="always_advanced" value="1"
+                                <?php
+                                $on = '';
+                                if (!empty($this->preferences['show_adv_wizard'])){
+                                   echo 'checked="checked"';
+                                    $on = 'on';
+                                }
+                                ?>
+                                />
+                            <span class="fake-checkbox <?php echo $on; ?>"></span>
                             <span class="ef-label">always show</span>
                         </span>
                     </span>
@@ -395,10 +410,10 @@ if ($refresh_css){
                     <div id="adv-tabs" class="query-tabs adv-tabs">
                         <?php
                         // save the configuration of the css tab
-                        if ( empty($this->options['non_section']['adv_wizard_focus'])) {
+                        if (empty($this->preferences['adv_wizard_tab'])){
                             $adv_wizard_focus = 'refine-targeting';
                         } else {
-                            $adv_wizard_focus = $this->options['non_section']['adv_wizard_focus'];
+                            $adv_wizard_focus = $this->preferences['adv_wizard_tab'];
                         }
                         $tab_headings = array(
                             'refine-targeting' => 'Targeting',
@@ -411,6 +426,7 @@ if ($refresh_css){
                             }
                             echo '<span class="adv-tab mq-tab adv-tab-'.$key.' show '.$active_c.'" rel="'.$key.'">'.$tab_headings[$key].'</span>';
                         }
+                        // this is redundant (preferences store focus) but kept for consistency with other tab remembering
                         ?>
                         <input class="adv-wizard-focus" type="hidden"
                                name="tvr_mcth[non_section][adv_wizard_focus]"
@@ -487,11 +503,20 @@ if ($refresh_css){
             <div id="v-left-controls-wrap">
 
                 <div id="m-logo" class="v-left-button m-logo" title="Visit themeover.com" rel="http://themeover.com/"></div>
-                <div id="v-left-controls" class="hidden show">
+
+                <?php
+                $show = '';
+                $showing = '';
+                if (!empty($this->preferences['left_menu_down'])){
+                    $show = 'show';
+                    $showing = 'showing';
+                }
+                ?>
+                <div id="v-left-controls" class="hidden <?php echo $show; ?>">
                     <?php echo $this->display_left_menu_icons(); ?>
                 </div>
 
-                <div id="toggle-left-menu" class="showing"></div>
+                <div id="toggle-left-menu" class="<?php echo $showing; ?>"></div>
 
             </div>
 

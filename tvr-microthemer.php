@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. posts, pages, contact forms, headers, footers, sidebars) down to the smallest detail (unlike typical theme options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress theme or plugin. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced theme and plugin customization.
-Version: 3.1
+Version: 3.1.6
 Author: Themeover
 Author URI: http://www.themeover.com
 */
@@ -45,13 +45,13 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 
-			var $version = '3.1';
+			var $version = '3.1.6';
             // set this to true if version saved in DB is different, other actions may follow if new v
             var $new_version = false;
 			var $minimum_wordpress = '3.6';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
-            var $dev_mode = true;
+            var $dev_mode = false;
             var $optimisation_test = false;
 			var $optionsName= 'microthemer_ui_settings';
 			var $preferencesName = 'preferences_themer_loader';
@@ -95,7 +95,7 @@ if ( is_admin() ) {
             // temporarily keep track of the tabs that are available for the property group.
             // This saves additional processing at various stages
             var $current_pg_group_tabs = array();
-			// set defualt preferences
+			// set defualt preferences (so these get reset with user pref reset)
 			var $default_preferences = array(
     			"jquery_source" => "native",
 				"gzip" => 1,
@@ -459,14 +459,24 @@ if ( is_admin() ) {
                     wp_enqueue_script( 'tvr_scrollbars', 'jquery' );
 					// load the main script
                     if ($_GET['page'] == $this->microthemeruipage){
-                        wp_register_script( 'tvr_mcth_custom_ui', $this->thispluginurl.'js/min/microthemer.js?v='.$this->version );
-                        //wp_register_script( 'tvr_mcth_custom_ui', $this->thispluginurl.'js/tvr-microthemer.js?v='.$this->version );
-                        wp_enqueue_script( 'tvr_mcth_custom_ui' );
+                        if (!$this->dev_mode){
+                            wp_register_script( 'tvr_mcth_custom_ui',
+                                $this->thispluginurl.'js/min/microthemer.js?v='.$this->version );
+                        } else {
+                            wp_register_script( 'tvr_mcth_custom_ui',
+                                $this->thispluginurl.'js/tvr-microthemer.js?v='.$this->version );
+                        }
+                        wp_enqueue_script( 'tvr_mcth_custom_ui');
                     }
                     // manage micro themes script
                     else {
-                        wp_register_script( 'tvr_mcth_custom_man', $this->thispluginurl.'js/min/manage-micro.js?v='.$this->version );
-                        //wp_register_script( 'tvr_mcth_custom_man', $this->thispluginurl.'js/tvr-manage-micro.js?v='.$this->version );
+                        if (!$this->dev_mode) {
+                            wp_register_script('tvr_mcth_custom_man',
+                                $this->thispluginurl . 'js/min/manage-micro.js?v=' . $this->version);
+                        } else {
+                            wp_register_script( 'tvr_mcth_custom_man',
+                                $this->thispluginurl.'js/tvr-manage-micro.js?v='.$this->version );
+                        }
                         wp_enqueue_script( 'tvr_mcth_custom_man' );
                     }
 				}
@@ -711,11 +721,16 @@ if ( is_admin() ) {
 				// default preferences
 				if (!$thePreferences = get_option($this->preferencesName)) {
 					$thePreferences = $this->default_preferences;
+                    // these don't get reset with user pref reset
 					$thePreferences['buyer_email'] = '';
 					$thePreferences['buyer_validated'] = false;
 					$thePreferences['active_theme'] = 'customised';
 					$thePreferences['theme_in_focus'] = '';
 					$thePreferences['preview_url'] = $this->site_url;
+                    $thePreferences['show_adv_wizard'] = 0;
+                    $thePreferences['adv_wizard_tab'] = 'refine-targeting';
+                    $thePreferences['left_menu_down'] = 0;
+                    $thePreferences['last_viewed_selector'] = '';
 					$thePreferences['user_set_mq'] = false;
                     $thePreferences['previous_version'] = $this->version;
 					// add_option rather than update_option (so autoload can be set to no)
@@ -1173,9 +1188,41 @@ if ( is_admin() ) {
                             // kill the program - this action is always requested via ajax. no message necessary
                             die();
                         }
+                        // wizard shows advanced options
+                        if (isset($_GET['show_adv_wizard'])) {
+                            $pref_array = array();
+                            $pref_array['show_adv_wizard'] = intval($_GET['show_adv_wizard']);
+                            $this->savePreferences($pref_array);
+                            // kill the program - this action is always requested via ajax. no message necessary
+                            die();
+                        }
+                        // remember selector wizard tab
+                        if (isset($_GET['adv_wizard_tab'])) {
+                            $pref_array = array();
+                            $pref_array['adv_wizard_tab'] = htmlentities($_GET['adv_wizard_tab']);
+                            $this->savePreferences($pref_array);
+                            // kill the program - this action is always requested via ajax. no message necessary
+                            die();
+                        }
+
                         // left menu being up or down
+                        if (isset($_GET['left_menu_down'])) {
+                            $pref_array = array();
+                            $pref_array['left_menu_down'] = intval($_GET['left_menu_down']);
+                            $this->savePreferences($pref_array);
+                            // kill the program - this action is always requested via ajax. no message necessary
+                            die();
+                        }
 
                         // last viewed selector
+                        if (isset($_GET['last_viewed_selector'])) {
+                            $pref_array = array();
+                            $pref_array['last_viewed_selector'] = htmlentities($_GET['last_viewed_selector']);
+                            $this->savePreferences($pref_array);
+                            // kill the program - this action is always requested via ajax. no message necessary
+                            die();
+                        }
+
 
                         // download pack
                         if (!empty($_GET['action']) and
@@ -2378,8 +2425,8 @@ if ( is_admin() ) {
                     <div class="program-docs v-left-button show-dialog" rel="program-docs"
                     title="Learn how to use Microthemer"></div>
 
-                    <div class="back-to-wordpress v-left-button" title="Return to WordPress dashboard"
-                    rel="'.$this->wp_blog_admin_url.'"></div>
+                    <a class="back-to-wordpress v-left-button" title="Return to WordPress dashboard"
+                    href="'.$this->wp_blog_admin_url.'"></a>
                 ';
                 return $html;
             }
@@ -3105,7 +3152,9 @@ if ( is_admin() ) {
                     value="'.$property_group_name.'"
                     name="tvr_mcth['. $section_name.']['.$css_selector.'][all_devices]['.$property_group_name.']"
                     '.$checked.' />
-                    <span class="mq-add-remove tvr-icon" rel="all-devices|All Devices" title="Add/remove tab"></span>
+                    <span class="mq-remove tvr-icon" rel="all-devices|All Devices" title="Remove tab"></span>
+                    <span class="mq-clear tvr-icon" rel="all-devices|All Devices" title="Clear tab styles"></span>
+                    <span class="mq-add tvr-icon" rel="all-devices|All Devices" title="Add tab"></span>
                     <span class="mq-button-text">All Devices</span>
 
                 </span>';
@@ -3122,7 +3171,9 @@ if ( is_admin() ) {
                         $property_group_state = '';
                     }
                     $html.= '<span class="mq-button mqb-'.$key.' '.$property_group_state.'" title="'.$m_query['query'].'">
-                    <span class="mq-add-remove mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="Add/remove tab"></span>
+                    <span class="mq-remove mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="Remove tab"></span>
+                    <span class="mq-clear mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="Clear tab styles"></span>
+                    <span class="mq-add mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="Add tab"></span>
                     <span class="mq-button-text">'.$m_query['label'].'</span>
 
                     </span>';
@@ -3130,9 +3181,9 @@ if ( is_admin() ) {
                 }
                 // remove all option
                 $html.= '
-                <span class="mq-button remove-all" title="Delete all &quot;'.ucwords($property_group_name).'&quot; styling options for this selector">
+                <span class="mq-button remove-all" title="Remove all &quot;'.ucwords($property_group_name).'&quot; styling options for this selector">
                     <span class="mq-remove-all tvr-icon delete-icon"></span>
-                    <span class="mq-button-text mq-remove-all link">Delete All</span>
+                    <span class="mq-button-text mq-remove-all link">Remove all tabs</span>
                 </span>';
 
                 $html.='</span>';
@@ -5407,7 +5458,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '3.1';
+			var $version = '3.1.6';
 
 			/**
 			* PHP 4 Compatible Constructor
@@ -5614,8 +5665,13 @@ if (!is_admin()) {
 			function add_js() {
 				if ( is_user_logged_in() and TVR_MICRO_VARIANT == 'themer') {
 					wp_enqueue_script( 'jquery' );
-					//wp_register_script( 'tvr_mcth_overlay', $this->thispluginurl.'js/overlay/jquery.overlay.js?v='.$this->version, array('jquery') );
-                    wp_register_script( 'tvr_mcth_overlay', $this->thispluginurl.'js/overlay/min/jquery.overlay.js?v='.$this->version, array('jquery') );
+                    if (!$this->dev_mode) {
+                        wp_register_script( 'tvr_mcth_overlay',
+                            $this->thispluginurl.'js/overlay/min/jquery.overlay.js?v='.$this->version, array('jquery') );
+                    } else {
+                        wp_register_script( 'tvr_mcth_overlay',
+                            $this->thispluginurl.'js/overlay/jquery.overlay.js?v='.$this->version, array('jquery') );
+                    }
 					wp_enqueue_script( 'tvr_mcth_overlay' );
 				}
 			}

@@ -16,10 +16,11 @@ A visual theme editor that allows you to responsively customize the appearance o
 
 Microthemer is a feature-rich visual design plugin for customizing the appearance of any WordPress theme or plugin content, e.g. contact forms, down to the smallest detail. For CSS coders, Microthemer is a proficiency tool that comes with the ACE code editor with syntax highlighting and firebug-like computed CSS reporting. Now you can inspect and edit in one place. For non-programmers, Microthemer's intuitive interface and 'double-click to edit' features allow you to change the appearance of your website without writing a single line of code. Our tutorials and documentation will help you start in just minutes and our support team is there for you if you have any questions.
 
+**Main Features in 99 seconds**
+
 https://www.youtube.com/watch?v=HFxyzoMl-Ro
 
 **Microthemer Lite**
-
 Is a free trial that gives you full editing features and the same customer support paying users receive. The only difference is that it limits you to editing/creating 9 'selectors’ e.g.
 
 1. The site title.
@@ -99,6 +100,16 @@ Microthemer has built-in documentation! Just click the help icon (top right of t
 View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-changelog-3-x/" target="_blank">Microthemer's Changelog here</a>
 
 == Upgrade Notice ==
+
+3.1.6 (Feb 10, 2015)
+
+# Enhancements
+* Microthemer remembers your preference for showing/unshowing the advanced options of the selector wizard. No need for the checkbox now.
+* Microthemer remembers which tab of the advanced wizard you last used.
+* Microthemer remembers your preference for having the left toolbar expanded or closed.
+* Microthemer remembers the last viewed selector when reloading the page, even if you didn't apply styles to it.
+* The link back to the WordPress dashboard is a real link so that you can open it in a new tab with right-click.
+* The media query tabs editing menu options are more similar to the format used for editing folders and selectors. An additional 'clear' option has been added for clearing all the styles for a style group at once.
 
 3.1 (Feb 8, 2015)
 
