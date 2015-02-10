@@ -1,6 +1,17 @@
 CHANGELOG
 
+3.2.1 (Feb 10, 2015 - later in the afternoon)
+
+# Bugs Fixed
+* The selector wizard displays link :pseudo classes in the correct order (that corresponds to the position of the slider handle)
+* An undefined variable could throw a warning with strict error reporting server settings enabled.
+* Unnecessary debug output was being generated behind the scenes. And unnecessary source file for a pollyfill were included.
+* The selector wizard caused the manual 'Add Selector' options to be expanded when they needn't be.
+* Manual selector values were not being cleared from the input fields upon 'cancel'
+
 3.1.6 (Feb 10, 2015)
+
+# Enhancements
 * Microthemer remembers your preference for showing/unshowing the advanced options of the selector wizard. No need for the checkbox now.
 * Microthemer remembers which tab of the advanced wizard you last used.
 * Microthemer remembers your preference for having the left toolbar expanded or closed.

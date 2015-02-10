@@ -20,8 +20,7 @@ Microthemer is a feature-rich visual design plugin for customizing the appearanc
 
 https://www.youtube.com/watch?v=HFxyzoMl-Ro
 
-**Microthemer Lite**
-Is a free trial that gives you full editing features and the same customer support paying users receive. The only difference is that it limits you to editing/creating 9 'selectors’ e.g.
+**Microthemer Lite** is a free trial that gives you full editing features and the same customer support paying customers receive. The only difference is that it limits you to editing/creating 9 'selectors’ e.g.
 
 1. The site title.
 2. The site description.
@@ -100,6 +99,15 @@ Microthemer has built-in documentation! Just click the help icon (top right of t
 View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-changelog-3-x/" target="_blank">Microthemer's Changelog here</a>
 
 == Upgrade Notice ==
+
+3.2.1 (Feb 10, 2015 - later in the afternoon)
+
+# Bugs Fixed
+* The selector wizard displays link :pseudo classes in the correct order (that corresponds to the position of the slider handle)
+* An undefined variable could throw a warning with strict error reporting server settings enabled.
+* Unnecessary debug output was being generated behind the scenes. And unnecessary source file for a pollyfill were included.
+* The selector wizard caused the manual 'Add Selector' options to be expanded when they needn't be.
+* Manual selector values were not being cleared from the input fields upon 'cancel'
 
 3.1.6 (Feb 10, 2015)
 

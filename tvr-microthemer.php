@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. posts, pages, contact forms, headers, footers, sidebars) down to the smallest detail (unlike typical theme options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress theme or plugin. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced theme and plugin customization.
-Version: 3.1.6
+Version: 3.2.1
 Author: Themeover
 Author URI: http://www.themeover.com
 */
@@ -18,6 +18,11 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 // define plugin variation
 if (!defined('TVR_MICRO_VARIANT')) {
 	define('TVR_MICRO_VARIANT', 'themer');
+}
+
+// define dev mode
+if (!defined('TVR_DEV_MODE')) {
+    define('TVR_DEV_MODE', false);
 }
 
 // define unique id for media query keys
@@ -45,13 +50,12 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 
-			var $version = '3.1.6';
+			var $version = '3.2.1';
             // set this to true if version saved in DB is different, other actions may follow if new v
             var $new_version = false;
 			var $minimum_wordpress = '3.6';
 			var $users_wp_version = 0;
 			var $page_prefix = '';
-            var $dev_mode = false;
             var $optimisation_test = false;
 			var $optionsName= 'microthemer_ui_settings';
 			var $preferencesName = 'preferences_themer_loader';
@@ -459,7 +463,7 @@ if ( is_admin() ) {
                     wp_enqueue_script( 'tvr_scrollbars', 'jquery' );
 					// load the main script
                     if ($_GET['page'] == $this->microthemeruipage){
-                        if (!$this->dev_mode){
+                        if (!TVR_DEV_MODE){
                             wp_register_script( 'tvr_mcth_custom_ui',
                                 $this->thispluginurl.'js/min/microthemer.js?v='.$this->version );
                         } else {
@@ -470,7 +474,7 @@ if ( is_admin() ) {
                     }
                     // manage micro themes script
                     else {
-                        if (!$this->dev_mode) {
+                        if (!TVR_DEV_MODE) {
                             wp_register_script('tvr_mcth_custom_man',
                                 $this->thispluginurl . 'js/min/manage-micro.js?v=' . $this->version);
                         } else {
@@ -1311,7 +1315,7 @@ if ( is_admin() ) {
                             parse_str($_POST['tvr_serialized_data'], $this->serialised_post); // for debugging
                         }
 
-                        $debug = true;
+                        $debug = false;
                         if ($debug){
                             echo '<pre>';
                             print_r($this->serialised_post);
@@ -5458,7 +5462,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '3.1.6';
+			var $version = '3.2.1';
 
 			/**
 			* PHP 4 Compatible Constructor
@@ -5665,7 +5669,7 @@ if (!is_admin()) {
 			function add_js() {
 				if ( is_user_logged_in() and TVR_MICRO_VARIANT == 'themer') {
 					wp_enqueue_script( 'jquery' );
-                    if (!$this->dev_mode) {
+                    if (!TVR_DEV_MODE) {
                         wp_register_script( 'tvr_mcth_overlay',
                             $this->thispluginurl.'js/overlay/min/jquery.overlay.js?v='.$this->version, array('jquery') );
                     } else {
