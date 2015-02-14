@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. posts, pages, contact forms, headers, footers, sidebars) down to the smallest detail (unlike typical theme options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress theme or plugin. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced theme and plugin customization.
-Version: 3.2.1
+Version: 3.2.4
 Author: Themeover
 Author URI: http://www.themeover.com
 */
@@ -50,7 +50,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 
-			var $version = '3.2.1';
+			var $version = '3.2.4';
             // set this to true if version saved in DB is different, other actions may follow if new v
             var $new_version = false;
 			var $minimum_wordpress = '3.6';
@@ -1666,7 +1666,10 @@ if ( is_admin() ) {
                                 '<p>Your email address could not be validated. Please try the following:</p>
                                 <ul>
                                     <li>Make sure you are entering your <b>PayPal email address</b>
-                                    (which may be different from your themeover.com member email address you registered with)</li>
+                                    (which may be different from your themeover.com member email address you registered with,
+                                    or the email address you provided when downloading the free trial). The correct email
+                                    address to unlock the program will be shown on
+                                    <a href="http://rebrand.themeover.com/login/">My Downloads</a></li>
                                     <li>If you purchased Microthemer from <b>CodeCanyon</b>, please send us a
                                     "Validate my email" message via the contact form on the right hand side of
                                     <a target="_blank" href="http://codecanyon.net/user/themeover">this page</a>
@@ -1686,11 +1689,11 @@ if ( is_admin() ) {
                                 </ul>
                                 <p>If none of the above solve your problem please send WP login details for the site you\'re
                                  working on using <a target="_blank"
-                                 href="https://themeover.com/support/pre-sales-enquiries/">this
+                                 href="https://themeover.com/support/contact/">this
                                  secure contact form</a>. Please remember to include the URL to your website along
                                  with the username and password. If you\'d prefer not to provide login details
                                  please send us an email via the <a target="_blank"
-                                 href="https://themeover.com/support/pre-sales-enquiries/">
+                                 href="https://themeover.com/support/contact/">
                                  contact form</a> to discuss alternative measures.</p>'
                             );
                         }
@@ -3252,6 +3255,7 @@ if ( is_admin() ) {
 				if (!empty($this->propertyoptions[$property_group_name][$property]['default_unit']) and
 				$this->propertyoptions[$property_group_name][$property]['default_unit'] == 'px' and
 				is_numeric($value) and
+                //strpos('%', $value) === false and
 				$value != 0) {
 					$unit = 'px';
 				}
@@ -5462,7 +5466,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '3.2.1';
+			var $version = '3.2.4';
 
 			/**
 			* PHP 4 Compatible Constructor

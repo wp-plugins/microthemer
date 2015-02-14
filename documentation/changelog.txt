@@ -1,5 +1,13 @@
 CHANGELOG
 
+3.2.4 (Feb 14, 2015)
+
+# Bugs Fixed
+* When saving different styles in quick succession, the latest style change wasn't always saved if a save was already in progress. Now the saves queue up to ensure that the latest setting applies.
+* The selector wizard could fail to show if other Javascripts altered the format of the computed CSS data jQuery returned.
+* The selector wizard could also fail to show after double-clicking in Chrome under some circumstances.
+
+
 3.2.1 (Feb 10, 2015 - later in the afternoon)
 
 # Bugs Fixed
