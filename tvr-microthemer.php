@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. posts, pages, contact forms, headers, footers, sidebars) down to the smallest detail (unlike typical theme options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress theme or plugin. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced theme and plugin customization.
-Version: 3.2.4
+Version: 3.3.7
 Author: Themeover
 Author URI: http://www.themeover.com
 */
@@ -50,7 +50,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 
-			var $version = '3.2.4';
+			var $version = '3.3.7';
             // set this to true if version saved in DB is different, other actions may follow if new v
             var $new_version = false;
 			var $minimum_wordpress = '3.6';
@@ -126,6 +126,7 @@ if ( is_admin() ) {
 			var $unq_base = '';
 			var $default_m_queries = array();
             var $mobile_first_mqs = array();
+            var $mobile_first_semantic_mqs = array();
             var $mq_sets = array();
             // set default custom code options (todo make use of this array throughout the program)
             var $custom_code = array(
@@ -255,9 +256,9 @@ if ( is_admin() ) {
                         "min" => 1200,
                         "max" => 0)
                 );
-                $this->mq_sets['Desktop-first device MQs'] = $this->default_m_queries;
-                $this->mq_sets['Mobile-first device MQs'] = $this->mobile_first_mqs;
-                $this->mq_sets['Mobile-first semantic MQs'] = $this->mobile_first_semantic_mqs;
+                $this->mq_sets['Desktop_first_device_MQs'] = $this->default_m_queries;
+                $this->mq_sets['Mobile_first_device_MQs'] = $this->mobile_first_mqs;
+                $this->mq_sets['Mobile_first_semantic_MQs'] = $this->mobile_first_semantic_mqs;
 
                 // get the directory paths
                 include dirname(__FILE__) .'/get-dir-paths.inc.php';
@@ -1595,8 +1596,11 @@ if ( is_admin() ) {
                         }
                         // are we merging/overwriting with a new media query set
                         if (!empty($_POST['tvr_preferences']['load_mq_set'])){
+                            print_r($this->mq_sets);
                             $action = 'load_set';
-                            $new_mq_set = $this->mq_sets[$_POST['tvr_preferences']['load_mq_set']];
+                            $new_set = str_replace(' ', '_', $_POST['tvr_preferences']['load_mq_set']);
+                            $new_set = str_replace('_(default)', '', $new_set);
+                            $new_mq_set = $this->mq_sets[$new_set];
                             if (!empty($_POST['tvr_preferences']['overwrite_existing_mqs'])){
                                 $pref_array['m_queries'] = $new_mq_set;
                                 $load_action = 'replaced';
@@ -1626,7 +1630,8 @@ if ( is_admin() ) {
                                 case 'load_set':
                                     $this->log(
                                         'Media query set loaded',
-                                        '<p>A new media query set '.$load_action.' your existing media queries</p>',
+                                        '<p>A new media query set '.$load_action.' your existing
+                                        media queries: '.htmlentities($_POST['tvr_preferences']['load_mq_set']).'</p>',
                                         'notice'
                                     );
                                     break;
@@ -3153,7 +3158,7 @@ if ( is_admin() ) {
                 }
 				// All devices checkbox
                 $html.='<span class="mq-options">
-                <span class="mq-button mqb-all-devices '.$property_group_state.'" title="No Media Query">';
+                <span class="mq-button mqb-all-devices '.$property_group_state.'" title="Styles will apply to all screen sizes">';
 
                     $html.='<input class="style-config checkbox all-toggle" type="checkbox" autocomplete="off"
                     value="'.$property_group_name.'"
@@ -3162,7 +3167,7 @@ if ( is_admin() ) {
                     <span class="mq-remove tvr-icon" rel="all-devices|All Devices" title="Remove tab"></span>
                     <span class="mq-clear tvr-icon" rel="all-devices|All Devices" title="Clear tab styles"></span>
                     <span class="mq-add tvr-icon" rel="all-devices|All Devices" title="Add tab"></span>
-                    <span class="mq-button-text">All Devices</span>
+                    <span class="mq-button-text mq-add" rel="all-devices|All Devices" title="Styles will apply to all screen sizes">All Devices</span>
 
                 </span>';
 				// Media query checkboxes
@@ -3181,7 +3186,7 @@ if ( is_admin() ) {
                     <span class="mq-remove mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="Remove tab"></span>
                     <span class="mq-clear mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="Clear tab styles"></span>
                     <span class="mq-add mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="Add tab"></span>
-                    <span class="mq-button-text">'.$m_query['label'].'</span>
+                    <span class="mq-button-text mq-specific mq-add"  rel="'.$key.'|'.$m_query['label'].'" title="'.$m_query['query'].'">'.$m_query['label'].'</span>
 
                     </span>';
 
@@ -5466,7 +5471,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '3.2.4';
+			var $version = '3.3.7';
 
 			/**
 			* PHP 4 Compatible Constructor

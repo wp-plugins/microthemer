@@ -24,7 +24,7 @@ foreach ($this->mq_sets as $set => $junk){
         TvrCombo.directories = [];
     }
     TvrCombo.cur_folders = [];
-    TvrCombo.mq_sets = <?php echo json_encode($mq_sets); ?>;
+    TvrCombo.mq_sets = <?php echo json_encode(str_replace('_', ' ', $mq_sets)); ?>;
 </script>
 
 
@@ -684,7 +684,7 @@ if ($refresh_css){
                     </ul>
 
 
-                    <span id="add-m-query" class="tvr-button add-m-query" rel="<?php echo $i; ?>">+ New</span>
+
 
                     <div class="heading">Media Queries</div>
 
@@ -692,26 +692,30 @@ if ($refresh_css){
                         <ul id="mq-list">
                             <?php
                             $i = 0;
-                            foreach ($this->preferences['m_queries'] as $key => $m_query) {
-                                ?>
-                                <li class="mq-row mq-row-<?php echo $i; ?>">
-                                    <span class="del-m-query tvr-icon delete-icon"></span>
-                                    <div class="mq-edit-wrap mq-label-wrap"><label>Label:</label>
-                                        <input class="m-label" type="text" name="tvr_preferences[m_queries][<?php echo $key; ?>][label]"
-                                               value="<?php echo esc_attr($m_query['label']); ?>" /></div>
-                                    <div class="mq-edit-wrap mq-query-wrap"><label>Media Query:</label>
-                                        <input class="m-code" type="text" name="tvr_preferences[m_queries][<?php echo $key; ?>][query]"
-                                               value="<?php echo esc_attr($m_query['query']); ?>" /></div>
-                                </li>
-                                <?php
-                                ++$i;
+
+                            if (is_array($this->preferences['m_queries'])){
+                                foreach ($this->preferences['m_queries'] as $key => $m_query) {
+                                    ?>
+                                    <li class="mq-row mq-row-<?php echo $i; ?>">
+                                        <span class="del-m-query tvr-icon delete-icon"></span>
+                                        <div class="mq-edit-wrap mq-label-wrap"><label>Label:</label>
+                                            <input class="m-label" type="text" name="tvr_preferences[m_queries][<?php echo $key; ?>][label]"
+                                                   value="<?php echo esc_attr($m_query['label']); ?>" /></div>
+                                        <div class="mq-edit-wrap mq-query-wrap"><label>Media Query:</label>
+                                            <input class="m-code" type="text" name="tvr_preferences[m_queries][<?php echo $key; ?>][query]"
+                                                   value="<?php echo esc_attr($m_query['query']); ?>" /></div>
+                                    </li>
+                                    <?php
+                                    ++$i;
+                                }
                             }
+
                             ?>
                         </ul>
 
+                        <span id="add-m-query" class="tvr-button add-m-query" rel="<?php echo $i; ?>">+ New</span>
+
                         <input type="hidden" name="tvr_preferences[user_set_mq]" value="1" />
-
-
                         <span id="unq-base" rel="<?php echo $this->unq_base; ?>"></span>
 
                     </div>

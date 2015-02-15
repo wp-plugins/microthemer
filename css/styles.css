@@ -2163,7 +2163,6 @@ a.no-line {
     display: block;
     clear: both; }
 #edit-media-queries-dialog #add-m-query {
-  float: right;
   margin-bottom: 1em; }
 
 #m-queries {
@@ -2525,6 +2524,9 @@ Quick Selector Nav Arrows
       display: inline-block;
       margin-left: 10px;
       cursor: pointer; }
+      #tvr-nav #current-selector span.breadcrumb-arrow {
+        color: #999998;
+        cursor: default; }
       #tvr-nav #current-selector span.first-breadcrumb {
         margin-left: 0; }
     #tvr-nav #current-selector .sec-in-focus {
@@ -3432,14 +3434,14 @@ The custom code editor
         display: inline-block !important; }
     .query-tabs .mq-button:hover .tvr-icon {
       display: inline-block !important; }
-  .query-tabs .mq-add {
+  .query-tabs .mq-add.tvr-icon {
     background-image: url("../images/MT_sprite.png?v=23");
     background-repeat: no-repeat;
     background-position: -52px -131.2px;
     background-size: 1920px 1120px; }
-    .query-tabs .mq-add:hover, .query-tabs .mq-add.on {
+    .query-tabs .mq-add.tvr-icon:hover, .query-tabs .mq-add.tvr-icon.on {
       background-position: -52px -171.2px; }
-    .query-tabs .mq-add.active {
+    .query-tabs .mq-add.tvr-icon.active {
       background-position: -52px -211.2px; }
   .query-tabs .mq-clear {
     background-image: url("../images/MT_sprite.png?v=23");
@@ -3460,13 +3462,14 @@ The custom code editor
       background-position: -132px -291.2px; }
     .query-tabs .mq-remove.active {
       background-position: -132px -331.2px; }
-  .query-tabs .mq-button.on .mq-add {
+  .query-tabs .mq-button.on .mq-add.tvr-icon {
     opacity: .3; }
   .query-tabs .mq-button.on .mq-remove {
     opacity: 1; }
   .query-tabs .mq-button-text {
     float: left;
-    cursor: default; }
+    cursor: default;
+    cursor: pointer; }
   .query-tabs .mq-button.on {
     font-weight: bold;
     color: #18202a; }

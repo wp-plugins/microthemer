@@ -100,6 +100,25 @@ View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-cha
 
 == Upgrade Notice ==
 
+3.3.7 (Feb 15, 2015)
+
+# Changes
+* Folders and selector are APPENDED instead of PRE-PENDED when added to the interface. Rationale: It keeps folders and selectors in the chronological order that they were created, the back and forward quick nav buttons work more intuitively, if two selectors have equal specificity the latter will override the previously created one.
+* For consistency, the same goes for custom media queries. They are appended, and the 'NEW' button has been moved below them.
+* Only folders that have 1 or more selectors are auto-checked on the settings export screen.
+
+# Bugs Fixed
+* All folders/selectors/custom media queries would flash for a split second when adding a new item to them.
+* There is a known bug in firefox where media queries don't take effect on the exact pixel specified. Styles set within a media query tab didn't always seem to take an effect at 767px for instance when the media query specified a max-width of 767px (as it does on the 'Tablet & Phone' media query). Only at 766.7px do the styles work. For now, I've implemented a fix for this (automatically subtracting 0.3px from the preview screen width). I am following this bug on bugzilla. I will remove the temporary fix when it is no longer necessary.
+* Unnecessary console.logs functions for debugging were included in the previous release which could cause problems for IE9.
+* The media query tabs can be added by clicking the actual text in the tab management menu (not just the + icon). This feels more natural.
+* The folder >> Selector breadcrumbs arrows have the default mouse cursor on hover to indicate that they're not clickable.
+* Microthemer would get stuck when deleting the last selector while in 'quick edit folder' view.
+* The new 'media query sets' loading feature had some teething problems.
+* Using the following CSS pseudo selectors caused problems: :before, ::before, :after, ::after. Thanks again to Antonio for spotting this.
+* The screen-width slider didn't show with the selector wizard 100% of the time.
+* The computed CSS values for the single double-clicked element were not recalculated following a screen width refresh.
+
 3.2.4 (Feb 14, 2015)
 
 # Bugs Fixed
