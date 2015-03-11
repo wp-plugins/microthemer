@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. posts, pages, contact forms, headers, footers, sidebars) down to the smallest detail (unlike typical theme options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress theme or plugin. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced theme and plugin customization.
-Version: 3.3.7
+Version: 3.4.1
 Author: Themeover
 Author URI: http://www.themeover.com
 */
@@ -50,7 +50,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 
-			var $version = '3.3.7';
+			var $version = '3.4.1';
             // set this to true if version saved in DB is different, other actions may follow if new v
             var $new_version = false;
 			var $minimum_wordpress = '3.6';
@@ -731,7 +731,7 @@ if ( is_admin() ) {
 					$thePreferences['buyer_validated'] = false;
 					$thePreferences['active_theme'] = 'customised';
 					$thePreferences['theme_in_focus'] = '';
-					$thePreferences['preview_url'] = $this->site_url;
+					$thePreferences['preview_url'] = $this->home_url;
                     $thePreferences['show_adv_wizard'] = 0;
                     $thePreferences['adv_wizard_tab'] = 'refine-targeting';
                     $thePreferences['left_menu_down'] = 0;
@@ -1097,6 +1097,7 @@ if ( is_admin() ) {
                 }
                 if (is_array($this->globalmessage)){
                     // sort the logs by type
+                    $logs = array();
                     foreach ($this->globalmessage as $key => $log){
                        $logs[$log['type']][] = $log;
                     }
@@ -1643,7 +1644,7 @@ if ( is_admin() ) {
 
                     // validate email
                     if (isset($_POST['tvr_validate_submit'])) {
-                        $params = 'email='.$_POST['tvr_preferences']['buyer_email'].'&domain='.home_url();
+                        $params = 'email='.$_POST['tvr_preferences']['buyer_email'].'&domain='.$this->home_url;
                         $validation = wp_remote_fopen('http://themeover.com/wp-content/tvr-auto-update/validate.php?'.$params);
                         if ($validation) {
                             $_POST['tvr_preferences']['buyer_validated'] = 1;
@@ -5471,7 +5472,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '3.3.7';
+			var $version = '3.4.1';
 
 			/**
 			* PHP 4 Compatible Constructor
@@ -5511,11 +5512,11 @@ if (!is_admin()) {
 						add_filter('wp_nav_menu', array(&$this, 'add_first_and_last'));
 					}
 				}
-				// replace active theme styles.css with microthemer reset.css (if user specifies)
-				if ($this->preferences['disable_parent_css'] == 1) {
+				// filter the HTML just before it's sent to the browser - no need for now.
+				/*if (false) {
 					add_action('get_header', array(&$this, 'tvr_head_buffer_start'));
 					add_action('wp_head', array(&$this, 'tvr_head_buffer_end'));
-				}
+				}*/
 
 			} // end constructor
 
@@ -5680,10 +5681,10 @@ if (!is_admin()) {
 					wp_enqueue_script( 'jquery' );
                     if (!TVR_DEV_MODE) {
                         wp_register_script( 'tvr_mcth_overlay',
-                            $this->thispluginurl.'js/overlay/min/jquery.overlay.js?v='.$this->version, array('jquery') );
+                            $this->thispluginurl.'js/min/jquery.overlay.js?v='.$this->version, array('jquery') );
                     } else {
                         wp_register_script( 'tvr_mcth_overlay',
-                            $this->thispluginurl.'js/overlay/jquery.overlay.js?v='.$this->version, array('jquery') );
+                            $this->thispluginurl.'js/jquery.overlay.js?v='.$this->version, array('jquery') );
                     }
 					wp_enqueue_script( 'tvr_mcth_overlay' );
 				}

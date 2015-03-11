@@ -5,6 +5,13 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 }
 // define('WINABSPATH', str_replace("\\", "/", ABSPATH) );  // required for Windows & XAMPP
 
+/* discussion of when to use site_url vs home_url: http://premium.wpmudev.org/forums/topic/when-referencing-content-your-plugins-seem-to-use-site_url
+See also: http://codex.wordpress.org/Giving_WordPress_Its_Own_Directory
+- Use site_url for referencing actual files paths (so currently correct for most of paths below)
+- Use home_url for loading the homepage (site preview should use this)
+- considerations: multi-site, SSL
+*/
+
 // check ssl
 if ( ! function_exists( 'is_ssl' ) ) {
     function is_ssl() {
@@ -49,8 +56,7 @@ $wp_plugin_url = plugins_url();
 //$wp_plugin_dir = $wp_content_dir . '/plugins/';
 $wp_plugin_dir = str_replace($site_url, ABSPATH, $wp_plugin_url);
 $wp_plugin_dir = str_replace($https_site_url, ABSPATH, $wp_plugin_dir);
-$wpmu_plugin_url = $wp_content_url . '/mu-plugins/';
-$wpmu_plugin_dir = $wp_content_dir . '/mu-plugins/';
+
 // add variables to class
 $this->wp_content_url = $wp_content_url;
 $this->wp_content_dir = $wp_content_dir;
@@ -61,6 +67,7 @@ $this->thisplugindir = $wp_plugin_dir .'/' . dirname(plugin_basename(__FILE__)).
 
 // for creating root relative paths (good for mixed ssl)
 $this->site_url = site_url();
+$this->home_url = home_url();
 
 // save the admin dashboard url
 $this->wp_admin_url = network_admin_url();

@@ -100,6 +100,14 @@ View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-cha
 
 == Upgrade Notice ==
 
+3.4.1 (Mar 11, 2015)
+
+Bugs fixed
+* Double-clicking an element with text no longer highlights the actual word clicked, which resulted in confusing highlighting.
+* Microthemer initially uses home_url() to load the site preview as site_url() can sometimes be incorrect.
+* Possibility of an undefined variable $logs on line 1110 of tvr-microthemer.php
+* Possibility of an undefined index disable_parent_css on line 5515 of tvr-microthemer.php
+
 3.3.7 (Feb 15, 2015)
 
 # Changes

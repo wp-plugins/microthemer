@@ -218,7 +218,7 @@ if ($refresh_css){
                             <span class="cta-label">Buy</span>
                         </a>
                         <span class="cta-button unlock-cta tvr-button show-dialog"
-                              title="Enter your PayPal email address to unlock the full program" rel="unlock-microthemer">
+                              title="Enter your email address to unlock the full program" rel="unlock-microthemer">
                             <span class="tvr-icon show-dialog" rel="unlock-microthemer"></span>
                             <span class="cta-label show-dialog" rel="unlock-microthemer">Unlock</span>
                         </span>
@@ -393,12 +393,12 @@ if ($refresh_css){
                 <div id="v-frontend" title="Double-click an element to create editing options for it">
                     <?php
                     // resolve iframe url
-                    $site_url = site_url();
+                    $site_url = $this->site_url;
                     $strpos = strpos($this->preferences['preview_url'], $site_url);
                     if ( !empty($this->preferences['preview_url']) and ($strpos === 0)) {
                         $iframe_url = esc_attr($this->preferences['preview_url']);
                     } else {
-                        $iframe_url = site_url();
+                        $iframe_url = $this->site_url;
                     }
                     // maybe use src="includes/holding.html" with an animated GIF saying "Loading Website Frontend"
                     ?>
@@ -579,7 +579,7 @@ if ($refresh_css){
                         ?>
                         <ul class="form-field-list">
                             <li>
-                                <label title="Enter your PayPal Email Address">Please enter your PayPal email address:</label>
+                                <label title="Enter your PayPal or Email Address - or the email address listed on 'My Downloads'">Please enter your PayPal email address:</label>
                                 <input type='text' autocomplete="off" name='tvr_preferences[buyer_email]'
                                        value='<?php echo $attempted_email; ?>' />
 
