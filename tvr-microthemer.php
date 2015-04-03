@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. posts, pages, contact forms, headers, footers, sidebars) down to the smallest detail (unlike typical theme options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress theme or plugin. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced theme and plugin customization.
-Version: 3.4.1
+Version: 3.4.4
 Author: Themeover
 Author URI: http://www.themeover.com
 */
@@ -50,7 +50,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 
-			var $version = '3.4.1';
+			var $version = '3.4.4';
             // set this to true if version saved in DB is different, other actions may follow if new v
             var $new_version = false;
 			var $minimum_wordpress = '3.6';
@@ -114,6 +114,8 @@ if ( is_admin() ) {
 				//"disable_parent_css" => 0,
 				"css_important" => 1,
                 "pie_by_default" => 0,
+                "admin_bar_shortcut" => 1,
+                "top_level_shortcut" => 0,
                 //"boxsizing_by_default" => 0,
 				"first_and_last" => 0,
 				"initial_scale" => 0,
@@ -1044,6 +1046,15 @@ if ( is_admin() ) {
 						}
 					}
 				}
+                // clear the custom code
+                $this->options['non_section']['hand_coded_css'] = '';
+                $this->options['non_section']['ie_css']['all'] = '';
+                $this->options['non_section']['ie_css']['nine'] = '';
+                $this->options['non_section']['ie_css']['eight'] = '';
+                $this->options['non_section']['ie_css']['seven'] = '';
+                // clear all media query settings
+                $this->options['non_section']['m_query'] = array();
+
 				// update the options in the DB
 				update_option($this->optionsName, $this->options);
 				$this->options = get_option($this->optionsName); // necessary?
@@ -5472,7 +5483,8 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '3.4.1';
+			var $version = '3.4.4';
+            var $microthemeruipage = 'tvr-microthemer.php';
 
 			/**
 			* PHP 4 Compatible Constructor
@@ -5497,6 +5509,11 @@ if (!is_admin()) {
 				else {
 					add_action( 'wp_print_styles', array(&$this, 'add_preview_css'), 999999);
 				}
+
+                // add shortcut to Microthemer
+                if ($this->preferences['admin_bar_shortcut'] == 1) {
+                    add_action( 'admin_bar_menu', array(&$this, 'custom_toolbar_link'), 999999);
+                }
 
 				// add viewport = 1 if set in preferences
 				if ($this->preferences['initial_scale'] == 1) {
@@ -5534,6 +5551,27 @@ if (!is_admin()) {
 			function tvr_head_buffer_end() {
 				ob_end_flush();
 			}
+
+            // add a link to the WP Toolbar
+            function custom_toolbar_link($wp_admin_bar) {
+                if ($this->preferences['top_level_shortcut'] == 1){
+                    $parent = false;
+                } else {
+                    $parent = 'site-name';
+                }
+
+                $args = array(
+                    'id' => 'wp-mcr-shortcut',
+                    'title' => 'Microthemer',
+                    'parent' => $parent,
+                    'href' => $this->wp_admin_url . 'admin.php?page=' . $this->microthemeruipage,
+                    'meta' => array(
+                        'class' => 'wp-mcr-shortcut',
+                        'title' => 'Jump to the Microthemer interface'
+                    )
+                );
+                $wp_admin_bar->add_node($args);
+            }
 
 			// determine dependent style sheets - sometimes a theme includes style.css AFTER active-styles.css (e.g. classipress)
 			function dep_stylesheets() {

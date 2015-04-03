@@ -76,7 +76,11 @@ if ($end > $total_packs) {
 
                             <span class="tvr-icon download-icon download-pack-multi" title="Download <?php echo $name; ?>"
                                   rel="download" data-dir-name="<?php echo $pack; ?>"></span>
+
                             <a href="<?php echo $url ; ?>" title="Edit <?php echo $name; ?>"><span class="tvr-icon edit-icon"></span></a>
+                            <span class="tvr-icon quick-import show-parent-dialog" rel="import-from-pack"
+                                  data-pack-name="<?php echo $name; ?>"
+                                  title="Import '<?php echo $name; ?>' into the Microthemer interface"></span>
                         </div>
 
                         <?php

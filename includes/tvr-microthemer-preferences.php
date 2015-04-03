@@ -42,6 +42,14 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
                 'label' => 'Always use CSS3 PIE pollyfill where relevant',
                 'label_no' => '(configure manually)',
                 'explain' => 'Always include to the CSS3 PIE htc file if gradients, rounded corners, or box-shadow have been applied to make them work in Internet Explorer 6-8. Note: a "position" value of "relative" will automatically be applied to the selector unless you explicitly set the position property to "static" or some other value. Set this option to "No" if you would like to enable this pollyfill on a per selector basis.'
+            ),
+            'admin_bar_shortcut' => array(
+                'label' => 'Add a Microthemer shortcut to the WP admin bar',
+                'explain' => 'Include a link to the Microthemer interface from the WordPress admin toolbar at the top of every page.'
+            ),
+            'top_level_shortcut' => array(
+                'label' => 'Include admin bar shortcut as a top level link',
+                'explain' => 'If you are enabling the Microthemer shortcut in the admin bar, you can either have it as a top level menu link or as a sub-menu item of the main menu.'
             )
             /*'boxsizing_by_default' => array(
                 'label' => 'Always use the box-sizing pollyfill where relevant',

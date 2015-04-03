@@ -4861,6 +4861,11 @@ Manage Packs Page (multiple)
     #all-packs .pack-quick-icons span {
       float: right;
       margin-left: 8px; }
+      #all-packs .pack-quick-icons span.quick-import {
+        background-image: url("../images/MT_sprite.png?v=23");
+        background-repeat: no-repeat;
+        background-position: -531.2px -11.2px;
+        background-size: 1920px 1120px; }
 
 /*--------------------------------------------------------------
 Manage Packs Page (single)

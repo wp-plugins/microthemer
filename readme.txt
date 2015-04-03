@@ -100,6 +100,15 @@ View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-cha
 
 == Upgrade Notice ==
 
+3.4.4 (Apr 3, 2015)
+
+# Enhancements
+* Added an option for accessing Microthemer from the WP admin bar. This can be turned off via the preferences page if you don't want it cluttering your admin bar.
+* There is an import icon next to each design pack on the Manage & Install design packs page. This takes you to the import page and preselects the right design pack.
+
+# Bugs fixed
+* The 'clear styles but leave folders & selectors intact' option didn't clear styles applied on responsive tabs.
+
 3.4.1 (Mar 11, 2015)
 
 Bugs fixed
