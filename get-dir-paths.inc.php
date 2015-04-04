@@ -75,12 +75,27 @@ $this->wp_blog_admin_url = admin_url(); // A contribution from Abland: http://th
 
 /* Another Abland contribution: http://themeover.com/forum/topic/settings-options-in-admin/ */
 global $wp_version;
+global $blog_id;
 if ($wp_version >= 3 and is_multisite()) {
-    global $blog_id;
-    $this->micro_root_dir = $wp_content_dir . '/blogs.dir/' . $blog_id . '/micro-themes/';
-    $this->micro_root_url = $wp_content_url . '/blogs.dir/' . $blog_id . '/micro-themes/';
-}
-else {
+    $filename = $wp_content_dir . "/blogs.dir/";
+    if(file_exists($filename)){
+        if ($blog_id == '1') {
+            $this->micro_root_dir = $wp_content_dir . '/blogs.dir/micro-themes/';
+            $this->micro_root_url = $wp_content_url . '/blogs.dir/micro-themes/';
+        } else {
+            $this->micro_root_dir = $wp_content_dir . '/blogs.dir/' . $blog_id . '/micro-themes/';
+            $this->micro_root_url = $wp_content_url . '/blogs.dir/' . $blog_id . '/micro-themes/';
+        }
+    } else {
+        if ($blog_id == '1') {
+            $this->micro_root_dir = $wp_content_dir . '/uploads/sites/micro-themes/';
+            $this->micro_root_url = $wp_content_url . '/uploads/sites/micro-themes/';
+        } else {
+            $this->micro_root_dir = $wp_content_dir . '/uploads/sites/' . $blog_id . '/micro-themes/';
+            $this->micro_root_url = $wp_content_url . '/uploads/sites/' . $blog_id . '/micro-themes/';
+        }
+    }
+} else {
     $this->micro_root_dir = $wp_content_dir . '/micro-themes/';
     $this->micro_root_url = $wp_content_url . '/micro-themes/';
 }

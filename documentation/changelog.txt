@@ -1,5 +1,14 @@
 CHANGELOG
 
+3.4.7 (Apr 4, 2015)
+
+# Bugs fixed
+* Chrome could fail when trying to load the selector wizard if it encountered any computed CSS values with rgba opacity set to more than 2 decimal places e.g. 0.745.
+* Double-clicking an already highlighted element closes the selector wizard instead of showing a warning.
+
+# Change
+* On multi-site, Microthemer creates the micro-themes folder in /wp-content/uploads/sites/ if the blogs.dir directory doesn't already exist (modern multi-site installs don't create the blogs.dir folder).
+
 3.4.4 (Apr 3, 2015)
 
 # Enhancements
