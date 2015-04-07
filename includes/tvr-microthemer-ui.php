@@ -76,7 +76,6 @@ if ($refresh_css){
         <span id="revisions-url" rel="<?php echo 'admin.php?page=' . $this->microthemeruipage .
             '&_wpnonce='.wp_create_nonce('tvr_get_revisions'). '&action=get_revisions'; ?>"></span>
 
-        <span id='scroll-pref' rel='<?php echo $this->preferences['auto_scroll']; ?>'></span>
         <span id='auto-visual-pref' rel='<?php echo $this->preferences['load_visual']; ?>'></span>
         <span id='all_devices_default_width' rel='<?php echo $this->preferences['all_devices_default_width']; ?>'></span>
 
@@ -110,7 +109,11 @@ if ($refresh_css){
         <?php wp_nonce_field('tvr_microthemer_ui_save');?>
         <input type="hidden" name="action" value="tvr_microthemer_ui_save" />
         <input id="last-edited-selector" type="hidden" name="tvr_mcth[non_section][meta][last_edited_selector]"
-               value="<?php echo $this->options['non_section']['meta']['last_edited_selector']; ?>" />
+               value="<?php
+               if (!empty($this->options['non_section']['meta']['last_edited_selector'])){
+                   echo $this->options['non_section']['meta']['last_edited_selector'];
+               }
+               ?>" />
         <input id="last-viewed-selector" type="hidden" name="tvr_mcth[non_section][meta][last_viewed_selector]"
                value="<?php echo $last_viewed_selector; ?>" />
         <div id="visual-view" class="<?php echo $main_class; ?>">
@@ -367,6 +370,12 @@ if ($refresh_css){
                         $max_store = '';
                         $first = true;
                         foreach ($this->preferences['m_queries'] as $key => $m_query) {
+                            if (empty($m_query['min'])){
+                                $m_query['min'] = '';
+                            }
+                            if (empty($m_query['max'])){
+                                $m_query['max'] = '';
+                            }
                             ?>
                             <span id="mq-button-<?php echo $key; ?>" class="v-mq-button" rel="<?php echo $key; ?>"
                                   title="<?php echo $m_query['query']; ?>"><?php echo $m_query['label']; ?></span>
@@ -849,7 +858,7 @@ if ($refresh_css){
                     }*/
                     ?>
                     <li>
-                        <input type="checkbox" name="export_sections[hand_coded_css]" <?php echo $checked; ?> />
+                        <input type="checkbox" name="export_sections[hand_coded_css]" />
                         <span class="fake-checkbox custom-css-all-browsers"></span>
                         <span class="code-icon tvr-icon"></span>
                         <span class="ef-label">Hand coded CSS (all browsers)</span>
@@ -870,7 +879,7 @@ if ($refresh_css){
                         }*/
                         ?>
                         <li>
-                            <input type="checkbox" name="export_sections[ie_css][<?php echo $key; ?>]" <?php echo $checked; ?>  />
+                            <input type="checkbox" name="export_sections[ie_css][<?php echo $key; ?>]"  />
                             <span class="fake-checkbox custom-css-<?php echo $key; ?>"></span>
                             <span class="code-icon tvr-icon"></span>
                             <span class="ef-label"><?php echo $tab_headings[$key]; ?></span>

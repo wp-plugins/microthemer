@@ -100,6 +100,12 @@ View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-cha
 
 == Upgrade Notice ==
 
+3.4.9 (Apr 7, 2015)
+
+# Bugs fixed
+* An undefined index PHP error could show when upgrading from a previous version to version 3.4.4 (when the WP admin shortcut link was added)
+* Some undefined errors could be generated on the UI page. These were hidden behind the interface but could result in a slow page load if present.
+
 3.4.7 (Apr 4, 2015)
 
 # Bugs fixed

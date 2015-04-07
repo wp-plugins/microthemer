@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. posts, pages, contact forms, headers, footers, sidebars) down to the smallest detail (unlike typical theme options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress theme or plugin. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced theme and plugin customization.
-Version: 3.4.7
+Version: 3.4.9
 Author: Themeover
 Author URI: http://www.themeover.com
 */
@@ -50,7 +50,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 
-			var $version = '3.4.7';
+			var $version = '3.4.9';
             // set this to true if version saved in DB is different, other actions may follow if new v
             var $new_version = false;
 			var $minimum_wordpress = '3.6';
@@ -105,7 +105,6 @@ if ( is_admin() ) {
 				"gzip" => 1,
 				"auto_relative" => 1,
 				"ie_notice" => 1,
-				//"auto_scroll" => 1,
 				"auto_save" => 1,
 				"load_visual" => 1,
 				//"need_help" => 1,
@@ -782,7 +781,8 @@ if ( is_admin() ) {
                                 <input type='radio' autocomplete="off" class='radio'
                                        name='tvr_preferences[<?php echo $key; ?>]' value='1'
                                     <?php
-                                    if ($this->preferences[$key] == '1' or $array['default'] == 'yes') {
+                                    if (!empty($this->preferences[$key]) and $this->preferences[$key] == '1'
+                                        or (!empty($array['default']) and $array['default'] == 'yes')) {
                                         echo 'checked="checked"';
                                         $on = 'on';
                                     } else {
@@ -796,7 +796,8 @@ if ( is_admin() ) {
                                 <span class="no-wrap p-wrap-wrap">
                                     <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[<?php echo $key; ?>]' value='0'
                                         <?php
-                                        if ($this->preferences[$key] == '0' or $array['default'] == 'no') {
+                                        if (!empty($this->preferences[$key]) and
+                                            ($this->preferences[$key] == '0' or $array['default'] == 'no')) {
                                             echo 'checked="checked"';
                                             $on = 'on';
                                         } else {
@@ -827,13 +828,18 @@ if ( is_admin() ) {
                         $arrow = '';
                     }
 
+                    $attr_val = '';
+                    if (!empty($this->preferences[$key])){
+                        $attr_val = esc_attr($this->preferences[$key]);
+                    }
+
                     ?>
                     <li class="input-wrap <?php echo $hidden; ?>">
                         <label title="<?php echo htmlentities($array['explain']); ?>" class="text-label">
                             <?php echo $array['label']; ?>:</label>
                         <input type='text' autocomplete="off" name='tvr_preferences[<?php echo $key; ?>]'
                                class="<?php echo $class; ?>" <?php echo $rel; ?>
-                               value='<?php echo esc_attr($this->preferences[$key]); ?>' />
+                               value='<?php echo esc_attr($attr_val); ?>' />
                         <?php echo $arrow; ?>
                     </li>
                 <?php
@@ -1119,7 +1125,7 @@ if ( is_admin() ) {
                     // output logs in order
                     $i = 0;
                     foreach ( $types as $type){
-                        if (is_array($logs[$type])){
+                        if (!empty($logs[$type])and is_array($logs[$type])){
                             foreach ($logs[$type] as $key => $log){
                                 $html.= $this->display_log_item($type, $log, $key);
                             }
@@ -2569,14 +2575,16 @@ if ( is_admin() ) {
                     }
                 }
 
-                if (is_array( $array )){
+                if (is_array($array) and !empty($array['label'])){
                     $labelCss = explode('|', $array['label']);
+                    // convert my custom quote escaping in recognised html encoded single/double quotes
+                    $selector_title = esc_attr(str_replace('cus-', '&', $labelCss[1]));
                 } else {
                     $labelCss = array('', '');
                     $array['label'] = '';
+                    $selector_title = '';
                 }
-                // convert my custom quote escaping in recognised html encoded single/double quotes
-                $selector_title = esc_attr(str_replace('cus-', '&', $labelCss[1]));
+
                 ?>
                 <li id="<?php echo 'strk-'.$section_name.'-'.$css_selector; ?>" class="selector-tag strk strk-sel <?php echo $trial_disabled; ?>">
 
@@ -2829,10 +2837,11 @@ if ( is_admin() ) {
             // are legacy values present for pg group?
             function has_legacy_values($styles, $property_group_name){
                 $legacy_values = false;
-                if (is_array($this->legacy_groups[$property_group_name])){
+                if (!empty($this->legacy_groups[$property_group_name]) and is_array($this->legacy_groups[$property_group_name])){
                     foreach ($this->legacy_groups[$property_group_name] as $leg_group => $array){
                         // check if the pg has values and they are specifically ones have have moved to this pg
-                        if ($this->pg_has_values($styles[$leg_group]) and
+                        if ( !empty($styles[$leg_group]) and
+                            $this->pg_has_values($styles[$leg_group]) and
                             $this->props_moved_to_this_pg($styles[$leg_group], $array)){
                             $legacy_values = $styles[$leg_group];
                             break;
@@ -2866,10 +2875,12 @@ if ( is_admin() ) {
                         is_array($this->options['non_section']['active_queries'])) {
                         foreach ($this->options['non_section']['active_queries'] as $mq_key => $junk) { // here
                             // set new $array['styles']
-                            $array = $this->options['non_section']['m_query'][$mq_key][$section_name][$css_selector];
-                            if ($styles_found = $this->pg_has_values_inc_legacy($array, $property_group_name)) {
-                                $styles_found['dev_mq'] = 'mq';
-                                break;
+                            if (!empty($this->options['non_section']['m_query'][$mq_key][$section_name][$css_selector])){
+                                $array = $this->options['non_section']['m_query'][$mq_key][$section_name][$css_selector];
+                                if ($styles_found = $this->pg_has_values_inc_legacy($array, $property_group_name)) {
+                                    $styles_found['dev_mq'] = 'mq';
+                                    break;
+                                }
                             }
                         }
                     }
@@ -2993,13 +3004,15 @@ if ( is_admin() ) {
                 $property_group_array = array_merge($this->propertyoptions[$property_group_name], $property_group_array);
                 foreach ($property_group_array as $property => $value) {
                     $property = esc_attr($property); //=esc
-                    $value = esc_attr($value); //=esc
+
                     /* if a new CSS property has been added with array_merge(), $value will be something like:
                     "Array ( [label] => Left [default_unit] => px [icon] => position_left )"
                     - so just set to nothing if it's an array
                     */
-                    if ($value == 'Array') { // esc_attr() must convert array to "Array" string
+                    if (is_array($value)) {
                         $value = '';
+                    } else {
+                        $value = esc_attr($value); //=esc
                     }
                     // format input fields
                     $html.= $this->resolve_input_fields($section_name, $css_selector, $property_group_array, $property_group_name, $property, $value);
@@ -3053,7 +3066,11 @@ if ( is_admin() ) {
 
             // check for legacy device_focus values (e.g. padding/margin for padding_margin)
             function device_focus_inc_legacy($section_name, $css_selector, $property_group_name, $property_group_array){
-                $device_array = $this->options[$section_name][$css_selector]['device_focus'];
+                $device_array = array();
+                $device_key = '';
+                if (!empty($this->options[$section_name][$css_selector]['device_focus'])){
+                    $device_array = $this->options[$section_name][$css_selector]['device_focus'];
+                }
                 $dtab = 'all-devices';
                 // check for regular device tab focus
                 if (!empty($device_array[$property_group_name])){
@@ -3187,6 +3204,7 @@ if ( is_admin() ) {
                     // may need to register the group like the regular checkbox (but if no bugs, may be much more efficient not to)
                     // check if the properties group is checked
                     if (
+                    !empty($this->options['non_section']['m_query'][$key][$section_name][$css_selector]) and
                         $this->pg_has_values_inc_legacy($this->options['non_section']['m_query'][$key][$section_name][$css_selector],$property_group_name)) {
                         $property_group_state = 'on';
                         $this->current_pg_group_tabs[$key] = $key;
@@ -3219,20 +3237,21 @@ if ( is_admin() ) {
                  $html = '';
 				 foreach ($this->preferences['m_queries'] as $key => $m_query) {
                      // loop through each properties in a group if set - need to check for styles in legacy pgs too
-                     $array = $this->options['non_section']['m_query'][$key][$section_name][$css_selector];
-                     //$legacy_values = $this->has_legacy_values($array['styles'], $property_group_name);
-
-                     if ($styles_found = $this->pg_has_values_inc_legacy($array, $property_group_name)) {
-                         if ($styles_found['cur_leg'] == 'current'){
-                             $property_group_array = $this->options['non_section']['m_query'][$key][$section_name][$css_selector]['styles'][$property_group_name];
+                     $property_group_array = false;
+                     if (!empty($this->options['non_section']['m_query'][$key][$section_name][$css_selector])){
+                         $array = $this->options['non_section']['m_query'][$key][$section_name][$css_selector];
+                         //$legacy_values = $this->has_legacy_values($array['styles'], $property_group_name);
+                         if ($styles_found = $this->pg_has_values_inc_legacy($array, $property_group_name)) {
+                             if ($styles_found['cur_leg'] == 'current'){
+                                 $property_group_array = $this->options['non_section']['m_query'][$key][$section_name][$css_selector]['styles'][$property_group_name];
+                             }
+                             // if legacy values exist, but there are no current values, set pg as empty array so inputs are displayed
+                             else {
+                                 $property_group_array = array();
+                             }
                          }
-                         // if legacy values exist, but there are no current values, set pg as empty array so inputs are displayed
-                         else {
-                             $property_group_array = array();
-                         }
-					 } else {
-                         $property_group_array = false;
                      }
+
 
 
                      if ( is_array( $property_group_array ) ) {
@@ -5483,7 +5502,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '3.4.7';
+			var $version = '3.4.9';
             var $microthemeruipage = 'tvr-microthemer.php';
 
 			/**
@@ -5511,7 +5530,7 @@ if (!is_admin()) {
 				}
 
                 // add shortcut to Microthemer
-                if ($this->preferences['admin_bar_shortcut'] == 1) {
+                if (!empty($this->preferences['admin_bar_shortcut']) and $this->preferences['admin_bar_shortcut'] == 1) {
                     add_action( 'admin_bar_menu', array(&$this, 'custom_toolbar_link'), 999999);
                 }
 
@@ -5554,7 +5573,8 @@ if (!is_admin()) {
 
             // add a link to the WP Toolbar
             function custom_toolbar_link($wp_admin_bar) {
-                if ($this->preferences['top_level_shortcut'] == 1){
+                if (!empty($this->preferences['top_level_shortcut'])
+                    and $this->preferences['top_level_shortcut'] == 1){
                     $parent = false;
                 } else {
                     $parent = 'site-name';

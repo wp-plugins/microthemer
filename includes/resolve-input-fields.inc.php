@@ -5,8 +5,12 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 }
 
 // add media query stem for form fields if necessary
+$sel_imp_array = array();
+$styles = array();
 if ($con == 'mq') {
-    $styles = $this->options['non_section']['m_query'][$key][$section_name][$css_selector]['styles'];
+    if (!empty($this->options['non_section']['m_query'][$key][$section_name][$css_selector]['styles'])){
+        $styles = $this->options['non_section']['m_query'][$key][$section_name][$css_selector]['styles'];
+    }
 	$mq_stem = '[non_section][m_query]['.$key.']';
 	$imp_key = '[m_query]['.$key.']';
     $mq_extr_class = '-'.$key;
@@ -17,9 +21,14 @@ if ($con == 'mq') {
         $important_val = '';
     }
     // save the general selector important array for querying if legacy values are discovered
-    $sel_imp_array = $this->options['non_section']['important']['m_query'][$key][$section_name][$css_selector];
+    if (!empty($this->options['non_section']['important']['m_query'][$key][$section_name][$css_selector])){
+        $sel_imp_array = $this->options['non_section']['important']['m_query'][$key][$section_name][$css_selector];
+    }
+
 } else {
-    $styles = $this->options[$section_name][$css_selector]['styles'];
+    if (!empty($this->options[$section_name][$css_selector]['styles'])){
+        $styles = $this->options[$section_name][$css_selector]['styles'];
+    }
     $mq_stem = '';
     $imp_key = '';
     $mq_extr_class = '-all-devices';
@@ -30,7 +39,10 @@ if ($con == 'mq') {
         $important_val = '';
     }
     // save the general selector important array for querying if legacy values are discovered
-    $sel_imp_array = $this->options['non_section']['important'][$section_name][$css_selector];
+    if (!empty($this->options['non_section']['important'][$section_name][$css_selector])){
+        $sel_imp_array = $this->options['non_section']['important'][$section_name][$css_selector];
+    }
+
 }
 
 
@@ -48,6 +60,7 @@ if ($legacy_adjusted['value']){
  */
 
 // field class
+$field_class = '';
 if (!empty($this->propertyoptions[$property_group_name][$property]['field-class']) ) {
     $field_class = $this->propertyoptions[$property_group_name][$property]['field-class'];
 }
@@ -82,6 +95,7 @@ else {
 }
 
 // input class
+$input_class = '';
 if (!empty($this->propertyoptions[$property_group_name][$property]['input-class']) ) {
     $input_class = $this->propertyoptions[$property_group_name][$property]['input-class'];
 }
@@ -91,7 +105,7 @@ if (!empty($this->propertyoptions[$property_group_name][$property]['input-class'
 $text_label = '<span class="text-label css-info">'
     . $this->propertyoptions[$property_group_name][$property]['short_label'] . '</span>';
 if (!empty($this->propertyoptions[$property_group_name][$property]['icon'])){
-    $option_icon.= '<span class="o-icon-wrap"><span class="tvr-icon option-icon option-icon-'.$property.' css-info"
+    $option_icon = '<span class="o-icon-wrap"><span class="tvr-icon option-icon option-icon-'.$property.' css-info"
     rel="program-docs" data-prop="'.str_replace('_', '-', $property).'"></span></span>';
 } else {
     $option_icon = '';

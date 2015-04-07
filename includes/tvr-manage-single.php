@@ -153,11 +153,7 @@ $json_config_file = $this->micro_root_dir . $this->preferences['theme_in_focus']
 
             </div>
 
-            <?php
-            if ($external_image_notice) {
-                echo "<span id='external-notice' rel='warn'></span>";
-            }
-			?>  
+
         </div>
         
         <?php
