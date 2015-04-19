@@ -129,7 +129,7 @@ else {
 if (
 empty($this->propertyoptions[$property_group_name][$property]['hide imp'])) {
     $important_toggle.= '<span class="important-toggle input-icon-toggle '.$class.' imp-'.$con.'" data-input-type="important"
-        title="Click to add/remove !important declaration" rel="'.$rel.'">i</span>';
+        title="Add/remove !important declaration" rel="'.$rel.'">i</span>';
 } else {
     $important_toggle.= '<span class="imp-placeholder">i</span>';
 }
@@ -175,7 +175,7 @@ $html.= '<div id="opts-'.$section_name.'-'.$css_selector.'-'.$property_group_nam
     <label>';
 
     $html.= '<span class="option-label"
-    title="'.$this->propertyoptions[$property_group_name][$property]['label'].' - click to learn more">'
+    title="'.$this->propertyoptions[$property_group_name][$property]['label'].'">'
         . $option_icon . $text_label . '</span>
         </label>'
         . $important_toggle

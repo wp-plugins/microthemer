@@ -3,6 +3,13 @@
 if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { 
 	die('Please do not call this page directly.'); 
 }
+
+// is edge mode active?
+if ($this->edge_mode['available'] and !empty($this->preferences['edge_mode'])){
+    $this->edge_mode['active'] = true;
+}
+
+
 // get the file structure for use in scripts
 foreach ($this->file_structure as $dir => $array) {
     if (!empty($dir)) {
@@ -66,6 +73,8 @@ if ($refresh_css){
         <span id="ui-nonce"><?php echo wp_create_nonce('tvr_microthemer_ui_load_styles'); ?></span>
         <span id="fonts-api" rel="<?php echo $this->thispluginurl.'includes/fonts-api.php'; ?>"></span>
         <span id="ui-url" rel="<?php echo 'admin.php?page=' . $this->microthemeruipage; ?>"></span>
+        <span id="admin-url" rel="<?php echo $this->wp_admin_url; ?>"></span>
+
         <span id="ajaxUrl" rel="<?php echo trailingslashit($this->site_url).'wp-admin/admin.php?page='.$this->microthemeruipage.'&_wpnonce='.wp_create_nonce('mcth_simple_ajax') ?>"></span>
         <span id="resetUrl" rel="<?php echo '&_wpnonce='.wp_create_nonce('tvr_microthemer_ui_reset');?>&action=tvr_ui_reset"></span>
         <span id="clearUrl" rel="<?php echo '&_wpnonce='.wp_create_nonce('tvr_microthemer_clear_styles');?>&action=tvr_clear_styles"></span>
@@ -81,6 +90,20 @@ if ($refresh_css){
 
 
         <span id='plugin-url' rel='<?php echo $this->thispluginurl; ?>'></span>
+        <span id='tooltip_delay' rel='<?php echo $this->preferences['tooltip_delay']; ?>'></span>
+        <?php
+        // edge mode settings
+        if ($this->edge_mode['active']){
+            ?>
+            <span id='edge-mode' rel='1'></span>
+            <?php
+            if (is_array($this->edge_mode['config'])){
+                foreach ($this->edge_mode['config'] as $key => $value){
+                    echo '<span id="'.$key.'" rel="'.$value.'"></span>';
+                }
+            }
+        }
+        ?>
         <span id='plugin-trial' rel='<?php echo $this->preferences['buyer_validated']; ?>'></span>
         <form method="post" name="tvr_microthemer_ui_serialised" id="tvr_microthemer_ui_serialised" autocomplete="off">
             <?php wp_nonce_field('tvr_microthemer_ui_serialised');?>
@@ -93,6 +116,15 @@ if ($refresh_css){
         $main_class = '';
         if ($this->preferences['css_important'] != 1){
             $main_class.= 'manual-css-important';
+        }
+
+        // edge mode interface classes
+        if ($this->edge_mode['active']){
+            if (is_array($this->edge_mode['config'])){
+                foreach ($this->edge_mode['config'] as $key => $value){
+                    $main_class.= ' '.$key.'-'.$value;
+                }
+            }
         }
 
 		// log ie notice
@@ -126,12 +158,13 @@ if ($refresh_css){
                         <span id="vb-focus-next" class="scroll-buttons tvr-icon" title="Go To Next Selector"></span>
                     </div>
                     <div id="tvr-main-menu" class="tvr-main-menu-wrap">
+                        <span class="main-menu-tip-trigger" title="Manage folders & selectors"></span>
                         <div id="main-menu-popdown" class="main-menu-popdown">
                             <div id="add-new-section">
                                 <div class="inner-wrap">
                                     <div class='new-section'>
-                                        <input type='text' title="New Folder..." class='new-section-input' name='new_section[name]' value='' />
-                                        <span class='new-section-add tvr-button' title="Create a new folder">Add</span>
+                                        <input type='text' data-ph-title="Enter a new folder name" class='new-section-input' name='new_section[name]' value='' />
+                                        <span class='new-section-add tvr-button' title="Create a new folder">Add Folder</span>
                                     </div>
                                 </div>
                             </div>
@@ -221,7 +254,7 @@ if ($refresh_css){
                             <span class="cta-label">Buy</span>
                         </a>
                         <span class="cta-button unlock-cta tvr-button show-dialog"
-                              title="Enter your email address to unlock the full program" rel="unlock-microthemer">
+                              title="If you have purchased Microthemer you can enter your email address to unlock the full program. If you have not yet purchased Microthemer, you cannot unlock the full version." rel="unlock-microthemer">
                             <span class="tvr-icon show-dialog" rel="unlock-microthemer"></span>
                             <span class="cta-label show-dialog" rel="unlock-microthemer">Unlock</span>
                         </span>
@@ -276,7 +309,10 @@ if ($refresh_css){
                                 $css_code = htmlentities(stripslashes($this->options['non_section']['hand_coded_css']));
                                 $name = 'tvr_mcth[non_section][hand_coded_css]';
                             } else {
-                                $css_code = htmlentities(stripslashes($this->options['non_section']['ie_css'][$key]));
+                                $css_code = '';
+                                if (!empty($this->options['non_section']['ie_css'][$key])){
+                                    $css_code = htmlentities(stripslashes($this->options['non_section']['ie_css'][$key]));
+                                }
                                 $name = 'tvr_mcth[non_section][ie_css]['.$key.']';
                             }
 
@@ -337,19 +373,20 @@ if ($refresh_css){
                 <div id="selector-wizard">
                     <div class="quick-create">
 
-                        <label>Selector Name:</label>
-                        <input id='wizard-name' type='text' title="Something memorable" class='wizard-name wizard-input' name='wizard_name' value='' />
+                        <label title="Give your selector a memorable name that describes the element or set of elements on the page">Selector Name:</label>
+                        <input id='wizard-name' type='text' class='wizard-name wizard-input' name='wizard_name' value='' />
 
 
-                        <label>Where:</label>
-                        <span class="input-wrap">
-                            <input type="text" class="combobox wizard-folder wizard-input text-label" title="Enter new or select a folder..."
-                                   id="wizard_folder" name="wizard_folder" rel="cur_folders" value="" />
+                        <label data-ph-title="Organise your selector into a folder">Where:</label>
+                        <span class="input-wrap wizard-folder-wrap" >
+                           <input type="text" class="combobox wizard-folder wizard-input"
+                                   id="wizard_folder" name="wizard_folder" rel="cur_folders" value=""
+                                   data-ph-title="Enter new or select a folder..." />
                             <span class="combo-arrow"></span>
                         </span>
 
                         <span class='wizard-add tvr-button' title="Create a new folder">Create Selector</span>
-                        <span class="cancel-wizard cancel link" title="Cancel Operation - Close The Selector Wizard<">Close Wizard</span>
+                        <span class="cancel-wizard cancel link" title="Cancel Operation - Close The Selector Wizard">Close Wizard</span>
 
 
                     </div>
@@ -399,7 +436,7 @@ if ($refresh_css){
             </div>
 
             <div id="v-frontend-wrap">
-                <div id="v-frontend" title="Double-click an element to create editing options for it">
+                <div id="v-frontend">
                     <?php
                     // resolve iframe url
                     $site_url = $this->site_url;
@@ -446,7 +483,11 @@ if ($refresh_css){
                         <div class="adv-area-refine-targeting adv-area hidden <?php
                         if ($adv_wizard_focus == 'refine-targeting') {
                             echo 'show';
-                        }?>">
+                        }
+                        if ($this->edge_mode['active'] and !empty($this->edge_mode['config']['slideless_wizard'])) {
+                            echo ' scrollable-area';
+                        }
+                        ?>">
                             <div class="scrollable-refined">
                                 <div class="refine-inner-wrap">
                                     <div class="code-suggestion-wrap">
@@ -559,7 +600,7 @@ if ($refresh_css){
                 if ($this->preferences['buyer_validated']){
                     $title = 'Microthemer Has Been Successfully Unlocked';
                 } else {
-                    $title = 'Enter Your PayPal Email Address To Unlock Microthemer';
+                    $title = 'Enter your PayPal email (or the email listed in "My Downloads") to unlock Microthemer';
                 }
                 echo $this->start_dialog('unlock-microthemer', $title, 'small-dialog'); ?>
                 <div class="content-main">
@@ -588,7 +629,7 @@ if ($refresh_css){
                         ?>
                         <ul class="form-field-list">
                             <li>
-                                <label title="Enter your PayPal or Email Address - or the email address listed on 'My Downloads'">Please enter your PayPal email address:</label>
+                                <label class="text-label" title="Enter your PayPal or Email Address - or the email address listed on 'My Downloads'">Enter PayPal email or see email in "My Downloads"</label>
                                 <input type='text' autocomplete="off" name='tvr_preferences[buyer_email]'
                                        value='<?php echo $attempted_email; ?>' />
 
@@ -654,7 +695,7 @@ if ($refresh_css){
                         $text_input = array(
                             'all_devices_default_width' => array(
                                 'label' => 'Default screen width for "All Devices" tab',
-                                'explain' => 'Leave this blank to let the frontend preview fill the full width of your screen when you\'re on the "All Devices" tab. However, if you\'re following best practice and designing "mobile first" you can set this to "480px" (for example) and then use min-width media queries to apply styles that will only have an effect on larger screens.'
+                                'explain' => 'Leave this blank to let the frontend preview fill the full width of your screen when you\'re on the "All Devices" tab. However, if you\'re designing "mobile first" you can set this to "480px" (for example) and then use min-width media queries to apply styles that will only have an effect on larger screens.'
                             ),
                         );
 
@@ -706,11 +747,11 @@ if ($refresh_css){
                                 foreach ($this->preferences['m_queries'] as $key => $m_query) {
                                     ?>
                                     <li class="mq-row mq-row-<?php echo $i; ?>">
-                                        <span class="del-m-query tvr-icon delete-icon"></span>
-                                        <div class="mq-edit-wrap mq-label-wrap"><label>Label:</label>
+                                        <span class="del-m-query tvr-icon delete-icon" title="Delete this media query"></span>
+                                        <div class="mq-edit-wrap mq-label-wrap"><label title="Give your media query a descriptive name">Label:</label>
                                             <input class="m-label" type="text" name="tvr_preferences[m_queries][<?php echo $key; ?>][label]"
                                                    value="<?php echo esc_attr($m_query['label']); ?>" /></div>
-                                        <div class="mq-edit-wrap mq-query-wrap"><label>Media Query:</label>
+                                        <div class="mq-edit-wrap mq-query-wrap"><label title="Set the media query condition">Media Query:</label>
                                             <input class="m-code" type="text" name="tvr_preferences[m_queries][<?php echo $key; ?>][query]"
                                                    value="<?php echo esc_attr($m_query['query']); ?>" /></div>
                                     </li>
@@ -751,10 +792,10 @@ if ($refresh_css){
             <!-- must be outside the form -->
             <ul id="m-query-hidden">
                 <li class="mq-row m-query-tpl">
-                    <span class="del-m-query tvr-icon delete-icon"></span>
-                    <div class="mq-edit-wrap mq-label-wrap"><label>Label:</label>
+                    <span class="del-m-query tvr-icon delete-icon" title="Delete this media query"></span>
+                    <div class="mq-edit-wrap mq-label-wrap"><label title="Give your media query a descriptive name">Label:</label>
                         <input class="m-label" type="text" name="tvr_preferences[m_queries][key][label]" value="" /></div>
-                    <div class="mq-edit-wrap mq-query-wrap"><label>Media Query:</label>
+                    <div class="mq-edit-wrap mq-query-wrap"><label title="Set the media query condition">Media Query:</label>
                         <input class="m-code" type="text" name="tvr_preferences[m_queries][key][query]" value="" /></div>
                 </li>
             </ul>
@@ -1004,6 +1045,21 @@ if ($refresh_css){
                 rel="http://themeover.com/support/"
                 src="<?php echo $this->thispluginurl; ?>includes/place-holder2.html"
                 data-frame-loaded="0"></iframe>
+        <?php echo $this->end_dialog('Close', 'span', 'close-dialog'); ?>
+
+        <!-- Integration -->
+        <?php echo $this->start_dialog('integration', 'Integration with 3rd party software', 'small-dialog'); ?>
+        <div class="content-main">
+            <div class="heading">WPTouch Mobile Plugin</div>
+            <p>Microthemer can be used to style the mobile-only theme that WPTouch presents to mobile devices. In order to load the mobile theme in Microthemer's preview window, simply enable WPTouch mode using the toggle in the left toolbar. This toggle will only appear if Microthemer detects that you have installed and activated WPTouch.
+                There is a <a target="_blank" href="<?php echo $this->wp_admin_url; ?>plugin-install.php?tab=search&type=term&s=wptouch+mobile+plugin">free</a> and <a target="_blank" href="http://www.wptouch.com/">premium version</a> of WPTouch.</p>
+            <div class="explain">
+                <div class="heading link explain-link">About this feature</div>
+                <div class="full-about">
+                    <p>When possible, we'll add little features to make it easier to use Microthemer with complementary products.</p>
+                </div>
+            </div>
+        </div>
         <?php echo $this->end_dialog('Close', 'span', 'close-dialog'); ?>
         <?php
     }

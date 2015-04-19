@@ -600,7 +600,9 @@ var mcthmr_jscolor = {
 
 			// controls interaction
 			p.box.onmouseup =
-			p.box.onmouseout = function() { target.focus(); };
+			p.box.onmouseout = function() {
+                // target.focus(); // sebcus - fixes toltip issue
+            };
 			p.box.onmousedown = function() { abortBlur=true; };
 			p.box.onmousemove = function(e) {
 				if (holdPad || holdSld) {

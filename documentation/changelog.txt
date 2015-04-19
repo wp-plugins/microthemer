@@ -1,5 +1,26 @@
 CHANGELOG
 
+3.5.9 (Apr 19, 2015)
+
+# Enhancement
+* An 'Edge mode' option has been added to the preferences. You can enable this to try out experimental new features and have your say on them before they become permanent. Useful for those that want to take an active role in shaping Microthemer.
+* Custom tooltips have been added to the interface. You can configure these via the preferences.
+* Selectors suggestions on the targeting tab have more descriptive explanations and show quickly with the new tooltip.
+
+# Bugs fixed
+* The inside label on the folder field of the selector wizard had a glitch
+* jQuery version checking could be inaccurate under some circumstances.
+* Targeting inputs by type wasn't working
+* Microthemer could follow links to plain images and find itself at an impasse.
+* Microthemer could follow links to the admin and then possibly back to Microthemer.
+
+# Change
+* Microthemer now waits for 700ms instead of 300ms for a second click when a user double-clicks something. Some people were naturally double-clicking with less than 300ms between each click. I will make the delay time configurable if people request this.
+
+# Edge Change (only shows if 'Edge Mode' has been enabled)
+* The selector targeting tab has a regular scrollbar on the right instead of a vertical slider. Switching between the options is be done by hovering your mouse over them (for quick preview) and then clicking the suggestion you want.
+
+
 3.4.9 (Apr 7, 2015)
 
 # Bugs fixed

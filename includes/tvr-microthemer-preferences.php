@@ -3,6 +3,12 @@
 if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { 
 	die('Please do not call this page directly.'); 
 }
+
+// is edge mode active?
+if ($this->edge_mode['available'] and !empty($this->preferences['edge_mode'])){
+    $this->edge_mode['active'] = true;
+}
+
 ?>
 
 <!-- Edit Preferences -->
@@ -14,8 +20,17 @@ if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 <div class="content-main">
     <ul class="form-field-list">
         <?php
+        if (!$this->edge_mode['available']){
+           ?>
+           <li class="edge-mode-unavailable">We're not currently piloting anything with Edge mode.</li>
+           <?php
+        }
         // yes no options
         $yes_no = array(
+            'edge_mode' => array(
+                'label' => 'Enable edge mode. <a title="Read a full explanation of the changes and give us constructive feedback on this forum thread." href="'.$this->edge_mode['edge_forum_url'].'" target="_blank">Read about/comment here</a>',
+                'explain' => $this->edge_mode['cta'],
+            ),
             'first_and_last' => array(
                 'label' => 'Add "first" and "last" classes to menu items',
                 'explain' => 'Microthemer can insert "first" and "last" classes on WordPress menus so that you can style the first or last menu items a bit differently from the rest. Note: this only works with "Custom Menus" created on the  Appearance > Menus page.'
@@ -67,16 +82,25 @@ Note: this pollyfill doesn\'t work on text inputs.'
             ),
             'gfont_subset' => array(
                 'label' => 'Google Font subset URL parameter',
-                'explain' => 'You can instruct Google Fonts to include a font subset by entering an URL parameter here. For example "&subset=latin,latin-ext" (without the quotes). Note: Microthemer only generates a Google Font URL if it detects that you have applied Google Fonts in your design.'
+                'explain' => 'You can instruct Google Fonts to include a font subset by entering an URL parameter here. For example "&subset=latin,latin-ext" (without the quotes). Note: Microthemer only generates a Google Font URL if it detects that you have applied Google Fonts in your design.'),
+            'tooltip_delay' => array(
+                'label' => 'Tooltip delay time (in milliseconds)',
+                'explain' => 'Control how long it takes for a Microthemer tooltip to display. Set to "0" for instant, "native" to use the browser default tooltip on hover, or some value like "2000" for a 2 second delay (so it never shows when you don\'t need it to). The default is 500 milliseconds.'
             )
+
         );
         foreach ($yes_no as $key => $array) {
             if (empty($array['label_no'])){
                 $array['label_no'] = '';
             }
+            if (!$this->edge_mode['available']){
+                continue;
+            }
             ?>
             <li class="fake-radio-parent">
-                <label title="<?php echo htmlentities($array['explain']); ?>"><?php echo $array['label']; ?>:</label>
+                <label title="<?php echo htmlentities($array['explain']); ?>"><?php echo $array['label']; ?>:
+                    </label>
+
 
                             <span class="yes-wrap p-option-wrap">
                             <input type='radio' autocomplete="off" class='radio'
@@ -111,12 +135,16 @@ Note: this pollyfill doesn\'t work on text inputs.'
         <?php
         }
         foreach ($text_input as $key => $array) {
+            $input_attr = '';
+            if (!empty($this->preferences[$key])){
+                $input_attr = $this->preferences[$key];
+            }
             ?>
             <li>
                 <label title="<?php echo htmlentities($array['explain']); ?>" class="text-label">
                     <?php echo $array['label']; ?>:</label>
                 <input type='text' autocomplete="off" name='tvr_preferences[<?php echo $key; ?>]'
-                       value='<?php echo esc_attr($this->preferences[$key]); ?>' />
+                       value='<?php echo esc_attr($input_attr); ?>' />
 
             </li>
         <?php

@@ -44,7 +44,8 @@ $options_split: max-width 600px;
 $options_split_again: max-width 400px;
 
 // other variables
-$sprite: url('../images/MT_sprite.png?v=23');
+$sprite: url('../images/MT_sprite.png?v=27');
+
 $largeLoadingGif: url('../images/logo-loader-30.gif?v=1') no-repeat center center;
 $background_size: 1920px 1120px; // half the actual size so high res screens render well.
 
@@ -116,9 +117,41 @@ body.tvr-visual { // refine to only sels that need it - also add to frontend
     -o-user-select: none;
     user-select: none;
   }
-
-
 }
+
+body .ui-tooltip {
+  z-index: 999915 !important;
+  @include box-shadow(0, 0, 0, $shadowColor);
+  @include border-radius(3px);
+  background: $mediumBlue;
+  color:$white;
+  font-size: 12px;
+  line-height: 1.5;
+  font-family: $appFont;
+  border:0;
+  padding:4px 8px 4px 8px;
+  cursor: pointer;
+  a {
+    color:$lightestGrey;
+  }
+  //&::after,
+  .tp-pointer {
+    @include border-radius(2px);
+    z-index: -1 !important;
+    position: fixed;
+    width: 1em;
+    height: 1em;
+    background:$mediumBlue no-repeat center center;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
+// span that holds HTML for tooltip
+.tp-html {
+  display: none;
+}
+
 
 .tvr-clearfix {
   @include susy-clearfix();
@@ -172,6 +205,8 @@ a.no-line {
 .trial-disabled {
   opacity: 0.5; //- this interferes with the main menu for some reason
 }
+
+
 
 
 #tvr {
@@ -853,6 +888,9 @@ a.no-line {
       display: block;
     }
   }
+  li.edge-mode-unavailable {
+    font-style: italic;
+  }
   label {
     display: block;
     float: left;
@@ -978,6 +1016,12 @@ a.no-line {
   height:100%;
 }
 
+// integration
+#integration-dialog {
+  .dialog-icon {
+    @include sprite(33, 1);
+  }
+}
 
 
 
@@ -1114,6 +1158,7 @@ Popdown/right menu
 --------------------------------------------------------------*/
 .tvr-popdown-wrap {
   height:40px;
+
 }
 .tvr-popdown {
   //visibility: hidden;
@@ -1156,6 +1201,9 @@ Popdown/right menu
   .tvr-popright-wrap:hover & {
     visibility: visible
   }
+  &.integration-right {
+
+  }
 
 }
 .popright-sub {
@@ -1166,6 +1214,13 @@ Popdown/right menu
   .v-left-button {
     width:40px;
     float:left;
+  }
+}
+.integration-sub {
+  width: 160px;
+  .v-left-button {
+    width:100%;
+    float:none;
   }
 }
 
@@ -1319,6 +1374,11 @@ Folder navigation menu
   input, textarea {
     background:$white;
   }
+  .main-menu-tip-trigger {
+    width:40px;
+    height:40px;
+    display: block;
+  }
   .main-menu-popdown {
     cursor: default;
     left:481px;
@@ -1351,9 +1411,8 @@ Folder navigation menu
     @include susy-clearfix;
   }
   .new-section {
-    float:left;
     input {
-      width:70%;
+      width:40%;
     }
   }
 }
@@ -1361,6 +1420,10 @@ Folder navigation menu
   margin:0;
 }
 /* Make Folder/Selector names capitalised */
+.tp-hack {
+  display: inline-block;
+  float: left;
+}
 #add-new-section .new-section input,
 .rename-input,
 .selector-name-input,
@@ -1688,6 +1751,9 @@ Left Toolbar
 .styles-reset {
   @include state-sprite(32, 1);
 }
+.integration {
+  @include state-sprite(33, 1);
+}
 
 #v-left-controls .unlock-microthemer.unlocked {
   display: none;
@@ -1884,6 +1950,8 @@ The advanced selector wizard
   padding:12px;
   @include box-sizing();
   height: 100%;
+  max-height: 100%;
+
 }
 
 // Refine targeting slider
@@ -1898,6 +1966,10 @@ $sliderHeight: 26px;
   @include border-radius(4px);
   padding-bottom:$sliderHeight;
   background: $sliderAtRest;
+  // don't show this if the user wants the new slideless option
+  .slideless_wizard-1 & {
+    display: none;
+  }
 }
 #code-suggestion-slider {
   width:6px;
@@ -1921,7 +1993,7 @@ $sliderHeight: 26px;
   }
 }
 #code-suggestions {
-  margin:0 0 0 16px;
+  margin: 0 0 0 16px;
   li {
     margin-bottom: 0;
   }
@@ -1929,20 +2001,54 @@ $sliderHeight: 26px;
     display: none;
   }
   textarea {
-    width:100%;
+    width: 100%;
     background: transparent;
-    border-color:$lightestGrey;
+    border-color: $lightestGrey;
     resize: none;
     display: block;
-    height:26px;
-    padding:3px;
+    height: 26px;
+    padding: 3px;
     line-height: 18px;
+  }
+  .in-focus {
+    textarea {
+      background: $white;
+      border-color: $lightGrey;
+      resize: vertical;
+      &:hover {
+        cursor: text;
+      }
+    }
+    &.hover-elsewhere textarea {
+      background: transparent;
+      border-color: $lightestGrey;
+      resize: none;
+    }
 
   }
-  .in-focus textarea {
-    background: $white;
-    border-color:$lightGrey;
-    resize: vertical;
+
+  // alternative system for trying selectors
+  .slideless_wizard-1 & {
+    margin: 0;
+    textarea {
+      &:hover {
+        background: $white;
+        border-color: $lightGrey;
+        cursor: pointer;
+      }
+    }
+    .in-focus {
+      textarea {
+        &:hover {
+          cursor: text;
+        }
+      }
+      &.hover-elsewhere textarea {
+        background: transparent;
+        border-color: $lightestGrey;
+        resize: none;
+      }
+    }
   }
 }
 

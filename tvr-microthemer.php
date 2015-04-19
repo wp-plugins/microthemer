@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. posts, pages, contact forms, headers, footers, sidebars) down to the smallest detail (unlike typical theme options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress theme or plugin. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced theme and plugin customization.
-Version: 3.4.9
+Version: 3.5.9
 Author: Themeover
 Author URI: http://www.themeover.com
 */
@@ -50,7 +50,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 
-			var $version = '3.4.9';
+			var $version = '3.5.9';
             // set this to true if version saved in DB is different, other actions may follow if new v
             var $new_version = false;
 			var $minimum_wordpress = '3.6';
@@ -121,8 +121,23 @@ if ( is_admin() ) {
                 "all_devices_default_width" => '',
 				"remember_ui" => 0,
                 'returned_ajax_msg' => '',
-                'returned_ajax_msg_seen' => 1
+                'returned_ajax_msg_seen' => 1,
+                'edge_mode' => 0,
+                'edge_config' => array(),
+                'tooltip_delay' => 500
 			);
+            // edge mode fixed settings
+            var $edge_mode = array(
+                'available' => true,
+                'edge_forum_url' => 'http://themeover.com/forum/topic/edge-mode-usability-testing-new-feature-preview/',
+                'cta' => 'Try out the new targeting options for the selector wizard. We\'ve replaced the slider with hover and click functionality.',
+                'config' => array(
+                    'slideless_wizard' => 1
+                ),
+                'active' => false // evaluated at top of ui page
+            );
+
+
 			// default media queries
 			var $unq_base = '';
 			var $default_m_queries = array();
@@ -264,8 +279,6 @@ if ( is_admin() ) {
                 // get the directory paths
                 include dirname(__FILE__) .'/get-dir-paths.inc.php';
 
-
-
 				// get the preferences here for the sake of the validator (all users get automatic updates now)
 				$this->getPreferences();
 
@@ -274,6 +287,20 @@ if ( is_admin() ) {
 
                 // ensure pie is copied to correct location
                 $this->copy_pie();
+
+                // todo make this a more efficient handle_undefined_preferences() function
+
+                // if edge_mode is undefined
+                if ( !isset($this->preferences['edge_mode'])) {
+                    $pref_array['edge_mode'] = 0;
+                    $this->savePreferences($pref_array);
+                }
+
+                // if tooltip is undefined
+                if ( !isset($this->preferences['tooltip_delay'])) {
+                    $pref_array['tooltip_delay'] = 500;
+                    $this->savePreferences($pref_array);
+                }
 
 				// if no media queries yet, assign default
 				if ( !$this->preferences['user_set_mq'] and
@@ -284,12 +311,11 @@ if ( is_admin() ) {
 				}
 
 				// if no ie css textareas, assign default
-				if ( !$this->preferences['ie_css']) {
+				if ( empty($this->preferences['ie_css'])) {
 					$pref_array['ie_css'] = array('all' => '', 'nine' => '', 'eight' => '', 'seven' => '');
 					$this->savePreferences($pref_array);
 				}
 
-				// $ext_updater_file = dirname(__FILE__) .'/includes/plugin-updates/plugin-update-checker.php';
                 $ext_updater_file = dirname(__FILE__) .'/includes/plugin-updates/1.5/plugin-update-checker.php';
 				if ( TVR_MICRO_VARIANT == 'themer' and file_exists($ext_updater_file) ) {
 					require $ext_updater_file;
@@ -299,7 +325,6 @@ if ( is_admin() ) {
 						'microthemer'
 					);
 				}
-
 
 
 				/***
@@ -453,12 +478,19 @@ if ( is_admin() ) {
 
                     // enqueue jquery ui stuff
                     wp_enqueue_script( 'jquery-ui-core' );
+                    wp_enqueue_script( 'jquery-ui-position', 'jquery');
+                    //wp_enqueue_script( 'jquery-effects-core', 'jquery');
+                    //wp_enqueue_script( 'jquery-effects-bounce', 'jquery-effects-core');
+                    //wp_enqueue_script( 'jquery-effects-scale', 'jquery-effects-core');
+
                     wp_enqueue_script( 'jquery-ui-sortable', 'jquery');
 					wp_enqueue_script( 'jquery-ui-slider', 'jquery');
                     wp_enqueue_script( 'jquery-ui-autocomplete', 'jquery');
                     wp_enqueue_script( 'jquery-ui-button', 'jquery');
                     wp_enqueue_script( 'jquery-ui-resizable', 'jquery');
                     wp_enqueue_script( 'jquery-ui-tooltip', 'jquery');
+
+
 
                     wp_enqueue_script( 'tvr_mcth_colorbox' );
 					wp_enqueue_script( 'tvr_mcth_tabs' );
@@ -514,24 +546,6 @@ if ( is_admin() ) {
                         }";
                     wp_add_inline_style( 'tvr_mcth_styles', $custom_css );
                 }
-				// add IE only stylesheet if WordPress detects IE
-                /*
-				global $is_IE;
-				global $wp_styles;
-				if ( $is_IE ) {
-					// all IE versions
-					wp_register_style( 'tvr_ie', $this->thispluginurl.'css/ie.css?v='.$this->version);
-					wp_enqueue_style( 'tvr_ie' );
-					// IE8 and below
-					wp_register_style( 'tvr_ie8', $this->thispluginurl.'css/ie8.css?v='.$this->version);
-					wp_enqueue_style( 'tvr_ie8' );
-					$wp_styles->add_data('tvr_ie8','conditional','(lte IE 8)'); // method for enqueuing condionally
-					// IE7 and below
-					wp_register_style( 'tvr_ie7', $this->thispluginurl.'css/ie7.css?v='.$this->version);
-					wp_enqueue_style( 'tvr_ie7' );
-					$wp_styles->add_data('tvr_ie7','conditional','(lte IE 7)'); // method for enqueuing condionally
-				}
-                */
 			}
 
 			// build array for property/value input fields
@@ -1194,6 +1208,36 @@ if ( is_admin() ) {
                 return $merged;
             }
 
+            // process preferences form
+            function process_preferences_form(){
+                if (isset($_POST['tvr_save_preferences_submit'])) {
+                    check_admin_referer('tvr_preferences_submit');
+                    $pref_array = $_POST['tvr_preferences'];
+                    if ($this->savePreferences($pref_array)) {
+                        $this->log(
+                            'Preferences saved',
+                            '<p>Your Microthemer preferences have been successfully updated.</p>',
+                            'notice'
+                        );
+                    }
+
+                }
+            }
+
+            // process posted zip file (do this on manage and single hence wrapped in a funciton )
+            function process_uploaded_zip() {
+                if (isset($_POST['tvr_upload_micro_submit'])) {
+                    check_admin_referer('tvr_upload_micro_submit');
+                    if ($_FILES['upload_micro']['error'] == 0) {
+                        $this->handle_zip_package();
+                    }
+                    // there was an error - save in global message
+                    else {
+                        $this->log_file_upload_error($_FILES['upload_micro']['error']);
+                    }
+                }
+            }
+
 			// Microthemer UI page
 			function microthemer_ui_page() {
 				// only run code if it's the ui page
@@ -1682,6 +1726,8 @@ if ( is_admin() ) {
                             }
                         }
                         else {
+                            //=chris please do checks on why validation failed here and report to user
+
                             $_POST['tvr_preferences']['buyer_validated'] = 0;
                             $this->trial = true;
                             $this->log(
@@ -1752,36 +1798,7 @@ if ( is_admin() ) {
 				}
 			}
 
-            // process preferences form
-            function process_preferences_form(){
-                if (isset($_POST['tvr_save_preferences_submit'])) {
-                    check_admin_referer('tvr_preferences_submit');
-                    $pref_array = $_POST['tvr_preferences'];
 
-                    if ($this->savePreferences($pref_array)) {
-                        $this->log(
-                            'Preferences saved',
-                            '<p>Your Microthemer preferences have been successfully updated.</p>',
-                            'notice'
-                        );
-                    }
-
-                }
-            }
-
-            // process posted zip file (do this on manage and single hence wrapped in a funciton )
-            function process_uploaded_zip() {
-                if (isset($_POST['tvr_upload_micro_submit'])) {
-                    check_admin_referer('tvr_upload_micro_submit');
-                    if ($_FILES['upload_micro']['error'] == 0) {
-                        $this->handle_zip_package();
-                    }
-                    // there was an error - save in global message
-                    else {
-                        $this->log_file_upload_error($_FILES['upload_micro']['error']);
-                    }
-                }
-            }
 
 			// Manage Micro Themes page
 			function manage_micro_themes_page() {
@@ -2419,7 +2436,7 @@ if ( is_admin() ) {
                     $unlock_title = 'Validate license using a different email address';
                 } else {
                     $unlock_class = '';
-                    $unlock_title = 'Enter PayPal email address to unlock Microthemer';
+                    $unlock_title = 'Enter your PayPal email (or the email listed in My Downloads) to unlock Microthemer';
                 }
                 //
                 $html = '
@@ -2455,10 +2472,25 @@ if ( is_admin() ) {
                     <div class="program-docs v-left-button show-dialog" rel="program-docs"
                     title="Learn how to use Microthemer"></div>
 
+
+
                     <a class="back-to-wordpress v-left-button" title="Return to WordPress dashboard"
                     href="'.$this->wp_blog_admin_url.'"></a>
                 ';
                 return $html;
+                /*
+                 <div class="integration v-left-button show-dialog tvr-popright-wrap" rel="integration"
+                    title="View Microthemer\'s integration options">
+                        <div class="tvr-popright integration-right">
+                            <div class="popright-sub integration-sub">
+                                <div id="toggle-wp-touch" class="v-left-button toggle-wp-touch"
+                                title="Enable/Disable WPTouch mode">WPTouch</div>
+                                <div id="toggle-beaver" class="v-left-button toggle-beaver"
+                                title="Enable/Disable Builder Beaver mode">Builder Beaver</div>
+                            </div>
+                        </div>
+                    </div>
+                 */
             }
 
 			// Resolve property/value input fields
@@ -3741,7 +3773,7 @@ $tab$css_selector {
 					$pref_array = array();
 					$g_ie_array = array();
 					// build google font url
-					if ($sty['g_fonts_used']) {
+					if (!empty($sty['g_fonts_used'])) {
 						$g_url = '//fonts.googleapis.com/css?family=';
 						$first = true;
 
@@ -5502,7 +5534,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '3.4.9';
+			var $version = '3.5.9';
             var $microthemeruipage = 'tvr-microthemer.php';
 
 			/**
@@ -5624,7 +5656,7 @@ if (!is_admin()) {
 					$deps = $this->dep_stylesheets();
 
 					// check if Google Fonts stylesheet needs to be called
-					if ($this->preferences['g_fonts_used']) {
+					if (!empty($this->preferences['g_fonts_used'])) {
                         // add fonts subset url param if defined
                         if (!empty($this->preferences['gfont_subset'])) {
                             $this->preferences['g_url'] = $this->preferences['g_url'] . $this->preferences['gfont_subset'];
@@ -5736,6 +5768,14 @@ if (!is_admin()) {
 			// add firebug style overlay js if user is logged in
 			function add_js() {
 				if ( is_user_logged_in() and TVR_MICRO_VARIANT == 'themer') {
+                    // testing only - swap default jQuery with 2.x for future proofing
+                    /*
+                    $jq2 = false;
+                    if ($jq2){
+                        wp_deregister_script('jquery');
+                        wp_register_script('jquery', ($this->thispluginurl.'js/jq2.js'));
+                    }*/
+
 					wp_enqueue_script( 'jquery' );
                     if (!TVR_DEV_MODE) {
                         wp_register_script( 'tvr_mcth_overlay',
