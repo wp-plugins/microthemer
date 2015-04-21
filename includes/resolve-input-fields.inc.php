@@ -175,6 +175,7 @@ $html.= '<div id="opts-'.$section_name.'-'.$css_selector.'-'.$property_group_nam
     <label>';
 
     $html.= '<span class="option-label"
+    data-simple-tt="'.$this->propertyoptions[$property_group_name][$property]['label'].'"
     title="'.$this->propertyoptions[$property_group_name][$property]['label'].'">'
         . $option_icon . $text_label . '</span>
         </label>'

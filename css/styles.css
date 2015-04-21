@@ -52,7 +52,7 @@ y-axis
 ------------------------------------------------------------------------------------------------------------------------
 */
 .mCSB_inside > .mCSB_container {
-  margin-right: 30px; }
+  margin-right: 18px; }
 
 .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
   margin-right: 0; }
@@ -2147,7 +2147,7 @@ Scrollable area
 .mCSB_draggerRail {
   cursor: pointer; }
 
-#tvr-main-menu .mCSB_inside > .mCSB_container, #tvr-main-menu .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
+#tvr-main-menu .mCSB_inside > .mCSB_container, #tvr-main-menu .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden, #wizard-panes .mCSB_inside > .mCSB_container, #wizard-panes .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
   margin-right: 18px; }
 
 /* for dropdowns */
@@ -2982,6 +2982,8 @@ The advanced selector wizard
   margin: 0 0 0 16px; }
   #code-suggestions li {
     margin-bottom: 0; }
+    #code-suggestions li .info-icon {
+      display: none; }
   #code-suggestions .selector-category {
     display: none; }
   #code-suggestions textarea {
@@ -2993,28 +2995,36 @@ The advanced selector wizard
     height: 26px;
     padding: 3px;
     line-height: 18px; }
-  #code-suggestions .in-focus textarea {
+  #code-suggestions li.in-focus textarea {
     background: #fff;
     border-color: #e6e6e6;
     resize: vertical; }
-    #code-suggestions .in-focus textarea:hover {
+    #code-suggestions li.in-focus textarea:hover {
       cursor: text; }
-  #code-suggestions .in-focus.hover-elsewhere textarea {
-    background: transparent;
-    border-color: #f6f6f6;
-    resize: none; }
+  #code-suggestions li.in-focus.hover-elsewhere textarea {
+    /*background: transparent;
+      border-color: $lightestGrey;
+      resize: none;
+      */ }
   .slideless_wizard-1 #code-suggestions {
     margin: 0; }
-    .slideless_wizard-1 #code-suggestions textarea:hover {
-      background: #fff;
-      border-color: #e6e6e6;
+    .slideless_wizard-1 #code-suggestions li {
+      padding-right: 25px;
+      position: relative; }
+      .slideless_wizard-1 #code-suggestions li .info-icon {
+        display: none; }
+    .slideless_wizard-1 #code-suggestions li:hover textarea {
+      background: #e6e6e6;
       cursor: pointer; }
-    .slideless_wizard-1 #code-suggestions .in-focus textarea:hover {
-      cursor: text; }
-    .slideless_wizard-1 #code-suggestions .in-focus.hover-elsewhere textarea {
-      background: transparent;
-      border-color: #f6f6f6;
-      resize: none; }
+    .slideless_wizard-1 #code-suggestions li:hover .info-icon {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 3px 0; }
+    .slideless_wizard-1 #code-suggestions li:hover.in-focus textarea {
+      cursor: text;
+      background: #fff; }
 
 .refine-target-controls {
   overflow: hidden;

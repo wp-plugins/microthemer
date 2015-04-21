@@ -1130,7 +1130,8 @@ Scrollable area
   cursor:pointer;
 }
 // prevent main menu from jumping when scollbars appear or dissappear
-#tvr-main-menu {
+#tvr-main-menu,
+#wizard-panes {
   .mCSB_inside > .mCSB_container,
   .mCSB_container.mCS_no_scrollbar_y.mCS_y_hidden {
     margin-right: 18px; // same as with scrollbar
@@ -1996,10 +1997,14 @@ $sliderHeight: 26px;
   margin: 0 0 0 16px;
   li {
     margin-bottom: 0;
+    .info-icon {
+      display: none;
+    }
   }
   .selector-category {
     display: none;
   }
+
   textarea {
     width: 100%;
     background: transparent;
@@ -2010,7 +2015,7 @@ $sliderHeight: 26px;
     padding: 3px;
     line-height: 18px;
   }
-  .in-focus {
+  li.in-focus {
     textarea {
       background: $white;
       border-color: $lightGrey;
@@ -2020,9 +2025,10 @@ $sliderHeight: 26px;
       }
     }
     &.hover-elsewhere textarea {
-      background: transparent;
+      /*background: transparent;
       border-color: $lightestGrey;
       resize: none;
+      */
     }
 
   }
@@ -2030,23 +2036,30 @@ $sliderHeight: 26px;
   // alternative system for trying selectors
   .slideless_wizard-1 & {
     margin: 0;
-    textarea {
-      &:hover {
-        background: $white;
-        border-color: $lightGrey;
-        cursor: pointer;
+    li {
+      padding-right:25px;
+      position: relative;
+      .info-icon {
+        display: none;
       }
     }
-    .in-focus {
+    li:hover {
       textarea {
-        &:hover {
-          cursor: text;
-        }
+        background: $lightGrey;
+        cursor: pointer;
       }
-      &.hover-elsewhere textarea {
-        background: transparent;
-        border-color: $lightestGrey;
-        resize: none;
+      .info-icon {
+        display: inline-block;
+        position: absolute;
+        top:0;
+        right:0;
+        margin:3px 0;
+      }
+      &.in-focus {
+        textarea {
+          cursor: text;
+          background: $white;
+        }
       }
     }
   }

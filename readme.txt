@@ -100,6 +100,18 @@ View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-cha
 
 == Upgrade Notice ==
 
+3.6.3 (Apr 20, 2015)
+
+# Change
+* The computed CSS appears when hovering over the CSS property LABEL instead of the form field. We think tooltips should get out of the way of input fields. And we think it's neater to show the label and computed value alongside each other e.g. "Font Weight: bold".
+
+# Bugs fixed
+* The color picker would not disappear on blur following the last 3.5.9 update (you had to click the close button).
+
+# Edge Mode Change
+* The styling of selector suggestions on hover poses less confusion about which suggestion is actually selected. They have a grey background on hover and the current selector continues to look like an editable textarea until another one is clicked.
+* Information icons appear on hover for the selector wizard suggestions for showing the tooltip without the tooltip getting in the way of the code.
+
 3.5.9 (Apr 19, 2015)
 
 # Enhancement
