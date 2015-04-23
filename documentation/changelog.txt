@@ -1,5 +1,13 @@
 CHANGELOG
 
+3.6.7 (Apr 23, 2015)
+
+# Bugs fixed
+* Microthemer conflicted with the Contact Form Maker plugin.
+* Single or double-clicking form submit buttons didn't work as a result of the 3.5.9 update.
+* Microthemer would follow links if they were the parent of a double-clicked grandchild element.
+* Microthemer wouldn't allow styling links that lead back to the admin area (this was an unintended consequence of preventing single-click navigation to the admin area).
+
 3.6.3 (Apr 20, 2015)
 
 # Change
