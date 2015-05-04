@@ -4,7 +4,7 @@ Contributors: bastywebb
 Donate link: http://themeover.com/microthemer/
 Tags: microthemer, theme customizer, theme editor, theme tweaker, theme generator, css plugin, css editor, css code generator, visual css editor, visual design tool, css3 pie, stylesheet, style.css, micro themes, microloader, wordpress, google fonts, google web fonts, web fonts, wordpress web fonts, google fonts plugin, wp google fonts, google
 Requires at least: 3.6
-Tested up to: 4.1
+Tested up to: 4.2.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
