@@ -1,5 +1,9 @@
 CHANGELOG
 
+3.6.8 (May 4, 2015)
+# Major Bug fixed
+* When importing with "Merge", any responsive tab settings being imported would be lost. So too would any custom !important declarations.
+
 3.6.7 (Apr 23, 2015)
 
 # Bugs fixed

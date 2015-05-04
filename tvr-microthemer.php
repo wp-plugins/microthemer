@@ -3,7 +3,7 @@
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. posts, pages, contact forms, headers, footers, sidebars) down to the smallest detail (unlike typical theme options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress theme or plugin. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced theme and plugin customization.
-Version: 3.6.7
+Version: 3.6.8
 Author: Themeover
 Author URI: http://www.themeover.com
 */
@@ -50,7 +50,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 
-			var $version = '3.6.7';
+			var $version = '3.6.8';
             // set this to true if version saved in DB is different, other actions may follow if new v
             var $new_version = false;
 			var $minimum_wordpress = '3.6';
@@ -1708,7 +1708,7 @@ if ( is_admin() ) {
                         $params = 'email='.$_POST['tvr_preferences']['buyer_email'].'&domain='.$this->home_url;
                         $validation = wp_remote_fopen('http://themeover.com/wp-content/tvr-auto-update/validate.php?'.$params);
                         if ($validation) {
-                            $_POST['tvr_preferences']['buyer_validated'] = 1;
+                            $_POST['tvr_preferences']['buyer_validated'] = 0;
                             $this->trial = 0;
                             if (!$this->preferences['buyer_validated']) { // not already validated
                                 $this->log(
@@ -1727,8 +1727,7 @@ if ( is_admin() ) {
                         }
                         else {
                             //=chris please do checks on why validation failed here and report to user
-
-                            $_POST['tvr_preferences']['buyer_validated'] = 0;
+                            $_POST['tvr_preferences']['buyer_validated'] = 1; // sebhack
                             $this->trial = true;
                             $this->log(
                                 'Validation failed',
@@ -4045,27 +4044,16 @@ $tab$css_selector {
                             'notice'
                         );
 						// check for new mqs
-						$mqs_imported = false;
 						$pref_array['m_queries'] = $this->preferences['m_queries'];
-						if (!empty($this->options['non_section']['active_queries']) and
-						is_array($this->options['non_section']['active_queries'])) {
-							$i = 0;
-							foreach ($this->options['non_section']['active_queries'] as $options_mq_key => $mq_array) {
-								// add the new media query if not currently in use
-								$pref_mq_key = $this->in_2dim_array($mq_array['query'], $pref_array['m_queries'], 'query');
-								if ( !$pref_mq_key ) { // new media query
-									// ensure key is unique by using unique base from last page load
-									$pref_mq_key = $this->unq_base.++$i;
-									$pref_array['m_queries'][$pref_mq_key]['label'] = $mq_array['label']. ' (imp)';
-									$pref_array['m_queries'][$pref_mq_key]['query'] = $mq_array['query'];
-									$mqs_imported = true;
-								}
-								// If new media queries were imported or not,
-                                // the mq key in the options needs to match the key in the pref array.
-								$this->replace_options_mq_key($options_mq_key, $pref_mq_key);
-							}
-						}
-						if ($mqs_imported) {
+                        // check for new media queries in the import
+                        $mq_analysis = $this->analyse_mqs(
+                            $this->options['non_section']['active_queries'],
+                            $pref_array['m_queries']
+                        );
+						if ($mq_analysis['new']) {
+                            // merge the new queries
+                            $pref_array['m_queries'] = array_merge($pref_array['m_queries'], $mq_analysis['new']);
+
                             $this->log(
                                 'Media queries added',
                                 '<p>The design pack you imported contained media queries that are different from the ones
@@ -4077,6 +4065,17 @@ $tab$css_selector {
                                 'warning'
                             );
 						}
+                        if ($this->debug_merge) {
+                            $debug_file = $this->micro_root_dir . $this->preferences['theme_in_focus'] . '/debug-merge-post.txt';
+                            $write_file = fopen($debug_file, 'w');
+                            $data = '';
+                            $data.= "\n\nThe merged and MQ replaced options\n\n";
+                            $data.= print_r($this->options, true);
+                            fwrite($write_file, $data);
+                            fclose($write_file);
+                        }
+
+
 						// save settings in db
 						$this->saveUiOptions($this->options);
 						// update active-styles.css
@@ -4085,11 +4084,8 @@ $tab$css_selector {
 						if ($context != 'Merge') {
 							$pref_array['theme_in_focus'] = $theme_name;
 						}
-						if ($mqs_imported) {
-
-						}
 						// update the preferences if not merge or media queries need importing
-						if ($context != 'Merge' or $mqs_imported) {
+						if ($context != 'Merge' or $mq_analysis['new']) {
 							$this->savePreferences($pref_array);
 						}
 					}
@@ -4106,42 +4102,42 @@ $tab$css_selector {
 
 			// ensure mq keys in pref array and options match
             //- NOTE A SIMPLER SOLUTION WOULD BE TO CONVERT ARRAY INTO STRING AND THEN DO str_replace (may have side effects though)
-			function replace_options_mq_key($options_mq_key, $pref_mq_key) {
-
-                $old_new_mq_map[$options_mq_key] = $pref_mq_key;
+			function replace_mq_keys($student_key, $role_model_key, $options) {
+                $old_new_mq_map[$student_key] = $role_model_key;
 				// replace the relevant array keys - unset() doesn't work on $this-> so slightly convoluted solution used
                 $cons = array('active_queries', 'm_query');
 				$updated_array = array();
 				foreach ($cons as $stub => $context) {
 					unset($updated_array);
-					if (is_array($this->options['non_section'][$context])) {
-						foreach ($this->options['non_section'][$context] as $cur_key => $array) {
-							if ($cur_key == $options_mq_key) {
-								$key = $pref_mq_key;
+					if (is_array($options['non_section'][$context])) {
+						foreach ($options['non_section'][$context] as $cur_key => $array) {
+							if ($cur_key == $student_key) {
+                                $data.= 'found student: ' . $student_key . ' role: '. $role_model_key;
+								$key = $role_model_key;
 							} else {
 								$key = $cur_key;
 							}
 							$updated_array[$key] = $array;
 						}
-						$this->options['non_section'][$context] = $updated_array; // reassign main array with updated keys array
+						$options['non_section'][$context] = $updated_array; // reassign main array with updated keys array
 					}
 				}
                 // and also the !important media query keys
                 $updated_array = array();
-                if (!empty($this->options['non_section']['important']['m_query']) and
-                    is_array($this->options['non_section']['important']['m_query'])) {
-                    foreach ($this->options['non_section']['important']['m_query'] as $cur_key => $array) {
-                        if ($cur_key == $options_mq_key) {
-                            $key = $pref_mq_key;
+                if (!empty($options['non_section']['important']['m_query']) and
+                    is_array($options['non_section']['important']['m_query'])) {
+                    foreach ($options['non_section']['important']['m_query'] as $cur_key => $array) {
+                        if ($cur_key == $student_key) {
+                            $key = $role_model_key;
                         } else {
                             $key = $cur_key;
                         }
                         $updated_array[$key] = $array;
                     }
-                    $this->options['non_section']['important']['m_query'] = $updated_array; // reassign main array with updated keys array
+                    $options['non_section']['important']['m_query'] = $updated_array; // reassign main array with updated keys array
                 }
                 // annoyingly, I also need to do a replace on device_focus key values for all selectors
-                foreach($this->options as $section_name => $array) {
+                foreach($options as $section_name => $array) {
                     if ($section_name == 'non_section') { continue; }
                     // loop through the selectors
                     if (is_array($array)) {
@@ -4150,13 +4146,14 @@ $tab$css_selector {
                                 foreach ( $sub_array['device_focus'] as $prop_group => $value) {
                                     // replace the value if it is an old key
                                     if (!empty($old_new_mq_map[$value])) {
-                                        $this->options[$section_name][$css_selector]['device_focus'][$prop_group] = $old_new_mq_map[$value];
+                                        $options[$section_name][$css_selector]['device_focus'][$prop_group] = $old_new_mq_map[$value];
                                     }
                                 }
                             }
                         }
                     }
                 }
+                return $options;
 			}
 
 
@@ -4167,37 +4164,88 @@ $tab$css_selector {
 					$debug_file = $this->micro_root_dir . $this->preferences['theme_in_focus'] . '/debug-merge.txt';
 					$write_file = fopen($debug_file, 'w');
 					$data = '';
-					$data.= "\n\nThe to merge options\n\n";
-					$data.= print_r($new_settings, true);
 					$data.= "\n\nThe current options\n\n";
 					$data.= print_r($orig_settings, true);
 				}
 				if (is_array($new_settings)) {
+                    // check if search needs to be done on important and m_query arrays
+                    $mq_arr = $imp_arr = false;
+                    if (!empty($new_settings['non_section']['m_query']) and is_array($new_settings['non_section']['m_query'])){
+                        $mq_arr = $new_settings['non_section']['m_query'];
+                    }
+                    if (!empty($new_settings['non_section']['important']) and is_array($new_settings['non_section']['important'])){
+                        $imp_arr = $new_settings['non_section']['important'];
+                    }
+
 					// loop through new sections to check for section name conflicts
 					foreach($new_settings as $section_name => $array) {
 						// if a name conflict exists
 						if ( $this->is_name_conflict($section_name, $orig_settings, $new_settings, 'first-check') ) {
 							// create a non-conflicting new name
 							$alt_name = $this->get_alt_section_name($section_name, $orig_settings, $new_settings);
-							// rename the to-be-merged section and the corresponding view_state tracker
+							// rename the to-be-merged section and the corresponding non_section extras
 							$new_settings[$alt_name] = $new_settings[$section_name];
-							$new_settings['non_section']['view_state'][$alt_name] = $new_settings['non_section']['view_state'][$section_name];
-							unset($new_settings[$section_name]);
-							unset($new_settings['non_section']['view_state'][$section_name]);
+                            unset($new_settings[$section_name]);
+                            $new_settings['non_section']['view_state'][$alt_name] = $new_settings['non_section']['view_state'][$section_name];
+                            unset($new_settings['non_section']['view_state'][$section_name]);
+                            // also rename all the corresponding [m_query] folder names (ouch)
+                            if ($mq_arr){
+                                foreach ($mq_arr as $mq_key => $arr){
+                                    foreach ($arr as $orig_sec => $arr){
+                                        // if the folder name exists in the m_query array, replace
+                                        if ($section_name == $orig_sec){
+                                            $new_settings['non_section']['m_query'][$mq_key][$alt_name] = $new_settings['non_section']['m_query'][$mq_key][$section_name];
+                                            unset($new_settings['non_section']['m_query'][$mq_key][$section_name]);
+                                        }
+                                    }
+                                }
+                            }
+                            // and the [important] folder names (double ouch)
+                            if ($imp_arr){
+                                foreach ($imp_arr as $orig_sec => $arr){
+                                    // if it's MQ important values
+                                    if ($orig_sec == 'm_query'){
+                                        foreach ($imp_arr['m_query'] as $mq_key => $arr){
+                                            foreach ($arr as $orig_sec => $arr){
+                                                // if the folder name exists in the m_query array, replace
+                                                if ($section_name == $orig_sec){
+                                                    $new_settings['non_section']['important']['m_query'][$mq_key][$alt_name] = $new_settings['non_section']['important']['m_query'][$mq_key][$section_name];
+                                                    unset($new_settings['non_section']['important']['m_query'][$mq_key][$section_name]);
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        // regular important value
+                                        $new_settings['non_section']['important'][$alt_name] = $new_settings['non_section']['important'][$section_name];
+                                        unset($new_settings['non_section']['important'][$section_name]);
+                                    }
+                                }
+                            }
 						}
 					}
-					// now that we've checked for and corrected possible name conflicts, merge the arrays
-					$merged_settings = array_merge($orig_settings, $new_settings);
-					// view states need to be merged seperately else the new settings overwrite the original
-                    // note it's possible for a pack to be exported without sections/view_states (e.g. just custom css)
-                    if (!is_array($orig_settings['non_section']['view_state'])){
-                        $orig_settings['non_section']['view_state'] = array();
+
+                    // check if the import contains the same media queries but with different keys
+                    $mq_analysis = $this->analyse_mqs(
+                        $new_settings['non_section']['active_queries'],
+                        $orig_settings['non_section']['active_queries']
+                    );
+                    // if so normalise (set the keys the same).
+                    if ($mq_analysis['replacements_needed']){
+                        foreach ($mq_analysis['replacements'] as $student_key => $role_model_key){
+                            $new_settings = $this->replace_mq_keys($student_key, $role_model_key, $new_settings);
+                        }
                     }
-                    if (!is_array($new_settings['non_section']['view_state'])){
-                        $new_settings['non_section']['view_state'] = array();
+
+                    if ($this->debug_merge) {
+                        $data .= "\n\nThe MQ Analysis\n\n";
+                        $data .= print_r($mq_analysis, true);
+                        $data .= "\n\nThe to merge options\n\n";
+                        $data .= print_r($new_settings, true);
                     }
-					$merged_settings['non_section']['view_state'] =
-					array_merge($orig_settings['non_section']['view_state'], $new_settings['non_section']['view_state']);
+
+					// now that we've checked for and corrected possible name conflicts, merge the arrays (recursively to avoid overwriting)
+                    $merged_settings = $this->array_merge_recursive_distinct($orig_settings, $new_settings);
+
 					// the hand-coded CSS of the imported settings needs to be appended to the original
 					foreach ($this->custom_code as $key => $val){
                         // if regular main custom css
@@ -4238,6 +4286,33 @@ $tab$css_selector {
 				}
 				return $merged_settings;
 			}
+
+            // get an array of current mq keys paired with replacements - compare against 'role model' to base current array on
+            function analyse_mqs($student_mqs, $role_model_mqs){
+                $mq_analysis['new'] = false;
+                $mq_analysis['replacements_needed'] = false;
+                $i = 0;
+                if (!empty($student_mqs) and is_array($student_mqs)) {
+                    foreach ($student_mqs as $student_key => $student_array){
+                        $replacement_key = $this->in_2dim_array($student_array['query'], $role_model_mqs, 'query');
+                        // if new media query
+                        if ( !$replacement_key ) {
+                            // ensure key is unique by using unique base from last page load
+                            $new_key = $this->unq_base.++$i;
+                            $mq_analysis['new'][$new_key]['label'] = $student_array['query']. ' (imp)';
+                            $mq_analysis['new'][$new_key]['query'] = $student_array['query'];
+                        }
+                        // else store replacement key
+                        else {
+                            if ($replacement_key != $student_key){
+                                $mq_analysis['replacements_needed'] = true;
+                                $mq_analysis['replacements'][$student_key] = $replacement_key;
+                            }
+                        }
+                    }
+                }
+                return $mq_analysis;
+            }
 
 
 			/***
@@ -5534,7 +5609,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '3.6.7';
+			var $version = '3.6.8';
             var $microthemeruipage = 'tvr-microthemer.php';
 
 			/**

@@ -100,91 +100,60 @@ View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-cha
 
 == Upgrade Notice ==
 
-3.6.7 (Apr 23, 2015)
+= 3.6.8 (May 4, 2015) =
+* Major Bug fixed. When importing with "Merge", any responsive tab settings being imported would be lost. So too would any custom !important declarations.
 
-# Bugs fixed
+= 3.6.7 (Apr 23, 2015) =
 * Microthemer conflicted with the Contact Form Maker plugin.
 * Single or double-clicking form submit buttons didn't work as a result of the 3.5.9 update.
 * Microthemer would follow links if they were the parent of a double-clicked grandchild element.
 * Microthemer wouldn't allow styling links that lead back to the admin area (this was an unintended consequence of preventing single-click navigation to the admin area).
 
-3.6.3 (Apr 20, 2015)
-
-# Change
+= 3.6.3 (Apr 20, 2015) =
 * The computed CSS appears when hovering over the CSS property LABEL instead of the form field. We think tooltips should get out of the way of input fields. And we think it's neater to show the label and computed value alongside each other e.g. "Font Weight: bold".
-
-# Bugs fixed
 * The color picker would not disappear on blur following the last 3.5.9 update (you had to click the close button).
-
-# Edge Mode Change
 * The styling of selector suggestions on hover poses less confusion about which suggestion is actually selected. They have a grey background on hover and the current selector continues to look like an editable textarea until another one is clicked.
 * Information icons appear on hover for the selector wizard suggestions for showing the tooltip without the tooltip getting in the way of the code.
 
-3.5.9 (Apr 19, 2015)
-
-# Enhancement
+= 3.5.9 (Apr 19, 2015) =
 * An 'Edge mode' option has been added to the preferences. You can enable this to try out experimental new features and have your say on them before they become permanent. Useful for those that want to take an active role in shaping Microthemer.
 * Custom tooltips have been added to the interface. You can configure these via the preferences.
 * Selectors suggestions on the targeting tab have more descriptive explanations and show quickly with the new tooltip.
-
-# Bugs fixed
 * The inside label on the folder field of the selector wizard had a glitch
 * jQuery version checking could be inaccurate under some circumstances.
 * Targeting inputs by type wasn't working
 * Microthemer could follow links to plain images and find itself at an impasse.
 * Microthemer could follow links to the admin and then possibly back to Microthemer.
-
-# Change
 * Microthemer now waits for 700ms instead of 300ms for a second click when a user double-clicks something. Some people were naturally double-clicking with less than 300ms between each click. I will make the delay time configurable if people request this.
-
-# Edge Change (only shows if 'Edge Mode' has been enabled)
 * The selector targeting tab has a regular scrollbar on the right instead of a vertical slider. Switching between the options is be done by hovering your mouse over them (for quick preview) and then clicking the suggestion you want.
 3.5 (Apr 10, 2015)
-
-# Bugs fixed
 * jQuery version checking could be inaccurate under some circumstances.
 
-3.4.9 (Apr 7, 2015)
-
-# Bugs fixed
+= 3.4.9 (Apr 7, 2015) =
 * An undefined index PHP error could show when upgrading from a previous version to version 3.4.4 (when the WP admin shortcut link was added)
 * Some undefined errors could be generated on the UI page. These were hidden behind the interface but could result in a slow page load if present.
 
-3.4.7 (Apr 4, 2015)
-
-# Bugs fixed
+= 3.4.7 (Apr 4, 2015) =
 * Chrome could fail when trying to load the selector wizard if it encountered any computed CSS values with rgba opacity set to more than 2 decimal places e.g. 0.745.
 * Double-clicking an already highlighted element closes the selector wizard instead of showing a warning.
-
-# Change
 * On multi-site, Microthemer creates the micro-themes folder in /wp-content/uploads/sites/ if the blogs.dir directory doesn't already exist (modern multi-site installs don't create the blogs.dir folder).
 
 
-3.4.4 (Apr 3, 2015)
-
-# Enhancements
+= 3.4.4 (Apr 3, 2015) =
 * Added an option for accessing Microthemer from the WP admin bar. This can be turned off via the preferences page if you don't want it cluttering your admin bar.
 * There is an import icon next to each design pack on the Manage & Install design packs page. This takes you to the import page and preselects the right design pack.
-
-# Bugs fixed
 * The 'clear styles but leave folders & selectors intact' option didn't clear styles applied on responsive tabs.
 
-3.4.1 (Mar 11, 2015)
-
-Bugs fixed
+= 3.4.1 (Mar 11, 2015) =
 * Double-clicking an element with text no longer highlights the actual word clicked, which resulted in confusing highlighting.
 * Microthemer initially uses home_url() to load the site preview as site_url() can sometimes be incorrect.
 * Possibility of an undefined variable $logs on line 1110 of tvr-microthemer.php
 * Possibility of an undefined index disable_parent_css on line 5515 of tvr-microthemer.php
 
-3.3.7 (Feb 15, 2015)
-
-# Changes
+= 3.3.7 (Feb 15, 2015) =
 * Folders and selector are APPENDED instead of PRE-PENDED when added to the interface. Rationale: It keeps folders and selectors in the chronological order that they were created, the back and forward quick nav buttons work more intuitively, if two selectors have equal specificity the latter will override the previously created one.
 * For consistency, the same goes for custom media queries. They are appended, and the 'NEW' button has been moved below them.
 * Only folders that have 1 or more selectors are auto-checked on the settings export screen.
-
-# Bugs Fixed
 * All folders/selectors/custom media queries would flash for a split second when adding a new item to them.
 * There is a known bug in firefox where media queries don't take effect on the exact pixel specified. Styles set within a media query tab didn't always seem to take an effect at 767px for instance when the media query specified a max-width of 767px (as it does on the 'Tablet & Phone' media query). Only at 766.7px do the styles work. For now, I've implemented a fix for this (automatically subtracting 0.3px from the preview screen width). I am following this bug on bugzilla. I will remove the temporary fix when it is no longer necessary.
 * Unnecessary console.logs functions for debugging were included in the previous release which could cause problems for IE9.
@@ -196,25 +165,19 @@ Bugs fixed
 * The screen-width slider didn't show with the selector wizard 100% of the time.
 * The computed CSS values for the single double-clicked element were not recalculated following a screen width refresh.
 
-3.2.4 (Feb 14, 2015)
-
-# Bugs Fixed
+= 3.2.4 (Feb 14, 2015) =
 * When saving different styles in quick succession, the latest style change wasn't always saved if a save was already in progress. Now the saves queue up to ensure that the latest setting applies.
 * The selector wizard could fail to show if other Javascripts altered the format of the computed CSS data jQuery returned.
 * The selector wizard could also fail to show after double-clicking in Chrome under some circumstances.
 
-3.2.1 (Feb 10, 2015 - later in the afternoon)
-
-# Bugs Fixed
+= 3.2.1 (Feb 10, 2015 - later in the afternoon) =
 * The selector wizard displays link :pseudo classes in the correct order (that corresponds to the position of the slider handle)
 * An undefined variable could throw a warning with strict error reporting server settings enabled.
 * Unnecessary debug output was being generated behind the scenes. And unnecessary source file for a pollyfill were included.
 * The selector wizard caused the manual 'Add Selector' options to be expanded when they needn't be.
 * Manual selector values were not being cleared from the input fields upon 'cancel'
 
-3.1.6 (Feb 10, 2015)
-
-# Enhancements
+= 3.1.6 (Feb 10, 2015) =
 * Microthemer remembers your preference for showing/unshowing the advanced options of the selector wizard. No need for the checkbox now.
 * Microthemer remembers which tab of the advanced wizard you last used.
 * Microthemer remembers your preference for having the left toolbar expanded or closed.
@@ -222,9 +185,7 @@ Bugs fixed
 * The link back to the WordPress dashboard is a real link so that you can open it in a new tab with right-click.
 * The media query tabs editing menu options are more similar to the format used for editing folders and selectors. An additional 'clear' option has been added for clearing all the styles for a style group at once.
 
-3.1 (Feb 8, 2015)
-
-# Bugs Fixed
+= 3.1 (Feb 8, 2015)
 * Some alternative media query 'sets' can be loaded. These encourage the use of mobile-first/semantic breakpoints.
 * Deleting all media queries will actually reset the default media queries (rather than just purporting to)
 * Hovering your mouse over a media query tab shows the underlying media query code.
@@ -237,36 +198,22 @@ Bugs fixed
 * Selector highlighting is recalculated instantly when a new style is applied that affects the dimensions of the targets element(s). Thanks again to Rob for spotting this.
 * Cursor options no longer have a scrollbar in the dropdown menu, which partially obscured the options.
 
-3.0.16 (beta)
-# Note: this is a beta because it was released without updated documentation
-
-# Bugs Fixed
+= 3.0.16 (beta) =
 * The pre-populated selector name value for all selectors in a folder was overwritten by the most recent selector created via the selector wizard. Thanks for spotting this Antonio!
 * Importing a design pack made with Microthemer 1.x (before media query tabs were added) would result in PHP errors.
 
-3.0.14 (beta)
-# Note: this is a beta because it was released without updated documentation
-
-# Enhancement
+= 3.0.14 (beta) =
 * Improved the icon and description for the media query tab management menu. A few more improvements for this feature are on the way.
-
-# Bugs Fixed
 * If a media query tab (e.g. "Phone") was used in the absence of the default "All Devices" tab, settings applied to the media query tab would not save.
 * When importing 2.x settings, media query tabs did not always display correctly
 * Dropdown menu toggle arrows were misaligned by one pixel in Firefox.
 
-3.0.11 (beta)
-# Note: this is a beta because it was released without updated documentation
-
-# Bugs Fixed
+= 3.0.11 (beta)
 * The appearance of the slider handle for the selector wizard element targeting tab also needed fixing in WP 4.1
 * The notification about disabling highlighting when double-clicking something that is already highlighted was confusing.
 * In rare cases Microthemer was not remembering the last frontend page viewed in the preview window.
 
-3.0.8 (beta)
-# Note: this is a beta because it was released without updated documentation
-
-# Bugs Fixed
+= 3.0.8 (beta) =
 * On multi-site, the "back to WordPress dashboard" icon in the left toolbar took the user back to the root admin dashboard instead of the intended blog dashboard.
 * With WordPress 4.1 there were a few display issues relating to jQuery UI widgets like sliders and pseudo select comboboxes.
 - The preview screen width slider handle was not correctly styled (it was too big).
@@ -278,10 +225,8 @@ Bugs fixed
 * The icons for text-shadow X and Y offset were wrong. "Spread" will be added to these shadow options soon.
 * An innocuous javascript error was generated if exporting the first design pack when no others exist.
 
-3.0 (beta)
+= 3.0 (beta) =
 # Note: this is a beta because it was released without updated documentation
-
-# Enhancement
 * Much nicer icon-based UI with far more space available for seeing the site your designing and NO overlap of editing options.
 * Everything is accessible from the Microthemer UI page (e.g. design pack installation and management, updating global preferences and media queries)
 * Much easier management of sections (now called folders) and selectors. You can copy and move selectors between folders with drag and drop too.
@@ -290,57 +235,41 @@ Bugs fixed
 * Background images are now managed via the wordpress media manager. On installing a pack with images, they are extracted to the library and image paths are updated automatically. When you download a pack, linked imaged are downloaded from the image library and included in the zip package. It should make working with background images much easier.
 * The selector wizard is now easier to use. It has a slider for tweaking your targeting instead of the dropdown menu. And computed CSS is reported at the wizard stage too. In a later release the HTML inspection will be improved further.
 * Import/Export of settings has been improved.
-
-# Bugs Fixed
 * limits caused by PHP's max_input_vars settings which could cause problems saving your settings if the number of input vars exceeded the limit (typically 1000) is no longer an issue. Microthemer serializes input values into one and then splits them back to normal on the server side.
 * background images can have spaces in the names e.g. "my images with spaces.jpg"
 * Resetting, importing, and restoring settings used to pass parameters in the URL. Refreshing the page (which some of us do habitually) could cause unwanted old actions (like resetting the interface) to be repeated accidentally. Now all actions are submitted via ajax and the Microthemer URL remains clean at all times.
-
-# Changes
 * Microthemer doesn't set viewport to 1 by default. If you plan to make use of the media query feature please set this to 1 on the media queries management page.
 * CSS3 PIE isn't turned on globally by default
 
 
-2.8.2 (Sept 16, 2014
-# Bugs Fixed
+= 2.8.2 (Sept 16, 2014 =
 * The helps links to the videos, tutorials, and forum were not working on the Preferences or Manage Themes pages.
-
-# Enhancement
 * Microthemer no longer displays your email address on the unlock page once you have successfully validated your email address.
 This is useful if you have purchased a developer license and you do not want your clients to see your email address.
 * Also, the free trial notice disappears after unlocking the program.
 * The "Free Trial Example Section" is now just called "Example Section" to avoid confusion over whether or not the program is really unlocked after validating your email address.
 
-2.7.8 (Sept 8, 2014)
-# Bugs Fixed
+= 2.7.8 (Sept 8, 2014) =
 * Text-shadow colour could not be set to "none" to effectively disable any existing text-shadow values.
 * RGB AND RGBA colour values could not be set without Microthemer auto-adjusting them to solid hex values. RGB/RGBA values can now be manually added. The color picker will receive some proper attention in the near future to ensure maximum flexibility and ease of use.
 * A call to an undefined javascript function caused an error in the browser console. Although the error didn't seem to disrupt normal functioning of the program.
 
-2.7.5 (Sept 1, 2014)
-# Bugs Fixed
+= 2.7.5 (Sept 1, 2014) =
 * The new feature of computing the CSS could slow, and potentially crash the browser. This could happen when analysing high numbers of page elements (e.g. 30 links on the page) combined with lots of properties having mixed values (e.g. a font-size of 12px, 18px, 21px). As A quick fix, we have set the maximum number of elements on the page that can be scanned to 10 (instead of 50). We will increase this figure (to around 30) when we release version 3 in about one month. Version 3 will segment the display of property groups (e.g. just padding or just behaviour) rather than displaying all properties at once and so will be able to analyse more elements on the page without resulting in performance issues.
 * Also, related to the above, Microthemer now excludes the WP admin bar from restyling for performance reasons.
 * If a selector contained the :link pseudo selector, this wasn't correctly filtered when constructing selector highlighting divs.
 
-2.7.3 (Aug 8, 2014)
-# Bugs Fixed
+= 2.7.3 (Aug 8, 2014) =
 * Computed CSS reporting failed if the CSS selector code contained one of the following pseudo selectors - :hover, :active, :visited
 
-2.7.2 (Aug 06, 2014)
-
-# Enhancement
+= 2.7.2 (Aug 06, 2014) =
 * Google font subsets e.g. "subset=latin,latin-ext" can now be set on the Microthemer > Preferences page
-
-# Bugs Fixed
 * An error occurred when using single or double quotes in selectors e.g. input[type="text"]
 
-2.7.1
-# Enhancement
+= 2.7.1 =
 * Microthemer can now be used as a substitute for firebug as a tool for analysing an element's existing computed CSS values. Microthemer now shows the computed values as overlays on the editing options so you can view CSS value reporting and make an edit in exactly the same place.
 * Font weight can be applied as a century number from 100 to 900.
 
-# Bugs Fixed
 * The little "i"s for manually applying the !important CSS declaration got lost for a while.
 * When exporting to a theme, it was possible to not select anything from the dropdown menu.
 * Custom google font still rendered if the field wasn't cleared before switching back to a regular web safe font in the dropdown.
@@ -348,14 +277,14 @@ This is useful if you have purchased a developer license and you do not want you
 * Microthemer auto-saves when property options are deleted or a selector is modified now to more accurately present the state of things.
 * Microthemer now includes the background-color in the CSS3 gradient declaration. It will always be trumped by the gradient but not doing this resulting in incorrect reporting of the background-color property (now that Microthemer reports this information)
 
-2.6.3
+= 2.6.3 =
 * Style changes appear much quicker now (almost immediately). As such, auto-save is now the default mode (although it can be disabled). Also, auto-save is trggered when you finish typing into text fields (after a 700ms delay, rather than when focus is removed). 
 * Microthemer remembers the last page you viewed when you return to the visual view site preview
 
-2.6.1.1
+= 2.6.1.1 =
 * Found another call to the missing json class the previous version aimed to fix (2.6.1).
 
-2.6.1
+= 2.6.1 =
 * When exporting settings to a settings pack, or invoking any function that used the json class, an error message was thrown in WordPress 3.9.
 
 = 2.6.0 =
