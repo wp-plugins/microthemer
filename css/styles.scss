@@ -1960,47 +1960,9 @@ The advanced selector wizard
   padding:3px 0;
 }
 $sliderHeight: 26px;
-.code-suggestion-wrap {
-  float:left;
-  width:8px;
-  margin:0 0 0 2px;
-  @include border-radius(4px);
-  padding-bottom:$sliderHeight;
-  background: $sliderAtRest;
-  // don't show this if the user wants the new slideless option
-  .slideless_wizard-1 & {
-    display: none;
-  }
-}
-#code-suggestion-slider {
-  width:6px;
-  padding-top:$sliderHeight;
-  cursor:pointer;
-  background: $sliderAtRest;
-  border:1px solid $sliderAtRest;
-  .ui-slider-handle {
-    background: $lighterBlue;
-    border:1px solid $lighterBlue;
-    margin-bottom:0;
-    height:$sliderHeight;
-    left:-1px;
-    margin-bottom:-$sliderHeight;
-    width:6px;
-    cursor:pointer;
-    @include border-radius(3px);
-    &.ui-state-focus {
-      box-shadow: none;
-    }
-  }
-}
+
 #code-suggestions {
-  margin: 0 0 0 16px;
-  li {
-    margin-bottom: 0;
-    .info-icon {
-      display: none;
-    }
-  }
+
   .selector-category {
     display: none;
   }
@@ -2024,42 +1986,35 @@ $sliderHeight: 26px;
         cursor: text;
       }
     }
-    &.hover-elsewhere textarea {
-      /*background: transparent;
-      border-color: $lightestGrey;
-      resize: none;
-      */
-    }
 
   }
 
   // alternative system for trying selectors
-  .slideless_wizard-1 & {
-    margin: 0;
-    li {
-      padding-right:25px;
-      position: relative;
-      .info-icon {
-        display: none;
-      }
+  margin: 0;
+  li {
+    margin-bottom: 0;
+    padding-right:25px;
+    position: relative;
+    .info-icon {
+      display: none;
     }
-    li:hover {
+  }
+  li:hover {
+    textarea {
+      background: $lightGrey;
+      cursor: pointer;
+    }
+    .info-icon {
+      display: inline-block;
+      position: absolute;
+      top:0;
+      right:0;
+      margin:3px 0;
+    }
+    &.in-focus {
       textarea {
-        background: $lightGrey;
-        cursor: pointer;
-      }
-      .info-icon {
-        display: inline-block;
-        position: absolute;
-        top:0;
-        right:0;
-        margin:3px 0;
-      }
-      &.in-focus {
-        textarea {
-          cursor: text;
-          background: $white;
-        }
+        cursor: text;
+        background: $white;
       }
     }
   }
@@ -2510,6 +2465,8 @@ The editing options
     .field-wrap {
       display:inline-block;
       position:relative;
+      width:auto;
+
       &.hidden {
         display: none;
       }

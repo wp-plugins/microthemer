@@ -210,12 +210,12 @@ $html.= '<div id="opts-'.$section_name.'-'.$css_selector.'-'.$property_group_nam
 
     $html.= '
     <span class="comp-mixed-table">
-        <h5 title="Hover over the rows to highlight the individual elements on the page">Page Analysis</h5>
+		<h5 title="' . __('Hover over the rows to highlight the individual elements on the page', 'tvr-microthemer') . '">' . wp_kses(__('Page Analysis', 'tvr-microthemer'), array()) . '</h5>
         <table>
             <thead>
             <tr>
                 <th><i>n</i></th>
-                <th>Value</th>
+				<th>' . wp_kses(__('Value', 'tvr-microthemer'), array()) . '</th>
             </tr>
             </thead>
             <tbody></tbody>

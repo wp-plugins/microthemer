@@ -100,6 +100,14 @@ View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-cha
 
 == Upgrade Notice ==
 
+= 3.7.2 (May 6, 2015) =
+* New selector wizard targeting system trialed in edge mode has become permanent
+* First phase of translation: various text strings are now translatable. Thanks to JoseLuís for providing this: https://github.com/joseluis/
+* Improved compatibility with any font awesome stylesheets that load on the Microthemer UI page (via another plugin)
+
+= 3.6.9 (May 5, 2015) =
+* The last 3.6.7 release introduced a bug with the unlock process.
+
 = 3.6.8 (May 4, 2015) =
 * Major Bug fixed. When importing with "Merge", any responsive tab settings being imported would be lost. So too would any custom !important declarations.
 

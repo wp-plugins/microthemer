@@ -2,10 +2,13 @@
 /*
 Plugin Name: Microthemer
 Plugin URI: http://www.themeover.com/microthemer
+Text Domain: tvr-microthemer
+Domain Path: /languages
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. posts, pages, contact forms, headers, footers, sidebars) down to the smallest detail (unlike typical theme options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress theme or plugin. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced theme and plugin customization.
-Version: 3.6.8
+Version: 3.7.2
 Author: Themeover
 Author URI: http://www.themeover.com
+Text Domain: tvr-microthemer
 */
 
 /*  Copyright 2012 by Sebastian Webb @ Themeover */
@@ -50,7 +53,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 
-			var $version = '3.6.8';
+			var $version = '3.7.2';
             // set this to true if version saved in DB is different, other actions may follow if new v
             var $new_version = false;
 			var $minimum_wordpress = '3.6';
@@ -128,11 +131,11 @@ if ( is_admin() ) {
 			);
             // edge mode fixed settings
             var $edge_mode = array(
-                'available' => true,
+                'available' => false,
                 'edge_forum_url' => 'http://themeover.com/forum/topic/edge-mode-usability-testing-new-feature-preview/',
                 'cta' => 'Try out the new targeting options for the selector wizard. We\'ve replaced the slider with hover and click functionality.',
                 'config' => array(
-                    'slideless_wizard' => 1
+                    // 'slideless_wizard' => 1
                 ),
                 'active' => false // evaluated at top of ui page
             );
@@ -188,11 +191,16 @@ if ( is_admin() ) {
 					return;
 				}
 
+                // translatable
+                add_action('plugins_loaded', array(&$this, 'tvr_load_textdomain'));
+
 
 				// add menu links (all WP admin pages need this)
 				if (TVR_MICRO_VARIANT == 'themer') {
 					add_action("admin_menu", array(&$this,"microthemer_dedicated_menu"));
-				}
+
+
+                }
 				else {
 					add_action("admin_menu", array(&$this,"microloader_menu_link"));
 				}
@@ -201,22 +209,22 @@ if ( is_admin() ) {
 				$this->unq_base = uniqid();
 				$this->default_m_queries = array(
 					$this->unq_base.'1' => array(
-						"label" => "Large Desktop",
+						"label" => __("Large Desktop", "tvr-microthemer"),
 						"query" => "@media (min-width: 1200px)",
 						"min" => 1200,
 						"max" => 0),
 					$this->unq_base.'2' => array(
-						"label" => "Desktop & Tablet",
+						"label" => __("Desktop & Tablet", "tvr-microthemer"),
 						"query" => "@media (min-width: 768px) and (max-width: 979px)",
 						"min" => 768,
 						"max" => 979),
 					$this->unq_base.'3' => array(
-						"label" => "Tablet & Phone",
+						"label" => __("Tablet & Phone", "tvr-microthemer"),
 						"query" => "@media (max-width: 767px)",
 						"min" => 0,
 						"max" => 767),
 					$this->unq_base.'4' => array(
-						"label" => "Phone",
+						"label" => __("Phone", "tvr-microthemer"),
 						"query" => "@media (max-width: 480px)",
 						"min" => 0,
 						"max" => 480)
@@ -224,17 +232,17 @@ if ( is_admin() ) {
                 // alternative mobile first media queries
                 $this->mobile_first_mqs = array(
                     $this->unq_base.'mf1' => array(
-                        "label" => "Tablet >",
+                        "label" => __("Tablet >", "tvr-microthemer"),
                         "query" => "@media (min-width: 767px)",
                         "min" => 767,
                         "max" => 0),
                     $this->unq_base.'mf2' => array(
-                        "label" => "Desktop >",
+                        "label" => __("Desktop >", "tvr-microthemer"),
                         "query" => "@media (min-width: 979px)",
                         "min" => 979,
                         "max" => 0),
                     $this->unq_base.'mf3' => array(
-                        "label" => "Large Desktop >",
+                        "label" => __("Large Desktop >", "tvr-microthemer"),
                         "query" => "@media (min-width: 1200px)",
                         "min" => 1200,
                         "max" => 0)
@@ -242,32 +250,32 @@ if ( is_admin() ) {
                 // semantically defined breakpoints
                 $this->mobile_first_semantic_mqs = array(
                     $this->unq_base.'mfs1' => array(
-                        "label" => "Narrow <",
+                        "label" => __("Narrow <", "tvr-microthemer"),
                         "query" => "@media (max-width: 480px)",
                         "min" => 0,
                         "max" => 480),
                     $this->unq_base.'mfs2' => array(
-                        "label" => "2 Col >",
+                        "label" => __("2 Col >", "tvr-microthemer"),
                         "query" => "@media (min-width: 767px)",
                         "min" => 767,
                         "max" => 0),
                     $this->unq_base.'mfs3' => array(
-                        "label" => "2 to 3 Col",
+                        "label" => __("2 to 3 Col", "tvr-microthemer"),
                         "query" => "@media (min-width: 767px) and (max-width: 978px)",
                         "min" => 767,
                         "max" => 978),
                     $this->unq_base.'mfs4' => array(
-                        "label" => "3 Col >",
+                        "label" => __("3 Col >", "tvr-microthemer"),
                         "query" => "@media (min-width: 979px)",
                         "min" => 979,
                         "max" => 0),
                     $this->unq_base.'mfs5' => array(
-                        "label" => "3 Col to Wide",
+                        "label" => __("3 Col to Wide", "tvr-microthemer"),
                         "query" => "@media (min-width: 979px) and (max-width: 1199px)",
                         "min" => 979,
                         "max" => 1199),
                     $this->unq_base.'mfs6' => array(
-                        "label" => "Wide >",
+                        "label" => __("Wide >", "tvr-microthemer"),
                         "query" => "@media (min-width: 1200px)",
                         "min" => 1200,
                         "max" => 0)
@@ -451,6 +459,11 @@ if ( is_admin() ) {
 			function microloader_menu_link() {
 				add_theme_page('Microloader', 'Microloader', 'administrator', $this->microthemespage, array(&$this,'manage_micro_themes_page'));
 			}
+
+            // add support for translation
+            function tvr_load_textdomain() {
+                load_plugin_textdomain( 'tvr-microthemer', false, dirname( plugin_basename(__FILE__) ) . '/lang/' );
+            }
 
 			// add js
 			function add_js() {
@@ -1533,8 +1546,8 @@ if ( is_admin() ) {
 						if ($this->clearUiOptions()) {
 							$this->update_active_styles('customised');
                             $this->log(
-                                'Styles were cleared',
-                                '<p>All styles were cleared, but your folders and selectors remain fully intact.</p>',
+                                __('Styles were cleared', 'tvr-microthemer'),
+                                '<p>' . wp_kses(__("All styles were cleared, but your folders and selectors remain fully intact.", "tvr-microthemer"), array()) . '</p>',
                                 'notice'
                             );
 							// update the revisions DB field
@@ -1708,7 +1721,7 @@ if ( is_admin() ) {
                         $params = 'email='.$_POST['tvr_preferences']['buyer_email'].'&domain='.$this->home_url;
                         $validation = wp_remote_fopen('http://themeover.com/wp-content/tvr-auto-update/validate.php?'.$params);
                         if ($validation) {
-                            $_POST['tvr_preferences']['buyer_validated'] = 0;
+                            $_POST['tvr_preferences']['buyer_validated'] = 1;
                             $this->trial = 0;
                             if (!$this->preferences['buyer_validated']) { // not already validated
                                 $this->log(
@@ -1727,7 +1740,7 @@ if ( is_admin() ) {
                         }
                         else {
                             //=chris please do checks on why validation failed here and report to user
-                            $_POST['tvr_preferences']['buyer_validated'] = 1; // sebhack
+                            $_POST['tvr_preferences']['buyer_validated'] = 0;
                             $this->trial = true;
                             $this->log(
                                 'Validation failed',
@@ -2062,7 +2075,7 @@ if ( is_admin() ) {
 				if (!$this->preferences['buyer_validated'] and TVR_MICRO_VARIANT == 'themer') {
 					?>
 					<div id='validate-reminder' class="error">
-                    	<p><b>IMPORTANT - Free Trial Mode is Active</b><br /> <br />
+					<p><b><?php printf(wp_kses(__("IMPORTANT - Free Trial Mode is Active", "tvr-microthemer"), array() ) ); ?></b><br /> <br />
                         Please <a href="admin.php?page=tvr-microthemer-preferences.php#validate">validate your purchase to unlock the full program</a>.
                         <br />
                         The Free Trial limits you to editing or creating 3 Sections and 9 Selectors (3 per Section).</p>
@@ -2432,48 +2445,48 @@ if ( is_admin() ) {
                 $as_status = $this->preferences['auto_save'] ? 'on' : 'off';
                 if ($this->preferences['buyer_validated']){
                     $unlock_class = 'unlocked';
-                    $unlock_title = 'Validate license using a different email address';
+                    $unlock_title = __('Validate license using a different email address', 'tvr-microthemer');
                 } else {
                     $unlock_class = '';
-                    $unlock_title = 'Enter your PayPal email (or the email listed in My Downloads) to unlock Microthemer';
+                    $unlock_title = __('Enter your PayPal email (or the email listed in My Downloads) to unlock Microthemer', 'tvr-microthemer');
                 }
                 //
                 $html = '
                     <div class="unlock-microthemer '.$unlock_class.' v-left-button show-dialog" rel="unlock-microthemer" title="'.$unlock_title.'"></div>
 
-                    <div class="save-interface v-left-button" title="Manually save settings"></div>
+                    <div class="save-interface v-left-button" title="' . __("Manually save settings", "tvr-microthemer") . '"></div>
 
-                    <div class="display-preferences v-left-button show-dialog" rel="display-preferences" title="Set your global Microthemer preferences"></div>
-                    <div class="edit-media-queries v-left-button show-dialog" rel="edit-media-queries" title="Edit Media Queries"></div>
+                    <div class="display-preferences v-left-button show-dialog" rel="display-preferences" title="' . __("Set your global Microthemer preferences", "tvr-microthemer") . '"></div>
+                    <div class="edit-media-queries v-left-button show-dialog" rel="edit-media-queries" title="' . __("Edit Media Queries", "tvr-microthemer") . '"></div>
 
-                    <div class="import-from-pack v-left-button show-dialog" rel="import-from-pack" title="Import settings from a design pack"></div>
+                    <div class="import-from-pack v-left-button show-dialog" rel="import-from-pack" title="' . __("Import settings from a design pack", "tvr-microthemer") . '"></div>
 
-                    <div class="export-to-pack v-left-button show-dialog" rel="export-to-pack" title="Export your work as a design pack"></div>
-
-
-                    <div class="display-css-code v-left-button show-dialog" rel="display-css-code" title="View the CSS code Microthemer generates"></div>
-                    <div class="display-revisions v-left-button show-dialog" rel="display-revisions" title="Restore settings from a previous save point"></div>
+                    <div class="export-to-pack v-left-button show-dialog" rel="export-to-pack" title="' . __("Export your work as a design pack", "tvr-microthemer") . '"></div>
 
 
-                    <!--<div class="display-share v-left-button show-dialog" rel="display-share" title="Spread the word about Microthemer"></div>-->
-                    <div class="reset-tools v-left-button tvr-popright-wrap" title="Reset options">
+                    <div class="display-css-code v-left-button show-dialog" rel="display-css-code" title="' . __("View the CSS code Microthemer generates", "tvr-microthemer") . '"></div>
+                    <div class="display-revisions v-left-button show-dialog" rel="display-revisions" title="' . __("Restore settings from a previous save point", "tvr-microthemer") . '"></div>
+
+
+                    <!--<div class="display-share v-left-button show-dialog" rel="display-share" title="' . __("Spread the word about Microthemer", "tvr-microthemer") . '"></div>-->
+                    <div class="reset-tools v-left-button tvr-popright-wrap" title="' . __("Reset options", "tvr-microthemer") . '">
                         <div class="tvr-popright">
                             <div class="popright-sub">
                                 <div id="ui-reset" class="v-left-button folder-reset"
-                                title="Reset the interface to the default empty folders"></div>
+                                title="' . __("Reset the interface to the default empty folders", "tvr-microthemer") . '"></div>
                                 <div id="clear-styles" class="v-left-button styles-reset"
-                                title="Clear all styles, but leave folders and selectors intact"></div>
+                                title="' . __("Clear all styles, but leave folders and selectors intact", "tvr-microthemer") . '"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="manage-design-packs v-left-button show-dialog" rel="manage-design-packs" title="Install & Manage your design packages"></div>
+                    <div class="manage-design-packs v-left-button show-dialog" rel="manage-design-packs" title="' . __("Install & Manage your design packages", "tvr-microthemer") . '"></div>
 
                     <div class="program-docs v-left-button show-dialog" rel="program-docs"
-                    title="Learn how to use Microthemer"></div>
+                    title="' . __("Learn how to use Microthemer", "tvr-microthemer") . '"></div>
 
 
 
-                    <a class="back-to-wordpress v-left-button" title="Return to WordPress dashboard"
+                    <a class="back-to-wordpress v-left-button" title="' . __("Return to WordPress dashboard", "tvr-microthemer") . '"
                     href="'.$this->wp_blog_admin_url.'"></a>
                 ';
                 return $html;
@@ -2483,9 +2496,9 @@ if ( is_admin() ) {
                         <div class="tvr-popright integration-right">
                             <div class="popright-sub integration-sub">
                                 <div id="toggle-wp-touch" class="v-left-button toggle-wp-touch"
-                                title="Enable/Disable WPTouch mode">WPTouch</div>
+                                title="' . __("Enable/Disable WPTouch mode", "tvr-microthemer") . '">WPTouch</div>
                                 <div id="toggle-beaver" class="v-left-button toggle-beaver"
-                                title="Enable/Disable Builder Beaver mode">Builder Beaver</div>
+                                title="' . __("Enable/Disable Builder Beaver mode", "tvr-microthemer") . '">Builder Beaver</div>
                             </div>
                         </div>
                     </div>
@@ -2523,9 +2536,9 @@ if ( is_admin() ) {
                            name="tvr_mcth[non_section][display_name][<?php echo $section_name;?>]"
                            value="<?php echo $display_section_name;?>" />
                     <div class="sec-row item-row">
-                        <span class="menu-arrow folder-menu-arrow tvr-icon" title="Open/close folder"></span>
-                        <span class="folder-icon tvr-icon sortable-icon" title="Reorder folder"></span>
-                        <span class="section-name item-name"  title="Folder">
+					<span class="menu-arrow folder-menu-arrow tvr-icon" title="<?php _e("Open/close folder", "tvr-microthemer"); ?>"></span>
+					<span class="folder-icon tvr-icon sortable-icon" title="<?php _e("Reorder folder", "tvr-microthemer"); ?>"></span>
+					<span class="section-name item-name"  title="<?php _e("Folder", "tvr-microthemer"); ?>">
                         <span class="name-text selector-count-state"
                             rel="<?php echo $selector_count_state; ?>"><?php echo $display_section_name; ?></span>
                             <?php
@@ -2539,15 +2552,15 @@ if ( is_admin() ) {
                         <span class="edit-section-form hidden">
                             <input type='text' class='rename-input' name='rename_section'
                                    value='<?php echo ucwords(str_replace('_', ' ', $section_name));  ?>' />
-                            <span class='rename-button tvr-button' title="Rename folder">Rename</span>
-                            <span class='cancel-rename-section cancel link' title="Cancel rename">Cancel</span>
+								   <span class='rename-button tvr-button' title="<?php _e("Rename folder", "tvr-microthemer"); ?>"><?php printf(wp_kses(__('Rename', 'tvr-microthemer'), array())); ?></span>
+								   <span class='cancel-rename-section cancel link' title="<?php _e("Cancel rename", "tvr-microthemer"); ?>"><?php printf(wp_kses(__('Cancel', 'tvr-microthemer'), array())); ?></span>
                         </span>
                         <span class="manage-section-icons manage-icons">
 
-                            <span class="delete-section tvr-icon delete-icon" title="Delete Folder"></span>
-                            <span class="copy-section tvr-icon copy-icon" title="Copy Folder"></span>
-                            <span class="toggle-rename-section tvr-icon edit-icon" title="Rename Folder"></span>
-                            <span class="reveal-add-selector tvr-icon add-icon" title="Add selector to this folder"></span>
+						<span class="delete-section tvr-icon delete-icon" title="<?php _e("Delete Folder", "tvr-microthemer"); ?>"></span>
+							<span class="copy-section tvr-icon copy-icon" title="<?php _e("Copy Folder", "tvr-microthemer"); ?>"></span>
+							<span class="toggle-rename-section tvr-icon edit-icon" title="<?php _e("Rename Folder", "tvr-microthemer"); ?>"></span>
+							<span class="reveal-add-selector tvr-icon add-icon" title="<?php _e("Add selector to this folder", "tvr-microthemer"); ?>"></span>
                         </span>
                     </div>
                     <?php if (!$this->optimisation_test){
@@ -2556,8 +2569,7 @@ if ( is_admin() ) {
                             <li class="add-selector-list-item">
                                 <div class="sel-row item-row">
                                     <?php
-                                    $tip = 'Non-coders should use the selector wizard instead of using these form fields.
-                                Just double-click something on your site!';
+                                    $tip = __('Non-coders should use the selector wizard instead of using these form fields. Just double-click something on your site!', 'tvr-microthemer');
                                     if (!$this->optimisation_test){
                                         $this->selector_add_modify_form('add', $tip);
                                     }
@@ -2624,7 +2636,7 @@ if ( is_admin() ) {
                            class='view-state-input selector-tracker' name='tvr_mcth[non_section][view_state][<?php echo $section_name;?>][<?php echo $css_selector;?>]' rel='<?php echo $labelCss[0];?>' value='0' />
                     <input type='hidden' class='selector-label' name='tvr_mcth[<?php echo $section_name; ?>][<?php echo $css_selector; ?>][label]' value='<?php echo $array['label']; ?>' />
                     <div class="sel-row item-row">
-                        <span class="tvr-icon selector-icon sortable-icon" title="Reorder or move selector into a different folder"></span>
+					<span class="tvr-icon selector-icon sortable-icon" title="<?php _e("Reorder or move selector into a different folder", "tvr-microthemer"); ?>"></span>
                         <span class="selector-name item-name change-selector" title="<?php echo $selector_title; ?>">
                         <span class="name-text style-count-state change-selector"
                               rel="<?php echo $style_count_state; ?>"><?php echo $labelCss[0]; ?></span>
@@ -2635,13 +2647,12 @@ if ( is_admin() ) {
                             ?>
                         </span>
                         <span class="manage-selector-icons manage-icons">
-                            <span class="delete-selector tvr-icon delete-icon" title="Delete Selector"></span>
-                            <span class="copy-selector tvr-icon copy-icon" title="Copy Selector"></span>
-                            <span class="toggle-modify-selector tvr-icon edit-icon" title="Edit Selector"></span>
+						<span class="delete-selector tvr-icon delete-icon" title="<?php _e("Delete Selector", "tvr-microthemer"); ?>"></span>
+							<span class="copy-selector tvr-icon copy-icon" title="<?php _e("Copy Selector", "tvr-microthemer"); ?>"></span>
+							<span class="toggle-modify-selector tvr-icon edit-icon" title="<?php _e("Edit Selector", "tvr-microthemer"); ?>"></span>
                         </span>
                         <?php
-                        $tip = 'Give your selector a better descriptive name and/or modify the CSS selector
-                        code (if you know CSS)';
+                        $tip = __('Give your selector a better descriptive name and/or modify the CSS selector code (if you know CSS)', 'tvr-microthemer');
                         if (!$this->optimisation_test){
                             $this->selector_add_modify_form('edit', $tip, $labelCss, $section_name, $css_selector);
                         }
@@ -2696,14 +2707,13 @@ if ( is_admin() ) {
                                     }
                                     $extra_explain = '';
                                     if ($polly == 'pie'){
-                                        $extra_explain = 'Note: also adds a "position" value of "relative" unless you explicitly set a value for position (pie needs the target element or parent element to have a non-static position value in order to work).';
+                                        $extra_explain = __('Note: also adds a "position" value of "relative" unless you explicitly set a value for position (pie needs the target element or parent element to have a non-static position value in order to work).', 'tvr-microthemer');
                                     }
                                     echo $input;
                                     ?>
                                     <span class="<?php echo $polly; ?>-toggle tvr-icon input-icon-toggle <?php echo $class; ?>"
                                           data-input-type="<?php echo $polly; ?>"
-                                          title='Click to turn the <?php echo $polly; ?> pollyfill on/off for this selector.
-<?php echo $extra_explain; ?>'
+										  title=<?php printf(__('Click to turn the %1$s pollyfill on/off for this selector. %2$s', 'tvr-microthemer'), $polly, $extra_explain); ?>
                                           rel="<?php echo $state; ?>"></span>
                                 <?php
                                 }
@@ -2711,8 +2721,8 @@ if ( is_admin() ) {
                             ?>
                         </span>
                         <span class='<?php echo $con; ?>-selector tvr-button'
-                              title="<?php echo $display; ?> selector"><?php echo $display; ?> Selector</span>
-                        <span class="cancel-<?php echo $con; ?>-selector cancel link" title="Cancel <?php echo $display; ?> Selector">Cancel</span>
+							  title="<?php printf(__("selector", "tvr-microthemer"), $display); ?>"><?php printf(wp_kses(__('%s Selector', 'tvr-microthemer'), array()), $display); ?></span>
+							  <span class="cancel-<?php echo $con; ?>-selector cancel link" title="<?php printf(__('Cancel %s Selector', 'tvr-microthemer'), $display); ?>"><?php printf(wp_kses(__('Cancel', 'tvr-microthemer'), array())); ?></span>
                     </p>
                 </div>
             <?php
@@ -3143,8 +3153,8 @@ if ( is_admin() ) {
                 $html = '';
 
                 $html.='<div '.$id.' class="query-tabs">
-                <span class="edit-mq show-dialog" title="Edit media queries" rel="edit-media-queries"></span>
-                <span class="add-mq" title="Mange tabs for '.$human_pg_name.'">
+                <span class="edit-mq show-dialog" title="' . __('Edit media queries', 'tvr-microthemer') . '" rel="edit-media-queries"></span>
+                <span class="add-mq" title="' . sprintf(__('Manage tabs for %1$s', 'tvr-microthemer'), $human_pg_name) . '">
                 <span class="tvr-icon add-mq-icon"></span>
                 '.$this->media_query_checkboxes($section_name, $css_selector, $property_group_name, $property_group_array).'
                 </span>';
@@ -3168,7 +3178,7 @@ if ( is_admin() ) {
                 name="tvr_mcth['.$section_name.']['.$css_selector.'][device_focus]['.$property_group_name.']"
                 value="'.$device_tab.'" />
                 <span class="mq-tab mq-tab-all-devices '.$show_class. ' '.$all_tab_active.'"
-                rel="all-devices" title="General CSS that will apply to all devices">All Devices</span>';
+				rel="all-devices" title="' . __('General CSS that will apply to all devices', 'tvr-microthemer') . '">' . wp_kses(__('All Devices', 'tvr-microthemer'), array()) . '</span>';
 				foreach ($this->preferences['m_queries'] as $key => $m_query) {
 					// should the tab be visible
                     //$array = $this->options['non_section']['m_query'][$key][$section_name][$css_selector];
@@ -3224,10 +3234,10 @@ if ( is_admin() ) {
                     value="'.$property_group_name.'"
                     name="tvr_mcth['. $section_name.']['.$css_selector.'][all_devices]['.$property_group_name.']"
                     '.$checked.' />
-                    <span class="mq-remove tvr-icon" rel="all-devices|All Devices" title="Remove tab"></span>
-                    <span class="mq-clear tvr-icon" rel="all-devices|All Devices" title="Clear tab styles"></span>
-                    <span class="mq-add tvr-icon" rel="all-devices|All Devices" title="Add tab"></span>
-                    <span class="mq-button-text mq-add" rel="all-devices|All Devices" title="Styles will apply to all screen sizes">All Devices</span>
+                    <span class="mq-remove tvr-icon" rel="all-devices|All Devices" title="' . __('Remove tab', 'tvr-microthemer') . '"></span>
+                    <span class="mq-clear tvr-icon" rel="all-devices|All Devices" title="' . __('Clear tab styles', 'tvr-microthemer') . '"></span>
+                    <span class="mq-add tvr-icon" rel="all-devices|All Devices" title="' . __('Add tab', 'tvr-microthemer') . '"></span>
+					<span class="mq-button-text mq-add" rel="all-devices|All Devices" title="' . __('Styles will apply to all screen sizes', 'tvr-microthemer') . '">' . wp_kses(__('All Devices', 'tvr-microthemer'), array()) . '</span>
 
                 </span>';
 				// Media query checkboxes
@@ -3244,9 +3254,9 @@ if ( is_admin() ) {
                         $property_group_state = '';
                     }
                     $html.= '<span class="mq-button mqb-'.$key.' '.$property_group_state.'" title="'.$m_query['query'].'">
-                    <span class="mq-remove mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="Remove tab"></span>
-                    <span class="mq-clear mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="Clear tab styles"></span>
-                    <span class="mq-add mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="Add tab"></span>
+                    <span class="mq-remove mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="' . __('Remove tab', 'tvr-microthemer') . '"></span>
+                    <span class="mq-clear mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="' . __('Clear tab styles', 'tvr-microthemer') . '"></span>
+                    <span class="mq-add mq-specific tvr-icon" rel="'.$key.'|'.$m_query['label'].'" title="' . __('Add tab', 'tvr-microthemer') . '"></span>
                     <span class="mq-button-text mq-specific mq-add"  rel="'.$key.'|'.$m_query['label'].'" title="'.$m_query['query'].'">'.$m_query['label'].'</span>
 
                     </span>';
@@ -3254,9 +3264,9 @@ if ( is_admin() ) {
                 }
                 // remove all option
                 $html.= '
-                <span class="mq-button remove-all" title="Remove all &quot;'.ucwords($property_group_name).'&quot; styling options for this selector">
+                <span class="mq-button remove-all" title="' . sprintf(__('Remove all &quot;%1$s&quot; styling options for this selector', 'tvr-microthemer'), ucwords($property_group_name)) . '">
                     <span class="mq-remove-all tvr-icon delete-icon"></span>
-                    <span class="mq-button-text mq-remove-all link">Remove all tabs</span>
+					<span class="mq-button-text mq-remove-all link">' . wp_kses(__('Remove all tabs', 'tvr-microthemer'), array()) . '</span>
                 </span>';
 
                 $html.='</span>';
@@ -3994,63 +4004,63 @@ $tab$css_selector {
 				return $theme; // sanitised theme name
 			}
 
-			// load .json file
-			function load_json_file($json_file, $theme_name, $context = '') {
-				$json_error = false;
-				// check that config.json exists
-				if (file_exists($json_file)) {
-					// attempt to read config.json
-					if (!$read_file = fopen($json_file, 'r')) {
+            // load .json file
+            function load_json_file($json_file, $theme_name, $context = '') {
+                $json_error = false;
+                // check that config.json exists
+                if (file_exists($json_file)) {
+                    // attempt to read config.json
+                    if (!$read_file = fopen($json_file, 'r')) {
                         $this->log(
                             'Read json error',
                             '<p>WordPress was not able to read
 						' . $this->root_rel($json_file) . '. '.$this->permissionshelp.'</p>'
                         );
-					}
-					else {
-						// get the data
-						$data = fread($read_file, filesize($json_file));
-						fclose($read_file);
-					}
-					// tap into WordPress native JSON functions
-					if( !class_exists('Moxiecode_JSON')) {
+                    }
+                    else {
+                        // get the data
+                        $data = fread($read_file, filesize($json_file));
+                        fclose($read_file);
+                    }
+                    // tap into WordPress native JSON functions
+                    if( !class_exists('Moxiecode_JSON')) {
                         require_once($this->thisplugindir . 'includes/class-json.php');
-					}
-					$json_object = new Moxiecode_JSON();
-					// check what import method the user specified
-					if ($context == 'Overwrite' or empty($context)) {
-						// attempt to decode json into an array
-						if (!$this->options = $json_object->decode($data)) {
+                    }
+                    $json_object = new Moxiecode_JSON();
+                    // check what import method the user specified
+                    if ($context == 'Overwrite' or empty($context)) {
+                        // attempt to decode json into an array
+                        if (!$this->options = $json_object->decode($data)) {
                             $this->log('', '', 'error', 'json-decode', array('json_file', $json_file));
-							$json_error = true;
-						}
-					}
-					elseif ($context == 'Merge') {
-						// attempt to decode json into an array
-						if (!$this->to_be_merged = $json_object->decode($data)) {
+                            $json_error = true;
+                        }
+                    }
+                    elseif ($context == 'Merge') {
+                        // attempt to decode json into an array
+                        if (!$this->to_be_merged = $json_object->decode($data)) {
                             $this->log('', '', 'error', 'json-decode', array('json_file', $json_file));
-							$json_error = true;
-						}
-						// json success, merge new settings with current
-						else {
-							$this->options = $this->merge($this->options, $this->to_be_merged);
-						}
-					}
-					// json decode was successful
-					if (!$json_error) {
+                            $json_error = true;
+                        }
+                        // json success, merge new settings with current
+                        else {
+                            $this->options = $this->merge($this->options, $this->to_be_merged);
+                        }
+                    }
+                    // json decode was successful
+                    if (!$json_error) {
                         $this->log(
                             'Settings were imported',
                             '<p>The design pack settings were successfully imported.</p>',
                             'notice'
                         );
-						// check for new mqs
-						$pref_array['m_queries'] = $this->preferences['m_queries'];
+                        // check for new mqs
+                        $pref_array['m_queries'] = $this->preferences['m_queries'];
                         // check for new media queries in the import
                         $mq_analysis = $this->analyse_mqs(
                             $this->options['non_section']['active_queries'],
                             $pref_array['m_queries']
                         );
-						if ($mq_analysis['new']) {
+                        if ($mq_analysis['new']) {
                             // merge the new queries
                             $pref_array['m_queries'] = array_merge($pref_array['m_queries'], $mq_analysis['new']);
 
@@ -4064,7 +4074,7 @@ $tab$css_selector {
                                  you\'ve reviewed them.</p>',
                                 'warning'
                             );
-						}
+                        }
                         if ($this->debug_merge) {
                             $debug_file = $this->micro_root_dir . $this->preferences['theme_in_focus'] . '/debug-merge-post.txt';
                             $write_file = fopen($debug_file, 'w');
@@ -4076,52 +4086,52 @@ $tab$css_selector {
                         }
 
 
-						// save settings in db
-						$this->saveUiOptions($this->options);
-						// update active-styles.css
-						$this->update_active_styles($theme_name, $context); // pass the context so the function doesn't update theme_in_focus
-						// Only update theme_in_focus if it's not a merge
-						if ($context != 'Merge') {
-							$pref_array['theme_in_focus'] = $theme_name;
-						}
-						// update the preferences if not merge or media queries need importing
-						if ($context != 'Merge' or $mq_analysis['new']) {
-							$this->savePreferences($pref_array);
-						}
-					}
-				}
-				// the config file doesn't exist
-				else {
+                        // save settings in db
+                        $this->saveUiOptions($this->options);
+                        // update active-styles.css
+                        $this->update_active_styles($theme_name, $context); // pass the context so the function doesn't update theme_in_focus
+                        // Only update theme_in_focus if it's not a merge
+                        if ($context != 'Merge') {
+                            $pref_array['theme_in_focus'] = $theme_name;
+                        }
+                        // update the preferences if not merge or media queries need importing
+                        if ($context != 'Merge' or $mq_analysis['new']) {
+                            $this->savePreferences($pref_array);
+                        }
+                    }
+                }
+                // the config file doesn't exist
+                else {
                     $this->log(
                         'Config file missing',
                         '<p>' . $this->root_rel($json_file) . ' settings file could not be loaded because
 					it doesn\'t exist in <i>'.$this->readable_name($theme_name).'</i>.</p>'
                     );
-				}
-			}
+                }
+            }
 
-			// ensure mq keys in pref array and options match
+            // ensure mq keys in pref array and options match
             //- NOTE A SIMPLER SOLUTION WOULD BE TO CONVERT ARRAY INTO STRING AND THEN DO str_replace (may have side effects though)
-			function replace_mq_keys($student_key, $role_model_key, $options) {
+            function replace_mq_keys($student_key, $role_model_key, $options) {
                 $old_new_mq_map[$student_key] = $role_model_key;
-				// replace the relevant array keys - unset() doesn't work on $this-> so slightly convoluted solution used
+                // replace the relevant array keys - unset() doesn't work on $this-> so slightly convoluted solution used
                 $cons = array('active_queries', 'm_query');
-				$updated_array = array();
-				foreach ($cons as $stub => $context) {
-					unset($updated_array);
-					if (is_array($options['non_section'][$context])) {
-						foreach ($options['non_section'][$context] as $cur_key => $array) {
-							if ($cur_key == $student_key) {
+                $updated_array = array();
+                foreach ($cons as $stub => $context) {
+                    unset($updated_array);
+                    if (is_array($options['non_section'][$context])) {
+                        foreach ($options['non_section'][$context] as $cur_key => $array) {
+                            if ($cur_key == $student_key) {
                                 $data.= 'found student: ' . $student_key . ' role: '. $role_model_key;
-								$key = $role_model_key;
-							} else {
-								$key = $cur_key;
-							}
-							$updated_array[$key] = $array;
-						}
-						$options['non_section'][$context] = $updated_array; // reassign main array with updated keys array
-					}
-				}
+                                $key = $role_model_key;
+                            } else {
+                                $key = $cur_key;
+                            }
+                            $updated_array[$key] = $array;
+                        }
+                        $options['non_section'][$context] = $updated_array; // reassign main array with updated keys array
+                    }
+                }
                 // and also the !important media query keys
                 $updated_array = array();
                 if (!empty($options['non_section']['important']['m_query']) and
@@ -4154,20 +4164,20 @@ $tab$css_selector {
                     }
                 }
                 return $options;
-			}
+            }
 
 
-			// merge the new settings with the current settings
-			function merge($orig_settings, $new_settings) {
-				// create debug merge file if set at top of script
-				if ($this->debug_merge) {
-					$debug_file = $this->micro_root_dir . $this->preferences['theme_in_focus'] . '/debug-merge.txt';
-					$write_file = fopen($debug_file, 'w');
-					$data = '';
-					$data.= "\n\nThe current options\n\n";
-					$data.= print_r($orig_settings, true);
-				}
-				if (is_array($new_settings)) {
+            // merge the new settings with the current settings
+            function merge($orig_settings, $new_settings) {
+                // create debug merge file if set at top of script
+                if ($this->debug_merge) {
+                    $debug_file = $this->micro_root_dir . $this->preferences['theme_in_focus'] . '/debug-merge.txt';
+                    $write_file = fopen($debug_file, 'w');
+                    $data = '';
+                    $data.= "\n\nThe current options\n\n";
+                    $data.= print_r($orig_settings, true);
+                }
+                if (is_array($new_settings)) {
                     // check if search needs to be done on important and m_query arrays
                     $mq_arr = $imp_arr = false;
                     if (!empty($new_settings['non_section']['m_query']) and is_array($new_settings['non_section']['m_query'])){
@@ -4177,14 +4187,14 @@ $tab$css_selector {
                         $imp_arr = $new_settings['non_section']['important'];
                     }
 
-					// loop through new sections to check for section name conflicts
-					foreach($new_settings as $section_name => $array) {
-						// if a name conflict exists
-						if ( $this->is_name_conflict($section_name, $orig_settings, $new_settings, 'first-check') ) {
-							// create a non-conflicting new name
-							$alt_name = $this->get_alt_section_name($section_name, $orig_settings, $new_settings);
-							// rename the to-be-merged section and the corresponding non_section extras
-							$new_settings[$alt_name] = $new_settings[$section_name];
+                    // loop through new sections to check for section name conflicts
+                    foreach($new_settings as $section_name => $array) {
+                        // if a name conflict exists
+                        if ( $this->is_name_conflict($section_name, $orig_settings, $new_settings, 'first-check') ) {
+                            // create a non-conflicting new name
+                            $alt_name = $this->get_alt_section_name($section_name, $orig_settings, $new_settings);
+                            // rename the to-be-merged section and the corresponding non_section extras
+                            $new_settings[$alt_name] = $new_settings[$section_name];
                             unset($new_settings[$section_name]);
                             $new_settings['non_section']['view_state'][$alt_name] = $new_settings['non_section']['view_state'][$section_name];
                             unset($new_settings['non_section']['view_state'][$section_name]);
@@ -4221,8 +4231,8 @@ $tab$css_selector {
                                     }
                                 }
                             }
-						}
-					}
+                        }
+                    }
 
                     // check if the import contains the same media queries but with different keys
                     $mq_analysis = $this->analyse_mqs(
@@ -4243,19 +4253,19 @@ $tab$css_selector {
                         $data .= print_r($new_settings, true);
                     }
 
-					// now that we've checked for and corrected possible name conflicts, merge the arrays (recursively to avoid overwriting)
+                    // now that we've checked for and corrected possible name conflicts, merge the arrays (recursively to avoid overwriting)
                     $merged_settings = $this->array_merge_recursive_distinct($orig_settings, $new_settings);
 
-					// the hand-coded CSS of the imported settings needs to be appended to the original
-					foreach ($this->custom_code as $key => $val){
+                    // the hand-coded CSS of the imported settings needs to be appended to the original
+                    foreach ($this->custom_code as $key => $val){
                         // if regular main custom css
                         if ($key == 'hand_coded_css'){
                             $new_code = trim($new_settings['non_section'][$key]);
                             if (!empty($new_code)) {
                                 $merged_settings['non_section'][$key] =
-                                $orig_settings['non_section'][$key]
-                                . "\n\n/* CSS from design pack imported with 'Merge' */\n"
-                                . $new_settings['non_section'][$key];
+                                    $orig_settings['non_section'][$key]
+                                    . "\n\n/* CSS from design pack imported with 'Merge' */\n"
+                                    . $new_settings['non_section'][$key];
                             } else {
                                 // the imported pack has no custom code so keep the original
                                 $merged_settings['non_section'][$key] = $orig_settings['non_section'][$key];
@@ -4277,15 +4287,15 @@ $tab$css_selector {
                             }
                         }
                     }
-				}
-				if ($this->debug_merge) {
-					$data.= "\n\nThe Merged options\n\n";
-					$data.= print_r($merged_settings, true);
-					fwrite($write_file, $data);
-					fclose($write_file);
-				}
-				return $merged_settings;
-			}
+                }
+                if ($this->debug_merge) {
+                    $data.= "\n\nThe Merged options\n\n";
+                    $data.= print_r($merged_settings, true);
+                    fwrite($write_file, $data);
+                    fclose($write_file);
+                }
+                return $merged_settings;
+            }
 
             // get an array of current mq keys paired with replacements - compare against 'role model' to base current array on
             function analyse_mqs($student_mqs, $role_model_mqs){
@@ -5609,7 +5619,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '3.6.8';
+			var $version = '3.7.2';
             var $microthemeruipage = 'tvr-microthemer.php';
 
 			/**
@@ -5694,7 +5704,7 @@ if (!is_admin()) {
                     'href' => $this->wp_admin_url . 'admin.php?page=' . $this->microthemeruipage,
                     'meta' => array(
                         'class' => 'wp-mcr-shortcut',
-                        'title' => 'Jump to the Microthemer interface'
+                        'title' => __('Jump to the Microthemer interface', 'tvr-microthemer')
                     )
                 );
                 $wp_admin_bar->add_node($args);

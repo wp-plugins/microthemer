@@ -2945,45 +2945,8 @@ The advanced selector wizard
 .refine-inner-wrap {
   padding: 3px 0; }
 
-.code-suggestion-wrap {
-  float: left;
-  width: 8px;
-  margin: 0 0 0 2px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  padding-bottom: 26px;
-  background: #d4d4d4; }
-  .slideless_wizard-1 .code-suggestion-wrap {
-    display: none; }
-
-#code-suggestion-slider {
-  width: 6px;
-  padding-top: 26px;
-  cursor: pointer;
-  background: #d4d4d4;
-  border: 1px solid #d4d4d4; }
-  #code-suggestion-slider .ui-slider-handle {
-    background: #768293;
-    border: 1px solid #768293;
-    margin-bottom: 0;
-    height: 26px;
-    left: -1px;
-    margin-bottom: -26px;
-    width: 6px;
-    cursor: pointer;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px; }
-    #code-suggestion-slider .ui-slider-handle.ui-state-focus {
-      box-shadow: none; }
-
 #code-suggestions {
-  margin: 0 0 0 16px; }
-  #code-suggestions li {
-    margin-bottom: 0; }
-    #code-suggestions li .info-icon {
-      display: none; }
+  margin: 0; }
   #code-suggestions .selector-category {
     display: none; }
   #code-suggestions textarea {
@@ -3001,30 +2964,24 @@ The advanced selector wizard
     resize: vertical; }
     #code-suggestions li.in-focus textarea:hover {
       cursor: text; }
-  #code-suggestions li.in-focus.hover-elsewhere textarea {
-    /*background: transparent;
-      border-color: $lightestGrey;
-      resize: none;
-      */ }
-  .slideless_wizard-1 #code-suggestions {
-    margin: 0; }
-    .slideless_wizard-1 #code-suggestions li {
-      padding-right: 25px;
-      position: relative; }
-      .slideless_wizard-1 #code-suggestions li .info-icon {
-        display: none; }
-    .slideless_wizard-1 #code-suggestions li:hover textarea {
-      background: #e6e6e6;
-      cursor: pointer; }
-    .slideless_wizard-1 #code-suggestions li:hover .info-icon {
-      display: inline-block;
-      position: absolute;
-      top: 0;
-      right: 0;
-      margin: 3px 0; }
-    .slideless_wizard-1 #code-suggestions li:hover.in-focus textarea {
-      cursor: text;
-      background: #fff; }
+  #code-suggestions li {
+    margin-bottom: 0;
+    padding-right: 25px;
+    position: relative; }
+    #code-suggestions li .info-icon {
+      display: none; }
+  #code-suggestions li:hover textarea {
+    background: #e6e6e6;
+    cursor: pointer; }
+  #code-suggestions li:hover .info-icon {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 3px 0; }
+  #code-suggestions li:hover.in-focus textarea {
+    cursor: text;
+    background: #fff; }
 
 .refine-target-controls {
   overflow: hidden;
@@ -3500,6 +3457,7 @@ The editing options
     #tvr-options .property-fields .field-wrap {
       display: inline-block;
       position: relative;
+      width: auto;
       float: left;
       margin-right: 0;
       max-height: 40px; }
