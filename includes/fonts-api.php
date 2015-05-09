@@ -28,7 +28,7 @@ $selected = 'selected="selected"';
 ?>
 <link rel='stylesheet' id='tvr-docs'  href='../css/docs.css?v=<?php echo $time; ?>' type='text/css' media='all' />
 <link id="google-fonts" rel="stylesheet" type="text/css" href=""/>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
 <script src="../js/fonts.js?v=<?php echo $time; ?>" type="text/javascript"></script>
 </head>
 

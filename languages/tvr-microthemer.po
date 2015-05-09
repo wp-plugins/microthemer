@@ -1,0 +1,676 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Microthemer\n"
+"POT-Creation-Date: 2015-05-06 11:41+0800\n"
+"PO-Revision-Date: 2015-05-06 11:43+0800\n"
+"Last-Translator: \n"
+"Language-Team: Themeover <support@themeover.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.6\n"
+"X-Poedit-Basepath: ../\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/resolve-input-fields.inc.php:213
+msgid "Hover over the rows to highlight the individual elements on the page"
+msgstr ""
+
+#: includes/resolve-input-fields.inc.php:213
+msgid "Page Analysis"
+msgstr ""
+
+#: includes/resolve-input-fields.inc.php:218
+msgid "Value"
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:35
+msgid "Add \"first\" and \"last\" classes to menu items"
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:36
+msgid ""
+"Microthemer can insert \"first\" and \"last\" classes on WordPress menus so "
+"that you can style the first or last menu items a bit differently from the "
+"rest. Note: this only works with \"Custom Menus\" created on the  Appearance "
+"> Menus page."
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:40
+msgid "Gzip the Microthemer UI page for faster loading"
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:41
+msgid ""
+"The Microthemer interface generates quite a bit of HTML. Having this gzip "
+"option enabled will speed up the initial page loading."
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:44
+msgid "Display Internet Explorer notice"
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:45
+msgid ""
+"Microthemer can be a bit clunky when run in Internet Explorer. And it just "
+"plain doesn't work in old versions of IE like IE8. But if you insist on "
+"using IE you might want to disable the notice telling you to use Firefox or "
+"Chrome instead."
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:48
+msgid "Display PHP safe mode warnings"
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:49
+msgid ""
+"If your server has the PHP settings \"safe mode\" on, you may encounter "
+"permission errors when Microthemer tries to create directories. Microthemer "
+"will alert you to safe-mode being on. But if that's old news to you, you may "
+"want to disable the warnings about it."
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:53
+#: includes/tvr-microthemer-preferences.php:58
+msgid "(configure manually)"
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:54
+msgid ""
+"Always add the \"!important\" CSS declaration to CSS styles.This largely "
+"solves the issue of having to understand how CSS specificity works. But if "
+"you prefer, you can disable this functionality and still apply \"!important"
+"\" on a per style basis by clicking the faint \"i's\" that will appear to "
+"the right of every style input."
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:57
+msgid "Always use CSS3 PIE pollyfill where relevant"
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:59
+msgid ""
+"Always include to the CSS3 PIE htc file if gradients, rounded corners, or "
+"box-shadow have been applied to make them work in Internet Explorer 6-8. "
+"Note: a \"position\" value of \"relative\" will automatically be applied to "
+"the selector unless you explicitly set the position property to \"static\" "
+"or some other value. Set this option to \"No\" if you would like to enable "
+"this pollyfill on a per selector basis."
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:62
+msgid "Add a Microthemer shortcut to the WP admin bar"
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:63
+msgid ""
+"Include a link to the Microthemer interface from the WordPress admin toolbar "
+"at the top of every page."
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:66
+msgid "Include admin bar shortcut as a top level link"
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:67
+msgid ""
+"If you are enabling the Microthemer shortcut in the admin bar, you can "
+"either have it as a top level menu link or as a sub-menu item of the main "
+"menu."
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:78
+msgid "Frontend preview URL Microthemer should load"
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:79
+msgid ""
+"Manually specify a link to the page you would like Microthemer to load for "
+"editing when it first starts. By default Microthemer will load your home "
+"page or the last page you visited. This option is useful if you want to "
+"style a page that can't be navigated to from the home page or other pages."
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:82
+msgid "Google Font subset URL parameter"
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:83
+msgid ""
+"You can instruct Google Fonts to include a font subset by entering an URL "
+"parameter here. For example \"&subset=latin,latin-ext\" (without the "
+"quotes). Note: Microthemer only generates a Google Font URL if it detects "
+"that you have applied Google Fonts in your design."
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:85
+msgid "Tooltip delay time (in milliseconds)"
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:86
+msgid ""
+"Control how long it takes for a Microthemer tooltip to display. Set to \"0\" "
+"for instant, \"native\" to use the browser default tooltip on hover, or some "
+"value like \"2000\" for a 2 second delay (so it never shows when you don't "
+"need it to). The default is 500 milliseconds."
+msgstr ""
+
+#: includes/tvr-microthemer-preferences.php:152
+#: includes/tvr-microthemer-preferences.php:173
+msgid "Save Preferences"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:167
+msgid "Add Folder"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:222
+msgid "Microthemer Notifications"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:232
+msgid "Advanced options"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:244
+msgid "always show"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:259
+msgid "Unlock"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:265
+msgid "Double-click anything on the page to begin restyling it."
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:287
+msgid "All Browsers"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:288
+msgid "All versions of IE"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:289
+msgid "IE9 and below"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:290
+msgid "IE8 and below"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:291
+msgid "IE7 and below"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:376
+msgid "Selector Name:"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:380
+msgid "Where:"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:388
+msgid "Create Selector"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:389
+msgid "Close Wizard"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:404 tvr-microthemer.php:3179
+#: tvr-microthemer.php:3238
+msgid "All Devices"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:601
+msgid "Microthemer Has Been Successfully Unlocked"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:603
+msgid ""
+"Enter your PayPal email (or the email listed in \"My Downloads\") to unlock "
+"Microthemer"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:614
+msgid "Validate software using a different email address"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:632
+msgid "Enter PayPal email or see email in \"My Downloads\""
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:644 includes/tvr-microthemer-ui.php:774
+#: includes/tvr-microthemer-ui.php:829 includes/tvr-microthemer-ui.php:933
+#: includes/tvr-microthemer-ui.php:972 includes/tvr-microthemer-ui.php:1007
+#: includes/tvr-microthemer-ui.php:1019 includes/tvr-microthemer-ui.php:1053
+msgid "About this feature"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:679
+msgid "Edit Media Queries (For Designing Responsively)"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:689
+msgid "Set device viewport zoom level to \"1\""
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:690
+msgid ""
+"Set this to yes if you're using media queries to make your site look good on "
+"mobile devices. Otherwise mobile phones etc will continue to scale your site "
+"down automatically as if you hadn't specified any media queries."
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:697
+msgid "Default screen width for \"All Devices\" tab"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:698
+msgid ""
+"Leave this blank to let the frontend preview fill the full width of your "
+"screen when you're on the \"All Devices\" tab. However, if you're designing "
+"\"mobile first\" you can set this to \"480px\" (for example) and then use "
+"min-width media queries to apply styles that will only have an effect on "
+"larger screens."
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:706
+msgid "Select a media query set"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:707
+msgid ""
+"Microthemer lets you choose from a list of media query \"sets\". If you are "
+"trying to make a non-responsive site look good on mobiles, you may want to "
+"use the default \"Desktop-first device MQs\" set. If you designing mobile "
+"first, you may want to try an alternative set."
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:714
+msgid "yes"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:715
+msgid "Overwrite your existing media queries?"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:716
+msgid ""
+"You can overwrite your current media queries by choosing \"Yes\". However, "
+"if you would like to merge the selected media query set with your existing "
+"media queries please choose \"No\"."
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:725
+msgid "Load an alternative media query set"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:751
+msgid "Give your media query a descriptive name"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:751
+msgid "Label:"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:754
+msgid "Media Query:"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:766
+msgid "+ New"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:777
+msgid ""
+"If you're not using media queries in Microthemer to make your site look good "
+"on mobile devices you don't need to set the viewport zoom level to 1. You "
+"will be passing judgement over to the devices (e.g. an iPhone) to display "
+"your site by automatically scaling it down. But if you are using media "
+"queries you NEED to set this setting to \"Yes\" in order for things to work "
+"as expected on mobile devices (otherwise mobile devices will just show a "
+"proportionally reduced version of the full-size site)."
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:780
+msgid ""
+"Feel free to rename the media queries and change the media query code. You "
+"can also reorder the media queries by dragging and dropping them. This will "
+"determine the order in which the media queries are written to the stylesheet "
+"and the order that they are displayed in the Microthemer interface."
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:804 tvr-microthemer.php:2460
+msgid "Import settings from a design pack"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:807
+msgid "Select a design pack to import"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:813
+msgid ""
+"Chose to overwrite or merge the imported settings with your current settings"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:819
+msgid "Overwrite"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:824
+msgid "Merge"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:861 tvr-microthemer.php:2462
+msgid "Export your work as a design pack"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:869
+msgid ""
+"Enter a new name or export to an existing design pack. Uncheck any folders "
+"or custom CSS you don't want included in the export."
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:878
+msgid "Folders"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:882
+msgid "Check All"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:887
+msgid "Custom CSS"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:902
+msgid "Hand coded CSS (all browsers)"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:906
+msgid "IE-specific CSS code"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:907
+msgid "IE9 and below CSS code"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:908
+msgid "IE8 and below CSS code"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:909
+msgid "IE7 and below CSS code"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:966 tvr-microthemer.php:2465
+msgid "View the CSS code Microthemer generates"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:999 tvr-microthemer.php:2466
+msgid "Restore settings from a previous save point"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:1009
+msgid ""
+"Click the \"restore\" link in the right hand column of the table to restore "
+"your workspace settings to a previous save point."
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:1016
+msgid "Show off your new discovery"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:1021
+msgid ""
+"cash back feature - coupon code to give new customer, affiliate commission "
+"for existing"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:1022
+msgid "For now, just a simply share widget."
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:1031
+msgid "Install & Manage Design Packs"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:1039
+msgid "Help Centre"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:1047
+msgid "Integration with 3rd party software"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:1049
+msgid "WPTouch Mobile Plugin"
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:1055
+msgid ""
+"When possible, we'll add little features to make it easier to use "
+"Microthemer with complementary products."
+msgstr ""
+
+#: includes/tvr-microthemer-ui.php:1083
+msgid "Error saving settings"
+msgstr ""
+
+#: tvr-microthemer.php:210
+msgid "Large Desktop"
+msgstr ""
+
+#: tvr-microthemer.php:215
+msgid "Desktop & Tablet"
+msgstr ""
+
+#: tvr-microthemer.php:220
+msgid "Tablet & Phone"
+msgstr ""
+
+#: tvr-microthemer.php:225
+msgid "Phone"
+msgstr ""
+
+#: tvr-microthemer.php:233
+msgid "Tablet >"
+msgstr ""
+
+#: tvr-microthemer.php:238
+msgid "Desktop >"
+msgstr ""
+
+#: tvr-microthemer.php:243
+msgid "Large Desktop >"
+msgstr ""
+
+#: tvr-microthemer.php:251
+msgid "Narrow <"
+msgstr ""
+
+#: tvr-microthemer.php:256
+msgid "2 Col >"
+msgstr ""
+
+#: tvr-microthemer.php:261
+msgid "2 to 3 Col"
+msgstr ""
+
+#: tvr-microthemer.php:266
+msgid "3 Col >"
+msgstr ""
+
+#: tvr-microthemer.php:271
+msgid "3 Col to Wide"
+msgstr ""
+
+#: tvr-microthemer.php:276
+msgid "Wide >"
+msgstr ""
+
+#: tvr-microthemer.php:1547
+msgid "Styles were cleared"
+msgstr ""
+
+#: tvr-microthemer.php:1548
+msgid ""
+"All styles were cleared, but your folders and selectors remain fully intact."
+msgstr ""
+
+#: tvr-microthemer.php:2076
+msgid "IMPORTANT - Free Trial Mode is Active"
+msgstr ""
+
+#: tvr-microthemer.php:2446
+msgid "Validate license using a different email address"
+msgstr ""
+
+#: tvr-microthemer.php:2449
+msgid ""
+"Enter your PayPal email (or the email listed in My Downloads) to unlock "
+"Microthemer"
+msgstr ""
+
+#: tvr-microthemer.php:2455
+msgid "Manually save settings"
+msgstr ""
+
+#: tvr-microthemer.php:2457
+msgid "Set your global Microthemer preferences"
+msgstr ""
+
+#: tvr-microthemer.php:2458
+msgid "Edit Media Queries"
+msgstr ""
+
+#: tvr-microthemer.php:2469
+msgid "Spread the word about Microthemer"
+msgstr ""
+
+#: tvr-microthemer.php:2470
+msgid "Reset options"
+msgstr ""
+
+#: tvr-microthemer.php:2474
+msgid "Reset the interface to the default empty folders"
+msgstr ""
+
+#: tvr-microthemer.php:2476
+msgid "Clear all styles, but leave folders and selectors intact"
+msgstr ""
+
+#: tvr-microthemer.php:2480
+msgid "Install & Manage your design packages"
+msgstr ""
+
+#: tvr-microthemer.php:2483
+msgid "Learn how to use Microthemer"
+msgstr ""
+
+#: tvr-microthemer.php:2487
+msgid "Return to WordPress dashboard"
+msgstr ""
+
+#: tvr-microthemer.php:2553
+msgid "Rename"
+msgstr ""
+
+#: tvr-microthemer.php:2554 tvr-microthemer.php:2723
+msgid "Cancel"
+msgstr ""
+
+#: tvr-microthemer.php:2570
+msgid ""
+"Non-coders should use the selector wizard instead of using these form "
+"fields. Just double-click something on your site!"
+msgstr ""
+
+#: tvr-microthemer.php:2653
+msgid ""
+"Give your selector a better descriptive name and/or modify the CSS selector "
+"code (if you know CSS)"
+msgstr ""
+
+#: tvr-microthemer.php:2708
+msgid ""
+"Note: also adds a \"position\" value of \"relative\" unless you explicitly "
+"set a value for position (pie needs the target element or parent element to "
+"have a non-static position value in order to work)."
+msgstr ""
+
+#: tvr-microthemer.php:2714
+#, php-format
+msgid "Click to turn the %1$s pollyfill on/off for this selector. %2$s"
+msgstr ""
+
+#: tvr-microthemer.php:2722
+msgid "selector"
+msgstr ""
+
+#: tvr-microthemer.php:2722
+#, php-format
+msgid "%s Selector"
+msgstr ""
+
+#: tvr-microthemer.php:2723
+#, php-format
+msgid "Cancel %s Selector"
+msgstr ""
+
+#: tvr-microthemer.php:3154
+msgid "Edit media queries"
+msgstr ""
+
+#: tvr-microthemer.php:3155
+#, php-format
+msgid "Manage tabs for %1$s"
+msgstr ""
+
+#: tvr-microthemer.php:3179
+msgid "General CSS that will apply to all devices"
+msgstr ""
+
+#: tvr-microthemer.php:3235 tvr-microthemer.php:3255
+msgid "Remove tab"
+msgstr ""
+
+#: tvr-microthemer.php:3236 tvr-microthemer.php:3256
+msgid "Clear tab styles"
+msgstr ""
+
+#: tvr-microthemer.php:3237 tvr-microthemer.php:3257
+msgid "Add tab"
+msgstr ""
+
+#: tvr-microthemer.php:3238
+msgid "Styles will apply to all screen sizes"
+msgstr ""
+
+#: tvr-microthemer.php:3265
+#, php-format
+msgid "Remove all &quot;%1$s&quot; styling options for this selector"
+msgstr ""
+
+#: tvr-microthemer.php:3267
+msgid "Remove all tabs"
+msgstr ""
+
+#: tvr-microthemer.php:5005
+msgid "Anonymous"
+msgstr ""
+
+#: tvr-microthemer.php:5011
+msgid "Visit author homepage"
+msgstr ""
+
+#: tvr-microthemer.php:5705
+msgid "Jump to the Microthemer interface"
+msgstr ""

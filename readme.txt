@@ -100,6 +100,10 @@ View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-cha
 
 == Upgrade Notice ==
 
+= 3.7.3 (May 9, 2015) =
+* Plain http requests to Google fonts caused issues on SSL sites.
+* Fixed path to languages folder
+
 = 3.7.2 (May 6, 2015) =
 * New selector wizard targeting system trialed in edge mode has become permanent
 * First phase of translation: various text strings are now translatable. Thanks to JoseLuís for providing this: https://github.com/joseluis/

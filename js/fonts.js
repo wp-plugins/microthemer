@@ -144,7 +144,7 @@ jQuery(document).ready(function($){
 				}
 				TvrFonts.family+=Fonts['items'][num]['family'].replace(' ', '+');	
 			}
-			$('#google-fonts').attr('href', 'http://fonts.googleapis.com/css?family='+TvrFonts.family)		
+			$('#google-fonts').attr('href', '//fonts.googleapis.com/css?family='+TvrFonts.family)
 			$('#output').html(TvrFonts.fontList);
 			$('#pagination').html(TvrFonts.pageNav);
 		},

@@ -1,5 +1,11 @@
 CHANGELOG
 
+3.7.3 (May 9, 2015)
+
+# Bugs fixed
+* Plain http requests to Google fonts caused issues on SSL sites.
+* Fixed path to languages folder
+
 3.7.2 (May 6, 2015)
 
 # Enhancements
