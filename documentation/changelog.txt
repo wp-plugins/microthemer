@@ -1,5 +1,11 @@
 CHANGELOG
 
+3.7.5 (May 24, 2015)
+
+# Enhancements
+* Microthemer is now translation ready following JoseLuís' sterling work.
+* Added more thorough directory path analysis for advanced WordPress configurations.
+
 3.7.3 (May 9, 2015)
 
 # Bugs fixed

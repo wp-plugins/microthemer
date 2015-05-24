@@ -6,8 +6,10 @@ if (preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) {
 $propertyOptions = array();
 // font
 $propertyOptions['font']['font_family'] = array(
-    'short_label' => 'Family',
-    'label' => 'Font Family',
+    'short_label' => _x('Family', 'noun: Font Family', 'tvr-microthemer'),
+    'label' => __('Font Family', 'tvr-microthemer'),
+    'pg_label' => __('Font', 'tvr-microthemer'),
+    'sub_label' => __('Font', 'tvr-microthemer'),
     'type' => 'combobox',
     'input-class' => 'tvr-font-select size-big',
     'select_options' => array(
@@ -58,8 +60,8 @@ $propertyOptions['font']['font_family'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_font_font-family.asp');
 
 $propertyOptions['font']['google_font'] = array(
-    'short_label' => 'Google Font',
-    'label' => 'Google Font Family',
+    'short_label' => __('Google Font', 'tvr-microthemer'),
+    'label' => __('Google Font Family', 'tvr-microthemer'),
     'field-class' => 'tvr-font-custom',
     'input-class' => 'size-big',
     'icon' => '30',
@@ -70,8 +72,8 @@ $propertyOptions['font']['google_font'] = array(
     'w3s' => 'http://www.google.com/fonts/'
 );
 $propertyOptions['font']['color'] = array(
-    'short_label' => 'Color',
-    'label' => 'Color',
+    'short_label' => _x('Color', 'noun', 'tvr-microthemer'),
+    'label' => _x('Color', 'noun', 'tvr-microthemer'),
     'input-class' => 'color',
     'icon' => '26',
     // ref
@@ -81,8 +83,8 @@ $propertyOptions['font']['color'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_text_color.asp'
 );
 $propertyOptions['font']['font_size'] = array(
-    'short_label' => 'Size',
-    'label' => 'Font Size',
+    'short_label' => _x('Size', 'noun', 'tvr-microthemer'),
+    'label' => _x('Font Size', 'noun', 'tvr-microthemer'),
     'field-class' => 'icon-size-0',
     'input-class' => 'size-0',
     'default_unit' => 'px',
@@ -94,8 +96,8 @@ $propertyOptions['font']['font_size'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_font_font-size.asp'
 );
 $propertyOptions['font']['line_height'] = array(
-    'short_label' => 'Line Height',
-    'label' => 'Line Height',
+    'short_label' => __('Line Height', 'tvr-microthemer'),
+    'label' => __('Line Height', 'tvr-microthemer'),
     'input-class' => 'size-0',
     'icon' => '22',
     // ref
@@ -106,8 +108,8 @@ $propertyOptions['font']['line_height'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_dim_line-height.asp'
 );
 $propertyOptions['font']['font_weight'] = array(
-    'short_label' => 'Weight',
-    'label' => 'Font Weight',
+    'short_label' => _x('Weight', 'noun: Font Weight', 'tvr-microthemer'),
+    'label' => __('Font Weight', 'tvr-microthemer'),
     'field-class' => 'icon-size-0a',
     'input-class' => 'size-2',
     'type' => 'combobox',
@@ -143,8 +145,8 @@ $propertyOptions['font']['font_weight'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_font_weight.asp'
 );
 $propertyOptions['font']['font_style'] = array(
-    'short_label' => 'Style',
-    'label' => 'Font Style',
+    'short_label' => _x('Style', 'noun: Font Style', 'tvr-microthemer'),
+    'label' => __('Font Style', 'tvr-microthemer'),
     'field-class' => 'icon-size-0a',
     'type' => 'combobox',
     'select_options' => array(
@@ -162,8 +164,8 @@ $propertyOptions['font']['font_style'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_font_font-style.asp'
 );
 $propertyOptions['font']['text_decoration'] = array(
-    'short_label' => 'Decoration',
-    'label' => 'Text Decoration',
+    'short_label' => __('Decoration', 'tvr-microthemer'),
+    'label' => __('Text Decoration', 'tvr-microthemer'),
     'field-class' => 'icon-size-0a',
     'input-class' => 'size-5',
     'type' => 'combobox',
@@ -184,8 +186,8 @@ $propertyOptions['font']['text_decoration'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_text_text-decoration.asp'
 );
 $propertyOptions['font']['font_variant'] = array(
-    'short_label' => 'Variant',
-    'label' => 'Font Variant',
+    'short_label' => __('Variant', 'tvr-microthemer'),
+    'label' => __('Font Variant', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
     'input-class' => 'size-4',
     'type' => 'combobox',
@@ -204,8 +206,10 @@ be displayed in a small-caps font. And that is the only option!</p>",
 );
 // text
 $propertyOptions['text']['text_align'] = array(
-    'short_label' => 'Text Align',
-    'label' => 'Text Align',
+    'short_label' => __('Text Align', 'tvr-microthemer'),
+    'label' => __('Text Align', 'tvr-microthemer'),
+    'pg_label' => __('Text', 'tvr-microthemer'),
+    'sub_label' => __('Text', 'tvr-microthemer'),
     'input-class' => 'size-1',
     'type' => 'combobox',
     'select_options' => array(
@@ -225,8 +229,8 @@ $propertyOptions['text']['text_align'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_text_text-align.asp'
 );
 $propertyOptions['text']['text_indent'] = array(
-    'short_label' => 'Indent',
-    'label' => 'Text Indent',
+    'short_label' => _x('Indent', 'noun', 'tvr-microthemer'),
+    'label' => __('Text Indent', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
     'input-class' => 'size-0b',
     'default_unit' => 'px',
@@ -238,8 +242,8 @@ $propertyOptions['text']['text_indent'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_text_text-indent.asp'
 );
 $propertyOptions['text']['text_transform'] = array(
-    'short_label' => 'Transform',
-    'label' => 'Text Transform',
+    'short_label' => __('Transform', 'noun', 'tvr-microthemer'),
+    'label' => __('Text Transform', 'tvr-microthemer'),
     'input-class' => 'size-4',
     'type' => 'combobox',
     'select_options' => array(
@@ -260,10 +264,10 @@ $propertyOptions['text']['text_transform'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_text_text-transform.asp'
 );
 $propertyOptions['text']['word_spacing'] = array(
-    'short_label' => 'Word Spacing',
+    'short_label' => __('Word Spacing', 'tvr-microthemer'),
     'field-class' => 'icon-size-4',
     'input-class' => 'size-0b',
-    'label' => 'Word Spacing',
+    'label' => __('Word Spacing', 'tvr-microthemer'),
     'default_unit' => 'px',
     'icon' => '22, 4',
     // ref
@@ -273,8 +277,8 @@ $propertyOptions['text']['word_spacing'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_text_word-spacing.asp'
 );
 $propertyOptions['text']['letter_spacing'] = array(
-    'short_label' => 'Letter Spacing',
-    'label' => 'Letter Spacing',
+    'short_label' => __('Letter Spacing', 'tvr-microthemer'),
+    'label' => __('Letter Spacing', 'tvr-microthemer'),
     'input-class' => 'size-0b',
     'default_unit' => 'px',
     'icon' => '24',
@@ -285,8 +289,8 @@ $propertyOptions['text']['letter_spacing'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_text_text-indent.asp'
 );
 $propertyOptions['text']['word_wrap'] = array(
-    'short_label' => 'Word Wrap',
-    'label' => 'Word Wrap',
+    'short_label' => __('Word Wrap', 'tvr-microthemer'),
+    'label' => __('Word Wrap', 'tvr-microthemer'),
     'input-class' => 'size-4a',
     'type' => 'combobox',
     'select_options' => array(
@@ -297,8 +301,8 @@ $propertyOptions['text']['word_wrap'] = array(
     // ref
 );
 $propertyOptions['text']['white_space'] = array(
-    'short_label' => 'White Space',
-    'label' => 'White Space',
+    'short_label' => __('White Space', 'tvr-microthemer'),
+    'label' => __('White Space', 'tvr-microthemer'),
     'input-class' => 'size-3a',
     'type' => 'combobox',
     'select_options' => array(
@@ -312,8 +316,8 @@ $propertyOptions['text']['white_space'] = array(
     // ref
 );
 $propertyOptions['text']['direction'] = array(
-    'short_label' => 'Direction',
-    'label' => 'Text Direction',
+    'short_label' => __('Direction', 'tvr-microthemer'),
+    'label' => __('Text Direction', 'tvr-microthemer'),
     'input-class' => '',
     'type' => 'combobox',
     'select_options' => array(
@@ -327,8 +331,10 @@ $propertyOptions['text']['direction'] = array(
 
 // list (new group)
 $propertyOptions['list']['list_style_type'] = array(
-    'short_label' => 'Type',
-    'label' => 'List Style Type',
+    'short_label' => _x('Type', 'noun: List Style Type', 'tvr-microthemer'),
+    'label' => __('List Style Type', 'tvr-microthemer'),
+    'pg_label' => __('List', 'tvr-microthemer'),
+    'sub_label' => __('List', 'tvr-microthemer'),
     'input-class' => 'size-big',
     'type' => 'combobox',
     'select_options' => array(
@@ -372,8 +378,8 @@ $propertyOptions['list']['list_style_type'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_list-style-type.asp'
 );
 $propertyOptions['list']['list_style_image'] = array(
-    'short_label' => 'Image',
-    'label' => 'List Style Image',
+    'short_label' => _x('Image', 'noun', 'tvr-microthemer'),
+    'label' => __('List Style Image', 'tvr-microthemer'),
     'type' => 'combobox',
     'field-class' => 'last span-3',
     'input-class' => 'bg-image-select size-very-big strictly-dropdown',
@@ -385,8 +391,8 @@ $propertyOptions['list']['list_style_image'] = array(
     // ref
 );
 $propertyOptions['list']['list_style_position'] = array(
-    'short_label' => 'Position',
-    'label' => 'List Style Position',
+    'short_label' => __('Position', 'tvr-microthemer'),
+    'label' => __('List Style Position', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
     'input-class' => 'size-2',
     'type' => 'combobox',
@@ -400,8 +406,10 @@ $propertyOptions['list']['list_style_position'] = array(
 );
 // shadow text/box (new group)
 $propertyOptions['shadow']['text_shadow_color'] = array(
-    'short_label' => 'Color',
-    'label' => 'Text Shadow Color',
+    'short_label' => _x('Color', 'noun', 'tvr-microthemer'),
+    'label' => __('Text Shadow Color', 'tvr-microthemer'),
+    'pg_label' => __('Shadow', 'tvr-microthemer'),
+    'sub_label' => __('Text Shadow', 'tvr-microthemer'),
     'input-class' => 'color',
     'hide imp' => 1,
     'icon' => '41',
@@ -412,8 +420,8 @@ $propertyOptions['shadow']['text_shadow_color'] = array(
     'w3s' => ''
 );
 $propertyOptions['shadow']['text_shadow_x'] = array(
-    'short_label' => 'X-Offset',
-    'label' => 'Text Shadow x-offset',
+    'short_label' => __('X-Offset', 'tvr-microthemer'),
+    'label' => __('Text Shadow x-offset', 'tvr-microthemer'),
     'input-class' => 'size-0b',
     'default_unit' => 'px',
     'hide imp' => 1,
@@ -425,8 +433,8 @@ $propertyOptions['shadow']['text_shadow_x'] = array(
     'w3s' => ''
 );
 $propertyOptions['shadow']['text_shadow_y'] = array(
-    'short_label' => 'Y-Offset',
-    'label' => 'Text Shadow y-offset',
+    'short_label' => __('Y-Offset', 'tvr-microthemer'),
+    'label' => __('Text Shadow y-offset', 'tvr-microthemer'),
     'input-class' => 'size-0b',
     'default_unit' => 'px',
     'hide imp' => 1,
@@ -438,8 +446,8 @@ $propertyOptions['shadow']['text_shadow_y'] = array(
     'w3s' => ''
 );
 $propertyOptions['shadow']['text_shadow_blur'] = array(
-    'short_label' => 'Blur',
-    'label' => 'Text Shadow Blur',
+    'short_label' => _x('Blur', 'noun', 'tvr-microthemer'),
+    'label' => __('Text Shadow Blur', 'tvr-microthemer'),
     'input-class' => 'size-0b',
     'default_unit' => 'px',
     'field-class' => 'last',
@@ -452,9 +460,9 @@ $propertyOptions['shadow']['text_shadow_blur'] = array(
 );
 
 $propertyOptions['shadow']['box_shadow_color'] = array(
-    'short_label' => 'Color',
-    'label' => 'Box Shadow Color',
-    'sub_label' => 'Box Shadow:',
+    'short_label' => _x('Color', 'noun', 'tvr-microthemer'),
+    'label' => __('Box Shadow Color', 'tvr-microthemer'),
+    'sub_label' => __('Box Shadow', 'tvr-microthemer'),
     'field-class' => 'icon-size-3',
     'input-class' => 'color',
     'hide imp' => 1,
@@ -466,8 +474,8 @@ $propertyOptions['shadow']['box_shadow_color'] = array(
     'w3s' => ''
 );
 $propertyOptions['shadow']['box_shadow_x'] = array(
-    'short_label' => 'X-Offset',
-    'label' => 'Box Shadow x-offset',
+    'short_label' => __('X-Offset', 'tvr-microthemer'),
+    'label' => __('Box Shadow x-offset', 'tvr-microthemer'),
     'default_unit' => 'px',
     'input-class' => 'size-0b',
     'hide imp' => 1,
@@ -479,8 +487,8 @@ $propertyOptions['shadow']['box_shadow_x'] = array(
     'w3s' => ''
 );
 $propertyOptions['shadow']['box_shadow_y'] = array(
-    'short_label' => 'Y-Offset',
-    'label' => 'Box Shadow y-offset',
+    'short_label' => __('Y-Offset', 'tvr-microthemer'),
+    'label' => __('Box Shadow y-offset', 'tvr-microthemer'),
     'field-class' => 'icon-size-3',
     'default_unit' => 'px',
     'input-class' => 'size-0b',
@@ -493,8 +501,8 @@ $propertyOptions['shadow']['box_shadow_y'] = array(
     'w3s' => ''
 );
 $propertyOptions['shadow']['box_shadow_blur'] = array(
-    'short_label' => 'Blur',
-    'label' => 'Box Shadow Blur',
+    'short_label' => _x('Blur', 'noun', 'tvr-microthemer'),
+    'label' => __('Box Shadow Blur', 'tvr-microthemer'),
     'default_unit' => 'px',
     'input-class' => 'size-0b',
     'field-class' => 'last',
@@ -507,8 +515,10 @@ $propertyOptions['shadow']['box_shadow_blur'] = array(
 );
 // background
 $propertyOptions['background']['background_color'] = array(
-    'short_label' => 'Color',
-    'label' => 'Background Color',
+    'short_label' => __('Color', 'noun', 'tvr-microthemer'),
+    'label' => __('Background Color', 'tvr-microthemer'),
+    'pg_label' => __('Background', 'tvr-microthemer'),
+    'sub_label' => __('Background', 'tvr-microthemer'),
     'input-class' => 'color',
     'icon' => '25',
     // ref
@@ -518,8 +528,8 @@ $propertyOptions['background']['background_color'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_background-color.asp'
 );
 $propertyOptions['background']['background_image'] = array(
-    'short_label' => 'Image',
-    'label' => 'Background Image',
+    'short_label' => _x('Image', 'noun', 'tvr-microthemer'),
+    'label' => __('Background Image', 'tvr-microthemer'),
     'type' => 'combobox',
     'field-class' => 'last span-3',
     'input-class' => 'bg-image-select size-very-big strictly-dropdown',
@@ -535,8 +545,8 @@ $propertyOptions['background']['background_image'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_background-image.asp'
 );
 $propertyOptions['background']['background_position'] = array(
-    'short_label' => 'Position',
-    'label' => 'Background Position',
+    'short_label' => _x('Position', 'noun', 'tvr-microthemer'),
+    'label' => __('Background Position', 'tvr-microthemer'),
     'type' => 'combobox',
     'input-class' => 'bg-position-select size-6',
     'select_options' => array(
@@ -568,8 +578,8 @@ $propertyOptions['background']['background_position'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_background-position.asp'
 );
 $propertyOptions['background']['background_repeat'] = array(
-    'short_label' => 'Repeat',
-    'label' => 'Background Repeat',
+    'short_label' => _x('Repeat', 'noun', 'tvr-microthemer'),
+    'label' => __('Background Repeat', 'tvr-microthemer'),
     'input-class' => 'size-3a',
     'type' => 'combobox',
     'select_options' => array(
@@ -589,8 +599,8 @@ $propertyOptions['background']['background_repeat'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_background-repeat.asp'
 );
 $propertyOptions['background']['background_attachment'] = array(
-    'short_label' => 'Attachment',
-    'label' => 'Background Attachment',
+    'short_label' => __('Attachment', 'tvr-microthemer'),
+    'label' => __('Background Attachment', 'tvr-microthemer'),
     'type' => 'combobox',
     'select_options' => array(
 		'',
@@ -606,8 +616,8 @@ fixed or scrolls with the rest of the page.</p>",
     'w3s' => 'http://www.w3schools.com/cssref/pr_background-attachment.asp'
 );
 $propertyOptions['background']['background_size'] = array(
-    'short_label' => 'Size',
-    'label' => 'Background Size',
+    'short_label' => _x('Size', 'noun', 'tvr-microthemer'),
+    'label' => __('Background Size', 'tvr-microthemer'),
     'type' => 'combobox',
     'input-class' => 'size-3a',
     'select_options' => array(
@@ -621,8 +631,8 @@ $propertyOptions['background']['background_size'] = array(
     // ref
 );
 $propertyOptions['background']['background_clip'] = array(
-    'short_label' => 'Clip',
-    'label' => 'Background Clip',
+    'short_label' => _x('Clip', 'noun', 'tvr-microthemer'),
+    'label' => __('Background Clip', 'tvr-microthemer'),
     'type' => 'combobox',
     'input-class' => 'size-5',
     'select_options' => array(
@@ -648,8 +658,10 @@ $propertyOptions['background']['background_origin'] = array(
 */
 // dimensions
 $propertyOptions['dimensions']['width'] = array(
-    'short_label' => 'Width',
-    'label' => 'Width',
+    'short_label' => __('Width', 'tvr-microthemer'),
+    'label' => __('Width', 'tvr-microthemer'),
+    'pg_label' => __('Dimensions', 'tvr-microthemer'),
+    'sub_label' => __('Width', 'tvr-microthemer'),
     'input-class' => 'size-1',
     'default_unit' => 'px',
     'icon' => '9',
@@ -662,8 +674,8 @@ $propertyOptions['dimensions']['width'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_dim_width.asp'
 );
 $propertyOptions['dimensions']['min_width'] = array(
-    'short_label' => 'Min',
-    'label' => 'Min Width',
+    'short_label' => __('Min', 'tvr-microthemer'),
+    'label' => __('Min Width', 'tvr-microthemer'),
     'input-class' => 'size-1',
     'default_unit' => 'px',
     'icon' => '36, 14',
@@ -674,8 +686,8 @@ $propertyOptions['dimensions']['min_width'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_dim_min-width.asp'
 );
 $propertyOptions['dimensions']['max_width'] = array(
-    'short_label' => 'Max',
-    'label' => 'Max Width',
+    'short_label' => __('Max', 'tvr-microthemer'),
+    'label' => __('Max Width', 'tvr-microthemer'),
     'input-class' => 'size-1',
     'default_unit' => 'px',
     'icon' => '34, 14',
@@ -686,10 +698,10 @@ $propertyOptions['dimensions']['max_width'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_dim_max-width.asp'
 );
 $propertyOptions['dimensions']['height'] = array(
-    'short_label' => 'Height',
-    'label' => 'Height',
+    'short_label' => __('Height', 'tvr-microthemer'),
+    'label' => __('Height', 'tvr-microthemer'),
     'field-class' => 'icon-size-0b',
-    'sub_label' => 'Height:',
+    'sub_label' => __('Height', 'tvr-microthemer'),
     'input-class' => 'size-1',
     'default_unit' => 'px',
     'icon' => '10',
@@ -701,8 +713,8 @@ $propertyOptions['dimensions']['height'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_dim_height.asp'
 );
 $propertyOptions['dimensions']['min_height'] = array(
-    'short_label' => 'Min',
-    'label' => 'Min Height',
+    'short_label' => __('Min', 'tvr-microthemer'),
+    'label' => __('Min Height', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
     'input-class' => 'size-1',
     'default_unit' => 'px',
@@ -714,8 +726,8 @@ $propertyOptions['dimensions']['min_height'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_dim_min-width.asp'
 );
 $propertyOptions['dimensions']['max_height'] = array(
-    'short_label' => 'Max',
-    'label' => 'Max Height',
+    'short_label' => __('Max', 'tvr-microthemer'),
+    'label' => __('Max Height', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
     'input-class' => 'size-1',
     'default_unit' => 'px',
@@ -727,8 +739,8 @@ $propertyOptions['dimensions']['max_height'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_dim_max-width.asp'
 );
 $propertyOptions['dimensions']['box_sizing'] = array(
-    'short_label' => 'Box Sizing',
-    'label' => 'Box Sizing',
+    'short_label' => __('Box Sizing', 'tvr-microthemer'),
+    'label' => __('Box Sizing', 'tvr-microthemer'),
     'input-class' => 'size-5',
     'type' => 'combobox',
     'select_options' => array(
@@ -743,8 +755,10 @@ $propertyOptions['dimensions']['box_sizing'] = array(
 
 // padding & margin (new group)
 $propertyOptions['padding_margin']['padding_top'] = array(
-    'short_label' => 'Top',
-    'label' => 'Padding Top',
+    'short_label' => __('Top', 'tvr-microthemer'),
+    'label' => __('Padding Top', 'tvr-microthemer'),
+    'pg_label' => __('Padding & Margin', 'tvr-microthemer'),
+    'sub_label' => __('Padding', 'tvr-microthemer'),
     'input-class' => 'size-0',
     'default_unit' => 'px',
     'rel' => 'paddding',
@@ -756,8 +770,8 @@ $propertyOptions['padding_margin']['padding_top'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_padding-top.asp'
 );
 $propertyOptions['padding_margin']['padding_right'] = array(
-    'short_label' => 'Right',
-    'label' => 'Padding Right',
+    'short_label' => __('Right', 'tvr-microthemer'),
+    'label' => __('Padding Right', 'tvr-microthemer'),
     'input-class' => 'size-0',
     'default_unit' => 'px',
     'rel' => 'paddding',
@@ -769,8 +783,8 @@ $propertyOptions['padding_margin']['padding_right'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_padding-right.asp'
 );
 $propertyOptions['padding_margin']['padding_bottom'] = array(
-    'short_label' => 'Bottom',
-    'label' => 'Padding Bottom',
+    'short_label' => __('Bottom', 'tvr-microthemer'),
+    'label' => __('Padding Bottom', 'tvr-microthemer'),
     'input-class' => 'size-0',
     'default_unit' => 'px',
     'rel' => 'paddding',
@@ -782,8 +796,8 @@ $propertyOptions['padding_margin']['padding_bottom'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_padding-bottom.asp'
 );
 $propertyOptions['padding_margin']['padding_left'] = array(
-    'short_label' => 'Left',
-    'label' => 'Padding Left',
+    'short_label' => __('Left', 'tvr-microthemer'),
+    'label' => __('Padding Left', 'tvr-microthemer'),
     'input-class' => 'size-0',
     'default_unit' => 'px',
     'rel' => 'paddding',
@@ -796,9 +810,9 @@ $propertyOptions['padding_margin']['padding_left'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_padding-left.asp'
 );
 $propertyOptions['padding_margin']['margin_top'] = array(
-    'short_label' => 'Top',
-    'label' => 'Margin Top',
-    'sub_label' => 'Margin:',
+    'short_label' => __('Top', 'tvr-microthemer'),
+    'label' => __('Margin Top', 'tvr-microthemer'),
+    'sub_label' => __('Margin', 'tvr-microthemer'),
     'input-class' => 'size-0',
     'default_unit' => 'px',
     'rel' => 'margin',
@@ -811,8 +825,8 @@ The space is created <i>outside</i> the element's border.</p>",
     'w3s' => 'http://www.w3schools.com/cssref/pr_margin-top.asp'
 );
 $propertyOptions['padding_margin']['margin_right'] = array(
-    'short_label' => 'Right',
-    'label' => 'Margin Right',
+    'short_label' => __('Right', 'tvr-microthemer'),
+    'label' => __('Margin Right', 'tvr-microthemer'),
     'input-class' => 'size-0',
     'default_unit' => 'px',
     'rel' => 'margin',
@@ -824,8 +838,8 @@ $propertyOptions['padding_margin']['margin_right'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_margin-right.asp'
 );
 $propertyOptions['padding_margin']['margin_bottom'] = array(
-    'short_label' => 'Bottom',
-    'label' => 'Margin Bottom',
+    'short_label' => __('Bottom', 'tvr-microthemer'),
+    'label' => __('Margin Bottom', 'tvr-microthemer'),
     'input-class' => 'size-0',
     'default_unit' => 'px',
     'rel' => 'margin',
@@ -837,8 +851,8 @@ $propertyOptions['padding_margin']['margin_bottom'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_margin-bottom.asp'
 );
 $propertyOptions['padding_margin']['margin_left'] = array(
-    'short_label' => 'Left',
-    'label' => 'Margin Left',
+    'short_label' => __('Left', 'tvr-microthemer'),
+    'label' => __('Margin Left', 'tvr-microthemer'),
     'input-class' => 'size-0',
     'default_unit' => 'px',
     'rel' => 'margin',
@@ -852,8 +866,10 @@ $propertyOptions['padding_margin']['margin_left'] = array(
 );
 // border
 $propertyOptions['border']['border_top_color'] = array(
-    'short_label' => 'Top',
-    'label' => 'Border Top Color',
+    'short_label' => __('Top', 'tvr-microthemer'),
+    'label' => __('Border Top Color', 'tvr-microthemer'),
+    'pg_label' => __('Border', 'tvr-microthemer'),
+    'sub_label' => __('Border Color', 'tvr-microthemer'),
     'default_unit' => 'px',
     'rel' => 'border_color',
     'input-class' => 'color',
@@ -865,8 +881,8 @@ $propertyOptions['border']['border_top_color'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_border-top_color.asp'
 );
 $propertyOptions['border']['border_right_color'] = array(
-    'short_label' => 'Right',
-    'label' => 'Border Right Color',
+    'short_label' => __('Right', 'tvr-microthemer'),
+    'label' => __('Border Right Color', 'tvr-microthemer'),
     'default_unit' => 'px',
     'rel' => 'border_color',
     'input-class' => 'color',
@@ -878,8 +894,8 @@ $propertyOptions['border']['border_right_color'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_border-right_color.asp'
 );
 $propertyOptions['border']['border_bottom_color'] = array(
-    'short_label' => 'Bottom',
-    'label' => 'Border Bottom Color',
+    'short_label' => __('Bottom', 'tvr-microthemer'),
+    'label' => __('Border Bottom Color', 'tvr-microthemer'),
     'default_unit' => 'px',
     'rel' => 'border_color',
     'input-class' => 'color',
@@ -891,8 +907,8 @@ $propertyOptions['border']['border_bottom_color'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_border-bottom_color.asp'
 );
 $propertyOptions['border']['border_left_color'] = array(
-    'short_label' => 'Left',
-    'label' => 'Border Left Color',
+    'short_label' => __('Left', 'tvr-microthemer'),
+    'label' => __('Border Left Color', 'tvr-microthemer'),
     'default_unit' => 'px',
     'rel' => 'border_color',
     'input-class' => 'color',
@@ -905,9 +921,9 @@ $propertyOptions['border']['border_left_color'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_border-left_color.asp'
 );
 $propertyOptions['border']['border_top_width'] = array(
-    'short_label' => 'Top',
-    'label' => 'Border Top Width',
-    'sub_label' => 'Border Width:',
+    'short_label' => __('Top', 'tvr-microthemer'),
+    'label' => __('Border Top Width', 'tvr-microthemer'),
+    'sub_label' => __('Border Width', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
     'default_unit' => 'px',
     'rel' => 'border_width',
@@ -919,8 +935,8 @@ $propertyOptions['border']['border_top_width'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_border-top_width.asp'
 );
 $propertyOptions['border']['border_right_width'] = array(
-    'short_label' => 'Right',
-    'label' => 'Border Right Width',
+    'short_label' => __('Right', 'tvr-microthemer'),
+    'label' => __('Border Right Width', 'tvr-microthemer'),
     'default_unit' => 'px',
     'rel' => 'border_width',
     'icon' => '9, 14',
@@ -931,8 +947,8 @@ $propertyOptions['border']['border_right_width'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_border-right_width.asp'
 );
 $propertyOptions['border']['border_bottom_width'] = array(
-    'short_label' => 'Bottom',
-    'label' => 'Border Bottom Width',
+    'short_label' => __('Bottom', 'tvr-microthemer'),
+    'label' => __('Border Bottom Width', 'tvr-microthemer'),
     'default_unit' => 'px',
     'rel' => 'border_width',
     'icon' => '7, 14',
@@ -943,8 +959,8 @@ $propertyOptions['border']['border_bottom_width'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_border-bottom_width.asp'
 );
 $propertyOptions['border']['border_left_width'] = array(
-    'short_label' => 'Left',
-    'label' => 'Border Left Width',
+    'short_label' => __('Left', 'tvr-microthemer'),
+    'label' => __('Border Left Width', 'tvr-microthemer'),
     'default_unit' => 'px',
     'rel' => 'border_width',
     'field-class' => 'last',
@@ -969,8 +985,9 @@ $border_style_options = array(
     'none'
 );
 $propertyOptions['border']['border_top_style'] = array(
-    'short_label' => 'Top',
-    'label' => 'Border Top Style',
+    'short_label' => __('Top', 'tvr-microthemer'),
+    'label' => __('Border Top Style', 'tvr-microthemer'),
+    'sub_label' => __('Border Style', 'tvr-microthemer'),
     'type' => 'combobox',
     'rel' => 'border_style',
     'select_options' => $border_style_options,
@@ -991,8 +1008,8 @@ $propertyOptions['border']['border_top_style'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_border-top_style.asp'
 );
 $propertyOptions['border']['border_right_style'] = array(
-    'short_label' => 'Right',
-    'label' => 'Border Right Style',
+    'short_label' => __('Right', 'tvr-microthemer'),
+    'label' => __('Border Right Style', 'tvr-microthemer'),
     'type' => 'combobox',
     'rel' => 'border_style',
     'select_options' => $border_style_options,
@@ -1013,8 +1030,8 @@ $propertyOptions['border']['border_right_style'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_border-right_style.asp'
 );
 $propertyOptions['border']['border_bottom_style'] = array(
-    'short_label' => 'Bottom',
-    'label' => 'Border Bottom Style',
+    'short_label' => __('Bottom', 'tvr-microthemer'),
+    'label' => __('Border Bottom Style', 'tvr-microthemer'),
     'type' => 'combobox',
     'rel' => 'border_style',
     'select_options' => $border_style_options,
@@ -1035,8 +1052,8 @@ $propertyOptions['border']['border_bottom_style'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_border-bottom_style.asp'
 );
 $propertyOptions['border']['border_left_style'] = array(
-    'short_label' => 'Left',
-    'label' => 'Border Left Style',
+    'short_label' => __('Left', 'tvr-microthemer'),
+    'label' => __('Border Left Style', 'tvr-microthemer'),
     'type' => 'combobox',
     'field-class' => 'last',
     'rel' => 'border_style',
@@ -1060,9 +1077,9 @@ $propertyOptions['border']['border_left_style'] = array(
 );
 // border radius
 $propertyOptions['border']['border_top_left_radius'] = array(
-    'short_label' => 'Top Left',
-    'label' => 'Top Left Border Radius',
-    'sub_label' => 'Border Radius:',
+    'short_label' => __('Top Left', 'tvr-microthemer'),
+    'label' => __('Top Left Border Radius', 'tvr-microthemer'),
+    'sub_label' => __('Border Radius', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
     'default_unit' => 'px',
     'icon' => '17',
@@ -1075,8 +1092,8 @@ $propertyOptions['border']['border_top_left_radius'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/css3_pr_border-top-left-radius.asp'
 );
 $propertyOptions['border']['border_top_right_radius'] = array(
-    'short_label' => 'Top Right',
-    'label' => 'Top Right Border Radius',
+    'short_label' => __('Top Right', 'tvr-microthemer'),
+    'label' => __('Top Right Border Radius', 'tvr-microthemer'),
     'default_unit' => 'px',
     'icon' => '18',
     'rel' => 'border_radius',
@@ -1088,8 +1105,8 @@ $propertyOptions['border']['border_top_right_radius'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/css3_pr_border-top-right-radius.asp'
 );
 $propertyOptions['border']['border_bottom_right_radius'] = array(
-    'short_label' => 'Bottom Right',
-    'label' => 'Bottom Right Border Radius',
+    'short_label' => __('Bottom Right', 'tvr-microthemer'),
+    'label' => __('Bottom Right Border Radius', 'tvr-microthemer'),
     'default_unit' => 'px',
     'icon' => '20',
     'rel' => 'border_radius',
@@ -1101,8 +1118,8 @@ $propertyOptions['border']['border_bottom_right_radius'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/css3_pr_border-bottom-left-radius.asp'
 );
 $propertyOptions['border']['border_bottom_left_radius'] = array(
-    'short_label' => 'Bottom Left',
-    'label' => 'Bottom Left Border Radius',
+    'short_label' => __('Bottom Left', 'tvr-microthemer'),
+    'label' => __('Bottom Left Border Radius', 'tvr-microthemer'),
     'default_unit' => 'px',
     'icon' => '19',
     'rel' => 'border_radius',
@@ -1115,8 +1132,9 @@ $propertyOptions['border']['border_bottom_left_radius'] = array(
 );
 // behaviour
 $propertyOptions['behaviour']['display'] = array(
-    'short_label' => 'Display',
-    'label' => 'Display',
+    'short_label' => _x('Display', 'noun', 'tvr-microthemer'),
+    'label' => _x('Display', 'noun', 'tvr-microthemer'),
+    'pg_label' => __('Behaviour', 'tvr-microthemer'),
     'input-class' => 'size-4',
     'type' => 'combobox',
     'select_options' => array(
@@ -1137,8 +1155,8 @@ $propertyOptions['behaviour']['display'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_class_display.asp'
 );
 $propertyOptions['behaviour']['overflow'] = array(
-    'short_label' => 'Overflow',
-    'label' => 'Overflow',
+    'short_label' => __('Overflow', 'tvr-microthemer'),
+    'label' => __('Overflow', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
     'input-class' => 'size-2',
     'type' => 'combobox',
@@ -1160,8 +1178,8 @@ $propertyOptions['behaviour']['overflow'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_pos_overflow.asp'
 );
 $propertyOptions['behaviour']['overflow_x'] = array(
-    'short_label' => 'Overflow X',
-    'label' => 'Overflow X',
+    'short_label' => __('Overflow X', 'tvr-microthemer'),
+    'label' => __('Overflow X', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
     'input-class' => 'size-2',
     'type' => 'combobox',
@@ -1176,8 +1194,8 @@ $propertyOptions['behaviour']['overflow_x'] = array(
     // ref
 );
 $propertyOptions['behaviour']['overflow_y'] = array(
-    'short_label' => 'Overflow Y',
-    'label' => 'Overflow Y',
+    'short_label' => __('Overflow Y', 'tvr-microthemer'),
+    'label' => __('Overflow Y', 'tvr-microthemer'),
     'field-class' => 'icon-size-4',
     'input-class' => 'size-2',
     'type' => 'combobox',
@@ -1192,8 +1210,8 @@ $propertyOptions['behaviour']['overflow_y'] = array(
     // ref
 );
 $propertyOptions['behaviour']['visibility'] = array(
-    'short_label' => 'Visibility',
-    'label' => 'Visibility',
+    'short_label' => __('Visibility', 'tvr-microthemer'),
+    'label' => __('Visibility', 'tvr-microthemer'),
     'type' => 'combobox',
     'input-class' => 'size-3',
     'select_options' => array(
@@ -1212,8 +1230,8 @@ $propertyOptions['behaviour']['visibility'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_class_visibility.asp'
 );
 $propertyOptions['behaviour']['cursor'] = array(
-    'short_label' => 'Cursor',
-    'label' => 'Cursor',
+    'short_label' => __('Cursor', 'tvr-microthemer'),
+    'label' => __('Cursor', 'tvr-microthemer'),
     'field-class' => 'icon-size-0a',
     'input-class' => 'size-3',
     'type' => 'combobox',
@@ -1261,8 +1279,8 @@ $propertyOptions['behaviour']['cursor'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_class_visibility.asp'
 );
 $propertyOptions['behaviour']['opacity'] = array(
-    'short_label' => 'Opacity',
-    'label' => 'Opacity',
+    'short_label' => __('Opacity', 'tvr-microthemer'),
+    'label' => __('Opacity', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
     'input-class' => 'size-0c',
     'icon' => '4, 14',
@@ -1274,8 +1292,9 @@ $propertyOptions['behaviour']['opacity'] = array(
 );
 // position
 $propertyOptions['position']['position'] = array(
-    'short_label' => 'Position',
-    'label' => 'Position',
+    'short_label' => __('Position', 'tvr-microthemer'),
+    'label' => __('Position', 'tvr-microthemer'),
+    'pg_label' => __('Position', 'tvr-microthemer'),
     'input-class' => 'size-3',
     'type' => 'combobox',
     'select_options' => array(
@@ -1296,8 +1315,8 @@ $propertyOptions['position']['position'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_class_position.asp'
 );
 $propertyOptions['position']['top'] = array(
-    'short_label' => 'Top',
-    'label' => 'Top (Position)',
+    'short_label' => __('Top', 'tvr-microthemer'),
+    'label' => __('Top (Position)', 'tvr-microthemer'),
     'default_unit' => 'px',
     'icon' => '11',
     // ref
@@ -1308,8 +1327,8 @@ $propertyOptions['position']['top'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_pos_top.asp'
 );
 $propertyOptions['position']['bottom'] = array(
-    'short_label' => 'Bottom',
-    'label' => 'Bottom (Position)',
+    'short_label' => __('Bottom', 'tvr-microthemer'),
+    'label' => __('Bottom (Position)', 'tvr-microthemer'),
     'default_unit' => 'px',
     'icon' => '12',
     // ref
@@ -1321,8 +1340,8 @@ $propertyOptions['position']['bottom'] = array(
 
 );
 $propertyOptions['position']['left'] = array(
-    'short_label' => 'Left',
-    'label' => 'Left (Position)',
+    'short_label' => __('Left', 'tvr-microthemer'),
+    'label' => __('Left (Position)', 'tvr-microthemer'),
     'default_unit' => 'px',
     'icon' => '13',
     // ref
@@ -1335,8 +1354,8 @@ $propertyOptions['position']['left'] = array(
 
 );
 $propertyOptions['position']['right'] = array(
-    'short_label' => 'Right',
-    'label' => 'Right (Position)',
+    'short_label' => __('Right', 'tvr-microthemer'),
+    'label' => __('Right (Position)', 'tvr-microthemer'),
     'default_unit' => 'px',
     'icon' => '14',
     'field-class' => 'last',
@@ -1348,8 +1367,8 @@ $propertyOptions['position']['right'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_pos_right.asp'
 );
 $propertyOptions['position']['z_index'] = array(
-    'short_label' => 'Z-index',
-    'label' => 'Z-index',
+    'short_label' => __('Z-index', 'tvr-microthemer'),
+    'label' => __('Z-index', 'tvr-microthemer'),
     'icon' => '21, 14',
     // ref
     'ref_desc' => "<p>The z-index property specifies the stack order of an element. An element with greater stack order is always in front of an element with a lower stack order. Note: z-index only works on positioned elements (position:absolute, position:relative, or position:fixed).</p>",
@@ -1358,8 +1377,8 @@ $propertyOptions['position']['z_index'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_pos_z-index.asp'
 );
 $propertyOptions['position']['float'] = array(
-    'short_label' => 'Float',
-    'label' => 'Float',
+    'short_label' => __('Float', 'tvr-microthemer'),
+    'label' => __('Float', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
     'input-class' => 'size-0',
     'type' => 'combobox',
@@ -1378,8 +1397,8 @@ $propertyOptions['position']['float'] = array(
     'w3s' => 'http://www.w3schools.com/cssref/pr_class_float.asp'
 );
 $propertyOptions['position']['clear'] = array(
-    'short_label' => 'Clear',
-    'label' => 'Clear',
+    'short_label' => __('Clear', 'tvr-microthemer'),
+    'label' => __('Clear', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
     'input-class' => 'size-0',
     'type' => 'combobox',
@@ -1401,8 +1420,9 @@ $propertyOptions['position']['clear'] = array(
 );
 // gradient
 $propertyOptions['gradient']['gradient_angle'] = array(
-    'short_label' => 'Angle',
-    'label' => 'Gradient Angle',
+    'short_label' => __('Angle', 'tvr-microthemer'),
+    'label' => __('Gradient Angle', 'tvr-microthemer'),
+    'pg_label' => __('Gradient', 'tvr-microthemer'),
     'field-class' => 'last',
     'input-class' => 'size-big',
     'type' => 'combobox',
@@ -1434,7 +1454,7 @@ $propertyOptions['gradient']['gradient_angle'] = array(
 );
 $propertyOptions['gradient']['gradient_a'] = array(
     'short_label' => 'A',
-    'label' => 'Gradient A',
+    'label' => __('Gradient A', 'tvr-microthemer'),
     'field-class' => 'always-label',
     'input-class' => 'color',
     'hide imp' => 1,
@@ -1447,7 +1467,7 @@ $propertyOptions['gradient']['gradient_a'] = array(
 );
 $propertyOptions['gradient']['gradient_b'] = array(
     'short_label' => 'B',
-    'label' => 'Gradient B',
+    'label' => __('Gradient B', 'tvr-microthemer'),
     'field-class' => 'always-label',
     'input-class' => 'color',
     'hide imp' => 1,
@@ -1459,8 +1479,8 @@ $propertyOptions['gradient']['gradient_b'] = array(
     'w3s' => ''
 );
 $propertyOptions['gradient']['gradient_b_pos'] = array(
-    'short_label' => 'B Position',
-    'label' => 'Gradient B Position',
+    'short_label' => __('B Position', 'tvr-microthemer'),
+    'label' => __('Gradient B Position', 'tvr-microthemer'),
     'field-class' => 'icon-size-0b',
     'default_unit' => 'px',
     'hide imp' => 1,
@@ -1473,7 +1493,7 @@ $propertyOptions['gradient']['gradient_b_pos'] = array(
 );
 $propertyOptions['gradient']['gradient_c'] = array(
     'short_label' => 'C',
-    'label' => 'Gradient C',
+    'label' => __('Gradient C', 'tvr-microthemer'),
     'field-class' => 'always-label',
     'input-class' => 'color',
     'icon' => '25',
@@ -1596,7 +1616,5 @@ $legacy_groups['gradient'] = array(
         'gradient_angle' => 1
     )
 );
-
-
 
 

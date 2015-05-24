@@ -4,7 +4,7 @@ Contributors: bastywebb
 Donate link: http://themeover.com/microthemer/
 Tags: microthemer, theme customizer, theme editor, theme tweaker, theme generator, css plugin, css editor, css code generator, visual css editor, visual design tool, css3 pie, stylesheet, style.css, micro themes, microloader, wordpress, google fonts, google web fonts, web fonts, wordpress web fonts, google fonts plugin, wp google fonts, google
 Requires at least: 3.6
-Tested up to: 4.2.1
+Tested up to: 4.2.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -99,6 +99,10 @@ Microthemer has built-in documentation! Just click the help icon (top right of t
 View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-changelog-3-x/" target="_blank">Microthemer's Changelog here</a>
 
 == Upgrade Notice ==
+
+= 3.7.5 (May 24, 2015) =
+* Microthemer is now translation ready following JoseLuís' sterling work.
+* Added more thorough directory path analysis for advanced WordPress configurations.
 
 = 3.7.3 (May 9, 2015) =
 * Plain http requests to Google fonts caused issues on SSL sites.

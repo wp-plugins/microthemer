@@ -68,26 +68,26 @@ if ($end > $total_packs) {
                         ?>
                         <a href="<?php echo $url ; ?>">
                             <img src="<?php echo $screenshot; ?>" width="145" height="83"
-                                 title="Edit <?php echo $name; ?>" />
+                                 title="<?php printf(__('Edit %s', 'tvr-microthemer'), $name); ?>" />
                         </a>
                         <div class="pack-quick-icons">
-                            <span class="tvr-icon delete-icon delete-pack-multi" title="Delete <?php echo $name; ?>"
+							<span class="tvr-icon delete-icon delete-pack-multi" title="<?php printf(__('Delete %s', 'tvr-microthemer'), $name); ?>"
                                   rel="delete" data-dir-name="<?php echo $pack; ?>"></span>
 
-                            <span class="tvr-icon download-icon download-pack-multi" title="Download <?php echo $name; ?>"
+							<span class="tvr-icon download-icon download-pack-multi" title="<?php printf(__('Download %s', 'tvr-microthemer'), $name); ?>"
                                   rel="download" data-dir-name="<?php echo $pack; ?>"></span>
 
-                            <a href="<?php echo $url ; ?>" title="Edit <?php echo $name; ?>"><span class="tvr-icon edit-icon"></span></a>
+							<a href="<?php echo $url ; ?>" title="<?php printf(__('Edit %s', 'tvr-microthemer'), $name); ?>"><span class="tvr-icon edit-icon"></span></a>
                             <span class="tvr-icon quick-import show-parent-dialog" rel="import-from-pack"
                                   data-pack-name="<?php echo $name; ?>"
-                                  title="Import '<?php echo $name; ?>' into the Microthemer interface"></span>
+                                  title="<?php printf(__('Import %s into the Microthemer interface', 'tvr-microthemer'), $name); ?>"></span>
                         </div>
 
                         <?php
                         // get meta info
                         $meta_info = $this->read_meta_file($this->micro_root_dir . $pack . '/meta.txt');
                         $h2 = '
-                        <a href="'.$url.'" class="title-text" title="Edit '.$name.'">
+                        <a href="'.$url.'" class="title-text" title="' . sprintf(__('Edit %s', 'tvr-microthemer'), $name) . '">
                             ' . $this->readable_name($pack);
                             // version
                             if (!empty($meta_info['Version'])) {

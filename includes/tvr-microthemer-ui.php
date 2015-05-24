@@ -11,6 +11,7 @@ if ($this->edge_mode['available'] and !empty($this->preferences['edge_mode'])){
 
 
 // get the file structure for use in scripts
+$directories = array();
 foreach ($this->file_structure as $dir => $array) {
     if (!empty($dir)) {
         $directories[] = $this->readable_name($dir);
@@ -75,7 +76,7 @@ if ($refresh_css){
         <span id="ui-url" rel="<?php echo 'admin.php?page=' . $this->microthemeruipage; ?>"></span>
         <span id="admin-url" rel="<?php echo $this->wp_admin_url; ?>"></span>
 
-        <span id="ajaxUrl" rel="<?php echo trailingslashit($this->site_url).'wp-admin/admin.php?page='.$this->microthemeruipage.'&_wpnonce='.wp_create_nonce('mcth_simple_ajax') ?>"></span>
+        <span id="ajaxUrl" rel="<?php echo $this->site_url .'/wp-admin/admin.php?page='.$this->microthemeruipage.'&_wpnonce='.wp_create_nonce('mcth_simple_ajax') ?>"></span>
         <span id="resetUrl" rel="<?php echo '&_wpnonce='.wp_create_nonce('tvr_microthemer_ui_reset');?>&action=tvr_ui_reset"></span>
         <span id="clearUrl" rel="<?php echo '&_wpnonce='.wp_create_nonce('tvr_microthemer_clear_styles');?>&action=tvr_clear_styles"></span>
 
@@ -163,7 +164,7 @@ if ($refresh_css){
                             <div id="add-new-section">
                                 <div class="inner-wrap">
                                     <div class='new-section'>
-                                        <input type='text' data-ph-title="Enter a new folder name" class='new-section-input' name='new_section[name]' value='' />
+										<input type='text' data-ph-title="<?php _e('Enter a new folder name', 'tvr-microthemer'); ?>" class='new-section-input' name='new_section[name]' value='' />
 										<span class='new-section-add tvr-button' title="<?php _e("Create a new folder", "tvr-microthemer"); ?>"><?php printf(wp_kses(__('Add Folder', 'tvr-microthemer'), array())); ?></span>
                                     </div>
                                 </div>
@@ -209,8 +210,8 @@ if ($refresh_css){
 
 
                     <div id="help-on-right" class="program-docs v-left-button show-dialog" rel="program-docs"
-                         title="Learn how to use Microthemer"></div>
-                    <div id="edit-css-code" class="edit-css-code v-left-button" title="Code editor view"></div>
+						title="<?php _e('Learn how to use Microthemer', 'tvr-microthemer'); ?>"></div>
+					<div id="edit-css-code" class="edit-css-code v-left-button" title="<?php _e('Code editor view', 'tvr-microthemer'); ?>"></div>
 
 
                     <div id="status-board" class="tvr-popdown-wrap">
@@ -249,9 +250,9 @@ if ($refresh_css){
                     if (!$this->preferences['buyer_validated']){
                         ?>
                         <a class="cta-button buy-cta tvr-button red-button" href="http://themeover.com" target="_blank"
-                              title="Purchase a license to use the full program">
+							title="<?php _e('Purchase a license to use the full program', 'tvr-microthemer'); ?>">
                             <span class="tvr-icon"></span>
-                            <span class="cta-label">Buy</span>
+							<span class="cta-label"><?php printf(wp_kses(__('Buy', 'tvr-microthemer'), array())); ?></span>
                         </a>
                         <span class="cta-button unlock-cta tvr-button show-dialog"
 						title="<?php _e("If you have purchased Microthemer you can enter your email address to unlock the full program. If you have not yet purchased Microthemer, you cannot unlock the full version.", "tvr-microthemer"); ?>" rel="unlock-microthemer">
@@ -284,11 +285,12 @@ if ($refresh_css){
                             $css_focus = $this->options['non_section']['css_focus'];
                         }
                         $tab_headings = array(
-                            'all-browsers' => __('All Browsers', 'tvr-microthemer'),
-                            'all' => __('All versions of IE', 'tvr-microthemer'),
-                            'nine' => __('IE9 and below', 'tvr-microthemer'),
-                            'eight' => __('IE8 and below', 'tvr-microthemer'),
-                            'seven' => __('IE7 and below', 'tvr-microthemer'));
+                            'all-browsers' => wp_kses(__('All Browsers', 'tvr-microthemer'), array()),
+                            'all' => wp_kses(__('All versions of IE', 'tvr-microthemer'), array()),
+                            'nine' => wp_kses(__('IE9 and below', 'tvr-microthemer'), array()),
+                            'eight' => wp_kses(__('IE8 and below', 'tvr-microthemer'), array()),
+							'seven' => wp_kses(__('IE7 and below', 'tvr-microthemer'), array())
+						);
                         foreach ($tab_headings as $key => $value) {
                             if ($key == $css_focus){
                                 $active_c = 'active';
@@ -462,8 +464,9 @@ if ($refresh_css){
                             $adv_wizard_focus = $this->preferences['adv_wizard_tab'];
                         }
                         $tab_headings = array(
-                            'refine-targeting' => 'Targeting',
-                            'html-inspector' => 'Inspector',);
+                            'refine-targeting' => wp_kses(__('Targeting', 'tvr-microthemer'), array()),
+							'html-inspector' => wp_kses(__('Inspector', 'tvr-microthemer'), array())
+						);
                         foreach ($tab_headings as $key => $value) {
                             if ($key == $adv_wizard_focus){
                                 $active_c = 'active';
@@ -517,19 +520,14 @@ if ($refresh_css){
                                         
                                         <?php
                                         $i = 1;
-                                        foreach ($this->property_option_groups as $k => $property_group) {
+                                        foreach ($this->property_option_groups as $property_group => $pg_label) {
                                             ?>
                                             <ul id="comp-<?php echo $property_group; ?>" class="accordion-menu <?php if ($i&1) { echo 'odd'; } ?>">
                                                 <li class="css-group-heading accordion-heading">
 													<span class="menu-arrow accordion-menu-arrow tvr-icon" title="<?php _e("Open/close group", "tvr-microthemer"); ?>"></span>
-                                                    <span class="text-for-group"><?php echo str_replace('_', ' & ', $property_group); ?></span>
+                                                    <span class="text-for-group"><?php echo $pg_label; ?></span>
                                                 </li>
                                                 <?php
-                                                /*foreach ($prop_array as $property_id => $array) {
-                                                    ?>
-                                                    <li class="property-item accordion-item"><a href="css-reference.php?snippet=<?php echo $property_id; ?>&prop_group=<?php echo $property_group; ?>">
-                                                        <?php echo $array['title']; ?></a></li><?php
-                                                }*/
                                                 ++$i;
                                                 ?>
                                             </ul>
@@ -593,9 +591,9 @@ if ($refresh_css){
                   autocomplete="off" action="admin.php?page=<?php echo $this->microthemeruipage;?>" >
                 <?php
                 if ($this->preferences['buyer_validated']){
-                    $title = __('Microthemer Has Been Successfully Unlocked', 'tvr-microthemer');
+                    $title = wp_kses(__('Microthemer Has Been Successfully Unlocked', 'tvr-microthemer'), array());
                 } else {
-                    $title = __('Enter your PayPal email (or the email listed in "My Downloads") to unlock Microthemer', 'tvr-microthemer');
+                    $title = wp_kses(__('Enter your PayPal email (or the email listed in "My Downloads") to unlock Microthemer', 'tvr-microthemer'), array());
                 }
                 echo $this->start_dialog('unlock-microthemer', $title, 'small-dialog'); ?>
                 <div class="content-main">
@@ -603,7 +601,7 @@ if ($refresh_css){
                     if ($this->preferences['buyer_validated']){
                         $class = '';
                         if (!empty($this->preferences['license_type'])){
-                            echo '<p>License Type: <b>'.$this->preferences['license_type'].'</b></p>';
+                            echo '<p>' . wp_kses(__('License Type: ', 'tvr-microthemer'), array()) . '<b>'.$this->preferences['license_type'].'</b></p>';
                         }
                         ?>
 						<p><span class="link reveal-unlock"><?php printf(wp_kses(__('Validate software using a different email address', 'tvr-microthemer'), array())); ?></span>
@@ -639,12 +637,9 @@ if ($refresh_css){
 							<div class="heading link explain-link"><?php printf(wp_kses(__('About this feature', 'tvr-microthemer'), array())); ?></div>
 
                             <div class="full-about">
-                                <p>To disable Free Trial Mode and unlock the full program, please enter your PayPal email address. If you purchased Microthemer from CodeCanyon, please send us a "Validate my email" message via the contact form on the right hand side of <a target='_blank' href='http://codecanyon.net/user/themeover '>this page</a> (you will need to log in to CodeCanyon first).
-                                    Receiving this email allows us to verify your purchase.</p>
-                                <p><b>Note:</b> Themeover will record your domain name when you submit your email address for license verification purposes.</p>
-                                <p><b>Note:</b> if you have any problems with the validator
-                                    <a href="https://themeover.com/support/pre-sales-enquiries/" target="_blank">send Themeover a quick email</a>
-                                    and we'll get you unlocked ASAP.</p>
+							<p><?php printf(wp_kses(__('To disable Free Trial Mode and unlock the full program, please enter your PayPal email address. If you purchased Microthemer from CodeCanyon, please send us a "Validate my email" message via the contact form on the right hand side of <a %s>this page</a> (you will need to log in to CodeCanyon first). Receiving this email allows us to verify your purchase.', 'tvr-microthemer'), array( 'a' => array() )), 'target="_blank" href="http://codecanyon.net/user/themeover"'); ?></p>
+								<p><?php printf(wp_kses(__('<b>Note:</b> Themeover will record your domain name when you submit your email address for license verification purposes.', 'tvr-microthemer'), array( 'b' => array() )) ); ?></p>
+								<p><?php printf(wp_kses(__('<b>Note:</b> if you have any problems with the validator <a %s>send Themeover a quick email</a> and we"ll get you unlocked ASAP.', 'tvr-microthemer'), array( 'a' => array(), 'b' => array() )), 'href="https://themeover.com/support/pre-sales-enquiries/" target="_blank"'); ?></p>
                             </div>
                         </div>
 
@@ -654,9 +649,9 @@ if ($refresh_css){
                 </div>
                 <?php
                 if (!$this->preferences['buyer_validated']){
-                    echo $this->end_dialog('Validate', 'input', 'ui-validate');
+                    echo $this->end_dialog(wp_kses(__('Validate', 'tvr-microthemer'), array()), 'input', 'ui-validate');
                 } else {
-                    echo $this->end_dialog('Close', 'span', 'close-dialog');
+                    echo $this->end_dialog(wp_kses(_x('Close', 'verb', 'tvr-microthemer'), array()), 'span', 'close-dialog');
                 }
                 ?>
             </form>
@@ -671,7 +666,7 @@ if ($refresh_css){
             <form id="edit-media-queries-form" name='tvr_media_queries_form' method="post" autocomplete="off"
                   action="admin.php?page=<?php echo $this->microthemeruipage;?>" >
                 <?php wp_nonce_field('tvr_media_queries_form'); ?>
-                <?php echo $this->start_dialog('edit-media-queries', __('Edit Media Queries (For Designing Responsively)', 'tvr-microthemer'), 'small-dialog'); ?>
+                <?php echo $this->start_dialog('edit-media-queries', wp_kses(__('Edit Media Queries (For Designing Responsively)', 'tvr-microthemer'), array()), 'small-dialog'); ?>
 
                 <div class="content-main">
 
@@ -731,7 +726,7 @@ if ($refresh_css){
 
 
 
-                    <div class="heading">Media Queries</div>
+					<div class="heading"><?php printf(wp_kses(__('Media Queries', 'tvr-microthemer'), array())); ?></div>
 
                     <div id="m-queries">
                         <ul id="mq-list">
@@ -770,24 +765,23 @@ if ($refresh_css){
 
                         <div class="full-about">
 							<p><?php printf(wp_kses(__('If you\'re not using media queries in Microthemer to make your site look good on mobile devices you don\'t need to set the viewport zoom level to 1. You will be passing judgement over to the devices (e.g. an iPhone) to display your site by automatically scaling it down. But if you are using media queries you NEED to set this setting to "Yes" in order for things to work as expected on mobile devices (otherwise mobile devices will just show a proportionally reduced version of the full-size site).', 'tvr-microthemer'), array())); ?></p>
-                            <p>You may want to read <a target="_blank" href="http://www.paulund.co.uk/understanding-the-viewport-meta-tag">
-                                    this tutorial which gives a bit of background on the viewport meta tag.</a></p>
+							<p><?php printf(wp_kses(__('You may want to read <a %s>this tutorial which gives a bit of background on the viewport meta tag</a>.', 'tvr-microthemer'), array( 'a' => array() )), 'target="_blank" href="http://www.paulund.co.uk/understanding-the-viewport-meta-tag"'); ?></p>
 							<p><?php printf(wp_kses(__('Feel free to rename the media queries and change the media query code. You can also reorder the media queries by dragging and dropping them. This will determine the order in which the media queries are written to the stylesheet and the order that they are displayed in the Microthemer interface.', 'tvr-microthemer'), array())); ?></p>
-                            <p><b>Tip:</b> to reset the default media queries simply delete all media query boxes and then save your settings</p>
+							<p><?php printf(wp_kses(__('<b>Tip:</b> to reset the default media queries simply delete all media query boxes and then save your settings', 'tvr-microthemer'), array()) ); ?></p>
                         </div>
                     </div>
 
                 </div>
 
-                <?php echo $this->end_dialog('Update Media Queries', 'input'); ?>
+                <?php echo $this->end_dialog(wp_kses(__('Update Media Queries', 'tvr-microthemer'), array()), 'input'); ?>
             </form>
             <!-- must be outside the form -->
             <ul id="m-query-hidden">
                 <li class="mq-row m-query-tpl">
-                    <span class="del-m-query tvr-icon delete-icon" title="Delete this media query"></span>
-                    <div class="mq-edit-wrap mq-label-wrap"><label title="Give your media query a descriptive name">Label:</label>
+					<span class="del-m-query tvr-icon delete-icon" title="<?php _e('Delete this media query', 'tvr-microthemer'); ?>"></span>
+					<div class="mq-edit-wrap mq-label-wrap"><label title="<?php _e('Give your media query a descriptive name', 'tvr-microthemer'); ?>"><?php printf(wp_kses(__('Label:', 'tvr-microthemer'), array())); ?></label>
                         <input class="m-label" type="text" name="tvr_preferences[m_queries][key][label]" value="" /></div>
-                    <div class="mq-edit-wrap mq-query-wrap"><label title="Set the media query condition">Media Query:</label>
+						<div class="mq-edit-wrap mq-query-wrap"><label title="<?php _e('Set the media query condition', 'tvr-microthemer'); ?>"><?php printf(wp_kses(__('Media Query:', 'tvr-microthemer'), array())); ?></label>
                         <input class="m-code" type="text" name="tvr_preferences[m_queries][key][query]" value="" /></div>
                 </li>
             </ul>
@@ -796,7 +790,7 @@ if ($refresh_css){
             <!-- Import dialog -->
             <form method="post" id="microthemer_ui_settings_import" action="admin.php?page=<?php echo $this->microthemeruipage; ?>" autocomplete="off">
                 <?php wp_nonce_field('tvr_import_from_pack'); ?>
-                <?php echo $this->start_dialog('import-from-pack', __('Import settings from a design pack', 'tvr-microthemer'), 'small-dialog'); ?>
+                <?php echo $this->start_dialog('import-from-pack', wp_kses(__('Import settings from a design pack', 'tvr-microthemer'), array()), 'small-dialog'); ?>
 
                 <div class="content-main">
 					<p><?php printf(wp_kses(__('Select a design pack to import', 'tvr-microthemer'), array())); ?></p>
@@ -808,52 +802,51 @@ if ($refresh_css){
 					<p class="enter-name-explain"><?php printf(wp_kses(__('Chose to overwrite or merge the imported settings with your current settings', 'tvr-microthemer'), array())); ?></p>
 
                     <ul id="overwrite-merge" class="checkboxes fake-radio-parent">
-                        <li> <input name="tvr_import_method" type="radio" value="Overwrite" id='ui-import-overwrite'
-                                    class="radio ui-import-method" />
+						<li><input name="tvr_import_method" type="radio" value="<?php _e('Overwrite', 'tvr-microthemer'); ?>" id='ui-import-overwrite'
+                                  class="radio ui-import-method" />
                             <span class="fake-radio"></span>
 							<span class="ef-label"><?php printf(wp_kses(__('Overwrite', 'tvr-microthemer'), array())); ?></span>
                         </li>
-                        <li><input name="tvr_import_method" type="radio" value="Merge" id='ui-import-merge'
-                                   class="radio ui-import-method" />
+						<li><input name="tvr_import_method" type="radio" value="<?php _e('Merge', 'tvr-microthemer'); ?>" id='ui-import-merge'
+                                  class="radio ui-import-method" />
                             <span class="fake-radio"></span>
 							<span class="ef-label"><?php printf(wp_kses(__('Merge', 'tvr-microthemer'), array())); ?></span>
                         </li>
                     </ul>
-                    <p class="button-wrap"><?php echo $this->dialog_button('Import', 'span', 'ui-import'); ?></p>
+                    <p class="button-wrap"><?php echo $this->dialog_button(__('Import', 'tvr-microthemer'), 'span', 'ui-import'); ?></p>
                     <div class="explain">
 						<div class="heading link explain-link"><?php printf(wp_kses(__('About this feature', 'tvr-microthemer'), array())); ?></div>
                         <div class="full-about">
-                            <p>Microthemer can be used to restyle any WordPress theme or plugin without the need
-                                for pre-configuration. That's thanks to the handy "Double-click to edit" feature.
-                                But just because you <i>can</i> do everything yourself doesn't mean <i>have</i> to.
-                                That's where importable design packs come in. A design pack contains folders, selectors,
-                                hand-coded CSS, and background images that someone else has created while working with
-                                Microthemer. Of course it may not be someone else, you can create design packs too using the
-                                "<span class="link show-dialog" rel="export-to-pack">Export</span>" feature!
-                            </p>
-                            <p>Note: you can install other people's design packs via the
-                                "<span class="link show-dialog" rel="manage-design-packs">Manage Design Packs</span>" window.</p>
-                            <p><b>You may want to make use of this feature for the following reasons:</b></p>
+							<p><?php printf(
+								wp_kses(__('Microthemer can be used to restyle any WordPress theme or plugin without the need for pre-configuration. That\'s thanks to the handy "Double-click to edit" feature. But just because you <i>can</i> do everything yourself doesn\'t mean <i>have</i> to. That\'s where importable design packs come in. A design pack contains folders, selectors, hand-coded CSS, and background images that someone else has created while working with Microthemer. Of course it may not be someone else, you can create design packs too using the "<span %s>Export</span>" feature!', 'tvr-microthemer'),
+								array( 'i' => array(), 'span' => array() )
+								),
+								'class="link show-dialog" rel="export-to-pack"'
+							); ?> </p>
+							<p><?php printf(
+								wp_kses(__('Note: you can install other people\'s design packs via the "%s" window.', 'tvr-microthemer'),
+									array()),
+								'<span class="link show-dialog" rel="manage-design-packs">' . wp_kses(__('Manage Design Packs', 'tvr-microthemer'), array()) . '</span>'
+							); ?></p>
+							<p><b><?php printf(wp_kses(__('You may want to make use of this feature for the following reasons:', 'tvr-microthemer'), array())); ?></b></p>
                             <ul>
-                                <li>You've download and installed a design pack that you found on <a target="_blank" href="http://themeover.com/">themeover.com</a> for restyling
-                                    a theme, contact form, or any other WordPress content you can think of.
-                                    Importing it will load the folders and hand-coded CSS contained within the design pack
-                                    into the Microthemer UI.</li>
-                                <li>You previously exported your own work as a design pack and now you would like to reload
-                                    it back into the Microthemer UI.</li>
+								<li><?php printf(wp_kses(__('You\'ve download and installed a design pack that you found on %s for restyling a theme, contact form, or any other WordPress content you can think of. Importing it will load the folders and hand-coded CSS contained within the design pack into the Microthemer UI.', 'tvr-microthemer'), array()),
+									'<a target="_blank" href="http://themeover.com/">themeover.com</a>'
+								); ?></li>
+								<li><?php printf(wp_kses(__('You previously exported your own work as a design pack and now you would like to reload it back into the Microthemer UI.', 'tvr-microthemer'), array())); ?></li>
                             </ul>
                         </div>
                     </div>
                     <br /><br /><br /><br />
                 </div>
-                <?php echo $this->end_dialog('Import', 'span', 'ui-import'); ?>
+                <?php echo $this->end_dialog(wp_kses(_x('Import', 'verb', 'tvr-microthemer'), array()), 'span', 'ui-import'); ?>
             </form>
 
 
 
             <!-- Export dialog -->
             <form method="post" id="microthemer_ui_settings_export" action="admin.php?page=<?php echo $this->microthemeruipage; ?>" autocomplete="off">
-            <?php echo $this->start_dialog('export-to-pack', __('Export your work as a design pack', 'tvr-microthemer'),
+            <?php echo $this->start_dialog('export-to-pack', wp_kses(__('Export your work as a design pack', 'tvr-microthemer'), array()),
                 'small-dialog'); ?>
 
             <div class="content-main export-form">
@@ -898,10 +891,11 @@ if ($refresh_css){
                     </li>
                     <?php
                     $tab_headings = array(
-                        'all' => __('IE-specific CSS code', 'tvr-microthemer'),
-                        'nine' => __('IE9 and below CSS code', 'tvr-microthemer'),
-                        'eight' => __('IE8 and below CSS code', 'tvr-microthemer'),
-                        'seven' => __('IE7 and below CSS code', 'tvr-microthemer'));
+                        'all' => wp_kses(__('IE-specific CSS code', 'tvr-microthemer'), array()),
+                        'nine' => wp_kses(__('IE9 and below CSS code', 'tvr-microthemer'), array()),
+                        'eight' => wp_kses(__('IE8 and below CSS code', 'tvr-microthemer'), array()),
+						'seven' => wp_kses(__('IE7 and below CSS code', 'tvr-microthemer'), array())
+					);
                     foreach ($this->preferences['ie_css'] as $key => $value) {
                         /*if (!empty($this->options['non_section']['ie_css'][$key])) {
                             $checked = 'checked="checked"';
@@ -928,37 +922,36 @@ if ($refresh_css){
 					<div class="heading link explain-link"><?php printf(wp_kses(__('About this feature', 'tvr-microthemer'), array())); ?></div>
 
                     <div class="full-about">
-                        <p>Microthemer gives you the flexibility to export your current work to a design pack
-                            for later use (you can <span class="link show-dialog" rel="import-from-pack">import</span> it back). Microthemer will create a directory on your server in
-                            <code>/wp-content/micro-themes/</code> which will be used to store your settings and
-                            background images. Your folders, selectors, and hand-coded css settings are saved to a
-                            configuration file in this directory called config.json.</p>
-                        <p><b>You may want to make use of this feature for the following reasons:</b></p>
+						<p><?php printf(
+							wp_kses(__('Microthemer gives you the flexibility to export your current work to a design pack for later use (you can <span %1$s>import</span> it back). Microthemer will create a directory on your server in %2$s which will be used to store your settings and background images. Your folders, selectors, and hand-coded css settings are saved to a configuration file in this directory called config.json.', 'tvr-microthemer'),
+								array( 'span' => array() )),
+							'class="link show-dialog" rel="import-from-pack"',
+							'<code>/wp-content/micro-themes/</code>'
+						); ?></p>
+						<p><b><?php printf(wp_kses(__('You may want to make use of this feature for the following reasons:', 'tvr-microthemer'), array())); ?></b></p>
                         <ul>
-                            <li>To make extra sure that your work is backed up
-                                (even though there is an automatic revision restore feature). After exporting your
-                                work to a design pack you can also download it as a zip package for extra reassurance.
-                                You can do this from the "<span class="link show-dialog" rel="manage-design-packs">Manage Design Packs</span>" window.</li>
-                            <li>To save your current work but then start a fresh
-                                (using the "reset" option in the left-hand menu)</li>
-                            <li>To save one aspect of your design for reuse in other projects (e.g. styling for a menu).
-                                You can do this by organising the styles you plan to reuse into a folder and
-                                then export only that folder to a design pack by unchecking the other
-                                folders before clicking the "Export" button.</li>
-                            <li>To submit a design pack for sale or free download on
-                                <a target="_blank" href="http://themeover.com/">themeover.com</a></li>
+							<li><?php printf(
+								wp_kses(__('To make extra sure that your work is backed up (even though there is an automatic revision restore feature). After exporting your work to a design pack you can also download it as a zip package for extra reassurance. You can do this from the "%s" window.', 'tvr-microthemer'), array()),
+								'<span class="link show-dialog" rel="manage-design-packs">' . wp_kses(__('Manage Design Packs', 'tvr-microthemer'), array()) . '</span>'
+							); ?></li>
+							<li><?php printf(wp_kses(__('To save your current work but then start a fresh (using the "reset" option in the left-hand menu)', 'tvr-microthemer'), array())); ?></li>
+							<li><?php printf(wp_kses(__('To save one aspect of your design for reuse in other projects (e.g. styling for a menu). You can do this by organising the styles you plan to reuse into a folder and then export only that folder to a design pack by unchecking the other folders before clicking the "Export" button.', 'tvr-microthemer'), array())); ?></li>
+							<li><?php printf(
+								wp_kses(__('To submit a design pack for sale or free download on %s', 'tvr-microthemer'), array()),
+								'<a target="_blank" href="http://themeover.com/">themeover.com</a>'
+							); ?></li>
                         </ul>
                     </div>
 
                 </div>
 
             </div>
-            <?php echo $this->end_dialog('Export', 'span', 'export-dialog-button'); ?>
+            <?php echo $this->end_dialog(wp_kses(_x('Export', 'verb', 'tvr-microthemer'), array()), 'span', 'export-dialog-button'); ?>
             </form>
 
 
             <!-- View CSS -->
-            <?php echo $this->start_dialog('display-css-code', __('View the CSS code Microthemer generates', 'tvr-microthemer'), 'small-dialog'); ?>
+            <?php echo $this->start_dialog('display-css-code', wp_kses(__('View the CSS code Microthemer generates', 'tvr-microthemer'), array()), 'small-dialog'); ?>
 
             <div class="content-main">
                 <span id="view-css-trigger" rel="display-css-code"></span>
@@ -967,31 +960,26 @@ if ($refresh_css){
 					<div class="heading link explain-link"><?php printf(wp_kses(__('About this feature', 'tvr-microthemer'), array())); ?></div>
 
                     <div class="full-about">
-                        <p>What you see above is the CSS code Microthemer is currently generating.
-                            This can sometimes be useful for debugging issues if you know CSS. Or if you want to reuse
-                            the code Microthemer generates elsewhere.
-                        </p>
-                        <p><b>Did you know</b> - it's possible to disable or completely uninstall Microthemer and
-                            still use the customisations. You just need to paste a small piece of code in your theme's
-                            functions.php file. See this
-                            <a target="_blank"
-                               href="http://themeover.com/forum/topic/microthemer-customizations-when-deactived/">forum post</a>
-                            for further information.</p>
-                        <p><b>Also note</b>, Microthemer adds the "!important" declaration to all CSS styles by default.
-                            If you're up to speed on <a target="_blank"
-                                                        href="http://themeover.com/beginners-guide-to-understanding-css-specificity/">CSS specificity</a> you may want to disable this behaviour on
-                            the <span class="link show-dialog" rel="display-preferences">preferences page</span>. If so, you will
-                            still be able to apply "!important" declarations on a per style basis by clicking the faint "i"s
-                            that will appear to the right of all
-                            style option fields.</p>
+						<p><?php printf(wp_kses(__('What you see above is the CSS code Microthemer is currently generating. This can sometimes be useful for debugging issues if you know CSS. Or if you want to reuse the code Microthemer generates elsewhere.', 'tvr-microthemer'), array())); ?></p>
+						<p><?php printf(
+							wp_kses(__('<b>Did you know</b> - it\'s possible to disable or completely uninstall Microthemer and still use the customisations. You just need to paste a small piece of code in your theme\'s functions.php file. See this <a %s>forum post</a> for further information.', 'tvr-microthemer'),
+							array( 'a' => array(), 'b' => array() )),
+						'target="_blank" href="http://themeover.com/forum/topic/microthemer-customizations-when-deactived/"'
+						); ?></p>
+						<p><?php printf(wp_kses(__('<b>Also note</b>, Microthemer adds the "!important" declaration to all CSS styles by default. If you\'re up to speed on %1$s you may want to disable this behaviour on the <span %2$s>preferences page</span>. If so, you will still be able to apply "!important" declarations on a per style basis by clicking the faint "i"s that will appear to the right of all style option fields.', 'tvr-microthemer'),
+							array( 'b' => array(), 'span' => array() )),
+							'<a target="_blank" href="http://themeover.com/beginners-guide-to-understanding-css-specificity/">' .
+								wp_kses(__('CSS specificity', 'tvr-microthemer'), array()) . '</a>',
+							'class="link show-dialog" rel="display-preferences"'
+						); ?></p>
                     </div>
 
                 </div>
             </div>
-            <?php echo $this->end_dialog('Close', 'span', 'close-dialog'); ?>
+            <?php echo $this->end_dialog(wp_kses(_x('Close', 'verb', 'tvr-microthemer'), array()), 'span', 'close-dialog'); ?>
 
             <!-- Restore Settings -->
-            <?php echo $this->start_dialog('display-revisions', __('Restore settings from a previous save point', 'tvr-microthemer'), 'small-dialog'); ?>
+            <?php echo $this->start_dialog('display-revisions', wp_kses(__('Restore settings from a previous save point', 'tvr-microthemer'), array()), 'small-dialog'); ?>
 
             <div class="content-main">
                 <div id='revisions'>
@@ -1005,10 +993,10 @@ if ($refresh_css){
                     </div>
                 </div>
             </div>
-            <?php echo $this->end_dialog('Close', 'span', 'close-dialog'); ?>
+            <?php echo $this->end_dialog(wp_kses(_x('Close', 'verb', 'tvr-microthemer'), array()), 'span', 'close-dialog'); ?>
 
             <!-- Spread the word -->
-            <?php echo $this->start_dialog('display-share', __('Show off your new discovery', 'tvr-microthemer'), 'small-dialog'); ?>
+            <?php echo $this->start_dialog('display-share', wp_kses(__('Show off your new discovery', 'tvr-microthemer'), array()), 'small-dialog'); ?>
             <div class="content-main">
                 <div class="explain">
 					<div class="heading link explain-link"><?php printf(wp_kses(__('About this feature', 'tvr-microthemer'), array())); ?></div>
@@ -1018,32 +1006,36 @@ if ($refresh_css){
                     </div>
                 </div>
             </div>
-            <?php echo $this->end_dialog('Close', 'span', 'close-dialog'); ?>
+            <?php echo $this->end_dialog(wp_kses(_x('Close', 'verb', 'tvr-microthemer'), array()), 'span', 'close-dialog'); ?>
 
         </div>
 
         <!-- Manage Design Packs -->
-        <?php echo $this->start_dialog('manage-design-packs', __('Install & Manage Design Packs', 'tvr-microthemer')); ?>
+        <?php echo $this->start_dialog('manage-design-packs', wp_kses(__('Install & Manage Design Packs', 'tvr-microthemer'), array())); ?>
         <iframe id="manage_iframe" class="microthemer-iframe" frameborder="0" name="manage_iframe"
                 rel="<?php echo 'admin.php?page='.$this->microthemespage; ?>"
                 src="<?php echo $this->thispluginurl; ?>includes/place-holder2.html"
                 data-frame-loaded="0"></iframe>
-        <?php echo $this->end_dialog('Close', 'span', 'close-dialog'); ?>
+        <?php echo $this->end_dialog(wp_kses(_x('Close', 'verb', 'tvr-microthemer'), array()), 'span', 'close-dialog'); ?>
 
         <!-- Program Docs -->
-        <?php echo $this->start_dialog('program-docs', __('Help Centre', 'tvr-microthemer')); ?>
+        <?php echo $this->start_dialog('program-docs', wp_kses(__('Help Centre', 'tvr-microthemer'), array())); ?>
         <iframe id="docs_iframe" class="microthemer-iframe" frameborder="0" name="docs_iframe"
                 rel="http://themeover.com/support/"
                 src="<?php echo $this->thispluginurl; ?>includes/place-holder2.html"
                 data-frame-loaded="0"></iframe>
-        <?php echo $this->end_dialog('Close', 'span', 'close-dialog'); ?>
+        <?php echo $this->end_dialog(wp_kses(_x('Close', 'verb', 'tvr-microthemer'), array()), 'span', 'close-dialog'); ?>
 
         <!-- Integration -->
-        <?php echo $this->start_dialog('integration', __('Integration with 3rd party software', 'tvr-microthemer'), 'small-dialog'); ?>
+        <?php echo $this->start_dialog('integration', wp_kses(__('Integration with 3rd party software', 'tvr-microthemer'), array()), 'small-dialog'); ?>
         <div class="content-main">
 			<div class="heading"><?php printf(wp_kses(__('WPTouch Mobile Plugin', 'tvr-microthemer'), array())); ?></div>
-            <p>Microthemer can be used to style the mobile-only theme that WPTouch presents to mobile devices. In order to load the mobile theme in Microthemer's preview window, simply enable WPTouch mode using the toggle in the left toolbar. This toggle will only appear if Microthemer detects that you have installed and activated WPTouch.
-                There is a <a target="_blank" href="<?php echo $this->wp_admin_url; ?>plugin-install.php?tab=search&type=term&s=wptouch+mobile+plugin">free</a> and <a target="_blank" href="http://www.wptouch.com/">premium version</a> of WPTouch.</p>
+			<p><?php printf(
+				wp_kses(__('Microthemer can be used to style the mobile-only theme that WPTouch presents to mobile devices. In order to load the mobile theme in Microthemer\'s preview window, simply enable WPTouch mode using the toggle in the left toolbar. This toggle will only appear if Microthemer detects that you have installed and activated WPTouch. There is a <a %1$s>free</a> and <a %2$s>premium version</a> of WPTouch.', 'tvr-microthemer'),
+					array( 'a' => array() )),
+			'target="_blank" href="<?php echo $this->wp_admin_url; ?>plugin-install.php?tab=search&type=term&s=wptouch+mobile+plugin"',
+			'target="_blank" href="http://www.wptouch.com/"'
+			); ?></p>
             <div class="explain">
 			<div class="heading link explain-link"><?php printf(wp_kses(__('About this feature', 'tvr-microthemer'), array())); ?></div>
                 <div class="full-about">
@@ -1051,7 +1043,7 @@ if ($refresh_css){
                 </div>
             </div>
         </div>
-        <?php echo $this->end_dialog('Close', 'span', 'close-dialog'); ?>
+        <?php echo $this->end_dialog(wp_kses(_x('Close', 'verb', 'tvr-microthemer'), array()), 'span', 'close-dialog'); ?>
         <?php
     }
     ?>
@@ -1076,13 +1068,13 @@ if ($refresh_css){
             <?php
             // template for displaying save error and error report option
             $short = __('Error saving settings', 'tvr-microthemer');
-            $long = '
-            <p>Please <span id="email-error" class="link">click this link to email an error report to Themeover</span>.
-            The error report sends us information about your current Microthemer settings, server and browser information,
-            and your WP admin email address. We use this information purely for replicating your issue and then
-            contacting you with a solution.</p>
-            <p><b>Note:</b> reloading the page is normally a quick fix for now.
-            However, unsaved changes will need to be redone.</p>';
+			$long = '<p>' .
+				printf( wp_kses(__('Please <span %s>click this link to email an error report to Themeover</span>. The error report sends us information about your current Microthemer settings, server and browser information, and your WP admin email address. We use this information purely for replicating your issue and then contacting you with a solution.', 'tvr-microthemer'),
+					array( 'span' => array() )),
+				'id="email-error" class="link"'
+			) . '</p>
+			<p>' . printf( wp_kses(__('<b>Note:</b> reloading the page is normally a quick fix for now. However, unsaved changes will need to be redone.', 'tvr-microthemer'), array( 'span' => array() ))
+			). '</p>';
             echo $this->display_log_item('error', array('short'=> $short, 'long'=> $long), 0, 'id="log-item-template"');
             // define template for menu section
             $this->menu_section_html('selector_section', 'section_label');

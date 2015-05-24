@@ -2403,65 +2403,51 @@ The editing options
   Property Fields
   --------------------------------------------------------------*/
   .property-fields {
-    position: relative;
-    padding-left:50px;
-    padding-left:135px;
 
     @include susy-clearfix;
+    position: relative;
+    padding-left:50px;
     &.show {
       display:block;
     }
 
-    &.property-font{
-      padding-left:84px;
-    }
-    &.property-text,
-    &.property-list {
-      padding-left:80px;
-    }
-    &.property-shadow {
-      padding-left:145px;
-      .sub-label {
-        margin: 0 5px 0 30px;
+    .sub-label {
+      font-weight: bold;
+      text-transform: uppercase;
+      line-height: 40px;
+      margin: 0 0 0 15px;
+      &:first-child {
+        margin:0;
       }
     }
-    &.property-background {
-      padding-left:138px;
-    }
-    &.property-dimensions {
-      padding-left:95px;
-      .sub-label {
-        margin: 0 0 0 30px;
-      }
-    }
-    &.property-padding_margin {
-      padding-left:106px;
-      .sub-label {
-        margin: 0 0 0 30px;
-      }
-    }
+
     &.property-border {
-      padding-left:145px;
+      //padding-left:145px;
       .sub-label {
         min-width:101px;
-        margin: 0 0 0 30px;
+        margin:0;
+      }
+      .sub-label-border_top_width,
+      .sub-label-border_top_left_radius {
+        margin-left:15px;
       }
       input {
-        width:85px;
+        width:86px;
       }
       .combobox {
         width:60px;
       }
     }
     &.property-behaviour {
-      padding-left:123px;
+      //padding-left:123px;
     }
     &.property-position {
-      padding-left:112px;
+      //padding-left:112px;
     }
     &.property-gradient {
-      padding-left:117px;
+      //padding-left:117px;
     }
+
     .field-wrap {
       display:inline-block;
       position:relative;
@@ -2509,20 +2495,7 @@ The editing options
         margin-left:16px;
       }
     }
-    .group-label {
-      text-transform: uppercase;
-      color:$mediumBlue;
-      font-weight:bold;
-      line-height:40px;
-      position:absolute;
-      left:50px;
-    }
-    .sub-label {
-      font-weight: bold;
-      text-transform: uppercase;
-      line-height: 40px;
-      margin: 0 5px 0 15px;
-    }
+
     label {
       float:left;
       display: inline-block;

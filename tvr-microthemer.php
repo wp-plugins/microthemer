@@ -5,7 +5,7 @@ Plugin URI: http://www.themeover.com/microthemer
 Text Domain: tvr-microthemer
 Domain Path: /languages
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. posts, pages, contact forms, headers, footers, sidebars) down to the smallest detail (unlike typical theme options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress theme or plugin. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced theme and plugin customization.
-Version: 3.7.3
+Version: 3.7.5
 Author: Themeover
 Author URI: http://www.themeover.com
 Text Domain: tvr-microthemer
@@ -39,7 +39,7 @@ else {
 		'admin_notices',
 		create_function(
 			'',
-			'echo \'<div id="message" class="error"><p><strong>Microthemer requires that you deactivate Microloader. Please do so.</strong></p></div>\';'
+			'echo \'<div id="message" class="error"><p><strong>'.wp_kses(__('Microthemer requires that you deactivate Microloader. Please do so.', 'tvr-microthemer'), array()).'</strong></p></div>\';'
 		)
 	);
 	define('TVR_MICROBOTH', true);
@@ -53,7 +53,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 
-			var $version = '3.7.3';
+			var $version = '3.7.5';
             // set this to true if version saved in DB is different, other actions may follow if new v
             var $new_version = false;
 			var $minimum_wordpress = '3.6';
@@ -65,8 +65,7 @@ if ( is_admin() ) {
 			var $localizationDomain = "microthemer";
 			var $globalmessage = array();
             var $ei = 0; // error index
-			var $permissionshelp = 'Please see this help article for changing directory and file permissions: <a href="http://codex.wordpress.org/Changing_File_Permissions">http://codex.wordpress.org/Changing_File_Permissions</a> .
-			Tip: you may want to jump to the "Using an FTP Client" section of the article. But bear in mind that if you\'re web hosting runs windows it may not be possible to adjust permissions using an FTP program. You may need to log into your hosting control panel, or request that your host adjust the permissions for you.';
+			var $permissionshelp;
 			var $microthemeruipage = 'tvr-microthemer.php';
 			var $microthemespage = 'tvr-manage-micro-themes.php';
             var $managesinglepage = 'tvr-manage-single.php';
@@ -130,16 +129,7 @@ if ( is_admin() ) {
                 'tooltip_delay' => 500
 			);
             // edge mode fixed settings
-            var $edge_mode = array(
-                'available' => false,
-                'edge_forum_url' => 'http://themeover.com/forum/topic/edge-mode-usability-testing-new-feature-preview/',
-                'cta' => 'Try out the new targeting options for the selector wizard. We\'ve replaced the slider with hover and click functionality.',
-                'config' => array(
-                    // 'slideless_wizard' => 1
-                ),
-                'active' => false // evaluated at top of ui page
-            );
-
+            var $edge_mode = array();
 
 			// default media queries
 			var $unq_base = '';
@@ -148,16 +138,7 @@ if ( is_admin() ) {
             var $mobile_first_semantic_mqs = array();
             var $mq_sets = array();
             // set default custom code options (todo make use of this array throughout the program)
-            var $custom_code = array(
-                'hand_coded_css' => 'All Browsers',
-                'ie_css' => array(
-                    'all' => 'All versions of IE',
-                    'nine' => 'IE9 and below',
-                    'eight' => 'IE8 and below',
-                    'seven' => 'IE7 and below'
-                    )
-                // user_created = array()
-                );
+            var $custom_code = array();
 
 			// @var strings dir/url paths
 			var $wp_content_url = '';
@@ -198,12 +179,36 @@ if ( is_admin() ) {
 				// add menu links (all WP admin pages need this)
 				if (TVR_MICRO_VARIANT == 'themer') {
 					add_action("admin_menu", array(&$this,"microthemer_dedicated_menu"));
-
-
                 }
 				else {
 					add_action("admin_menu", array(&$this,"microloader_menu_link"));
 				}
+
+
+				$this->permissionshelp = wp_kses(__('Please see this help article for changing directory and file permissions:', 'tvr-microthemer'), array()) . ' <a href="http://codex.wordpress.org/Changing_File_Permissions">http://codex.wordpress.org/Changing_File_Permissions</a>.' . wp_kses(__('Tip: you may want to jump to the "Using an FTP Client" section of the article. But bear in mind that if your web hosting runs windows it may not be possible to adjust permissions using an FTP program. You may need to log into your hosting control panel, or request that your host adjust the permissions for you.', 'tvr-microthemer'), array());
+
+				// moved to constructor because __() can't be used on member declarations
+                $this->edge_mode = array(
+					'available' => false,
+					'edge_forum_url' => 'http://themeover.com/forum/topic/edge-mode-usability-testing-new-feature-preview/',
+					'cta' => __("Try out the new targeting options for the selector wizard. We've replaced the slider with hover and click functionality.", 'tvr-microthemer'),
+					'config' => array(
+						// 'slideless_wizard' => 1
+					),
+					'active' => false // evaluated at top of ui page
+				);
+
+				$this->custom_code = array(
+					'hand_coded_css' => __('All Browsers', 'tvr-microthemer'),
+					'ie_css' => array(
+						'all' => __('All versions of IE', 'tvr-microthemer'),
+						'nine' => __('IE9 and below', 'tvr-microthemer'),
+						'eight' => __('IE8 and below', 'tvr-microthemer'),
+						'seven' => __('IE7 and below', 'tvr-microthemer')
+					)
+					// user_created = array()
+				);
+
 
 				// populate the default media queries
 				$this->unq_base = uniqid();
@@ -350,11 +355,6 @@ if ( is_admin() ) {
 
 				// only initilize on plugin admin pages
 				if ( is_admin() and isset($_GET['page']) and in_array($_GET['page'], $this->all_pages) ) {
-					/* Language Setup - only english for now
-					$locale = get_locale();
-					$mo = dirname(__FILE__) . "/languages/" . $this->localizationDomain . "-".$locale.".mo";
-					load_textdomain($this->localizationDomain, $mo);
-					*/
 
                     // we don't want the WP admin bar on any Microthemer pages
                     add_filter('show_admin_bar', '__return_false');
@@ -406,7 +406,9 @@ if ( is_admin() ) {
 						'admin_notices',
 						create_function(
 							'',
-							'echo \'<div id="message" class="error"><p><strong>Sorry, Microthemer only runs on WordPress version '.$this->minimum_wordpress.' or above. Deactivate Microthemer to remove this message.</strong></p></div>\';'
+							'echo \'<div id="message" class="error"><p><strong>' .
+								wp_kses(__('Sorry, Microthemer only runs on WordPress version %s or above. Deactivate Microthemer to remove this message.', 'tvr-microthemer'), array()) .
+							'</strong></p></div>\';'
 						)
 					);
 					return false;
@@ -424,7 +426,9 @@ if ( is_admin() ) {
 						'admin_notices',
 						create_function(
 							'',
-							'echo \'<div id="message" class="error"><p><strong>Sorry, Microthemer requires a memory limit of 16MB or higher to run. Your memory limit is less than this. Deactivate Microthemer to remove this message.</strong></p></div>\';'
+							'echo \'<div id="message" class="error"><p><strong>' .
+								wp_kses(__('Sorry, Microthemer requires a memory limit of 16MB or higher to run. Your memory limit is less than this. Deactivate Microthemer to remove this message.', 'tvr-microthemer'), array()) .
+							'</strong></p></div>\';'
 						)
 					);
 					return false;
@@ -439,7 +443,9 @@ if ( is_admin() ) {
 						'admin_notices',
 						create_function(
 							'',
-							'echo \'<div id="message" class="error"><p><strong>Please <a target="_blank" href="http://themeover.com/microthemer/">purchase Microthemer</a> to unlock the full program.</strong></p></div>\';'
+							'echo \'<div id="message" class="error"><p><strong>' .
+								sprintf(wp_kses(__('Please %s to unlock the full program.', 'tvr-microthemer'), array()) . '<a target="_blank" href="http://themeover.com/microthemer/">' . wp_kses(__('purchase Microthemer', 'tvr-microthemer'), array()) . '</a>' ) .
+							'</strong></p></div>\';'
 						)
 					);
 					return false;
@@ -449,10 +455,17 @@ if ( is_admin() ) {
 
 			// Microthemer dedicated menu
 			function microthemer_dedicated_menu() {
-				add_menu_page('Microthemer UI', 'Microthemer', 'administrator', $this->microthemeruipage, array(&$this,'microthemer_ui_page'));
-				add_submenu_page('options.php', 'Manage Design Packs', 'Manage Packs', 'administrator', $this->microthemespage, array(&$this,'manage_micro_themes_page'));
-                add_submenu_page('options.php', 'Manage Single Design Pack', 'Manage Single Pack', 'administrator', $this->managesinglepage, array(&$this,'manage_single_page'));
-				add_submenu_page($this->microthemeruipage, 'Microthemer Preferences', 'Preferences', 'administrator', $this->preferencespage, array(&$this,'microthemer_preferences_page'));
+				add_menu_page(__('Microthemer UI', 'tvr-microthemer'), 'Microthemer', 'administrator', $this->microthemeruipage, array(&$this,'microthemer_ui_page'));
+				add_submenu_page('options.php',
+					__('Manage Design Packs', 'tvr-microthemer'),
+					__('Manage Packs', 'tvr-microthemer'),
+					'administrator', $this->microthemespage, array(&$this,'manage_micro_themes_page'));
+				add_submenu_page('options.php',
+					__('Manage Single Design Pack', 'tvr-microthemer'),
+					__('Manage Single Pack', 'tvr-microthemer'),
+					'administrator', $this->managesinglepage, array(&$this,'manage_single_page'));
+				add_submenu_page($this->microthemeruipage, __('Microthemer Preferences', 'tvr-microthemer'),
+					__('Preferences', 'tvr-microthemer'), 'administrator', $this->preferencespage, array(&$this,'microthemer_preferences_page'));
 			}
 
 			// Add Microloader menu link in appearance menu
@@ -476,15 +489,17 @@ if ( is_admin() ) {
                         $this->thispluginurl.'js/css-properties-'.$this->version.'.js' );
 					wp_register_script( 'tvr_mcth_colorbox',
                         $this->thispluginurl.'js/colorbox/1.3.19/jquery.colorbox-min.js?v='.$this->version, 'jquery' );
-					wp_register_script( 'tvr_mcth_tabs',
-                        $this->thispluginurl.'js/enable-tabs.js?v='.$this->version, 'jquery' );
                     wp_register_script( 'tvr_scrollbars',
                         $this->thispluginurl.'js/scroll/jquery.mCustomScrollbar.concat.min.js?v='.$this->version );
                         //$this->thispluginurl.'js/scroll/jquery.mCustomScrollbar.js?v='.$this->version );
+					wp_register_script( 'tvr_sprintf',
+                        $this->thispluginurl.'js/sprintf/sprintf.min.js?v='.$this->version, 'jquery' );
 
                     if (!$this->optimisation_test){
                         wp_enqueue_media(); // adds over 1000 lines of code to footer
                     }
+
+					wp_enqueue_script( 'tvr_sprintf');
 
                     wp_enqueue_script( 'tvr_mcth_jscolor' );
 					wp_enqueue_script( 'tvr_mcth_cssprops' );
@@ -492,10 +507,6 @@ if ( is_admin() ) {
                     // enqueue jquery ui stuff
                     wp_enqueue_script( 'jquery-ui-core' );
                     wp_enqueue_script( 'jquery-ui-position', 'jquery');
-                    //wp_enqueue_script( 'jquery-effects-core', 'jquery');
-                    //wp_enqueue_script( 'jquery-effects-bounce', 'jquery-effects-core');
-                    //wp_enqueue_script( 'jquery-effects-scale', 'jquery-effects-core');
-
                     wp_enqueue_script( 'jquery-ui-sortable', 'jquery');
 					wp_enqueue_script( 'jquery-ui-slider', 'jquery');
                     wp_enqueue_script( 'jquery-ui-autocomplete', 'jquery');
@@ -504,10 +515,14 @@ if ( is_admin() ) {
                     wp_enqueue_script( 'jquery-ui-tooltip', 'jquery');
 
 
-
                     wp_enqueue_script( 'tvr_mcth_colorbox' );
-					wp_enqueue_script( 'tvr_mcth_tabs' );
+					//wp_enqueue_script( 'tvr_mcth_tabs' );
                     wp_enqueue_script( 'tvr_scrollbars', 'jquery' );
+
+					// load js strings for translation
+                    $js_i18n_main = $js_i18n_manage = array();
+					include_once $this->thisplugindir . 'includes/js-i18n.inc.php';
+
 					// load the main script
                     if ($_GET['page'] == $this->microthemeruipage){
                         if (!TVR_DEV_MODE){
@@ -517,6 +532,7 @@ if ( is_admin() ) {
                             wp_register_script( 'tvr_mcth_custom_ui',
                                 $this->thispluginurl.'js/tvr-microthemer.js?v='.$this->version );
                         }
+						wp_localize_script( 'tvr_mcth_custom_ui', 'js_i18n_main', $js_i18n_main);
                         wp_enqueue_script( 'tvr_mcth_custom_ui');
                     }
                     // manage micro themes script
@@ -528,6 +544,8 @@ if ( is_admin() ) {
                             wp_register_script( 'tvr_mcth_custom_man',
                                 $this->thispluginurl.'js/tvr-manage-micro.js?v='.$this->version );
                         }
+
+						wp_localize_script( 'tvr_mcth_custom_man', 'js_i18n_manage', $js_i18n_manage);
                         wp_enqueue_script( 'tvr_mcth_custom_man' );
                     }
 				}
@@ -567,8 +585,14 @@ if ( is_admin() ) {
                 $legacy_groups = array();
 				include $this->thisplugindir . 'includes/property-options.inc.php';
 				$this->propertyoptions = $propertyOptions;
-                foreach ($propertyOptions as $group => $array){
-                    $this->property_option_groups[] = $group;
+                // populate $property_option_groups array
+                foreach ($propertyOptions as $prop_group => $array){
+                    foreach ($array as $prop => $meta) {
+                        if ( !empty($meta['pg_label']) ){
+                            $this->property_option_groups[$prop_group] = $meta['pg_label'];
+                            break;
+                        }
+                    }
                 }
                 $this->legacy_groups = $legacy_groups;
                 // Make the property options array available to scripts by writing the JS to a new JS file.
@@ -582,9 +606,8 @@ if ( is_admin() ) {
                 if (!file_exists($js_file) or 1) { // remove "or 1" after testing
                     if (!$write_file = fopen($js_file, 'w')) {
                         $this->log(
-                            'Permission Error',
-                            '<p>WordPress does not have permission to create: '
-                            . $this->root_rel($js_file) . '. '.$this->permissionshelp.'</p>'
+                            wp_kses(__('Permission Error', 'tvr-microthemer'), array()), 'tvr-microthemer',
+                            '<p>' . sprintf(wp_kses(__('WordPress does not have permission to create: %s', 'tvr-microthemer'), array()), $this->root_rel($js_file) . '. '.$this->permissionshelp ) . '</p>'
                         );
                     }
                     else {
@@ -818,7 +841,7 @@ if ( is_admin() ) {
                                     ?>
                                     />
                                     <span class="fake-radio <?php echo $on; ?>"></span>
-                                    <span class="ef-label">Yes</span>
+									<span class="ef-label"><?php printf(wp_kses(__('Yes', 'tvr-microthemer'), array())); ?></span>
                                 </span>
                                 <span class="no-wrap p-wrap-wrap">
                                     <input type='radio' autocomplete="off" class='radio' name='tvr_preferences[<?php echo $key; ?>]' value='0'
@@ -833,7 +856,7 @@ if ( is_admin() ) {
                                         ?>
                                         />
                                         <span class="fake-radio <?php echo $on; ?>"></span>
-                                        <span class="ef-label">No</span>
+										<span class="ef-label"><?php printf(wp_kses(__('No', 'tvr-microthemer'), array())); ?></span>
                                 </span>
                     </li>
                 <?php
@@ -939,11 +962,15 @@ if ( is_admin() ) {
 				$total_rows = $wpdb->num_rows;
 				// if no revisions, explain
 				if ($total_rows == 0) {
-					return '<span id="revisions-table">No Revisions have been created yet. This will happen after your next save.</span>';
+					return '<span id="revisions-table">' .
+						wp_kses(__('No Revisions have been created yet. This will happen after your next save.', 'tvr-microthemer'), array()) .
+					'</span>';
 				}
 				// if one revision, it's the same as the current settings, explain
 				if ($total_rows == 1) {
-					return '<span id="revisions-table">The only revision is a copy of your current settings.</span>';
+					return '<span id="revisions-table">' .
+						wp_kses(__('The only revision is a copy of your current settings.', 'tvr-microthemer'), array()) .
+					'</span>';
 				}
 				// revisions exist so prepare table
 				$restore_url = '&_wpnonce='.
@@ -953,11 +980,11 @@ if ( is_admin() ) {
 				<table id="revisions-table">
             	<thead>
 				<tr>
-					<th>Revision</th>
-                    <th>Date & Time</th>
-                    <th>User Action</th>
-					<th>Size</th>
-                    <th>Restore</th>
+					<th>' . wp_kses(__('Revision', 'tvr-microthemer'), array()) . '</th>
+                    <th>' . wp_kses(__('Date & Time', 'tvr-microthemer'), array()) . '</th>
+                    <th>' . wp_kses(__('User Action', 'tvr-microthemer'), array()) . '</th>
+					<th>' . wp_kses(__('Size', 'tvr-microthemer'), array()) . '</th>
+                    <th>' . wp_kses(__('Restore', 'tvr-microthemer'), array()) . '</th>
                 </tr>
 				</thead>';
 				$i = 0;
@@ -978,7 +1005,7 @@ if ( is_admin() ) {
 							$rev_table.= '(Current)';
 						}
 						else {
-							$rev_table.='<span class="link restore-link" rel="'.$restore_url.$rev->id.'">Restore</span>';
+							$rev_table.='<span class="link restore-link" rel="'.$restore_url.$rev->id.'">' . wp_kses(__('Restore', 'tvr-microthemer'), array()) . '</span>';
 						}
 						$rev_table.='</td>
 					</tr>';
@@ -1009,9 +1036,9 @@ if ( is_admin() ) {
 					$debug_file = $this->micro_root_dir . $this->preferences['theme_in_focus'] . '/debug-save.txt';
 					$write_file = fopen($debug_file, 'w');
 					$data = '';
-					$data.= "\n\nThe new options\n\n";;
+					$data.= "\n\n" . __('The new options', 'tvr-microthemer') . "\n\n";
 					$data.= print_r($theOptions, true);
-					$data.= "\n\nThe existing options\n\n";;
+					$data.= "\n\n" . __('The existing options', 'tvr-microthemer') . "\n\n";
 					$data.= print_r($this->options, true);
 				}
 				// loop through all the state trackers
@@ -1040,7 +1067,7 @@ if ( is_admin() ) {
 					}
 				}
 				if ($this->debug_save) {
-					$data.= "\n\nThe hybrid options\n\n";;
+					$data.= "\n\n" . __('The hybrid options', 'tvr-microthemer') . "\n\n";
 					$data.= print_r($theOptions, true);
 					fwrite($write_file, $data);
 					fclose($write_file);
@@ -1071,7 +1098,7 @@ if ( is_admin() ) {
 							foreach ( $array as $css_selector => $view_state) {
 								if ($css_selector == 'this') { continue; }
 								// reset styles array to defaults
-                                foreach ($this->property_option_groups as $key => $group){
+                                foreach ($this->property_option_groups as $group => $junk){
                                     $option_groups[$group] = '';
                                 }
 								$this->options[$section_name][$css_selector]['styles'] = $option_groups;
@@ -1098,15 +1125,13 @@ if ( is_admin() ) {
                 // some errors are the same, reuse the text
                 if ($preset) {
                     if ($preset == 'revisions'){
-                        $this->globalmessage[++$this->ei]['short'] ='Revision log update failed.';
+                        $this->globalmessage[++$this->ei]['short'] = __('Revision log update failed.', 'tvr-microthemer');
                         $this->globalmessage[$this->ei]['type'] = 'error';
-                        $this->globalmessage[$this->ei]['long'] = '<p>Adding your latest save
-                            to the revisions table failed.</p>';
+                        $this->globalmessage[$this->ei]['long'] = '<p>' . wp_kses(__('Adding your latest save to the revisions table failed.', 'tvr-microthemer'), array()) . '</p>';
                     } elseif ($preset == 'json-decode'){
-                        $this->globalmessage[++$this->ei]['short'] = 'Decode json error';
+                        $this->globalmessage[++$this->ei]['short'] = __('Decode json error', 'tvr-microthemer');
                         $this->globalmessage[$this->ei]['type'] = 'error';
-                        $this->globalmessage[$this->ei]['long'] = '<p>WordPress was not able to convert '
-                            . $this->root_rel($vars['json_file']) .' into a usable format.</p>';
+                        $this->globalmessage[$this->ei]['long'] = '<p>' . sprintf(wp_kses(__('WordPress was not able to convert %s into a usable format.', 'tvr-microthemer'), array()), $this->root_rel($vars['json_file']) ) . '</p>';
                     }
 
                 } else {
@@ -1228,8 +1253,8 @@ if ( is_admin() ) {
                     $pref_array = $_POST['tvr_preferences'];
                     if ($this->savePreferences($pref_array)) {
                         $this->log(
-                            'Preferences saved',
-                            '<p>Your Microthemer preferences have been successfully updated.</p>',
+                            wp_kses(__('Preferences saved', 'tvr-microthemer'), array()), 'tvr-microthemer',
+                            '<p>' . wp_kses(__('Your Microthemer preferences have been successfully updated.', 'tvr-microthemer'), array()) . '</p>',
                             'notice'
                         );
                     }
@@ -1318,8 +1343,8 @@ if ( is_admin() ) {
                                         $img_paths[] = $new = $dir . '/' . basename($root_rel_path);
                                         if (!copy($orig, $new)){
                                             $this->log(
-                                                'Library image not downloaded',
-                                                '<p>'.$root_rel_path.' could not be copied to the zip download file</p>',
+                                                wp_kses(__('Library image not downloaded', 'tvr-microthemer'), array()), 'tvr-microthemer',
+                                                '<p>' . sprintf(wp_kses(__('%s could not be copied to the zip download file', 'tvr-microthemer'), array()), $root_rel_path) . '</p>',
                                                 'warning'
                                             );
                                             $download_status = 0;
@@ -1347,9 +1372,8 @@ if ( is_admin() ) {
                                 foreach ($img_paths as $key => $path){
                                     if (!unlink($path)){
                                         $this->log(
-                                            'Temporary image could not be deleted.',
-                                            '<p>'.$this->root_rel($root_rel_path).' was temporarily copied to your theme pack
-                                            before download but could not be deleted after the download operation finished.</p>',
+                                            wp_kses(__('Temporary image could not be deleted.', 'tvr-microthemer'), array()), 'tvr-microthemer',
+                                            '<p>' . sprintf(wp_kses(__('%s was temporarily copied to your theme pack before download but could not be deleted after the download operation finished.', 'tvr-microthemer'), array()), $this->root_rel($root_rel_path) ) . '</p>',
                                             'warning'
                                         );
                                     }
@@ -1382,7 +1406,7 @@ if ( is_admin() ) {
 
 					// if it's a save request
                     if( isset($_POST['action']) and $_POST['action'] == 'tvr_microthemer_ui_serialised') {
-						$user_action = 'Save';
+						$user_action = wp_kses(__('Save', 'tvr-microthemer'), array());
                         check_admin_referer('tvr_microthemer_ui_serialised');
                         $circumvent_max_input_vars = true;
                         if ($circumvent_max_input_vars){
@@ -1402,22 +1426,21 @@ if ( is_admin() ) {
                         //echo ini_get('max_input_vars').'<pre>serialised:'. "\n";
 						// save settings in DB
 						if ( $this->saveUiOptions($this->serialised_post['tvr_mcth'])) {
-                            $saveOk = 'Settings Saved';
+                            $saveOk = wp_kses(__('Settings Saved', 'tvr-microthemer'), array());
                             // this should probably be added after the export operation works fine
                             if ($this->serialised_post['export_to_pack'] == 1) {
-                                $saveOk.= ' & Exported';
+                                $saveOk.= wp_kses(__(' & Exported', 'tvr-microthemer'), array());
                             }
                             $this->log(
                                 $saveOk,
-                                '<p>The UI interface settings
-                            were successfully saved.</p>',
+                                '<p>' . wp_kses(__('The UI interface settings were successfully saved.', 'tvr-microthemer'), array()) . '</p>',
                                 'notice'
                             );
 						}
 						else {
                             $this->log(
-                                'Settings failed to save',
-                                'p>Saving your setting to the database failed.</p>'
+                                wp_kses(__('Settings failed to save', 'tvr-microthemer'), array()), 'tvr-microthemer',
+                                '<p>' . wp_kses(__('Saving your setting to the database failed.', 'tvr-microthemer'), array()) . '</p>'
                             );
 						}
 						// check if settings need to be exported to a design pack
@@ -1436,12 +1459,12 @@ if ( is_admin() ) {
 							else {
 								$new_select_option = '';
 							}
-							$user_action.= ' & Export to <i>'. $this->readable_name($theme). '</i>';
+							$user_action.= sprintf(wp_kses(__(' & Export to %s', 'tvr-microthemer'), array()), '<i>'. $this->readable_name($theme). '</i>');
 						}
 						// else its a standard save of custom settings
 						else {
 							$theme = 'customised';
-							$user_action.= ' (regular)';
+							$user_action.= wp_kses(__(' (regular)', 'tvr-microthemer'), array());
 						}
 						// update active-styles.css
 						$this->update_active_styles($theme);
@@ -1456,13 +1479,18 @@ if ( is_admin() ) {
 							// warn is 75% of max is bein used
 							if ( $num_input_vars >= ($max_input_vars*.5) ) {
                                 $this->log(
-                                    'Data limit near',
-                                    '<p>
-                                <b>Warning:</b> you are approaching
-                                a data sending limit "max_input_vars" set by your server. Please save your settings
-                                and then reload the interface to solve this problem. Read more about this issue
-								<a target="_blank" href="http://themeover.com/avoiding-save-errors-after-editing-lots-of-selectors-by-using-the-speed-up-button/">here.
-								</a></p>',
+                                    wp_kses(__('Data limit near', 'tvr-microthemer'), array()), 'tvr-microthemer',
+                                    '<p>' .
+									sprintf(
+										wp_kses( __( '<b>Warning:</b> you are approaching a data sending limit "max_input_vars" set by your server. Please save your settings and then reload the interface to solve this problem. Read more about this issue <a %s>here.</a>', 'tvr-microthemer'),
+											array(
+												'a' => array(),
+												'b' => array(),
+											)
+										),
+										'target="_blank" href="http://themeover.com/avoiding-save-errors-after-editing-lots-of-selectors-by-using-the-speed-up-button/"'
+									)
+									. '</p>',
                                     'warning'
                                 );
 							}
@@ -1507,7 +1535,7 @@ if ( is_admin() ) {
 
 						$this->load_json_file($json_file, $theme_name, $context);
 						// update the revisions DB field
-						$user_action = ' Import ('.$context.') from <i>'. $this->readable_name($theme_name). '</i>';
+						$user_action = sprintf( wp_kses(__(' Import (%1$s) from %2$s', 'tvr-microthemer'), array()), '<i>'. $this->readable_name($theme_name). '</i>' );
 						if (!$this->updateRevisions($this->options, $user_action)) {
                             $this->log('','','error', 'revisions');
 						}
@@ -1522,15 +1550,15 @@ if ( is_admin() ) {
 						if ($this->resetUiOptions()) {
 							$this->update_active_styles('customised');
                             $this->log(
-                                'Folders were reset',
-                                '<p>The default empty folders have been reset.</p>',
+                                wp_kses(__('Folders were reset', 'tvr-microthemer'), array()),
+                                '<p>' . wp_kses(__('The default empty folders have been reset.', 'tvr-microthemer'), array()) . '</p>',
                                 'notice'
                             );
 							// update the revisions DB field
 							if (!$this->updateRevisions($this->options, 'Settings Reset')) {
                                 $this->log(
-                                    'Revision failed to save',
-                                    '<p>The revisions table could not be updated.</p>',
+                                    wp_kses(__('Revision failed to save', 'tvr-microthemer'), array()),
+                                    '<p>' . wp_kses(__('The revisions table could not be updated.', 'tvr-microthemer'), array()) . '</p>',
                                     'notice'
                                 );
 							}
@@ -1546,7 +1574,7 @@ if ( is_admin() ) {
 						if ($this->clearUiOptions()) {
 							$this->update_active_styles('customised');
                             $this->log(
-                                __('Styles were cleared', 'tvr-microthemer'),
+                                wp_kses(__('Styles were cleared', 'tvr-microthemer'), array()), 'tvr-microthemer',
                                 '<p>' . wp_kses(__("All styles were cleared, but your folders and selectors remain fully intact.", "tvr-microthemer"), array()) . '</p>',
                                 'notice'
                             );
@@ -1591,18 +1619,26 @@ if ( is_admin() ) {
 						$headers = "From: $from";
 						if(@mail($to,$subject,$body,$headers)) {
                             $this->log(
-                                'Email successfully sent',
-                                '<p>Your error report was successfully emailed to Themeover. Thanks, this really does help.</p>',
+                                wp_kses(__('Email successfully sent', 'tvr-microthemer'), array()),
+                                '<p>' . wp_kses(__('Your error report was successfully emailed to Themeover. Thanks, this really does help.', 'tvr-microthemer'), array()) . '</p>',
                                 'notice'
                             );
 						}
 						else {
 							$error_url = $this->thispluginurl . $file_path;
                             $this->log(
-                                'Report email failed',
-                                '<p>Your error report email failed to send (are you on localhost?)</p>
-                                <p>Please email <a target="_blank" href="'.$error_url.'">this report</a> to
-                                <a href="mailto:support@themeover.com">support@themeover.com</a></p>'
+                                wp_kses(__('Report email failed', 'tvr-microthemer'), array()),
+                                '<p>' . wp_kses(__('Your error report email failed to send (are you on localhost?)', 'tvr-microthemer'), array()) . '</p>
+								<p>' .
+								sprintf(
+									wp_kses(
+										__('Please email <a %1$s>this report</a> to %2$s', 'tvr-microthemer'),
+										array( 'a' => array() )
+									),
+									'target="_blank" href="' .$error_url . '"',
+									'<a href="mailto:support@themeover.com">support@themeover.com</a>'
+								)
+								. '</p>'
                             );
 						}
                         echo '
@@ -1616,20 +1652,20 @@ if ( is_admin() ) {
 						$rev_key = $_GET['tvr_rev'];
 						if ($this->restoreRevision($rev_key)) {
                             $this->log(
-                                'Settings successfully restored',
-                                '<p>Your settings were successfully restored from a previous save.</p>',
+                                wp_kses(__('Settings successfully restored', 'tvr-microthemer'), array()),
+                                '<p>' . wp_kses(__('Your settings were successfully restored from a previous save.', 'tvr-microthemer'), array()) . '</p>',
                                 'notice'
                             );
 							$this->update_active_styles('customised');
 							// update the revisions DB field
-							if (!$this->updateRevisions($this->options, 'Previous Settings Restored')) {
+							if (!$this->updateRevisions($this->options, __('Previous Settings Restored', 'tvr-microthemer'))) {
                                 $this->log('','','error', 'revisions');
 							}
 						}
 						else {
                             $this->log(
-                                'Settings restore failed',
-                                '<p>Data could not be restored from a previous save.</p>'
+                                wp_kses(__('Settings restore failed', 'tvr-microthemer'), array()),
+                                '<p>' . wp_kses(__('Data could not be restored from a previous save.', 'tvr-microthemer'), array()) . '</p>'
                             );
 						}
                         // save last message in database so that it can be displayed on page reload (just once)
@@ -1690,23 +1726,22 @@ if ( is_admin() ) {
                             switch ($action) {
                                 case 'reset':
                                     $this->log(
-                                        'Media queries were reset',
-                                        '<p>The default media queries were successfully reset.</p>',
+                                        wp_kses(__('Media queries were reset', 'tvr-microthemer'), array()),
+                                        '<p>' . wp_kses(__('The default media queries were successfully reset.', 'tvr-microthemer'), array()) . '</p>',
                                         'notice'
                                     );
                                     break;
                                 case 'update':
                                     $this->log(
-                                        'Media queries were updated',
-                                        '<p>Your media queries were successfully updated.</p>',
+                                        wp_kses(__('Media queries were updated', 'tvr-microthemer'), array()),
+                                        '<p>' . wp_kses(__('Your media queries were successfully updated.', 'tvr-microthemer'), array()) . '</p>',
                                         'notice'
                                     );
                                     break;
                                 case 'load_set':
                                     $this->log(
-                                        'Media query set loaded',
-                                        '<p>A new media query set '.$load_action.' your existing
-                                        media queries: '.htmlentities($_POST['tvr_preferences']['load_mq_set']).'</p>',
+                                        wp_kses(__('Media query set loaded', 'tvr-microthemer'), array()),
+                                        '<p>' . sprintf( wp_kses(__('A new media query set %1$s your existing media queries: %2$s', 'tvr-microthemer'), array()), $load_action, htmlentities($_POST['tvr_preferences']['load_mq_set']) ) . '</p>',
                                         'notice'
                                     );
                                     break;
@@ -1725,15 +1760,14 @@ if ( is_admin() ) {
                             $this->trial = 0;
                             if (!$this->preferences['buyer_validated']) { // not already validated
                                 $this->log(
-                                    'Full program unlocked!',
-                                    '<p>Your email address has been successfully validated.
-                                    Microthemer\'s full program features have been unlocked!</p>',
+                                    wp_kses(__('Full program unlocked!', 'tvr-microthemer'), array()),
+                                    '<p>' . wp_kses(__('Your email address has been successfully validated. Microthemer\'s full program features have been unlocked!', 'tvr-microthemer'), array() ) . '</p>',
                                     'notice'
                                 );
                             } else {
                                 $this->log(
-                                    'Already validated',
-                                    '<p>Your email address has already been validated. The full program is currently active.</p>',
+                                    wp_kses(__('Already validated', 'tvr-microthemer'), array()),
+                                    '<p>' . wp_kses(__('Your email address has already been validated. The full program is currently active.', 'tvr-microthemer'), array()) . '</p>',
                                     'notice'
                                 );
                             }
@@ -1743,46 +1777,39 @@ if ( is_admin() ) {
                             $_POST['tvr_preferences']['buyer_validated'] = 0;
                             $this->trial = true;
                             $this->log(
-                                'Validation failed',
-                                '<p>Your email address could not be validated. Please try the following:</p>
-                                <ul>
-                                    <li>Make sure you are entering your <b>PayPal email address</b>
-                                    (which may be different from your themeover.com member email address you registered with,
-                                    or the email address you provided when downloading the free trial). The correct email
-                                    address to unlock the program will be shown on
-                                    <a href="http://rebrand.themeover.com/login/">My Downloads</a></li>
-                                    <li>If you purchased Microthemer from <b>CodeCanyon</b>, please send us a
-                                    "Validate my email" message via the contact form on the right hand side of
-                                    <a target="_blank" href="http://codecanyon.net/user/themeover">this page</a>
-                                        (you will need to ensure that you are logged in to CodeCanyon).</li>
-                                    <li>The connection to Themeover\'s server may have failed due to an intermittent network error.
-                                    <span class="link show-dialog" rel="unlock-microthemer">Resubmitting your email
-                                     one more time</span> may do the trick.</li>
-                                    <li>Try temporarily <b>disabling any plugins</b> that may be blocking
-                                    Microthemer\'s connection to the valid users database on themeover.com.
-                                    You can re-enable them after you unlock Microthemer.
-                                    WP Security plugins sometimes block Microthemer.</li>
-                                    <li>Security settings on your server may block all outgoing PHP connections to domains not
-                                    on a trusted whitelist (e.g. sites that are not wordpress.org). Ask your web host about
-                                    unblocking themeover.com - even if they just do it temporarily to allow you to activate the plugin.
-                                    </li>
-
-                                </ul>
-                                <p>If none of the above solve your problem please send WP login details for the site you\'re
-                                 working on using <a target="_blank"
-                                 href="https://themeover.com/support/contact/">this
-                                 secure contact form</a>. Please remember to include the URL to your website along
-                                 with the username and password. If you\'d prefer not to provide login details
-                                 please send us an email via the <a target="_blank"
-                                 href="https://themeover.com/support/contact/">
-                                 contact form</a> to discuss alternative measures.</p>'
-                            );
+                                wp_kses(__('Validation failed', 'tvr-microthemer'), array()),
+                                '<p>' . wp_kses(__('Your email address could not be validated. Please try the following:', 'tvr-microthemer'), array()) . '</p>
+								<ul>' .
+									'<li>' . printf(
+										wp_kses(__('Make sure you are entering your <b>PayPal email address</b> (which may be different from your themeover.com member email address you registered with, or the email address you provided when downloading the free trial). The correct email address to unlock the program will be shown on <a %s>My Downloads</a>', 'tvr-microthemer'),
+											array( 'a' => array(), 'b' => array() )),
+										'href="http://rebrand.themeover.com/login/"'
+									) . '</li>' .
+									'<li>' . printf(
+										wp_kses(__('If you purchased Microthemer from <b>CodeCanyon</b>, please send us a "Validate my email" message via the contact form on the right hand side of <a %s>this page</a> (you will need to ensure that you are logged in to CodeCanyon).', 'tvr-microthemer'), array( 'a' => array(), 'b' => array() )),
+										'target="_blank" href="http://codecanyon.net/user/themeover"'
+									) . '</li>' .
+									'<li>' . printf(
+										wp_kses(__('The connection to Themeover\'s server may have failed due to an intermittent network error. <span %s>Resubmitting your email one more time</span> may do the trick.', 'tvr-microthemer'), array( 'span' => array() )),
+										'class="link show-dialog" rel="unlock-microthemer"'
+									) . '</li>' .
+									'class="link show-dialog" rel="unlock-microthemer"' .
+									'<li>' . wp_kses(__('Try temporarily <b>disabling any plugins</b> that may be blocking Microthemer\'s connection to the valid users database on themeover.com. You can re-enable them after you unlock Microthemer. WP Security plugins sometimes block Microthemer.', 'tvr-microthemer'), array( 'b' => array() )) . '</li>' .
+									'<li>' . wp_kses(__('Security settings on your server may block all outgoing PHP connections to domains not on a trusted whitelist (e.g. sites that are not wordpress.org). Ask your web host about unblocking themeover.com - even if they just do it temporarily to allow you to activate the plugin.', 'tvr-microthemer'), array()) . '</li>'
+                                . '</ul>
+								<p>' .
+								sprintf(
+									wp_kses(
+										__('If none of the above solve your problem please send WP login details for the site you\'re working on using <a %s>this secure contact form</a>. Please remember to include the URL to your website along with the username and password. If you\'d prefer not to provide login details please send us an email via the <a %s>contact form</a> to discuss alternative measures.', 'tvr-microthemer'), array( 'a' => array() )),
+									'target="_blank" href="https://themeover.com/support/contact/"'
+								) . '</p>'
+							);
                         }
                         $pref_array = $_POST['tvr_preferences'];
                         if (!$this->savePreferences($pref_array)) {
                             $this->log(
-                                'Unlock status not saved',
-                                '<p>Your validation status could not be saved. The program may need to be unlocked again.</p>'
+                                wp_kses(__('Unlock status not saved', 'tvr-microthemer'), array()),
+                                '<p>' . wp_kses(__('Your validation status could not be saved. The program may need to be unlocked again.', 'tvr-microthemer'), array()) . '</p>'
                             );
                         }
                     }
@@ -1794,8 +1821,8 @@ if ( is_admin() ) {
                         $pref_array['m_queries'] = $this->default_m_queries;
                         if ($this->savePreferences($pref_array)) {
                             $this->log(
-                                'Preferences were reset',
-                                '<p>The default program preferences were reset.</p>',
+                                wp_kses(__('Preferences were reset', 'tvr-microthemer'), array()),
+                                '<p>' . wp_kses(__('The default program preferences were reset.', 'tvr-microthemer'), array()) . '</p>',
                                 'notice'
                             );
                         }
@@ -1824,8 +1851,8 @@ if ( is_admin() ) {
                     if (!empty($_GET['action']) and $_GET['action'] == 'tvr_delete_ok') {
                         check_admin_referer('tvr_delete_ok');
                         $this->log(
-                            'Design pack deleted',
-                            '<p>The design pack was successfully deleted.</p>',
+                            wp_kses(__('Design pack deleted', 'tvr-microthemer'), array()),
+                            '<p>' . wp_kses(__('The design pack was successfully deleted.', 'tvr-microthemer'), array()) . '</p>',
                             'notice'
                         );
                     }
@@ -1839,8 +1866,8 @@ if ( is_admin() ) {
 						}
 						else {
                             $this->log(
-                                'Please specify a name',
-                                '<p>You didn\'t enter anything in the "Name" field. Please try again.</p>'
+                                wp_kses(__('Please specify a name', 'tvr-microthemer'), array()),
+                                '<p>' . wp_kses(__('You didn\'t enter anything in the "Name" field. Please try again.', 'tvr-microthemer'), array()) . '</p>'
                             );
 
 
@@ -1864,7 +1891,7 @@ if ( is_admin() ) {
 						$json_file = $this->micro_root_dir . $theme_name . '/config.json';
 						$this->load_json_file($json_file, $theme_name);
 						// update the revisions DB field
-						$user_action = '<i>' . $this->readable_name($theme_name) . '</i> Activated';
+						$user_action = sprintf( wp_kses(__('%s Activated', 'tvr-microthemer'), array()),  '<i>' . $this->readable_name($theme_name) . '</i>' );
 						if (!$this->updateRevisions($this->options, $user_action)) {
                             $this->log('', '', 'error', 'revisions');
 						}
@@ -1878,9 +1905,12 @@ if ( is_admin() ) {
 						$pref_array['active_theme'] = '';
 						if ($this->savePreferences($pref_array)) {
                             $this->log(
-                                'Item deactivated',
-                                '<p><i>'.$this->readable_name($this->preferences['theme_in_focus']).'</i>
-                                was deactivated.</p>',
+                                wp_kses(__('Item deactivated', 'tvr-microthemer'), array()),
+								'<p>' .
+								sprintf(
+									wp_kses(__('%s was deactivated.', 'tvr-microthemer'), array()),
+									'<i>'.$this->readable_name($this->preferences['theme_in_focus']).'</i>' )
+								. '</p>',
                                 'notice'
                             );
 						}
@@ -1963,8 +1993,8 @@ if ( is_admin() ) {
                         }
                         if ($delete_ok){
                             $this->log(
-                                'File deleted',
-                                '<p>'.htmlentities($root_rel_path).' was successfully deleted.</p>',
+                                wp_kses(__('File deleted', 'tvr-microthemer'), array()),
+                                '<p>' . sprintf( wp_kses(__('%s was successfully deleted.', 'tvr-microthemer'), array()), htmlentities($root_rel_path) ) . '</p>',
                                 'notice'
                             );
                             // update paths in json file
@@ -1972,8 +2002,8 @@ if ( is_admin() ) {
                             $this->replace_json_paths($json_config_file, array($root_rel_path => ''));
                         } else {
                             $this->log(
-                                'File delete failed',
-                                '<p>'.htmlentities($root_rel_path).' was not deleted.</p>'
+                                wp_kses(__('File delete failed', 'tvr-microthemer'), array()),
+                                '<p>' . sprintf( wp_kses(__('%s was not deleted.', 'tvr-microthemer'), array()), htmlentities($root_rel_path) ) . '</p>'
                             );
                         }
                     }
@@ -2035,9 +2065,9 @@ if ( is_admin() ) {
                 <div id='plugin-menu' class="fixed-subsection">
                 <h3>Plugin Menu</h3>
                 <div class='menu-option-wrap'>
-                <a id="tvr-item-1" href='admin.php?page=<?php echo $this->microthemeruipage;?>' title="Go to Microthemer UI Page">UI</a>
-                <a id="tvr-item-2" href='admin.php?page=<?php echo $this->microthemespage;?>' title="Go to Manage Micro Themes Page">Manage</a>
-                <a id="tvr-item-3" href='admin.php?page=<?php echo $this->preferencespage;?>' title="Go to Microthemer Preferences Page">Options</a>
+				<a id="tvr-item-1" href='admin.php?page=<?php echo $this->microthemeruipage;?>' title="<?php _e('Go to Microthemer UI Page', 'tvr-microthemer') ?>">UI</a>
+				<a id="tvr-item-2" href='admin.php?page=<?php echo $this->microthemespage;?>' title="<?php _e('Go to Manage Micro Themes Page', 'tvr-microthemer') ?>">Manage</a>
+				<a id="tvr-item-3" href='admin.php?page=<?php echo $this->preferencespage;?>' title="<?php _e('Go to Microthemer Preferences Page', 'tvr-microthemer') ?>">Options</a>
             	</div>
                 </div>
                 <?php
@@ -2047,10 +2077,14 @@ if ( is_admin() ) {
 			function need_help_notice() {
 				if ($this->preferences['need_help'] == '1' and TVR_MICRO_VARIANT != 'loader') {
 					?>
-					<p class='need-help'><b>Need Help?</b> Browse Our <span class="help-trigger"
-                    rel="<?php echo $this->thispluginurl.'includes/help-videos.php'; ?>">Video Guides</span> and
-                    <span class="help-trigger" rel="<?php echo $this->thispluginurl.'includes/tutorials.php'; ?>">Tutorials</span>
-                    or <span class="help-trigger" rel="<?php echo $this->thispluginurl.'includes/search-forum.php'; ?>">Search Our Forum</span></p>
+					<p class='need-help'><b><?php printf(wp_kses(__('Need Help?', 'tvr-microthemer'), array())); ?></b>
+					<?php printf(
+						wp_kses(__('Browse Our <span %1$s>Video Guides</span> and <span %2$s>Tutorials</span> or <span %3$s>Search Our Forum</span>', 'tvr-microthemer'),
+							array( 'span' => array() )),
+						'class="help-trigger" rel="' . $this->thispluginurl.'includes/help-videos.php',
+						'class="help-trigger" rel="' . $this->thispluginurl.'includes/tutorials.php',
+						'class="help-trigger" rel="' . $this->thispluginurl.'includes/search-forum.php'
+					); ?></p>
 				<?php
 				}
 			}
@@ -2061,10 +2095,17 @@ if ( is_admin() ) {
                 global $is_IE;
 				if ($this->preferences['ie_notice'] == '1' and $is_IE ) {
                     $this->log(
-                        'Internet Explorer Choice',
-                        '<p>Microthemer has been designed for modern browsers. You are using Internet Explorer. For a noticeably faster experience, please use Microthemer with the lastest version of <a target="_blank" title="Download The World\'s Best Internet Browser"
-					href="http://www.mozilla.com/en-US/firefox/new/">Firefox</a> or <a href="http://www.google.com/chrome/intl/en-GB/landing_tv.html">Google Chrome</a>.</p>
-					<p><b>Note</b>: Web browsers do not conflict with each other, you can install as many as you want on your computer at any one time. But if you love Internet Explorer you can turn this message off on the preferences page.</p>',
+                        wp_kses(__('Internet Explorer Choice', 'tvr-microthemer'), array()),
+						'<p>' .
+						sprintf(
+							wp_kses(__('Microthemer has been designed for modern browsers. You are using Internet Explorer. For a noticeably faster experience, please use Microthemer with the latest version of %1$s or %2$s.', 'tvr-microthemer'), array()),
+							'<a target="_blank" title="' . __('Download The World\'s Best Internet Browser', 'tvr-microthemer') .
+							'" href="http://www.mozilla.com/' . _x('en-US', 'Firefox URL slug: http://www.mozilla.com/en-US/firefox/new/', 'tvr-microthemer') . '/firefox/new/">Firefox</a>',
+							'<a href="http://www.google.com/intl/' . _x('en-US', 'Chrome URL slug: https://www.google.com/intl/en-US/chrome/browser/welcome.html', 'tvr-microthemer') . '/chrome/browser/welcome.html">Google Chrome</a>'
+						)
+						. '</p><p>' .
+						wp_kses(__('<b>Note</b>: Web browsers do not conflict with each other, you can install as many as you want on your computer at any one time. But if you love Internet Explorer you can turn this message off on the preferences page.', 'tvr-microthemer'), array( 'b' => array() ))
+					. '</p>',
                         'warning'
                     );
 				}
@@ -2076,13 +2117,26 @@ if ( is_admin() ) {
 					?>
 					<div id='validate-reminder' class="error">
 					<p><b><?php printf(wp_kses(__("IMPORTANT - Free Trial Mode is Active", "tvr-microthemer"), array() ) ); ?></b><br /> <br />
-                        Please <a href="admin.php?page=tvr-microthemer-preferences.php#validate">validate your purchase to unlock the full program</a>.
-                        <br />
-                        The Free Trial limits you to editing or creating 3 Sections and 9 Selectors (3 per Section).</p>
-                        <p>Purchase a <a target="_blank" href="http://themeover.com/microthemer/">Standard</a> ($45) or
-                       <a target="_blank" href="http://themeover.com/microthemer/">Developer</a> ($90) License Now!</p>
-                       <p><b>This Plugin is Supported!</b> Themeover provides the <a target="_blank" href="http://themeover.com/forum/">best forum support</a> you'll get any where (and it's free of course)</p>
-
+						<?php printf(
+							wp_kses( __('Please <a %s>validate your purchase to unlock the full program</a>.', 'tvr-microthemer'), 
+								array( 'a' => array() ) ),
+							'href="admin.php?page=tvr-microthemer-preferences.php#validate"'
+						); ?>
+						<br />
+						<?php printf(
+							wp_kses(__('The Free Trial limits you to editing or creating 3 Sections and 9 Selectors (3 per Section).', 'tvr-microthemer'), array())
+						); ?></p>
+					<p><?php printf(
+						wp_kses(__('Purchase a <a %s>Standard</a> ($45) or <a %s>Developer</a> ($90) License Now!', 'tvr-microthemer'), array( 'a' => array() )),
+						'target="_blank" href="http://themeover.com/microthemer/"'
+					); ?></p>
+					<p><?php printf(
+						wp_kses(
+							__('<b>This Plugin is Supported!</b> Themeover provides the <a %s>best forum support</a> you\'ll get any where (and it\'s free of course)',
+								'tvr-microthemer'),
+							array( 'a' => array(), 'b' => array() )),
+						'target="_blank" href="http://themeover.com/forum/"'
+					); ?></p>
                     </div>
 				<?php
 				}
@@ -2118,9 +2172,12 @@ if ( is_admin() ) {
 				if ( !is_dir($dir_name) ) {
 					if ( !wp_mkdir_p($dir_name) ) {
                         $this->log(
-                            '/micro-themes folder error',
-                            '<p>WordPress was not able to create
-						the ' . $this->root_rel($dir_name) . ' directory. ' . $this->permissionshelp . '</p>'
+                            wp_kses(__('/micro-themes folder error', 'tvr-microthemer'), array()),
+							'<p>' .
+							sprintf(
+								wp_kses(__('WordPress was not able to create the %1$s directory. ', 'tvr-microthemer'), array()),
+								$this->root_rel($dir_name)
+							) . $this->permissionshelp . '</p>'
                         );
                         return false;
 					}
@@ -2376,7 +2433,7 @@ if ( is_admin() ) {
                             <?php wp_nonce_field('tvr_upload_micro_submit'); ?>
                             <input id="upload_pack_input" type="file" name="upload_micro"  />
                             <input class="tvr-button upload-pack" type="submit" name="tvr_upload_micro_submit"
-                                   value="+ Upload New" title="Upload a new design pack" />
+								value="+ Upload New" title="<?php _e('Upload a new design pack', 'tvr-microthemer'); ?>" />
                         </form>
                     </li>
                     <!--<li>
@@ -2423,7 +2480,8 @@ if ( is_admin() ) {
                         </li>';
                         --$i;
                     }
-                    echo '<li class="displaying-x">Displaying '.$start.' - ' . $end .  ' of '. $total_packs.'</li>';
+					echo '<li class="displaying-x">' .
+						sprintf(wp_kses(__('Displaying %1$s - %2$s of %3$s', 'tvr-microthemer'), array()), $start, $end, $total_packs) . '</li>';
 
                     if (!empty($this->preferences['theme_in_focus']) and $total_packs > 0){
                         $url = 'admin.php?page=' . $this->managesinglepage . '&design_pack=' . $this->preferences['theme_in_focus'];
@@ -2569,7 +2627,7 @@ if ( is_admin() ) {
                             <li class="add-selector-list-item">
                                 <div class="sel-row item-row">
                                     <?php
-                                    $tip = __('Non-coders should use the selector wizard instead of using these form fields. Just double-click something on your site!', 'tvr-microthemer');
+                                    $tip = wp_kses(__('Non-coders should use the selector wizard instead of using these form fields. Just double-click something on your site!', 'tvr-microthemer'), array());
                                     if (!$this->optimisation_test){
                                         $this->selector_add_modify_form('add', $tip);
                                     }
@@ -2652,7 +2710,7 @@ if ( is_admin() ) {
 							<span class="toggle-modify-selector tvr-icon edit-icon" title="<?php _e("Edit Selector", "tvr-microthemer"); ?>"></span>
                         </span>
                         <?php
-                        $tip = __('Give your selector a better descriptive name and/or modify the CSS selector code (if you know CSS)', 'tvr-microthemer');
+                        $tip = wp_kses(__('Give your selector a better descriptive name and/or modify the CSS selector code (if you know CSS)', 'tvr-microthemer'), array());
                         if (!$this->optimisation_test){
                             $this->selector_add_modify_form('edit', $tip, $labelCss, $section_name, $css_selector);
                         }
@@ -2814,7 +2872,8 @@ if ( is_admin() ) {
                              $class.= ' active';
                          }
                          // human pg name
-                         $human_pg_name = ucwords(str_replace('_', ' & ', $property_group_name));
+                         $human_pg_name = $this->property_option_groups[$property_group_name];
+
                          $html.='
                          <li class="pg-icon pg-icon-'.$property_group_name.' '.$class.'"
                          rel="'.$property_group_name.'" title="'.$human_pg_name.'">
@@ -3034,12 +3093,11 @@ if ( is_admin() ) {
                 } else {
                     $id = '';
                 }
-                // adjust display label for certain prop groups
-                $display_group_name = $this->display_group_name($property_group_name);
 
                 $html = '
-                <div '.$id.' class="property-fields hidden property-'.$property_group_name.' property-fields-all-devices '.$show_class.'">
-                    <div class="group-label group-label-'.$property_group_name.'">'.$display_group_name.': </div>';
+                <div '.$id.' class="property-fields hidden property-'.$property_group_name.'
+                property-fields-all-devices '.$show_class.'">
+                    ';
 
                 // merge to allow for new properties added to property-options.inc.php (array with values must come 2nd)
                 $property_group_array = array_merge($this->propertyoptions[$property_group_name], $property_group_array);
@@ -3063,47 +3121,6 @@ if ( is_admin() ) {
 
             }
 
-            // adjust diplay label
-            function display_group_name($property_group_name){
-                if ($property_group_name == 'padding_margin'){
-                    $display_group_name = 'padding';
-                } else if ($property_group_name == 'shadow'){
-                    $display_group_name = 'text shadow';
-                } else if ($property_group_name == 'border'){
-                    $display_group_name = 'border color:<br >border style';
-                } else if ($property_group_name == 'dimensions'){
-                    $display_group_name = 'width';
-                } else {
-                    $display_group_name = $property_group_name;
-                }
-                return $display_group_name;
-            }
-
-			// on upgrading, the all-devices won't be checked even if only the main is checked.
-			/* Solution = check if any mqs are checked. If the main label is checked but nothing else is, this is an identifying symptom
-			function fix_for_mq_update($section_name, $css_selector, $property_group_name, $main_label_show_class) {
-				if ($main_label_show_class == 'show') {
-					$any_checked = false;
-					foreach ($this->preferences['m_queries'] as $key => $m_query) {
-						if ($this->pg_has_values($this->options['non_section']['m_query'][$key][$section_name][$css_selector]['styles'][$property_group_name]))
-
-                         {
-							$any_checked = true;
-						}
-					}
-					if (!$any_checked) {
-						$show_class = 'show';
-					}
-					else {
-						$show_class = '';
-					}
-				}
-				else {
-					$show_class = '';
-				}
-				return $show_class;
-			}
-			*/
 
             // check for legacy device_focus values (e.g. padding/margin for padding_margin)
             function device_focus_inc_legacy($section_name, $css_selector, $property_group_name, $property_group_array){
@@ -3228,7 +3245,7 @@ if ( is_admin() ) {
                 }
 				// All devices checkbox
                 $html.='<span class="mq-options">
-                <span class="mq-button mqb-all-devices '.$property_group_state.'" title="Styles will apply to all screen sizes">';
+                <span class="mq-button mqb-all-devices '.$property_group_state.'" title="' . __('Styles will apply to all screen sizes', 'tvr-microthemer') . '">';
 
                     $html.='<input class="style-config checkbox all-toggle" type="checkbox" autocomplete="off"
                     value="'.$property_group_name.'"
@@ -3237,7 +3254,8 @@ if ( is_admin() ) {
                     <span class="mq-remove tvr-icon" rel="all-devices|All Devices" title="' . __('Remove tab', 'tvr-microthemer') . '"></span>
                     <span class="mq-clear tvr-icon" rel="all-devices|All Devices" title="' . __('Clear tab styles', 'tvr-microthemer') . '"></span>
                     <span class="mq-add tvr-icon" rel="all-devices|All Devices" title="' . __('Add tab', 'tvr-microthemer') . '"></span>
-					<span class="mq-button-text mq-add" rel="all-devices|All Devices" title="' . __('Styles will apply to all screen sizes', 'tvr-microthemer') . '">' . wp_kses(__('All Devices', 'tvr-microthemer'), array()) . '</span>
+					<span class="mq-button-text mq-add" rel="all-devices|All Devices" title="' . __('Styles will apply to all screen sizes', 'tvr-microthemer') . '">' .
+						wp_kses(__('All Devices', 'tvr-microthemer'), array()) . '</span>
 
                 </span>';
 				// Media query checkboxes
@@ -3264,7 +3282,7 @@ if ( is_admin() ) {
                 }
                 // remove all option
                 $html.= '
-                <span class="mq-button remove-all" title="' . sprintf(__('Remove all &quot;%1$s&quot; styling options for this selector', 'tvr-microthemer'), ucwords($property_group_name)) . '">
+                <span class="mq-button remove-all" title="' . sprintf(__('Remove all "%1$s" styling options for this selector', 'tvr-microthemer'), ucwords($property_group_name)) . '">
                     <span class="mq-remove-all tvr-icon delete-icon"></span>
 					<span class="mq-button-text mq-remove-all link">' . wp_kses(__('Remove all tabs', 'tvr-microthemer'), array()) . '</span>
                 </span>';
@@ -3303,12 +3321,11 @@ if ( is_admin() ) {
                          } else {
                              $show_class = '';
                          }
-                         // adjust display label for certain prop groups
-                         $display_group_name = $this->display_group_name($property_group_name);
+
 
                          $html.= '<div class="property-fields hidden property-'.$property_group_name
                              . ' property-fields-'.$key . ' ' .$show_class.'">
-                            <div class="field-wrap group-label">'.$display_group_name.': </div>';
+                            ';
                          // merge to allow for new properties added to property-options.inc.php (array with values must come 2nd)
                          $property_group_array = array_merge($this->propertyoptions[$property_group_name], $property_group_array);
                          foreach ($property_group_array as $property => $value) {
@@ -3423,16 +3440,18 @@ $tab-------------------------------------------------------------- */
 							if (!empty($array['styles']) and !is_array($array['styles'])) {
 								$css_sel_name = ucwords(str_replace('_', ' ', $css_selector));
                                 $this->log(
-                                    'Malformed error',
+                                    wp_kses(__('Malformed error', 'tvr-microthemer'), array()),
                                     '<p>'.$section_name. ' &raquo; '.$css_sel_name.'</p>
-                                    <p>To fix this issue, please delete the malformed \''.$css_sel_name.'\' selector
-                                    (which may not be displaying a name) in the \''.$section_name. '\' folder</p>
-                                    Array is: '.
-                                    $array['styles']
+									<p>' .
+									sprintf(
+										wp_kses(__('To fix this issue, please delete the malformed \'%1$s\' selector (which may not be displaying a name) in the \'%2$s\' folder', 'tvr-microthemer'), array()),
+										$css_sel_name, $section_name
+									) . '</p>' .
+									wp_kses(__('Array is: ', 'tvr-microthemer'), array()) . $array['styles']
                                 );
 								continue; // so script doesn't cause fatal error
 							}
-							foreach ($sty['prop_key_array'] as $key) {
+							foreach ($sty['prop_key_array'] as $key => $junk) {
 								if ( isset($array['styles'][$key]) and $array['styles'][$key] != '' ) {
 									$empty = false;
 								}
@@ -3632,7 +3651,8 @@ $tab$css_selector {
 									// auto-apply position:relative if prefered and position hasn't been explicitly defined
 									if ($this->preferences['auto_relative'] == 1
 									and empty($array['styles']['position']['position'])) {
-										$sty['data'].= $tab."	position: relative; /* Because CSS3 PIE is enabled. It requires this to work. */
+										$sty['data'].= $tab."	position: relative; /* " .
+											_x('Because CSS3 PIE is enabled. It requires this to work.', 'CSS comment', 'tvr-microthemer') . " */
 ";
 									}
 								}
@@ -3645,7 +3665,7 @@ $tab$css_selector {
 
 								// output the custom styles if they exist
 								if ($cusStyles and is_array($cusStyles)) {
-									$sty['data'].= "	/* Selector Custom CSS */
+									$sty['data'].= "	/* " . _x('Selector Custom CSS', 'CSS comment', 'tvr-microthemer') . " */
 ";
 									foreach ($cusStyles as $rule) {
 										$clean_rule = trim($rule);
@@ -3682,9 +3702,9 @@ $tab$css_selector {
 				if (!file_exists($act_styles)) {
 					if (!$write_file = fopen($act_styles, 'w')) {
                         $this->log(
-                            'Create stylesheet error',
-                            '<p>WordPress does not have permission to
-						create: ' . $this->root_rel($act_styles) . '. '.$this->permissionshelp.'</p>'
+                            wp_kses(__('Create stylesheet error', 'tvr-microthemer'), array()),
+							'<p>' . wp_kses(__('WordPress does not have permission to create: ', 'tvr-microthemer'), array()) .
+							$this->root_rel($act_styles) . '. '.$this->permissionshelp.'</p>'
                         );
 					}
 					else {
@@ -3740,7 +3760,7 @@ $tab$css_selector {
 					// check if hand coded have been set - output before other css
 					if ( trim($this->options['non_section']['hand_coded_css'] != '' ) ) {
 					$sty['data'].= '
-/* =Hand Coded CSS
+/* =' . _x('Hand Coded CSS', 'CSS comment', 'tvr-microthemer') . '
 -------------------------------------------------------------- */
 '.stripslashes($this->options['non_section']['hand_coded_css']) . '
 ';
@@ -3761,8 +3781,8 @@ $tab$css_selector {
 					// if write is unsuccessful for some reason
 					if (!fwrite($write_file, $sty['data'])) {
                         $this->log(
-                            'Write stylesheet error',
-                            '<p>Writing to ' . $this->root_rel($act_styles) . ' failed. '.$this->permissionshelp.'</p>'
+                            wp_kses(__('Write stylesheet error', 'tvr-microthemer'), array()),
+                            '<p>' . sprintf( wp_kses(__('Writing to %s failed. ', 'tvr-microthemer'), array()), $this->root_rel($act_styles) ) . $this->permissionshelp.'</p>'
                         );
 					}
 					fclose($write_file);
@@ -3770,9 +3790,9 @@ $tab$css_selector {
 					// no write access
 					else {
                         $this->log(
-                            'Write stylesheet error',
-                            '<p>WordPress does not have "write" permission
-						for: ' . $this->root_rel($act_styles) . '. '.$this->permissionshelp.'</p>'
+                            wp_kses(__('Write stylesheet error', 'tvr-microthemer'), array()),
+							'<p>' . wp_kses(__('WordPress does not have "write" permission	for: ', 'tvr-microthemer'), array())
+							. $this->root_rel($act_styles) . '. '.$this->permissionshelp.'</p>'
                         );
 					}
 					// write to the ie specific stysheets if user defined
@@ -3829,8 +3849,8 @@ $tab$css_selector {
 					}
 					if ($this->savePreferences($pref_array) and $activated_from != 'customised') {
                         $this->log(
-                            'Design pack activated',
-                            '<p>The design pack was successfully activated.</p>',
+                            wp_kses(__('Design pack activated', 'tvr-microthemer'), array()),
+                            '<p>' . wp_kses(__('The design pack was successfully activated.', 'tvr-microthemer'), array()) . '</p>',
                             'dev-notice'
                         );
 					}
@@ -3851,9 +3871,9 @@ $tab$css_selector {
 							if (!file_exists($stylesheet)) {
 								if (!$write_file = fopen($stylesheet, 'w')) {
                                     $this->log(
-                                        'Create IE stylesheet error',
-                                        '<p>WordPress does not have permission to
-									create: ' . $this->root_rel($stylesheet) . '. '.$this->permissionshelp.'</p>'
+                                        wp_kses(__('Create IE stylesheet error', 'tvr-microthemer'), array()),
+										'<p>' . wp_kses(__('WordPress does not have permission to create: ', 'tvr-microthemer'), array())
+										. $this->root_rel($stylesheet) . '. '.$this->permissionshelp.'</p>'
                                     );
 								}
 								else {
@@ -3867,8 +3887,8 @@ $tab$css_selector {
 								// if write is unsuccessful for some reason
 								if (!fwrite($write_file, stripslashes($val))) {
                                     $this->log(
-                                        'Write IE stylesheet error',
-                                        '<p>Writing to ' . $this->root_rel($stylesheet) . ' failed. '
+                                        wp_kses(__('Write IE stylesheet error', 'tvr-microthemer'), array()),
+                                        '<p>' . sprintf( wp_kses(__('Writing to %s failed. ', 'tvr-microthemer'), array()), $this->root_rel($stylesheet) )
                                         .$this->permissionshelp.'</p>'
                                     );
 								}
@@ -3877,9 +3897,9 @@ $tab$css_selector {
 							// isn't writable
 							else {
                                 $this->log(
-                                    'Write IE stylesheet error',
-                                    '<p>WordPress does not have "write" permission
-								for: ' . $this->root_rel($stylesheet) . '. '.$this->permissionshelp.'</p>'
+                                    wp_kses(__('Write IE stylesheet error', 'tvr-microthemer'), array()),
+									'<p>' . wp_kses(__('WordPress does not have "write" permission for: ', 'tvr-microthemer'), array())
+									. $this->root_rel($stylesheet) . '. '.$this->permissionshelp.'</p>'
                                 );
 							}
 						}
@@ -3918,9 +3938,9 @@ $tab$css_selector {
 				if (!file_exists($json_file)) {
 					if (!$write_file = fopen($json_file, 'w')) { // this creates a blank file for writing
                         $this->log(
-                            'Create json error',
-                            '<p>WordPress does not have permission to
-						create: ' . $this->root_rel($json_file) . '. '.$this->permissionshelp.'</p>'
+                            wp_kses(__('Create json error', 'tvr-microthemer'), array()),
+							'<p>' . wp_kses(__('WordPress does not have permission to create: ', 'tvr-microthemer'), array())
+							. $this->root_rel($json_file) . '. '.$this->permissionshelp.'</p>'
                         );
 					}
 					$task = 'created';
@@ -3953,17 +3973,17 @@ $tab$css_selector {
                         // set handcoded css to nothing if not marked for export
                         if ( empty($this->serialised_post['export_sections']['hand_coded_css'])) {
                             $json_data['non_section']['hand_coded_css'] = '';
-                            echo 'unset: hand-coded<br />';
+                            echo wp_kses(_x('unset: hand-coded', 'Verb', 'tvr-microthemer'), array()) . '<br />';
                         } else {
-                            echo '<b>dont</b> unset: hand-coded<br />';
+                            echo '<b>don\'t</b> unset: hand-coded<br />';
                         }
                         // ie too
                         foreach ($this->preferences['ie_css'] as $key => $value) {
                             if ( empty($this->serialised_post['export_sections']['ie_css'][$key])) {
                                 $json_data['non_section']['ie_css'][$key] = '';
-                                echo 'unset: ' . $key. '<br />';
+                                echo wp_kses(_x('unset: ', 'Verb', 'tvr-microthemer'), array()) . $key. '<br />';
                             } else {
-                                echo '<b>dont</b> unset: ' . $key. '<br />';
+                                echo wp_kses(__('<b>don\'t</b> unset: ', 'tvr-microthemer'), array( 'b' => array())) . $key. '<br />';
                             }
                         }
                         // create debug selective export file if specified at top of script
@@ -3971,9 +3991,9 @@ $tab$css_selector {
                             $data = '';
                             $debug_file = $this->micro_root_dir . $this->preferences['theme_in_focus'] . '/debug-selective-export.txt';
                             $write_file = fopen($debug_file, 'w');
-                            $data.= "The Selectively Exported Options\n\n";;
+                            $data.= __('The Selectively Exported Options', 'tvr-microthemer') . "\n\n";
                             $data.= print_r($json_data, true);
-                            $data.= "\n\nThe Full Options\n\n";;
+                            $data.= "\n\n" . __('The Full Options', 'tvr-microthemer') . "\n\n";
                             $data.= print_r($this->options, true);
                             fwrite($write_file, $data);
                             fclose($write_file);
@@ -3988,16 +4008,16 @@ $tab$css_selector {
 						}
 						else {
                             $this->log(
-                                'Encode json error',
-                                '<p>WordPress failed to convert your settings into json.</p>'
+                                wp_kses(__('Encode json error', 'tvr-microthemer'), array()),
+                                '<p>' . wp_kses(__('WordPress failed to convert your settings into json.', 'tvr-microthemer'), array()) . '</p>'
                             );
 						}
 					}
 					else {
                         $this->log(
-                            'Write json error',
-                            '<p>WordPress does not have "write" permission
-						for: ' . $this->root_rel($json_file) . '. '.$this->permissionshelp.'</p>'
+                            wp_kses(__('Write json error', 'tvr-microthemer'), array()),
+							'<p>' . wp_kses(__('WordPress does not have "write" permission	for: ', 'tvr-microthemer'), array())
+							. $this->root_rel($json_file) . '. '.$this->permissionshelp.'</p>'
                         );
 					}
 				}
@@ -4012,9 +4032,9 @@ $tab$css_selector {
                     // attempt to read config.json
                     if (!$read_file = fopen($json_file, 'r')) {
                         $this->log(
-                            'Read json error',
-                            '<p>WordPress was not able to read
-						' . $this->root_rel($json_file) . '. '.$this->permissionshelp.'</p>'
+                            wp_kses(__('Read json error', 'tvr-microthemer'), array()),
+							'<p>' . sprintf( wp_kses(__('WordPress was not able to read %s. ', 'tvr-microthemer'), array()), $this->root_rel($json_file) )
+							. '. '.$this->permissionshelp.'</p>'
                         );
                     }
                     else {
@@ -4049,8 +4069,8 @@ $tab$css_selector {
                     // json decode was successful
                     if (!$json_error) {
                         $this->log(
-                            'Settings were imported',
-                            '<p>The design pack settings were successfully imported.</p>',
+                            wp_kses(__('Settings were imported', 'tvr-microthemer'), array()),
+                            '<p>' . wp_kses(__('The design pack settings were successfully imported.', 'tvr-microthemer'), array()) . '</p>',
                             'notice'
                         );
                         // check for new mqs
@@ -4065,13 +4085,11 @@ $tab$css_selector {
                             $pref_array['m_queries'] = array_merge($pref_array['m_queries'], $mq_analysis['new']);
 
                             $this->log(
-                                'Media queries added',
-                                '<p>The design pack you imported contained media queries that are different from the ones
-                                 used in your current setup. In order for the design pack settings to function correctly,
-                                 these additional media queries have been imported into your workspace.</p>
-                                 <p>Please <span class="link show-dialog" rel="edit-media-queries">review (and possibly rename) the imported media queries</span>. Note: imported
-                                 queries are marked with "(imp)", which you can remove from the label name once
-                                 you\'ve reviewed them.</p>',
+                                wp_kses(__('Media queries added', 'tvr-microthemer'), array()),
+								'<p>' . wp_kses(__('The design pack you imported contained media queries that are different from the ones used in your current setup. In order for the design pack settings to function correctly, these additional media queries have been imported into your workspace.',
+								'tvr-microthemer'), array()) . '</p>
+								<p>' . sprintf( wp_kses(__('Please <span %s>review (and possibly rename) the imported media queries</span>. Note: imported queries are marked with "(imp)", which you can remove from the label name once you\'ve reviewed them.', 'tvr-microthemer'), array( 'span' => array() )),
+									'class="link show-dialog" rel="edit-media-queries"' ) . ' </p>',
                                 'warning'
                             );
                         }
@@ -4103,9 +4121,11 @@ $tab$css_selector {
                 // the config file doesn't exist
                 else {
                     $this->log(
-                        'Config file missing',
-                        '<p>' . $this->root_rel($json_file) . ' settings file could not be loaded because
-					it doesn\'t exist in <i>'.$this->readable_name($theme_name).'</i>.</p>'
+                        wp_kses(__('Config file missing', 'tvr-microthemer'), array()),
+						'<p>' . sprintf(
+							wp_kses(__('%1$s settings file could not be loaded because it doesn\'t exist in %2$s', 'tvr-microthemer'), array()),
+							$this->root_rel($json_file),
+							'<i>'.$this->readable_name($theme_name).'</i>.' ) . '</p>'
                     );
                 }
             }
@@ -4122,7 +4142,6 @@ $tab$css_selector {
                     if (is_array($options['non_section'][$context])) {
                         foreach ($options['non_section'][$context] as $cur_key => $array) {
                             if ($cur_key == $student_key) {
-                                $data.= 'found student: ' . $student_key . ' role: '. $role_model_key;
                                 $key = $role_model_key;
                             } else {
                                 $key = $cur_key;
@@ -4174,7 +4193,7 @@ $tab$css_selector {
                     $debug_file = $this->micro_root_dir . $this->preferences['theme_in_focus'] . '/debug-merge.txt';
                     $write_file = fopen($debug_file, 'w');
                     $data = '';
-                    $data.= "\n\nThe current options\n\n";
+                    $data.= "\n\n" . __('The current options', 'tvr-microthemer') . "\n\n";
                     $data.= print_r($orig_settings, true);
                 }
                 if (is_array($new_settings)) {
@@ -4247,9 +4266,9 @@ $tab$css_selector {
                     }
 
                     if ($this->debug_merge) {
-                        $data .= "\n\nThe MQ Analysis\n\n";
+                        $data .= "\n\n" . wp_kses(__('The MQ Analysis', 'tvr-microthemer'), array()) . "\n\n";
                         $data .= print_r($mq_analysis, true);
-                        $data .= "\n\nThe to merge options\n\n";
+                        $data .= "\n\n" . wp_kses(__('The to merge options', 'tvr-microthemer'), array()) . "\n\n";
                         $data .= print_r($new_settings, true);
                     }
 
@@ -4264,7 +4283,7 @@ $tab$css_selector {
                             if (!empty($new_code)) {
                                 $merged_settings['non_section'][$key] =
                                     $orig_settings['non_section'][$key]
-                                    . "\n\n/* CSS from design pack imported with 'Merge' */\n"
+                                    . "\n\n/* " . _x('CSS from design pack imported with \'Merge\'', 'CSS comment', 'tvr-microthemer') . " */\n"
                                     . $new_settings['non_section'][$key];
                             } else {
                                 // the imported pack has no custom code so keep the original
@@ -4278,7 +4297,7 @@ $tab$css_selector {
                                 if (!empty($new_code)) {
                                     $merged_settings['non_section'][$key][$key2] =
                                         $orig_settings['non_section'][$key][$key2]
-                                        . "\n\n/* CSS from design pack imported with 'Merge' */\n"
+                                    	. "\n\n/* " . _x('CSS from design pack imported with \'Merge\'', 'CSS comment', 'tvr-microthemer') . " */\n"
                                         . $new_settings['non_section'][$key][$key2];
                                 }   else {
                                     // the imported pack has no custom code so keep the original
@@ -4289,7 +4308,7 @@ $tab$css_selector {
                     }
                 }
                 if ($this->debug_merge) {
-                    $data.= "\n\nThe Merged options\n\n";
+                    $data.= "\n\n" . __('The Merged options', 'tvr-microthemer') . "\n\n";
                     $data.= print_r($merged_settings, true);
                     fwrite($write_file, $data);
                     fclose($write_file);
@@ -4334,9 +4353,11 @@ $tab$css_selector {
                 if ( !is_dir($this->micro_root_dir) ) {
                     if ( !wp_mkdir_p( $this->micro_root_dir, 0755 ) ) {
                         $this->log(
-                            '/micro-themes create error',
-                            '<p>WordPress was not able to create
-						the ' . $this->root_rel($this->micro_root_dir) . ' directory. ' . $this->permissionshelp . '</p>'
+                            wp_kses(__('/micro-themes create error', 'tvr-microthemer'), array()),
+							'<p>' . sprintf(
+								wp_kses(__('WordPress was not able to create the %s directory. ', 'tvr-microthemer'), array()),
+								$this->root_rel($this->micro_root_dir)
+							) . $this->permissionshelp . '</p>'
                         );
                         $error = true;
                     } else {
@@ -4358,9 +4379,11 @@ $tab$css_selector {
                     }
                     if (!copy($orig, $new)){
                         $this->log(
-                            'CSS3 PIE not copied',
-                            '<p>CSS3 PIE ('.$file.') could not be copied to correct location. This is needed to support gradients, rounded
-corners and box-shadow in old versions of Internet Explorer.</p>',
+                            wp_kses(__('CSS3 PIE not copied', 'tvr-microthemer'), array()),
+							'<p>' . sprintf(
+								wp_kses(__('CSS3 PIE (%s) could not be copied to correct location. This is needed to support gradients, rounded corners and box-shadow in old versions of Internet Explorer.', 'tvr-microthemer'), array()),
+								$file
+							) . '</p>',
                             'error'
                         );
                         $error = true;
@@ -4383,9 +4406,11 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
 				// check if the micro-themes folder is writable
 				if ( !is_writeable( $this->micro_root_dir ) ) {
                     $this->log(
-                        '/micro-themes write error',
-                        '<p>The directory ' . $this->root_rel($this->micro_root_dir) . ' is not writable.
-					 ' . $this->permissionshelp . '</p>'
+                        wp_kses(__('/micro-themes write error', 'tvr-microthemer'), array()),
+						'<p>' . sprintf(
+							wp_kses(__('The directory %s is not writable. ', 'tvr-microthemer'), array()),
+							$this->root_rel($this->micro_root_dir)
+						) . $this->permissionshelp . '</p>'
                     );
 					$error = true;
 				}
@@ -4398,29 +4423,34 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
 				// Create new micro theme folder
 				if ( !wp_mkdir_p ( $this_micro_abs ) ) {
                     $this->log(
-                        'design pack create error',
-                        '<p>WordPress was not able to create
-						the ' . $this->root_rel($this_micro_abs) . ' directory.</p>'
+                        wp_kses(__('design pack create error', 'tvr-microthemer'), array()),
+						'<p>' . sprintf(
+							wp_kses(__('WordPress was not able to create the %s directory.', 'tvr-microthemer'), array()), $this->root_rel($this_micro_abs)
+						). '</p>'
                     );
 					$error = true;
 				}
 				// Check folder permission
 				if ( !is_writeable( $this_micro_abs ) ) {
                     $this->log(
-                        'design pack write error',
-                        '<p>The directory ' . $this->root_rel($this_micro_abs) . ' is not writable.
-					 ' . $this->permissionshelp . '</p>'
+                        wp_kses(__('design pack write error', 'tvr-microthemer'), array()),
+						'<p>' . sprintf(
+							wp_kses(__('The directory %s is not writable. ', 'tvr-microthemer'), array()), $this->root_rel($this_micro_abs)
+						) . $this->permissionshelp . '</p>'
                     );
 					$error = true;
 				}
 				if (SAFE_MODE and $this->preferences['safe_mode_notice'] == '1') {
                     $this->log(
-                        'Safe-mode is on',
-                        '<p>The PHP server setting "Safe-Mode" is on.</p>
-                    <p><b>This isn\'t necessarily a problem. But if the design pack "' .
-                    $this->readable_name($name) . '" hasn\'t been created</b>,
-					please create the directory ' . $this->root_rel($this_micro_abs) . ' manually and gives it permission
-					code 777.' . $this->permissionshelp . '</p>',
+                        wp_kses(__('Safe-mode is on', 'tvr-microthemer'), array()),
+						'<p>' . wp_kses(__('The PHP server setting "Safe-Mode" is on.', 'tvr-microthemer'), array())
+						. '</p><p>' . sprintf(
+							wp_kses(__('<b>This isn\'t necessarily a problem. But if the design pack "%1$s" hasn\'t been created</b>, please create the directory %2$s manually and give it permission code 777. ', 'tvr-microthemer'),
+								array( 'b' => array() )
+							),
+							$this->readable_name($name), $this->root_rel($this_micro_abs) 
+						) . $this->permissionshelp
+					. '</p>',
                         'warning'
                     );
 					$error = true;
@@ -4458,25 +4488,26 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
 				if ($error != true) {
 					if ($action == 'create') {
                         $this->log(
-                            'Design pack created',
-                            '<p>The design pack directory was successfully created on the server.</p>',
+                            wp_kses(__('Design pack created', 'tvr-microthemer'), array()),
+                            '<p>' . wp_kses(__('The design pack directory was successfully created on the server.', 'tvr-microthemer'), array()) . '</p>',
                             'notice'
                         );
 					}
 					if ($action == 'unzip') {
                         $this->log(
-                            'Design pack installed',
-                            '<p>The design pack was successfully uploaded and extracted.
-                                You can import it into your Microthemer workspace any time using
-                             the <span class="show-parent-dialog link" rel="import-from-pack">import option</span>
-                             <span id="update-packs-list" rel="'.$this->readable_name($name).'"></span>.</p>',
+                            wp_kses(__('Design pack installed', 'tvr-microthemer'), array()),
+							'<p>' . sprintf(
+								wp_kses(__('The design pack was successfully uploaded and extracted. You can import it into your Microthemer workspace any time using the <span %s>import option</span>', 'tvr-microthemer'),
+								array( 'span' => array() )),
+								'class="show-parent-dialog link" rel="import-from-pack"'
+							) . '<span id="update-packs-list" rel="'.$this->readable_name($name).'"></span>.</p>',
                             'notice'
                         );
 					}
 					if ($action == 'export') {
                         $this->log(
-                            'Settings exported',
-                            '<p>Your settings were successfully exported as a design pack directory on the server.</p>',
+                            wp_kses(__('Settings exported', 'tvr-microthemer'), array()),
+                            '<p>' . wp_kses(__('Your settings were successfully exported as a design pack directory on the server.', 'tvr-microthemer'), array()) . '</p>',
                             'notice'
                         );
 					}
@@ -4500,8 +4531,11 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
                 } else {
                     // no meta file error
                     $this->log(
-                        'Missing meta file',
-                        '<p>The zip file doesn\'t contain a necessary '.$this->root_rel($meta_file).' file or it could not be read.</p>'
+                        wp_kses(__('Missing meta file', 'tvr-microthemer'), array()),
+						'<p>' . sprintf(
+							wp_kses(__('The zip file doesn\'t contain a necessary %s file or it could not be read.', 'tvr-microthemer'), array()),
+							$this->root_rel($meta_file)
+						) . '</p>'
                     );
                     return false;
                 }
@@ -4511,15 +4545,21 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
             function get_file_data($file){
                 if (!is_file($file)){
                     $this->log(
-                        'File doesn\'t exist',
-                        '<p>'.$this->root_rel($file) . ' does not exist on the server.</p>'
+                        wp_kses(__('File doesn\'t exist', 'tvr-microthemer'), array()),
+						'<p>' . sprintf(
+							wp_kses(__('%s does not exist on the server.', 'tvr-microthemer'), array()),
+							$this->root_rel($file)
+						) . '</p>'
                     );
                     return false;
                 }
                 if (!is_readable($file)){
                     $this->log(
-                        'File not readable',
-                        '<p>'.$this->root_rel($file) . ' could not be read.</p>'
+                        wp_kses(__('File not readable', 'tvr-microthemer'), array()),
+						'<p>' . sprintf(
+							wp_kses(__(' %s could not be read.', 'tvr-microthemer'), array()),
+							$this->root_rel($file)
+						) . '</p>'
                         . $this->permissionshelp
                     );
                     return false;
@@ -4609,8 +4649,11 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
                                 $wp_error = '';
                             }
                             $this->log(
-                                'Move to media library failed',
-                                '<p>'.$this->root_rel($pack_image) . ' was not imported due to an error.</p>'
+                                wp_kses(__('Move to media library failed', 'tvr-microthemer'), array()),
+								'<p>' . sprintf(
+									wp_kses(__('%s was not imported due to an error.', 'tvr-microthemer'), array()),
+									$this->root_rel($pack_image)
+								) . '</p>'
                                 . $wp_error
                             );
                         }
@@ -4635,9 +4678,8 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
                     '</ul>';
                 if ($moved){
                     $this->log(
-                        'Images transferred to media library',
-                        '<p>The following images were transferred from the design pack to your WordPress
-                        media library:</p>'
+                        wp_kses(__('Images transferred to media library', 'tvr-microthemer'), array()),
+                        '<p>' . wp_kses(__('The following images were transferred from the design pack to your WordPress media library:', 'tvr-microthemer'), array()) . '</p>'
                         . $moved_list,
                         'notice'
                     );
@@ -4670,19 +4712,15 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
                         if (fwrite($write_file, $data)) {
                             fclose($write_file);
                             $this->log(
-                                'Images paths updated',
-                                '<p>Images paths were successfully updated to reflect the new location or
-                                    deletion of an image(s).</p>',
+                                wp_kses(__('Images paths updated', 'tvr-microthemer'), array()),
+                                '<p>' . wp_kses(__('Images paths were successfully updated to reflect the new location or deletion of an image(s).', 'tvr-microthemer'), array()) . '</p>',
                                 'notice'
                             );
                         }
                         else {
                             $this->log(
-                                'Image paths failed to update.',
-                                '<p>Images paths could not be updated to reflect
-                                    the new location of the images transferred to your media library.
-                                    This happened because Microthemer could not rewrite the
-                                    config.json file.</p>' . $this->permissionshelp
+                                wp_kses(__('Image paths failed to update.', 'tvr-microthemer'), array()),
+								'<p>' . wp_kses(__('Images paths could not be updated to reflect the new location of the images transferred to your media library. This happened because Microthemer could not rewrite the config.json file.', 'tvr-microthemer'), array()) . '</p>' . $this->permissionshelp
                             );
                         }
                     }
@@ -4697,7 +4735,7 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
                 // A writable uploads dir will pass this test. Again, there's no point overriding this one.
                 if ( ! ( ( $uploads = wp_upload_dir($time) ) && false === $uploads['error'] ) ) {
                     $this->log(
-                        'Uploads folder error',
+                        wp_kses(__('Uploads folder error', 'tvr-microthemer'), array()),
                         $uploads['error']
                     );
                     return 0;
@@ -4708,8 +4746,8 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
                 extract( $wp_filetype );
                 if ( ( !$type || !$ext ) && !current_user_can( 'unfiltered_upload' ) ) {
                     $this->log(
-                        'Wrong file type',
-                        '<p>Sorry, this file type is not permitted for security reasons.</p>'
+                        wp_kses(__('Wrong file type', 'tvr-microthemer'), array()),
+                        '<p>' . wp_kses(__('Sorry, this file type is not permitted for security reasons.', 'tvr-microthemer'), array()) . '</p>'
                     );
                     return 0;
                 }
@@ -4724,9 +4762,11 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
                     $attachment = get_posts(array( 'post_type' => 'attachment', 'meta_key' => '_wp_attached_file', 'meta_value' => ltrim($mat[1], '/') ));
                     if ( !empty($attachment) ) {
                         $this->log(
-                            'Image already in library',
-                            '<p>'.$filename .' already exists in the WordPress media library and
-                            was therefore not moved</p>',
+                            wp_kses(__('Image already in library', 'tvr-microthemer'), array()),
+							'<p>' . sprintf(
+								wp_kses(__('%s already exists in the WordPress media library and was therefore not moved', 'tvr-microthemer'), array()),
+								$filename
+							) . '</p>',
                             'warning'
                         );
                         return 0;
@@ -4739,8 +4779,12 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
                     $new_file = $uploads['path'] . '/' . $filename;
                     if ( false === @rename( $file, $new_file ) ) {
                         $this->log(
-                            'Move to library failed',
-                            '<p>'.$filename .' could not be moved to '.$uploads['path'].'</p>',
+                            wp_kses(__('Move to library failed', 'tvr-microthemer'), array()),
+							'<p>' . sprintf(
+								wp_kses(__('%1$s could not be moved to %2$s', 'tvr-microthemer'), array()),
+								$filename,
+								$uploads['path']
+							) . '</p>',
                             'warning'
                         );
                         return 0;
@@ -4825,9 +4869,9 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
                     if ( !preg_match('/(zip|download|octet-stream)/i', $_FILES['upload_micro']['type']) ) {
                         @unlink($temp_zipfile); // del temp file
                         $this->log(
-                            'Faulty zip file',
-                            '<p>The uploaded file was faulty or was not a zip file.</p>
-						<p>The server recognised this file type:'.$_FILES['upload_micro']['type'].'</p>'
+                            wp_kses(__('Faulty zip file', 'tvr-microthemer'), array()),
+                            '<p>' . wp_kses(__('The uploaded file was faulty or was not a zip file.', 'tvr-microthemer'), array()) . '</p>
+						<p>' . wp_kses(__('The server recognised this file type: ', 'tvr-microthemer'), array()) . $_FILES['upload_micro']['type'].'</p>'
                         );
                     }
                 }
@@ -4847,8 +4891,8 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
 				if ($archive->extract(PCLZIP_OPT_PATH, $dir, PCLZIP_OPT_REMOVE_ALL_PATH,
 										PCLZIP_CB_PRE_EXTRACT, 'tvr_micro'.TVR_MICRO_VARIANT.'_getOnlyValid') == 0) {
                     $this->log(
-                        'Extract zip error',
-                        '<p>Error : ' . $archive->errorInfo(true).'</p>'
+                        wp_kses(__('Extract zip error', 'tvr-microthemer'), array()),
+                        '<p>' . wp_kses(__('Error : ', 'tvr-microthemer'), array()) . $archive->errorInfo(true).'</p>'
                     );
 				}
 			}
@@ -4868,15 +4912,16 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
 					if ($v_list == 0) {
                         $error = true;
                         $this->log(
-                            'Create zip error',
-                            '<p>Error : ' . $archive->errorInfo(true).'</p>'
+                            wp_kses(__('Create zip error', 'tvr-microthemer'), array()),
+                            '<p>' . wp_kses(__('Error : ', 'tvr-microthemer'), array()) . $archive->errorInfo(true).'</p>'
                         );
 					}
 					else {
                         $this->log(
-                            'Zip package created',
-                            '<p>Zip package successfully created.
-						<a href="'.$this->thispluginurl.'zip-exports/'.$dir_name.'.zip">Download zip file</a>
+                            wp_kses(__('Zip package created', 'tvr-microthemer'), array()),
+                            '<p>' . wp_kses(__('Zip package successfully created.', 'tvr-microthemer'), array()) .
+							'<a href="'.$this->thispluginurl.'zip-exports/'.$dir_name.'.zip">' .
+							wp_kses(__('Download zip file', 'tvr-microthemer'), array()) . '</a>
 						</p>',
                             'notice'
                         );
@@ -4885,9 +4930,11 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
 				else {
                     $error = true;
                     $this->log(
-                        'Zip store error',
-                        '<p>The directory ' . $this->root_rel($zip_store) . '
-                    is not writable. ' . $this->permissionshelp . '</p>'
+                        wp_kses(__('Zip store error', 'tvr-microthemer'), array()),
+						'<p>' . sprintf(
+							wp_kses(__('The directory %s is not writable. ', 'tvr-microthemer'), array()),
+							$this->root_rel($zip_store)
+						) . $this->permissionshelp . '</p>'
                     );
 				}
                 // verdict
@@ -4916,9 +4963,9 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
 						$abs_meta_path = $this->micro_root_dir . $this->preferences['theme_in_focus'].'/meta.txt';
 
                         $this->log(
-                            'Read meta.txt error',
-                            '<p>WordPress does not have permission to
-						read: ' . $this->root_rel($abs_meta_path) . '. '.$this->permissionshelp.'</p>'
+                            wp_kses(__('Read meta.txt error', 'tvr-microthemer'), array()),
+							'<p>' . wp_kses(__('WordPress does not have permission to read: ', 'tvr-microthemer'), array()) .
+							$this->root_rel($abs_meta_path) . '. '.$this->permissionshelp.'</p>'
                         );
 						return false;
 					}
@@ -4946,9 +4993,9 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
 					else {
 						$abs_readme_path = $this->micro_root_dir . $this->preferences['theme_in_focus'].'/readme.txt';
                         $this->log(
-                            'Read readme.txt error',
-                            '<p>WordPress does not have permission to
-						read: ' . $this->root_rel($abs_readme_path) . '. '.$this->permissionshelp.'</p>'
+                            wp_kses(__('Read readme.txt error', 'tvr-microthemer'), array()),
+							'<p>' . wp_kses(__('WordPress does not have permission to read: ', 'tvr-microthemer'), array()) .
+							$this->root_rel($abs_readme_path) . '. '.$this->permissionshelp.'</p>'
                         );
 						return false;
 					}
@@ -5024,8 +5071,8 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
 					foreach ($this->file_structure[$dir_name] as $dir => $file) {
 						if (!unlink($this->micro_root_dir . $dir_name.'/'.$file)) {
                             $this->log(
-                                'File delete error',
-                                '<p>Unable to delete: ' .
+                                wp_kses(__('File delete error', 'tvr-microthemer'), array()),
+                                '<p>' . wp_kses(__('Unable to delete: ', 'tvr-microthemer'), array()) .
                                 $this->root_rel($this->micro_root_dir .
                                     $dir_name.'/'.$file) . '</p>'
                             );
@@ -5036,24 +5083,30 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
 				if ($error != true) {
                     $this->log(
                         'Files successfully deleted',
-                        '<p>All files within ' .
-                        $this->readable_name($dir_name) . ' were successfully deleted.</p>',
+						'<p>' . sprintf(
+							wp_kses(__('All files within %s were successfully deleted.', 'tvr-microthemer'), array()),
+							$this->readable_name($dir_name)
+						) . '</p>',
                         'dev-notice'
                     );
 					// attempt to delete empty directory
 					if (!rmdir($this->micro_root_dir . $dir_name)) {
                         $this->log(
-                            'Delete directory error',
-                            '<p>The empty directory: ' .
-                            $this->readable_name($dir_name) . ' could not be deleted.</p>'
+                            wp_kses(__('Delete directory error', 'tvr-microthemer'), array()),
+							'<p>' . sprintf(
+								wp_kses(__('The empty directory: %s could not be deleted.', 'tvr-microthemer'), array()),
+								$this->readable_name($dir_name)
+							) . '</p>'
                         );
                         $error = true;
 					}
 					else {
                         $this->log(
-                            'Directory successfully deleted',
-                            '<p>' .
-                            $this->readable_name($dir_name) . ' was successfully deleted.</p>',
+                            wp_kses(__('Directory successfully deleted', 'tvr-microthemer'), array()),
+                            '<p>' . sprintf(
+								wp_kses(__('%s was successfully deleted.', 'tvr-microthemer'), array()),
+								$this->readable_name($dir_name)
+							) . '</p>',
                             'notice'
                         );
 
@@ -5103,26 +5156,30 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
                             $pref_array['theme_in_focus'] = $new_theme_in_focus;
                             if ($this->savePreferences($pref_array)) {
                                 $this->log(
-                                    'Design pack renamed',
-                                    '<p>The design pack directory was successfully renamed on the server.</p>',
+                                    wp_kses(__('Design pack renamed', 'tvr-microthemer'), array()),
+                                    '<p>' . wp_kses(__('The design pack directory was successfully renamed on the server.', 'tvr-microthemer'), array()) . '</p>',
                                     'notice'
                                 );
                             }
                         }
                         else {
                             $this->log(
-                                'Directory rename error',
-                                '<p>The directory, ' .
-                                $this->root_rel($orig_name) . ' could not be renamed for some reason. </p>'
+                                wp_kses(__('Directory rename error', 'tvr-microthemer'), array()),
+								'<p>' . sprintf(
+									wp_kses(__('The directory, %s could not be renamed for some reason.', 'tvr-microthemer'), array()),
+									$this->root_rel($orig_name)
+								) . '</p>'
                             );
                         }
                     }
                     else {
                         $this->log(
-                            'Directory rename error',
-                            '<p>WordPress does not have permission to rename the
-						directory ' . $this->root_rel($orig_name) . ' to match your new
-						theme name "'.htmlentities($this->readable_name($_POST['theme_meta']['Name'])).'". '.$this->permissionshelp.'.</p>'
+                            wp_kses(__('Directory rename error', 'tvr-microthemer'), array()),
+							'<p>' . sprintf(
+								wp_kses(__('WordPress does not have permission to rename the directory %1$s to match your new theme name "%2$s". ', 'tvr-microthemer'), array()),
+								$this->root_rel($orig_name),
+								htmlentities($this->readable_name($_POST['theme_meta']['Name']))
+								) . $this->permissionshelp.'.</p>'
                         );
                     }
                 }
@@ -5132,9 +5189,8 @@ corners and box-shadow in old versions of Internet Explorer.</p>',
 				if (!file_exists($meta_file)) {
 					if (!$write_file = fopen($meta_file, 'w')) {
                         $this->log(
-                            'Create meta.txt error',
-                            '<p>WordPress does not have permission to create: ' .
-                            $this->root_rel($meta_file) . '. '.$this->permissionshelp.'</p>'
+                            sprintf( wp_kses(__('Create %s error', 'tvr-microthemer'), array()), 'meta.txt'),
+                            '<p>' . sprintf(wp_kses(__('WordPress does not have permission to create: %s', 'tvr-microthemer'), array()), $this->root_rel($meta_file) . '. '.$this->permissionshelp ) . '</p>'
                         );
 					}
 					else {
@@ -5196,14 +5252,15 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
 					 // success message
                     $this->log(
                         'meta.txt '.$task,
-                        '<p>The meta.txt file for the design pack was '.$task.'</p>',
+                        '<p>' . sprintf( wp_kses(__('The %1$s file for the design pack was %2$s', 'tvr-microthemer'), array()), 'meta.txt', $task ) . '</p>',
                         'dev-notice'
                     );
 				}
 				else {
                     $this->log(
-                        'Write meta.txt error',
-                        '<p>WordPress does not have "write" permission for: ' . $this->root_rel($meta_file) . '. '.$this->permissionshelp.'</p>'
+                        sprintf( wp_kses(__('Write %s error', 'tvr-microthemer'), array()), 'meta.txt'),
+						'<p>' . wp_kses(__('WordPress does not have "write" permission for: ', 'tvr-microthemer'), array()) .
+						$this->root_rel($meta_file) . '. '.$this->permissionshelp.'</p>'
                     );
 				}
 
@@ -5215,9 +5272,11 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
 				if (!file_exists($readme_file)) {
 					if (!$write_file = fopen($readme_file, 'w')) {
                         $this->log(
-                            'Create readme.txt error',
-                            '<p>WordPress does not have permission to create: '
-                            . $this->root_rel($readme_file) . '. '.$this->permissionshelp.'</p>'
+                        	sprintf( wp_kses(__('Create %s error', 'tvr-microthemer'), array()), 'readme.txt'),
+							'<p>' . sprintf(
+							wp_kses(__('WordPress does not have permission to create: %s', 'tvr-microthemer'), array()),
+							$this->root_rel($readme_file) . '. '.$this->permissionshelp
+						) . '</p>'
                         );
 					}
 					else {
@@ -5227,8 +5286,6 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
 					// set post variable if undefined (might be defined if theme dir has been
 					// created manually and then user is submitting readme info for the first time)
 					if (!isset($_POST['tvr_theme_readme'])) {
-						// set $_POST['tvr_theme_readme'] with default text
-						//include $this->thisplugindir . 'includes/default-readme.inc.php';
                         $_POST['tvr_theme_readme'] = '';
 					}
 				}
@@ -5245,15 +5302,18 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
 					 // success message
                      $this->log(
                         'readme.txt '.$task,
-                        '<p>The readme.txt file for the design pack was '.$task.'</p>',
+						'<p>' . sprintf(
+							wp_kses(__('The %1$s file for the design pack was %2$s', 'tvr-microthemer'), array()),
+							'readme.txt', $task
+						) . '</p>',
                         'dev-notice'
                      );
 				}
 				else {
                     $this->log(
-                        'Write readme.txt error',
-                        '<p>WordPress does not have "write" permission
-					for: ' . $this->root_rel($readme_file) . '. '.$this->permissionshelp.'</p>'
+                        sprintf( wp_kses(__('Write %s error', 'tvr-microthemer'), array()), 'readme.txt'),
+						'<p>' . wp_kses(__('WordPress does not have "write" permission for: ', 'tvr-microthemer'), array()) .
+						$this->root_rel($readme_file) . '. '.$this->permissionshelp.'</p>'
                     );
 				}
 			}
@@ -5272,8 +5332,11 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
 							if (is_uploaded_file($_FILES['upload_file']['tmp_name'])
 							and copy($_FILES['upload_file']['tmp_name'], $dest_dir . $file)) {
                                 $this->log(
-                                    'File successfully uploaded',
-                                    '<p><b>'.htmlentities($file).'</b> was successfully uploaded.</p>',
+                                    wp_kses(__('File successfully uploaded', 'tvr-microthemer'), array()),
+									'<p>' . sprintf(
+										wp_kses(__('<b>%s</b> was successfully uploaded.', 'tvr-microthemer'), array( 'b' => array() )),
+										htmlentities($file)
+									) . '</p>',
                                     'notice'
                                 );
                                 // update the file_structure array
@@ -5300,9 +5363,11 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
                                         83,
                                         $thumbnail)) {
                                         $this->log(
-                                            'Screenshot thumbnail error',
-                                            '<p>Could not resize <b>'.$root_rel_thumb.'</b> to thumbnail proportions.
-                                            '.$img_full_path.' tumb: . '.$thumbnail.'</p>'
+                                            wp_kses(__('Screenshot thumbnail error', 'tvr-microthemer'), array()),
+											'<p>' . sprintf(
+												wp_kses(__('Could not resize <b>%s</b> to thumbnail proportions.', 'tvr-microthemer'), array( 'b' => array() )), $root_rel_thumb
+											) . $img_full_path .
+											wp_kses(__(' thumb: ', 'tvr-microthemer'), array()).$thumbnail.'</p>'
                                         );
                                     }
                                     else {
@@ -5310,9 +5375,11 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
                                         $file = basename($thumbnail);
                                         $this->file_structure[$this->preferences['theme_in_focus']][$file] = $file;
                                         $this->log(
-                                            'Screenshot thumbnail successfully created',
-                                            '<p><b>'.$root_rel_thumb.'</b>
-										    was successfully created.</p>',
+                                            wp_kses(__('Screenshot thumbnail successfully created', 'tvr-microthemer'), array()),
+											'<p>' . sprintf(
+												wp_kses(__('<b>%s</b> was successfully created.', 'tvr-microthemer'), array()),
+												$root_rel_thumb
+											) . '</p>',
                                             'notice'
                                         );
                                     }
@@ -5324,16 +5391,16 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
 						// it's not writable
 						else {
                             $this->log(
-                                'Write to directory error',
-                                '<p>WordPress does not have "Write" permission to the
-							directory: ' . $this->root_rel($dest_dir) . '. '.$this->permissionshelp.'.</p>'
+                                wp_kses(__('Write to directory error', 'tvr-microthemer'), array()),
+								'<p>'. wp_kses(__('WordPress does not have "Write" permission to the directory: ', 'tvr-microthemer'), array()) .
+								$this->root_rel($dest_dir) . '. '.$this->permissionshelp.'.</p>'
                             );
 						}
 					}
 					else {
                         $this->log(
-                            'Invalid file type',
-                            '<p>You have uploaded a file type that is not allowed. </p>'
+                            wp_kses(__('Invalid file type', 'tvr-microthemer'), array()),
+                            '<p>' . wp_kses(__('You have uploaded a file type that is not allowed.', 'tvr-microthemer'), array()) . '</p>'
                         );
 
 					}
@@ -5349,28 +5416,26 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
                 switch ($error) {
                     case 1:
                         $this->log(
-                            'File upload limit reached',
-                            '<p>The file you uploaded exceeded your "upload_max_filesize" limit. This is a PHP setting
-                            on your server.</p>'
+                            wp_kses(__('File upload limit reached', 'tvr-microthemer'), array()),
+                            '<p>' . wp_kses(__('The file you uploaded exceeded your "upload_max_filesize" limit. This is a PHP setting on your server.', 'tvr-microthemer'), array()) . '</p>'
                         );
                         break;
                     case 2:
                         $this->log(
-                            'File size too big',
-                            '<p>The file you uploaded exceeded your "max_file_size" limit. This is a PHP setting
-                            on your server.</p>'
+                            wp_kses(__('File size too big', 'tvr-microthemer'), array()),
+                            '<p>' . wp_kses(__('The file you uploaded exceeded your "max_file_size" limit. This is a PHP setting on your server.', 'tvr-microthemer'), array()) . '</p>'
                         );
                         break;
                     case 3:
                         $this->log(
-                            'Partial upload',
-                            '<p>The file you uploaded only partially uploaded.</p>'
+                            wp_kses(__('Partial upload', 'tvr-microthemer'), array()),
+                            '<p>' . wp_kses(__('The file you uploaded only partially uploaded.', 'tvr-microthemer'), array()) . '</p>'
                         );
                         break;
                     case 4:
                         $this->log(
-                            'No file uploaded',
-                            '<p>No file was detected for upload.</p>'
+                            wp_kses(__('No file uploaded', 'tvr-microthemer'), array()),
+                            '<p>' . wp_kses(__('No file was detected for upload.', 'tvr-microthemer'), array()) . '</p>'
                         );
                         break;
                 }
@@ -5393,8 +5458,8 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
 				//Check if GD extension is loaded
 				if (!extension_loaded('gd') && !extension_loaded('gd2')) {
                     $this->log(
-                        'GD not loaded',
-                        '<p>The PHP extension GD is not loaded.</p>'
+                        wp_kses(__('GD not loaded', 'tvr-microthemer'), array()),
+                        '<p>' . wp_kses(__('The PHP extension GD is not loaded.', 'tvr-microthemer'), array()) . '</p>'
                     );
 					return false;
 				}
@@ -5406,8 +5471,8 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
 					case 3: $im = imagecreatefrompng($img); break;
 					default:
                         $this->log(
-                            'File type error',
-                            '<p>Unsuported file type. Are you sure you uploaded an image?</p>'
+                            wp_kses(__('File type error', 'tvr-microthemer'), array()),
+                            '<p>' . wp_kses(__('Unsuported file type. Are you sure you uploaded an image?', 'tvr-microthemer'), array()) . '</p>'
                         );
 
 					return false; break;
@@ -5425,9 +5490,11 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
 				// abort if user tries to enlarge a pic
 				if (($max_width > $width) or ($max_height > $height)) {
                     $this->log(
-                        'Dimensions too big',
-                        "<p>The resize dimensions you specified ($max_width x $max_height) are bigger
-					than the original image ($width x $height). This is not allowed.</p>"
+                        wp_kses(__('Dimensions too big', 'tvr-microthemer'), array()),
+						'<p>' . sprintf(
+							wp_kses(__('The resize dimensions you specified (%1$s x %2$s) are bigger than the original image (%3$s x %4$s). This is not allowed.', 'tvr-microthemer'), array()),
+							$max_width, $max_height, $width, $height
+						) . '</p>'
                     );
 					return false;
 				}
@@ -5468,8 +5535,8 @@ Tags: '.strip_tags(stripslashes($_POST['theme_meta']['Tags'])).'
 					case 3: imagepng($newImg,$newfilename); break;
 					default:
                     $this->log(
-                        'Image resize failed',
-                        '<p>Your image could not be resized.</p>'
+                        wp_kses(__('Image resize failed', 'tvr-microthemer'), array()),
+                        '<p>' . wp_kses(__('Your image could not be resized.', 'tvr-microthemer'), array()) . '</p>'
                     );
                     return false;
                     break;
@@ -5619,7 +5686,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '3.7.3';
+			var $version = '3.7.5';
             var $microthemeruipage = 'tvr-microthemer.php';
 
 			/**
@@ -5861,7 +5928,16 @@ if (!is_admin()) {
                         wp_register_script('jquery', ($this->thispluginurl.'js/jq2.js'));
                     }*/
 
+					// load js strings for translation
+                    $js_i18n_overlay = array();
+					include_once $this->thisplugindir . 'includes/js-i18n.inc.php';
+
 					wp_enqueue_script( 'jquery' );
+
+                    wp_register_script( 'tvr_sprintf',
+                        $this->thispluginurl.'js/sprintf/sprintf.min.js?v='.$this->version, 'jquery' );
+                    wp_enqueue_script( 'tvr_sprintf');
+
                     if (!TVR_DEV_MODE) {
                         wp_register_script( 'tvr_mcth_overlay',
                             $this->thispluginurl.'js/min/jquery.overlay.js?v='.$this->version, array('jquery') );
@@ -5869,6 +5945,7 @@ if (!is_admin()) {
                         wp_register_script( 'tvr_mcth_overlay',
                             $this->thispluginurl.'js/jquery.overlay.js?v='.$this->version, array('jquery') );
                     }
+					wp_localize_script( 'tvr_mcth_overlay', 'js_i18n_overlay', $js_i18n_overlay);
 					wp_enqueue_script( 'tvr_mcth_overlay' );
 				}
 			}

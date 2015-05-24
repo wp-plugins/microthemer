@@ -53,8 +53,6 @@ if ($legacy_adjusted['value']){
     $important_val = $legacy_adjusted['imp'];
 }
 
-//include $this->thisplugindir . 'includes/legacy-compatibility.inc.php';
-
 /***
  * get variables from the config file
  */
@@ -115,7 +113,7 @@ if (!empty($this->propertyoptions[$property_group_name][$property]['icon'])){
 // construct important toggle
 // check status of !important - only create dom element if positive result (optimisation purposes)
 if ($important_val == 1) {
-    $important_toggle.= '<input class="important-tracker" type="hidden"
+    $important_toggle = '<input class="important-tracker" type="hidden"
         name="tvr_mcth[non_section][important]'.$imp_key.'['.$section_name.']['.$css_selector.']['.$property_group_name.']['.$property.']" value="1" />';
     $rel = 'on';
     $class = 'active';
@@ -165,8 +163,8 @@ if ($property == 'google_font') {
 // check if it's a new sub group
 if (!empty($this->propertyoptions[$property_group_name][$property]['sub_label'])){
     $html.= '
-    <div class="field-wrap sub-label">'.
-        $this->propertyoptions[$property_group_name][$property]['sub_label'].'
+    <div class="field-wrap sub-label sub-label-'.$property.'">'.
+        $this->propertyoptions[$property_group_name][$property]['sub_label'].':
     </div>';
 }
 

@@ -3411,7 +3411,6 @@ The editing options
   #tvr-options .property-fields {
     position: relative;
     padding-left: 50px;
-    padding-left: 135px;
     /*--------------------------------------------------------------
     Computed Values
     --------------------------------------------------------------*/ }
@@ -3421,39 +3420,22 @@ The editing options
       clear: both; }
     #tvr-options .property-fields.show {
       display: block; }
-    #tvr-options .property-fields.property-font {
-      padding-left: 84px; }
-    #tvr-options .property-fields.property-text, #tvr-options .property-fields.property-list {
-      padding-left: 80px; }
-    #tvr-options .property-fields.property-shadow {
-      padding-left: 145px; }
-      #tvr-options .property-fields.property-shadow .sub-label {
-        margin: 0 5px 0 30px; }
-    #tvr-options .property-fields.property-background {
-      padding-left: 138px; }
-    #tvr-options .property-fields.property-dimensions {
-      padding-left: 95px; }
-      #tvr-options .property-fields.property-dimensions .sub-label {
-        margin: 0 0 0 30px; }
-    #tvr-options .property-fields.property-padding_margin {
-      padding-left: 106px; }
-      #tvr-options .property-fields.property-padding_margin .sub-label {
-        margin: 0 0 0 30px; }
-    #tvr-options .property-fields.property-border {
-      padding-left: 145px; }
-      #tvr-options .property-fields.property-border .sub-label {
-        min-width: 101px;
-        margin: 0 0 0 30px; }
-      #tvr-options .property-fields.property-border input {
-        width: 85px; }
-      #tvr-options .property-fields.property-border .combobox {
-        width: 60px; }
-    #tvr-options .property-fields.property-behaviour {
-      padding-left: 123px; }
-    #tvr-options .property-fields.property-position {
-      padding-left: 112px; }
-    #tvr-options .property-fields.property-gradient {
-      padding-left: 117px; }
+    #tvr-options .property-fields .sub-label {
+      font-weight: bold;
+      text-transform: uppercase;
+      line-height: 40px;
+      margin: 0 0 0 15px; }
+      #tvr-options .property-fields .sub-label:first-child {
+        margin: 0; }
+    #tvr-options .property-fields.property-border .sub-label {
+      min-width: 101px;
+      margin: 0; }
+    #tvr-options .property-fields.property-border .sub-label-border_top_width, #tvr-options .property-fields.property-border .sub-label-border_top_left_radius {
+      margin-left: 15px; }
+    #tvr-options .property-fields.property-border input {
+      width: 86px; }
+    #tvr-options .property-fields.property-border .combobox {
+      width: 60px; }
     #tvr-options .property-fields .field-wrap {
       display: inline-block;
       position: relative;
@@ -3483,18 +3465,6 @@ The editing options
         margin-left: 12px; }
       #tvr-options .property-fields .field-wrap.icon-size-5 {
         margin-left: 16px; }
-    #tvr-options .property-fields .group-label {
-      text-transform: uppercase;
-      color: #2f3846;
-      font-weight: bold;
-      line-height: 40px;
-      position: absolute;
-      left: 50px; }
-    #tvr-options .property-fields .sub-label {
-      font-weight: bold;
-      text-transform: uppercase;
-      line-height: 40px;
-      margin: 0 5px 0 15px; }
     #tvr-options .property-fields label {
       float: left;
       display: inline-block; }

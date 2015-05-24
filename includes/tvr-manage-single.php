@@ -88,19 +88,19 @@ $json_config_file = $this->micro_root_dir . $this->preferences['theme_in_focus']
                 echo $h2;
                 if ($meta_info['Description']){
                     ?>
-                    <div class="heading">Description</div>
+					<div class="heading"><?php printf(wp_kses(__('Description', 'tvr-microthemer'), array())); ?></div>
                     <p><?php echo $meta_info['Description']; ?></p>
                     <?php
                 } else {
                     ?>
-                    <div class="heading">No Description Available</div>
-                    <p>Optionally enter a description using the "Info" form below.</p>
+					<div class="heading"><?php printf(wp_kses(__('No Description Available', 'tvr-microthemer'), array())); ?></div>
+					<p><?php printf(wp_kses(__('Optionally enter a description using the "Info" form below.', 'tvr-microthemer'), array())); ?></p>
                     <?php
                 }
 
                 if (count($meta_info['Tags']) > 0) {
                     ?>
-                    <div class="heading">Tags</div>
+					<div class="heading"><?php printf(wp_kses(__('Tags', 'tvr-microthemer'), array())); ?></div>
                     <p class="display-micro-tags"><?php echo implode(', ', $meta_info['Tags']); ?></p>
                     <?php
                 }
@@ -110,12 +110,12 @@ $json_config_file = $this->micro_root_dir . $this->preferences['theme_in_focus']
                     <?php
                     // activate / deactivate
                     if ($this->preferences['active_theme'] == $this->preferences['theme_in_focus']) {
-                        $act_text = 'Deactivate';
+                        $act_text = __('Deactivate', 'tvr-microthemer');
                         $act_param = 'tvr_deactivate_micro_theme';
                         $nonce = 'tvr_deactivate_micro_theme';
                     }
                     else {
-                        $act_text = 'Activate';
+                        $act_text = __('Activate', 'tvr-microthemer');
                         $act_param = 'tvr_activate_micro_theme';
                         $nonce = 'tvr_activate_micro_theme';
                     }
@@ -163,56 +163,62 @@ $json_config_file = $this->micro_root_dir . $this->preferences['theme_in_focus']
         <div id="single-content-areas">
             <div id='edit-info' class='manage-content-wrap hidden show'>
                 <div class="explain">
-                    <div class="heading">About This Feature</div>
-                    <p>If you plan to make your design pack available for sale or free download on themeover.com, please fill out
-                        all of the form fields on the right. Hover your mouse over the field labels to view instructions
-                        for each field. You will also need to upload a thumbnail image on the
-                        <span class="pack-action link" rel="attachments">Attachments tab</span> and (optionally) some
-                        instructions for the end user on the
-                        <span class="pack-action link" rel="instructions">Instructions tab</span>
+					<div class="heading"><?php printf(wp_kses(__('About This Feature', 'tvr-microthemer'), array())); ?></div>
+					<p>
+                        <?php
+                        printf(
+                            wp_kses(__('If you plan to make your design pack available for sale or free download on themeover.com, please fill out all of the form fields on the right. Hover your mouse over the field labels to view instructions for each field. You will also need to upload a thumbnail image on the %1$s and (optionally) some instructions for the end user on the %2$s', 'tvr-microthemer'), array()),
+                            '<span class="pack-action link" rel="attachments">'
+                             . wp_kses(__('Attachments tab', 'tvr-microthemer'), array()) . '</span>',
+                            '<span class="pack-action link" rel="instructions">'
+                            . wp_kses(__('Instructions tab', 'tvr-microthemer'), array()) . '</span>'
+					    ); ?>
                     </p>
-                    <p>The information you enter will update the meta.txt files in your design pack. Themeover will make use
-                    of this information if you submit your design pack for inclusion in our marketplace.</p>
-                    <p>It's not necessary to fill out these fields if don't wish to share your design pack.
-                        But you may wish to upload a thumbnail image to replace the "No Screenshot" placeholder on the
-                        <span class="pack-action link" rel="attachments">Attachments tab</span>.</p>
+					<p><?php printf(
+						wp_kses(__('The information you enter will update the meta.txt files in your design pack. Themeover willi make use of this information if you submit your design pack for inclusion in our marketplace.', 'tvr-microthemer'), array())
+					); ?></p>
+					<p><?php printf(
+                            wp_kses(__('It\'s not necessary to fill out these fields if don\'t wish to share your design pack. But you may wish to upload a thumbnail image to replace the "No Screenshot" placeholder on the %s.', 'tvr-microthemer'), array()),
+                        '<span class="pack-action link" rel="attachments">' .
+                        wp_kses(__('Attachments tab', 'tvr-microthemer'), array()) . '</span>'
+					); ?></p>
                 </div>
-                <div class="heading">Design Pack Meta Info</div>
+				<div class="heading"><?php printf(wp_kses(__('Design Pack Meta Info', 'tvr-microthemer'), array())); ?></div>
                 <form name='edit_meta_form' id="edit-meta-form" method="post" class='float-form' autocomplete="off"
                       action="admin.php?page=<?php echo $this->managesinglepage;?>" >
                     <?php wp_nonce_field('tvr_edit_meta_submit'); ?>
                     <p class="combobox-wrap input-wrap">
-                        <label>Type of Design Pack: </label>
+						<label><?php printf(wp_kses(__('Type of Design Pack: ', 'tvr-microthemer'), array())); ?></label>
                         <input type="text" class="combobox" id="type_of_pack" name="theme_meta[PackType]" rel="packTypes"
                                value="<?php echo $meta_info['PackType'];?>" />
                         <span class="combo-arrow"></span>
                     </p>
-                    <p><label>Design Pack Name: </label>
+					<p><label><?php printf(wp_kses(__('Design Pack Name: ', 'tvr-microthemer'), array())); ?></label>
                         <input type='text' autocomplete="off" id='micro-name' name='theme_meta[Name]' value='<?php echo $meta_info['Name'];?>'  maxlength='40' />
                         <input type='hidden' id='prev-micro-name' name='prev_micro_name' value='<?php echo $meta_info['Name'];?>' />
                     </p>
 
-                    <p><label>&nbsp;</label><span class='tipbit'>allowed characters: a-z, A-Z, 0-9, -, _</span></p>
-                    <p><label>Version: </label>
+					<p><label>&nbsp;</label><span class='tipbit'><?php printf(wp_kses(__('allowed characters: a-z, A-Z, 0-9, -, _', 'tvr-microthemer'), array())); ?></span></p>
+					<p><label><?php printf(wp_kses(__('Version: ', 'tvr-microthemer'), array())); ?></label>
                         <input type='text' autocomplete="off" name='theme_meta[Version]' value='<?php echo $meta_info['Version'];?>' />
                     </p>
                     <!--<p><label>Design Pack URI: </label>
                         <input type='text' autocomplete="off" name='theme_meta[URI]' value='<?php echo $meta_info['URI'];?>' />
                     </p>-->
-                    <p><label>Description: </label>
+					<p><label><?php printf(wp_kses(__('Description: ', 'tvr-microthemer'), array())); ?></label>
                         <textarea name='theme_meta[Description]' autocomplete="off"><?php echo $meta_info['Description'];?></textarea>
                     </p>
-                    <p><label>Author: </label>
+					<p><label><?php printf(wp_kses(__('Author: ', 'tvr-microthemer'), array())); ?></label>
                         <input type='text' autocomplete="off" name='theme_meta[Author]' value='<?php echo strip_tags($meta_info['Author']);?>' />
                     </p>
-                    <p><label>Author URI: </label>
+					<p><label><?php printf(wp_kses(__('Author URI: ', 'tvr-microthemer'), array())); ?></label>
                         <input type='text' autocomplete="off" name='theme_meta[AuthorURI]' value='<?php echo $meta_info['AuthorURI'];?>' />
                     </p>
-                    <p><label>Target Theme or Plugin: </label>
+					<p><label><?php printf(wp_kses(__('Target Theme or Plugin: ', 'tvr-microthemer'), array())); ?></label>
                         <input type='text' name='theme_meta[Template]' value='<?php echo $meta_info['Template'];?>' />
                     </p>
 
-                    <p><label>Tags: </label>
+					<p><label><?php printf(wp_kses(__('Tags: ', 'tvr-microthemer'), array())); ?></label>
                         <textarea name='theme_meta[Tags]'><?php
                             // this will only be set if the meta file exits (it won't exist if the user created the theme dir manually)
                             if (count($meta_info['Tags']) > 0) {
@@ -229,21 +235,18 @@ $json_config_file = $this->micro_root_dir . $this->preferences['theme_in_focus']
 
             <div id='edit-attachments' class='manage-content-wrap hidden'>
                 <div class="explain">
-                    <div class="heading">About This Feature</div>
-                    <p>Upload a screenshot image file 896px wide and 513px tall called "screenshot.gif/jpg/png"
-                        to give your design pack a nice thumbnail. It's important to upload a full-size
-                        thumbnail in the dimensions 896 x 513 or larger. Microthemer will crop your image to 896 x 513
-                        if you upload a larger image. It will also
-                        automatically create a smaller version called screenshot-small.gif/jpg/png.</p>
-                    <p><b>Important Note:</b> As of version 3 Microthemer now uses the WordPress media manager for
-                        storing background images. It's  therefore not necessary or advised to upload background images here.
-                        It's much better to upload them from the Microthemer UI page, when you select a background
-                        image for inclusion in your design.</p>
-                    <p>Any images your design pack links to will be included in your design pack if you choose to
-                        download it as a zip file. When you install a design pack zip file, all the images will be copied to
-                        the WordPress media library. Image file paths will be updated accordingly.</p>
+                    <div class="heading"><?php
+                        printf(wp_kses(__('About This Feature', 'tvr-microthemer'), array())); ?></div>
+					<p><?php printf(
+						wp_kses(__('Upload a screenshot image file 896px wide and 513px tall called "screenshot.gif/jpg/png" to give your design pack a nice thumbnail. It\'s important to upload a full-size thumbnail in the dimensions 896 x 513 or larger. Microthemer will crop your image to 896 x 513 if you upload a larger image. It will also automatically create a smaller version called screenshot-small.gif/jpg/png.',
+						'tvr-microthemer'), array())
+					); ?></p>
+					<p><?php printf(
+						wp_kses(__('<b>Important Note:</b> As of version 3 Microthemer now uses the WordPress media manager for storing background images. It\'s  therefore not necessary or advised to upload background images here. It\'s much better to upload them from the Microthemer UI page, when you select a background image for inclusion in your design.', 'tvr-microthemer'), array( 'b' => array() ))
+						); ?></p>
+					<p><?php printf(wp_kses(__('Any images your design pack links to will be included in your design pack if you choose to download it as a zip file. When you install a design pack zip file, all the images will be copied to the WordPress media library. Image file paths will be updated accordingly.', 'tvr-microthemer'), array())); ?></p>
                 </div>
-                <div class="heading">Design Pack Files</div>
+				<div class="heading"><?php printf(wp_kses(__('Design Pack Files', 'tvr-microthemer'), array())); ?></div>
                 <table id='micro-files-table' cellspacing="0">
                     <thead>
                     <tr>
@@ -283,7 +286,6 @@ $json_config_file = $this->micro_root_dir . $this->preferences['theme_in_focus']
                                 if (!file_exists(ABSPATH . $file_url)){
                                     continue;
                                 }
-                                echo ABSPATH . $file_url;
                                 ++$i;
                                 $file = basename($file_url);
                                 $combined_files[$i]['location'] = 'library';
@@ -305,7 +307,9 @@ $json_config_file = $this->micro_root_dir . $this->preferences['theme_in_focus']
                                 $library = true;
                                 ?>
                                 <tr>
-                                    <td scope="col" colspan="3" class="library-heading heading">Media library images this design pack incorporates</td>
+									<td scope="col" colspan="3" class="library-heading heading"><?php
+										printf(wp_kses(__('Media library images this design pack incorporates', 'tvr-microthemer'), array()));
+									?></td>
                                </tr>
                                 <?php
                             }
@@ -342,7 +346,7 @@ $json_config_file = $this->micro_root_dir . $this->preferences['theme_in_focus']
                 </table>
 
                 <div class='file-types'>
-                    <p>File types you are allowed to upload:</p>
+					<p><?php printf(wp_kses(__('File types you are allowed to upload:', 'tvr-microthemer'), array())); ?></p>
                     <?php
                     $acceptable = $this->get_acceptable();
                     foreach ($acceptable as $ext) {
@@ -354,14 +358,15 @@ $json_config_file = $this->micro_root_dir . $this->preferences['theme_in_focus']
 
             <div id='edit-instructions' class='manage-content-wrap hidden'>
                 <div class="explain">
-                    <div class="heading">About This Feature</div>
-                    <p>If you're going to submit your design pack to Themeover, adding some instructions to help end users
-                    customize your design pack is a really nice touch. This could include pointing out potential pitfalls
-                    or recommending best practices. The instructions you add will feature on Themeover's listing page.</p>
-                    <p>Some design packs may not benefit much from additional instructions of course.
-                        In which case feel free to leave this blank.</p>
+					<div class="heading"><?php printf(wp_kses(__('About This Feature', 'tvr-microthemer'), array())); ?></div>
+					<p><?php printf(wp_kses(__('If you\'re going to submit your design pack to Themeover, adding some instructions to help end users customize your design pack is a really nice touch. This could include pointing out potential pitfalls or recommending best practices. The instructions you add will feature on Themeover\'s listing page.',
+							'tvr-microthemer'), array()));
+					?></p>
+					<p><?php printf(
+						wp_kses(__('Some design packs may not benefit much from additional instructions of course. In which case feel free to leave this blank.', 'tvr-microthemer'), array())
+					); ?></p>
                 </div>
-                <div class="heading">Instructions For The End User</div>
+				<div class="heading"><?php printf(wp_kses(__('Instructions For The End User', 'tvr-microthemer'), array())); ?></div>
 
                 <form name='edit_readme_form' id="edit-readme-form" method="post" class='float-form' autocomplete="off"
                       action="admin.php?page=<?php echo $this->managesinglepage;?>" >
@@ -379,31 +384,32 @@ $json_config_file = $this->micro_root_dir . $this->preferences['theme_in_focus']
 		?>
 
         <!-- View file dialog -->
-        <?php echo $this->start_dialog('view-pack-file', 'Design Pack File', 'sidebar'); ?>
+        <?php echo $this->start_dialog('view-pack-file', wp_kses(__('Design Pack File', 'tvr-microthemer'), array()), 'sidebar'); ?>
         <div class="explain">
-            <div class="heading">About this file</div>
+			<div class="heading"><?php printf(wp_kses(__('About this file', 'tvr-microthemer'), array())); ?></div>
             <div class="explain-config">
-                <p>This is the configuration file which contains all of the Microthemer settings for this design pack.
-                   It is created automatically when you export your work. When you import a design pack into the Microthemer                    UI the style settings, media queries, and any custom CSS code are loaded from this file.</p>
-                <p>You're not likely to want to manually edit this file. But occasionally programmers download it,
-                    do some find and replace adjustments, and then re-upload it using the "Upload File" button
-                    at the top of the design pack files table.</p>
+				<p><?php printf(
+					wp_kses(__('This is the configuration file which contains all of the Microthemer settings for this design pack. It is created automatically when you export your work. When you import a design pack into the Microthemer UI the style settings, media queries, and any custom CSS code are loaded from this file.', 'tvr-microthemer'), array())
+				); ?></p>
+				<p><?php printf(
+					wp_kses(__('You\'re not likely to want to manually edit this file. But occasionally programmers download it, do some find and replace adjustments, and then re-upload it using the "Upload File" button at the top of the design pack files table.', 'tvr-microthemer'), array())
+				); ?></p>
             </div>
             <div class="explain-meta">
-                <p>This is the information file which contains meta information about design pack.
-                    Themeover uses the information in this file to list a user-submitted design pack on themeover.com.
-                You can edit this file using the "Design Pack Meta Info" form.</p>
+				<p><?php printf(
+					wp_kses(__('This is the information file which contains meta information about design pack. Themeover uses the information in this file to list a user-submitted design pack on themeover.com. You can edit this file using the "Design Pack Meta Info" form.', 'tvr-microthemer'), array())
+				); ?></p>
             </div>
             <div class="explain-instructions">
-                <p>This is the readme file which contains instructions for the end user of a design pack - if the author
-                    decided that instructions would be beneficial.
-                    You can edit this file using the "Instructions" form.</p>
+				<p><?php printf(
+					wp_kses(__('This is the readme file which contains instructions for the end user of a design pack - if the author decided that instructions would be beneficial. You can edit this file using the "Instructions" form.', 'tvr-microthemer'), array())
+				); ?></p>
             </div>
         </div>
         <div class="content-main">
             <textarea id="pack-file-content"></textarea>
         </div>
-        <?php echo $this->end_dialog('Close', 'span', 'close-dialog'); ?>
+        <?php echo $this->end_dialog(wp_kses(_x('Close', 'verb', 'tvr-microthemer'), array()), 'span', 'close-dialog'); ?>
 
    </div><!-- end tvr-manage -->
 
