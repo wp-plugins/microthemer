@@ -1,5 +1,10 @@
 CHANGELOG
 
+3.7.6 (May 27, 2015)
+
+# Bugs fixed
+* Labels for Behaviour, Position, and Gradient went missing on the property fields row.
+
 3.7.5 (May 24, 2015)
 
 # Enhancements

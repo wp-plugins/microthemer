@@ -100,6 +100,9 @@ View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-cha
 
 == Upgrade Notice ==
 
+= 3.7.6 (May 27, 2015) =
+* Labels for Behaviour, Position, and Gradient went missing on the property fields row.
+
 = 3.7.5 (May 24, 2015) =
 * Microthemer is now translation ready following JoseLuís' sterling work.
 * Added more thorough directory path analysis for advanced WordPress configurations.

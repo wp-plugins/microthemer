@@ -13,7 +13,7 @@ $propertyOptions['font']['font_family'] = array(
     'type' => 'combobox',
     'input-class' => 'tvr-font-select size-big',
     'select_options' => array(
-		'',
+        '',
         'Google Font...',
         'Arial',
         '"Book Antiqua"',
@@ -114,7 +114,7 @@ $propertyOptions['font']['font_weight'] = array(
     'input-class' => 'size-2',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         "normal",
         "bold",
         "100",
@@ -150,7 +150,7 @@ $propertyOptions['font']['font_style'] = array(
     'field-class' => 'icon-size-0a',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         "normal",
         "italic",
         "oblique"),
@@ -170,7 +170,7 @@ $propertyOptions['font']['text_decoration'] = array(
     'input-class' => 'size-5',
     'type' => 'combobox',
     'select_options' => array(
-		"",
+        "",
         "underline",
         "overline",
         "line-through",
@@ -192,7 +192,7 @@ $propertyOptions['font']['font_variant'] = array(
     'input-class' => 'size-4',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         "normal",
         "small-caps"),
     'icon' => '29',
@@ -213,7 +213,7 @@ $propertyOptions['text']['text_align'] = array(
     'input-class' => 'size-1',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         "left",
         "right",
         "center",
@@ -247,7 +247,7 @@ $propertyOptions['text']['text_transform'] = array(
     'input-class' => 'size-4',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         "capitalize",
         "uppercase",
         "lowercase",
@@ -294,7 +294,7 @@ $propertyOptions['text']['word_wrap'] = array(
     'input-class' => 'size-4a',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         "normal",
         "break-word"),
     'icon' => '41, 14',
@@ -306,7 +306,7 @@ $propertyOptions['text']['white_space'] = array(
     'input-class' => 'size-3a',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         "normal",
         "nowrap",
         "pre",
@@ -321,7 +321,7 @@ $propertyOptions['text']['direction'] = array(
     'input-class' => '',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         "ltr",
         "rtl"),
     'icon' => '42, 14',
@@ -338,7 +338,7 @@ $propertyOptions['list']['list_style_type'] = array(
     'input-class' => 'size-big',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         'circle',
         'disc',
         'square',
@@ -397,7 +397,7 @@ $propertyOptions['list']['list_style_position'] = array(
     'input-class' => 'size-2',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         "inside",
         "outside"
     ),
@@ -534,7 +534,7 @@ $propertyOptions['background']['background_image'] = array(
     'field-class' => 'last span-3',
     'input-class' => 'bg-image-select size-very-big strictly-dropdown',
     'select_options' => array(
-		'',
+        '',
         'none'
     ),
     'icon' => '39, 14',
@@ -550,7 +550,7 @@ $propertyOptions['background']['background_position'] = array(
     'type' => 'combobox',
     'input-class' => 'bg-position-select size-6',
     'select_options' => array(
-		'',
+        '',
         'left top',
         'left center',
         'left bottom',
@@ -583,7 +583,7 @@ $propertyOptions['background']['background_repeat'] = array(
     'input-class' => 'size-3a',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         'repeat',
         'repeat-x',
         'repeat-y',
@@ -603,7 +603,7 @@ $propertyOptions['background']['background_attachment'] = array(
     'label' => __('Background Attachment', 'tvr-microthemer'),
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         'scroll',
         'fixed'
     ), 'icon' => '2, 14',
@@ -621,7 +621,7 @@ $propertyOptions['background']['background_size'] = array(
     'type' => 'combobox',
     'input-class' => 'size-3a',
     'select_options' => array(
-		'',
+        '',
         'auto',
         'cover',
         'contain'
@@ -636,7 +636,7 @@ $propertyOptions['background']['background_clip'] = array(
     'type' => 'combobox',
     'input-class' => 'size-5',
     'select_options' => array(
-		'',
+        '',
         'border-box',
         'padding-box',
         'content-box'
@@ -744,7 +744,7 @@ $propertyOptions['dimensions']['box_sizing'] = array(
     'input-class' => 'size-5',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         'content-box',
         'border-box'
     ),
@@ -1135,10 +1135,11 @@ $propertyOptions['behaviour']['display'] = array(
     'short_label' => _x('Display', 'noun', 'tvr-microthemer'),
     'label' => _x('Display', 'noun', 'tvr-microthemer'),
     'pg_label' => __('Behaviour', 'tvr-microthemer'),
+    'sub_label' => __('Behaviour', 'tvr-microthemer'),
     'input-class' => 'size-4',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         'block',
         'inline',
         'inline-block',
@@ -1161,7 +1162,7 @@ $propertyOptions['behaviour']['overflow'] = array(
     'input-class' => 'size-2',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         'visible',
         'scroll',
         'auto',
@@ -1184,7 +1185,7 @@ $propertyOptions['behaviour']['overflow_x'] = array(
     'input-class' => 'size-2',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         'visible',
         'scroll',
         'auto',
@@ -1200,7 +1201,7 @@ $propertyOptions['behaviour']['overflow_y'] = array(
     'input-class' => 'size-2',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         'visible',
         'scroll',
         'auto',
@@ -1215,7 +1216,7 @@ $propertyOptions['behaviour']['visibility'] = array(
     'type' => 'combobox',
     'input-class' => 'size-3',
     'select_options' => array(
-		'',
+        '',
         'visible',
         'hidden',
         'collapse'
@@ -1236,7 +1237,7 @@ $propertyOptions['behaviour']['cursor'] = array(
     'input-class' => 'size-3',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         'auto',
         'crosshair',
         'default',
@@ -1295,10 +1296,11 @@ $propertyOptions['position']['position'] = array(
     'short_label' => __('Position', 'tvr-microthemer'),
     'label' => __('Position', 'tvr-microthemer'),
     'pg_label' => __('Position', 'tvr-microthemer'),
+    'sub_label' => __('Position', 'tvr-microthemer'),
     'input-class' => 'size-3',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         'absolute',
         'relative',
         'fixed',
@@ -1383,7 +1385,7 @@ $propertyOptions['position']['float'] = array(
     'input-class' => 'size-0',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         'left',
         'right',
         'none'
@@ -1403,7 +1405,7 @@ $propertyOptions['position']['clear'] = array(
     'input-class' => 'size-0',
     'type' => 'combobox',
     'select_options' => array(
-		'',
+        '',
         'left',
         'right',
         'both',
@@ -1423,6 +1425,7 @@ $propertyOptions['gradient']['gradient_angle'] = array(
     'short_label' => __('Angle', 'tvr-microthemer'),
     'label' => __('Gradient Angle', 'tvr-microthemer'),
     'pg_label' => __('Gradient', 'tvr-microthemer'),
+    'sub_label' => __('Gradient', 'tvr-microthemer'),
     'field-class' => 'last',
     'input-class' => 'size-big',
     'type' => 'combobox',
@@ -1570,7 +1573,7 @@ $legacy_groups['padding_margin'] = array(
         'padding_right' => 1,
         'padding_bottom' => 1,
         'padding_left' => 1
-     ),
+    ),
     'margin' => array(
         'margin_top' => 1,
         'margin_right' => 1,
