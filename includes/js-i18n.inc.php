@@ -10,7 +10,7 @@ $js_i18n_main = array(
 	'enter_name_selector' => __('Please enter a value for the selector name', 'tvr-microthemer'),
 	'enter_name_misc' => __('Please enter a value for the %s name', 'tvr-microthemer'),
 	'load_after_moving' => __('load selector after moving', 'tvr-microthemer'),
-	'trial_notice' => __('Please validate your purchase to unlock the full program! \nWith the free trial you are limited to editing or creating 9 Selectors.', 'tvr-microthemer'),
+	'trial_notice' => __('Please validate your purchase to unlock the full program! With the free trial you are limited to editing or creating 9 Selectors.', 'tvr-microthemer'),
 	'complete_media_fields' => __('Please complete all media query fields or delete empty ones.', 'tvr-microthemer'),
 	'load_style_opt' => __('Loading Style Options...', 'tvr-microthemer'),
 	'load_style_opt_failed' => __('Options failed to load', 'tvr-microthemer'),
@@ -58,7 +58,7 @@ $js_i18n_main = array(
 	'highest_specificity' => __(' (highest specificity)', 'tvr-microthemer'),
 	'wizard_folder' => __('Enter new or select a folder...', 'tvr-microthemer'),
 	'wizard_folder_alert' => __('Please select an existing folder or enter a new folder name', 'tvr-microthemer'),
-	'load_wp' => __('Loading WordPress Site...', 'tvr-microthemer'),
+	'load_wp' => __('Loading WordPress Site...', 'tvr-microthemer')
 );
 
 

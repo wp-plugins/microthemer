@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Microthemer\n"
 "Report-Msgid-Bugs-To: sales@themeover.com\n"
-"POT-Creation-Date: 2015-05-24 14:28+0800\n"
+"POT-Creation-Date: 2015-06-11 22:15+0200\n"
 "PO-Revision-Date: 2015-05-13 16:12+0200\n"
 "Last-Translator: joseluis <joseluis@andamira.net>\n"
 "Language-Team: Themeover <support@themeover.com>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Virtaal 0.7.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -253,7 +253,7 @@ msgstr ""
 msgid " (highest specificity)"
 msgstr ""
 
-#: ../includes/js-i18n.inc.php:59 ../includes/tvr-microthemer-ui.php:386
+#: ../includes/js-i18n.inc.php:59 ../includes/tvr-microthemer-ui.php:456
 msgid "Enter new or select a folder..."
 msgstr ""
 
@@ -463,7 +463,7 @@ msgid "Color"
 msgstr ""
 
 #: ../includes/property-options.inc.php:86
-#: ../includes/property-options.inc.php:619 ../tvr-microthemer.php:986
+#: ../includes/property-options.inc.php:619 ../tvr-microthemer.php:1181
 msgid "Size"
 msgstr ""
 
@@ -586,9 +586,10 @@ msgstr ""
 
 #: ../includes/property-options.inc.php:394
 #: ../includes/property-options.inc.php:548
+#: ../includes/property-options.inc.php:1292
+#: ../includes/property-options.inc.php:1293
+#: ../includes/property-options.inc.php:1294
 #: ../includes/property-options.inc.php:1295
-#: ../includes/property-options.inc.php:1296
-#: ../includes/property-options.inc.php:1297
 msgid "Position"
 msgstr ""
 
@@ -750,9 +751,9 @@ msgstr ""
 #: ../includes/property-options.inc.php:758
 #: ../includes/property-options.inc.php:813
 #: ../includes/property-options.inc.php:869
-#: ../includes/property-options.inc.php:924
-#: ../includes/property-options.inc.php:988
-#: ../includes/property-options.inc.php:1318
+#: ../includes/property-options.inc.php:920
+#: ../includes/property-options.inc.php:984
+#: ../includes/property-options.inc.php:1316
 msgid "Top"
 msgstr ""
 
@@ -770,10 +771,10 @@ msgstr ""
 
 #: ../includes/property-options.inc.php:773
 #: ../includes/property-options.inc.php:828
-#: ../includes/property-options.inc.php:884
-#: ../includes/property-options.inc.php:938
-#: ../includes/property-options.inc.php:1011
-#: ../includes/property-options.inc.php:1357
+#: ../includes/property-options.inc.php:883
+#: ../includes/property-options.inc.php:934
+#: ../includes/property-options.inc.php:1007
+#: ../includes/property-options.inc.php:1355
 msgid "Right"
 msgstr ""
 
@@ -783,10 +784,10 @@ msgstr ""
 
 #: ../includes/property-options.inc.php:786
 #: ../includes/property-options.inc.php:841
-#: ../includes/property-options.inc.php:897
-#: ../includes/property-options.inc.php:950
-#: ../includes/property-options.inc.php:1033
-#: ../includes/property-options.inc.php:1330
+#: ../includes/property-options.inc.php:895
+#: ../includes/property-options.inc.php:946
+#: ../includes/property-options.inc.php:1029
+#: ../includes/property-options.inc.php:1328
 msgid "Bottom"
 msgstr ""
 
@@ -796,10 +797,10 @@ msgstr ""
 
 #: ../includes/property-options.inc.php:799
 #: ../includes/property-options.inc.php:854
-#: ../includes/property-options.inc.php:910
-#: ../includes/property-options.inc.php:962
-#: ../includes/property-options.inc.php:1055
-#: ../includes/property-options.inc.php:1343
+#: ../includes/property-options.inc.php:907
+#: ../includes/property-options.inc.php:958
+#: ../includes/property-options.inc.php:1051
+#: ../includes/property-options.inc.php:1341
 msgid "Left"
 msgstr ""
 
@@ -839,193 +840,195 @@ msgstr ""
 msgid "Border Color"
 msgstr ""
 
-#: ../includes/property-options.inc.php:885
+#: ../includes/property-options.inc.php:884
 msgid "Border Right Color"
 msgstr ""
 
-#: ../includes/property-options.inc.php:898
+#: ../includes/property-options.inc.php:896
 msgid "Border Bottom Color"
 msgstr ""
 
-#: ../includes/property-options.inc.php:911
+#: ../includes/property-options.inc.php:908
 msgid "Border Left Color"
 msgstr ""
 
-#: ../includes/property-options.inc.php:925
+#: ../includes/property-options.inc.php:921
 msgid "Border Top Width"
 msgstr ""
 
-#: ../includes/property-options.inc.php:926
+#: ../includes/property-options.inc.php:922
 msgid "Border Width"
 msgstr ""
 
-#: ../includes/property-options.inc.php:939
+#: ../includes/property-options.inc.php:935
 msgid "Border Right Width"
 msgstr ""
 
-#: ../includes/property-options.inc.php:951
+#: ../includes/property-options.inc.php:947
 msgid "Border Bottom Width"
 msgstr ""
 
-#: ../includes/property-options.inc.php:963
+#: ../includes/property-options.inc.php:959
 msgid "Border Left Width"
 msgstr ""
 
-#: ../includes/property-options.inc.php:989
+#: ../includes/property-options.inc.php:985
 msgid "Border Top Style"
 msgstr ""
 
-#: ../includes/property-options.inc.php:990
+#: ../includes/property-options.inc.php:986
 msgid "Border Style"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1012
+#: ../includes/property-options.inc.php:1008
 msgid "Border Right Style"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1034
+#: ../includes/property-options.inc.php:1030
 msgid "Border Bottom Style"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1056
+#: ../includes/property-options.inc.php:1052
 msgid "Border Left Style"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1080
+#: ../includes/property-options.inc.php:1076
 msgid "Top Left"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1081
+#: ../includes/property-options.inc.php:1077
 msgid "Top Left Border Radius"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1082
+#: ../includes/property-options.inc.php:1078
 msgid "Border Radius"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1095
+#: ../includes/property-options.inc.php:1091
 msgid "Top Right"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1096
+#: ../includes/property-options.inc.php:1092
 msgid "Top Right Border Radius"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1108
+#: ../includes/property-options.inc.php:1104
 msgid "Bottom Right"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1109
+#: ../includes/property-options.inc.php:1105
 msgid "Bottom Right Border Radius"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1121
+#: ../includes/property-options.inc.php:1117
 msgid "Bottom Left"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1122
+#: ../includes/property-options.inc.php:1118
 msgid "Bottom Left Border Radius"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1135
-#: ../includes/property-options.inc.php:1136
+#: ../includes/property-options.inc.php:1131
+#: ../includes/property-options.inc.php:1132
 msgid "Display"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1137
+#: ../includes/property-options.inc.php:1133
+#: ../includes/property-options.inc.php:1134
 msgid "Behaviour"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1158
-#: ../includes/property-options.inc.php:1159
+#: ../includes/property-options.inc.php:1155
+#: ../includes/property-options.inc.php:1156
 msgid "Overflow"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1181
-#: ../includes/property-options.inc.php:1182
+#: ../includes/property-options.inc.php:1178
+#: ../includes/property-options.inc.php:1179
 msgid "Overflow X"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1197
-#: ../includes/property-options.inc.php:1198
+#: ../includes/property-options.inc.php:1194
+#: ../includes/property-options.inc.php:1195
 msgid "Overflow Y"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1213
-#: ../includes/property-options.inc.php:1214
+#: ../includes/property-options.inc.php:1210
+#: ../includes/property-options.inc.php:1211
 msgid "Visibility"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1233
-#: ../includes/property-options.inc.php:1234
+#: ../includes/property-options.inc.php:1230
+#: ../includes/property-options.inc.php:1231
 msgid "Cursor"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1282
-#: ../includes/property-options.inc.php:1283
+#: ../includes/property-options.inc.php:1279
+#: ../includes/property-options.inc.php:1280
 msgid "Opacity"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1319
+#: ../includes/property-options.inc.php:1317
 msgid "Top (Position)"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1331
+#: ../includes/property-options.inc.php:1329
 msgid "Bottom (Position)"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1344
+#: ../includes/property-options.inc.php:1342
 msgid "Left (Position)"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1358
+#: ../includes/property-options.inc.php:1356
 msgid "Right (Position)"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1370
-#: ../includes/property-options.inc.php:1371
+#: ../includes/property-options.inc.php:1368
+#: ../includes/property-options.inc.php:1369
 msgid "Z-index"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1380
-#: ../includes/property-options.inc.php:1381
+#: ../includes/property-options.inc.php:1378
+#: ../includes/property-options.inc.php:1379
 msgid "Float"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1400
-#: ../includes/property-options.inc.php:1401
+#: ../includes/property-options.inc.php:1398
+#: ../includes/property-options.inc.php:1399
 msgid "Clear"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1423
+#: ../includes/property-options.inc.php:1421
 msgid "Angle"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1424
+#: ../includes/property-options.inc.php:1422
 msgid "Gradient Angle"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1425
+#: ../includes/property-options.inc.php:1423
+#: ../includes/property-options.inc.php:1424
 msgid "Gradient"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1457
+#: ../includes/property-options.inc.php:1456
 msgid "Gradient A"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1470
+#: ../includes/property-options.inc.php:1469
 msgid "Gradient B"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1482
+#: ../includes/property-options.inc.php:1481
 msgid "B Position"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1483
+#: ../includes/property-options.inc.php:1482
 msgid "Gradient B Position"
 msgstr ""
 
-#: ../includes/property-options.inc.php:1496
+#: ../includes/property-options.inc.php:1495
 msgid "Gradient C"
 msgstr ""
 
@@ -1263,13 +1266,13 @@ msgid ""
 msgstr ""
 
 #: ../includes/tvr-manage-single.php:412
-#: ../includes/tvr-microthemer-ui.php:654
-#: ../includes/tvr-microthemer-ui.php:979
-#: ../includes/tvr-microthemer-ui.php:996
+#: ../includes/tvr-microthemer-ui.php:664
 #: ../includes/tvr-microthemer-ui.php:1009
-#: ../includes/tvr-microthemer-ui.php:1019
-#: ../includes/tvr-microthemer-ui.php:1027
-#: ../includes/tvr-microthemer-ui.php:1046
+#: ../includes/tvr-microthemer-ui.php:1026
+#: ../includes/tvr-microthemer-ui.php:1039
+#: ../includes/tvr-microthemer-ui.php:1049
+#: ../includes/tvr-microthemer-ui.php:1057
+#: ../includes/tvr-microthemer-ui.php:1076
 msgid "Close"
 msgstr ""
 
@@ -1277,33 +1280,41 @@ msgstr ""
 msgid "Edit your Microthemer preferences"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:25
-msgid "Nothing to try in Edge mode."
+#: ../includes/tvr-microthemer-preferences.php:20
+msgid "General Preferences"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:26
-msgid "Learn about the last pilot"
-msgstr ""
-
-#: ../includes/tvr-microthemer-preferences.php:32
-msgid "Enable edge mode. "
+#: ../includes/tvr-microthemer-preferences.php:21
+msgid "CSS Units"
 msgstr ""
 
 #: ../includes/tvr-microthemer-preferences.php:33
+msgid "Nothing to try in Edge mode."
+msgstr ""
+
+#: ../includes/tvr-microthemer-preferences.php:34
+msgid "Learn about the last pilot"
+msgstr ""
+
+#: ../includes/tvr-microthemer-preferences.php:40
+msgid "Enable edge mode. "
+msgstr ""
+
+#: ../includes/tvr-microthemer-preferences.php:41
 msgid ""
 "Read a full explanation of the changes and give us constructive feedback on "
 "this forum thread."
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:34
+#: ../includes/tvr-microthemer-preferences.php:42
 msgid "Read about/comment here"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:38
+#: ../includes/tvr-microthemer-preferences.php:46
 msgid "Add \"first\" and \"last\" classes to menu items"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:39
+#: ../includes/tvr-microthemer-preferences.php:47
 msgid ""
 "Microthemer can insert \"first\" and \"last\" classes on WordPress menus so "
 "that you can style the first or last menu items a bit differently from the "
@@ -1311,21 +1322,21 @@ msgid ""
 "> Menus page."
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:43
+#: ../includes/tvr-microthemer-preferences.php:51
 msgid "Gzip the Microthemer UI page for faster loading"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:44
+#: ../includes/tvr-microthemer-preferences.php:52
 msgid ""
 "The Microthemer interface generates quite a bit of HTML. Having this gzip "
 "option enabled will speed up the initial page loading."
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:47
+#: ../includes/tvr-microthemer-preferences.php:55
 msgid "Display Internet Explorer notice"
 msgstr "Mostrar aviso de Internet Explorer"
 
-#: ../includes/tvr-microthemer-preferences.php:48
+#: ../includes/tvr-microthemer-preferences.php:56
 msgid ""
 "Microthemer can be a bit clunky when run in Internet Explorer. And it just "
 "plain doesn't work in old versions of IE like IE8. But if you insist on "
@@ -1333,7 +1344,7 @@ msgid ""
 "Chrome instead."
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:52
+#: ../includes/tvr-microthemer-preferences.php:60
 msgid ""
 "If your server has the PHP settings \"safe mode\" on, you may encounter "
 "permission errors when Microthemer tries to create directories. Microthemer "
@@ -1341,11 +1352,11 @@ msgid ""
 "want to disable the warnings about it."
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:55
+#: ../includes/tvr-microthemer-preferences.php:63
 msgid "Always add !important to CSS styles"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:57
+#: ../includes/tvr-microthemer-preferences.php:65
 msgid ""
 "Always add the \"!important\" CSS declaration to CSS styles.This largely "
 "solves the issue of having to understand how CSS specificity works. But if "
@@ -1354,15 +1365,15 @@ msgid ""
 "the right of every style input."
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:60
+#: ../includes/tvr-microthemer-preferences.php:68
 msgid "Always use CSS3 PIE pollyfill where relevant"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:61
+#: ../includes/tvr-microthemer-preferences.php:69
 msgid "(configure manually)"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:62
+#: ../includes/tvr-microthemer-preferences.php:70
 msgid ""
 "Always include to the CSS3 PIE htc file if gradients, rounded corners, or "
 "box-shadow have been applied to make them work in Internet Explorer 6-8. "
@@ -1372,32 +1383,32 @@ msgid ""
 "this pollyfill on a per selector basis."
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:65
+#: ../includes/tvr-microthemer-preferences.php:73
 msgid "Add a Microthemer shortcut to the WP admin bar"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:66
+#: ../includes/tvr-microthemer-preferences.php:74
 msgid ""
 "Include a link to the Microthemer interface from the WordPress admin toolbar "
 "at the top of every page."
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:69
+#: ../includes/tvr-microthemer-preferences.php:77
 msgid "Include admin bar shortcut as a top level link"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:70
+#: ../includes/tvr-microthemer-preferences.php:78
 msgid ""
 "If you are enabling the Microthemer shortcut in the admin bar, you can "
 "either have it as a top level menu link or as a sub-menu item of the main "
 "menu."
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:81
+#: ../includes/tvr-microthemer-preferences.php:89
 msgid "Frontend preview URL Microthemer should load"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:82
+#: ../includes/tvr-microthemer-preferences.php:90
 msgid ""
 "Manually specify a link to the page you would like Microthemer to load for "
 "editing when it first starts. By default Microthemer will load your home "
@@ -1405,11 +1416,11 @@ msgid ""
 "style a page that can't be navigated to from the home page or other pages."
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:85
+#: ../includes/tvr-microthemer-preferences.php:93
 msgid "Google Font subset URL parameter"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:86
+#: ../includes/tvr-microthemer-preferences.php:94
 msgid ""
 "You can instruct Google Fonts to include a font subset by entering an URL "
 "parameter here. For example \"&subset=latin,latin-ext\" (without the "
@@ -1417,11 +1428,11 @@ msgid ""
 "that you have applied Google Fonts in your design."
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:88
+#: ../includes/tvr-microthemer-preferences.php:96
 msgid "Tooltip delay time (in milliseconds)"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:89
+#: ../includes/tvr-microthemer-preferences.php:97
 msgid ""
 "Control how long it takes for a Microthemer tooltip to display. Set to \"0\" "
 "for instant, \"native\" to use the browser default tooltip on hover, or some "
@@ -1429,240 +1440,235 @@ msgid ""
 "need it to). The default is 500 milliseconds."
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:119 ../tvr-microthemer.php:844
-msgid "Yes"
+#: ../includes/tvr-microthemer-preferences.php:123
+#: ../includes/tvr-microthemer-preferences.php:128
+msgid "Load a set of CSS units"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:133
-#, php-format
-msgid "No %s"
+#: ../includes/tvr-microthemer-preferences.php:129
+msgid ""
+"Pixels are easier to work with. Consequently the default CSS unit "
+"Microthemer applies. But many consider it best practice to use em units in "
+"most instances. You can quickly load a full set of suggested CSS units here."
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:155
-#: ../includes/tvr-microthemer-preferences.php:182
+#: ../includes/tvr-microthemer-preferences.php:167
+#: ../includes/tvr-microthemer-preferences.php:194
 msgid "Save Preferences"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:158
-#: ../includes/tvr-microthemer-ui.php:637
-#: ../includes/tvr-microthemer-ui.php:764
-#: ../includes/tvr-microthemer-ui.php:818
-#: ../includes/tvr-microthemer-ui.php:922
-#: ../includes/tvr-microthemer-ui.php:960
+#: ../includes/tvr-microthemer-preferences.php:170
+#: ../includes/tvr-microthemer-ui.php:647
+#: ../includes/tvr-microthemer-ui.php:762
+#: ../includes/tvr-microthemer-ui.php:848
+#: ../includes/tvr-microthemer-ui.php:952
 #: ../includes/tvr-microthemer-ui.php:990
-#: ../includes/tvr-microthemer-ui.php:1002
-#: ../includes/tvr-microthemer-ui.php:1040
+#: ../includes/tvr-microthemer-ui.php:1020
+#: ../includes/tvr-microthemer-ui.php:1032
+#: ../includes/tvr-microthemer-ui.php:1070
 msgid "About this feature"
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:161
+#: ../includes/tvr-microthemer-preferences.php:173
 msgid ""
 "Set your global Microthemer preferences on this page. Hover your mouse over "
 "the option labels for further information on each option."
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:166
+#: ../includes/tvr-microthemer-preferences.php:178
 #, php-format
 msgid ""
 "Please unlock the full program by entering your PayPal email address on "
 "<span %s>this page</span>."
 msgstr ""
 
-#: ../includes/tvr-microthemer-preferences.php:174
+#: ../includes/tvr-microthemer-preferences.php:186
 #, php-format
 msgid ""
 "You may also wan to customise the default media queries Microthemer suggests "
 "on <span %s>this page</span>."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:156
-msgid "Toggle highlighting"
+#: ../includes/tvr-microthemer-ui.php:162
+msgid "Edit custom code tabs"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:158
+#: ../includes/tvr-microthemer-ui.php:173 ../tvr-microthemer.php:201
+msgid "All Browsers"
+msgstr ""
+
+#: ../includes/tvr-microthemer-ui.php:174 ../tvr-microthemer.php:203
+msgid "All versions of IE"
+msgstr ""
+
+#: ../includes/tvr-microthemer-ui.php:175 ../tvr-microthemer.php:204
+msgid "IE9 and below"
+msgstr ""
+
+#: ../includes/tvr-microthemer-ui.php:176 ../tvr-microthemer.php:205
+msgid "IE8 and below"
+msgstr ""
+
+#: ../includes/tvr-microthemer-ui.php:177 ../tvr-microthemer.php:206
+msgid "IE7 and below"
+msgstr ""
+
+#: ../includes/tvr-microthemer-ui.php:266
 msgid "Go To Previous Selector"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:159
+#: ../includes/tvr-microthemer-ui.php:267
 msgid "Go To Next Selector"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:162
+#: ../includes/tvr-microthemer-ui.php:274
 msgid "Manage folders & selectors"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:167
+#: ../includes/tvr-microthemer-ui.php:279
 msgid "Enter a new folder name"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:168
-#: ../includes/tvr-microthemer-ui.php:390
+#: ../includes/tvr-microthemer-ui.php:280
 msgid "Create a new folder"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:168
+#: ../includes/tvr-microthemer-ui.php:280
 msgid "Add Folder"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:213 ../tvr-microthemer.php:2543
-msgid "Learn how to use Microthemer"
+#: ../includes/tvr-microthemer-ui.php:305
+#: ../includes/tvr-microthemer-ui.php:896
+msgid "Folders"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:214
-msgid "Code editor view"
+#: ../includes/tvr-microthemer-ui.php:309
+msgid "Selectors"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:223
+#: ../includes/tvr-microthemer-ui.php:327
 msgid "Microthemer Notifications"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:233
-msgid "Advanced options"
-msgstr ""
-
-#: ../includes/tvr-microthemer-ui.php:245
-msgid "always show"
-msgstr ""
-
-#: ../includes/tvr-microthemer-ui.php:253
+#: ../includes/tvr-microthemer-ui.php:340
 msgid "Purchase a license to use the full program"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:255
+#: ../includes/tvr-microthemer-ui.php:342
 msgid "Buy"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:258
+#: ../includes/tvr-microthemer-ui.php:345
 msgid ""
 "If you have purchased Microthemer you can enter your email address to unlock "
 "the full program. If you have not yet purchased Microthemer, you cannot "
 "unlock the full version."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:260
+#: ../includes/tvr-microthemer-ui.php:347
 msgid "Unlock"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:266
+#: ../includes/tvr-microthemer-ui.php:353
 msgid "Double-click anything on the page to begin restyling it."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:288 ../tvr-microthemer.php:202
-msgid "All Browsers"
+#: ../includes/tvr-microthemer-ui.php:395 ../tvr-microthemer.php:2382
+#: ../tvr-microthemer.php:3654 ../tvr-microthemer.php:3714
+msgid "All Devices"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:289 ../tvr-microthemer.php:204
-msgid "All versions of IE"
+#: ../includes/tvr-microthemer-ui.php:438
+msgid "Close the selector sizard"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:290 ../tvr-microthemer.php:205
-msgid "IE9 and below"
-msgstr ""
-
-#: ../includes/tvr-microthemer-ui.php:291 ../tvr-microthemer.php:206
-msgid "IE8 and below"
-msgstr ""
-
-#: ../includes/tvr-microthemer-ui.php:292 ../tvr-microthemer.php:207
-msgid "IE7 and below"
-msgstr ""
-
-#: ../includes/tvr-microthemer-ui.php:378
+#: ../includes/tvr-microthemer-ui.php:445
 msgid ""
 "Give your selector a memorable name that describes the element or set of "
 "elements on the page"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:378
-msgid "Selector Name:"
+#: ../includes/tvr-microthemer-ui.php:445
+msgid "Name"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:382
+#: ../includes/tvr-microthemer-ui.php:452
 msgid "Organise your selector into a folder"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:382
-msgid "Where:"
+#: ../includes/tvr-microthemer-ui.php:452 ../tvr-microthemer.php:2896
+msgid "Folder"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:390
-msgid "Create Selector"
-msgstr ""
-
-#: ../includes/tvr-microthemer-ui.php:391
-msgid "Cancel Operation - Close The Selector Wizard"
-msgstr ""
-
-#: ../includes/tvr-microthemer-ui.php:391
-msgid "Close Wizard"
-msgstr ""
-
-#: ../includes/tvr-microthemer-ui.php:406 ../tvr-microthemer.php:3198
-#: ../tvr-microthemer.php:3258
-msgid "All Devices"
-msgstr ""
-
-#: ../includes/tvr-microthemer-ui.php:467
+#: ../includes/tvr-microthemer-ui.php:473
 msgid "Targeting"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:468
+#: ../includes/tvr-microthemer-ui.php:474
 msgid "Inspector"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:506
+#: ../includes/tvr-microthemer-ui.php:512
 msgid "Move to Previous Sibling Element"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:508
+#: ../includes/tvr-microthemer-ui.php:514
 msgid "Move to Parent Element"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:509
+#: ../includes/tvr-microthemer-ui.php:515
 msgid "Move to Child Element"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:511
+#: ../includes/tvr-microthemer-ui.php:517
 msgid "Move to Next Sibling Element"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:527
+#: ../includes/tvr-microthemer-ui.php:533
 msgid "Open/close group"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:548
+#: ../includes/tvr-microthemer-ui.php:550
+msgid "Create a new selector"
+msgstr ""
+
+#: ../includes/tvr-microthemer-ui.php:550
+msgid "Create Selector"
+msgstr ""
+
+#: ../includes/tvr-microthemer-ui.php:572
 msgid "Visit themeover.com"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:594
+#: ../includes/tvr-microthemer-ui.php:604
 msgid "Microthemer Has Been Successfully Unlocked"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:596
+#: ../includes/tvr-microthemer-ui.php:606
 msgid ""
 "Enter your PayPal email (or the email listed in \"My Downloads\") to unlock "
 "Microthemer"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:604
+#: ../includes/tvr-microthemer-ui.php:614
 msgid "License Type: "
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:607
+#: ../includes/tvr-microthemer-ui.php:617
 msgid "Validate software using a different email address"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:625
+#: ../includes/tvr-microthemer-ui.php:635
 msgid ""
 "Enter your PayPal or Email Address - or the email address listed on 'My "
 "Downloads'"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:625
+#: ../includes/tvr-microthemer-ui.php:635
 msgid "Enter PayPal email or see email in \"My Downloads\""
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:640
+#: ../includes/tvr-microthemer-ui.php:650
 #, php-format
 msgid ""
 "To disable Free Trial Mode and unlock the full program, please enter your "
@@ -1672,43 +1678,45 @@ msgid ""
 "first). Receiving this email allows us to verify your purchase."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:641
+#: ../includes/tvr-microthemer-ui.php:651
 msgid ""
 "<b>Note:</b> Themeover will record your domain name when you submit your "
 "email address for license verification purposes."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:642
+#: ../includes/tvr-microthemer-ui.php:652
 #, php-format
 msgid ""
 "<b>Note:</b> if you have any problems with the validator <a %s>send "
 "Themeover a quick email</a> and we\"ll get you unlocked ASAP."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:652
+#: ../includes/tvr-microthemer-ui.php:662
 msgid "Validate"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:669
+#: ../includes/tvr-microthemer-ui.php:679
 msgid "Edit Media Queries (For Designing Responsively)"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:679
+#: ../includes/tvr-microthemer-ui.php:689
 msgid "Set device viewport zoom level to \"1\""
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:680
+#: ../includes/tvr-microthemer-ui.php:690
 msgid ""
 "Set this to yes if you're using media queries to make your site look good on "
 "mobile devices. Otherwise mobile phones etc will continue to scale your site "
-"down automatically as if you hadn't specified any media queries."
+"down automatically as if you hadn't specified any media queries. If you set "
+"leave this set to \"No\" it will not override any viewport settings in your "
+"theme, Microthemer just won't add a viewport tag at all."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:687
+#: ../includes/tvr-microthemer-ui.php:697
 msgid "Default screen width for \"All Devices\" tab"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:688
+#: ../includes/tvr-microthemer-ui.php:698
 msgid ""
 "Leave this blank to let the frontend preview fill the full width of your "
 "screen when you're on the \"All Devices\" tab. However, if you're designing "
@@ -1717,11 +1725,11 @@ msgid ""
 "larger screens."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:696
+#: ../includes/tvr-microthemer-ui.php:706
 msgid "Select a media query set"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:697
+#: ../includes/tvr-microthemer-ui.php:707
 msgid ""
 "Microthemer lets you choose from a list of media query \"sets\". If you are "
 "trying to make a non-responsive site look good on mobiles, you may want to "
@@ -1729,59 +1737,34 @@ msgid ""
 "first, you may want to try an alternative set."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:704
+#: ../includes/tvr-microthemer-ui.php:714
 msgid "yes"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:705
+#: ../includes/tvr-microthemer-ui.php:715
 msgid "Overwrite your existing media queries?"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:706
+#: ../includes/tvr-microthemer-ui.php:716
 msgid ""
 "You can overwrite your current media queries by choosing \"Yes\". However, "
 "if you would like to merge the selected media query set with your existing "
 "media queries please choose \"No\"."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:715
+#: ../includes/tvr-microthemer-ui.php:725
 msgid "Load an alternative media query set"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:729
+#: ../includes/tvr-microthemer-ui.php:739
 msgid "Media Queries"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:740
-#: ../includes/tvr-microthemer-ui.php:781
-msgid "Delete this media query"
-msgstr ""
-
-#: ../includes/tvr-microthemer-ui.php:741
-#: ../includes/tvr-microthemer-ui.php:782
-msgid "Give your media query a descriptive name"
-msgstr ""
-
-#: ../includes/tvr-microthemer-ui.php:741
-#: ../includes/tvr-microthemer-ui.php:782
-msgid "Label:"
-msgstr ""
-
-#: ../includes/tvr-microthemer-ui.php:744
-#: ../includes/tvr-microthemer-ui.php:784
-msgid "Set the media query condition"
-msgstr ""
-
-#: ../includes/tvr-microthemer-ui.php:744
-#: ../includes/tvr-microthemer-ui.php:784
-msgid "Media Query:"
-msgstr ""
-
-#: ../includes/tvr-microthemer-ui.php:756
+#: ../includes/tvr-microthemer-ui.php:754
 msgid "+ New"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:767
+#: ../includes/tvr-microthemer-ui.php:766
 msgid ""
 "If you're not using media queries in Microthemer to make your site look good "
 "on mobile devices you don't need to set the viewport zoom level to 1. You "
@@ -1792,14 +1775,14 @@ msgid ""
 "proportionally reduced version of the full-size site)."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:768
+#: ../includes/tvr-microthemer-ui.php:767
 #, php-format
 msgid ""
 "You may want to read <a %s>this tutorial which gives a bit of background on "
 "the viewport meta tag</a>."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:769
+#: ../includes/tvr-microthemer-ui.php:768
 msgid ""
 "Feel free to rename the media queries and change the media query code. You "
 "can also reorder the media queries by dragging and dropping them. This will "
@@ -1807,45 +1790,50 @@ msgid ""
 "and the order that they are displayed in the Microthemer interface."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:770
+#: ../includes/tvr-microthemer-ui.php:769
 msgid ""
 "<b>Tip:</b> to reset the default media queries simply delete all media query "
 "boxes and then save your settings"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:776
+#: ../includes/tvr-microthemer-ui.php:775
+#: ../includes/tvr-microthemer-ui.php:811
 msgid "Update Media Queries"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:793 ../tvr-microthemer.php:2520
+#: ../includes/tvr-microthemer-ui.php:788
+msgid "Manage Custom Code Editors"
+msgstr ""
+
+#: ../includes/tvr-microthemer-ui.php:823 ../tvr-microthemer.php:2811
 msgid "Import settings from a design pack"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:796
+#: ../includes/tvr-microthemer-ui.php:826
 msgid "Select a design pack to import"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:802
+#: ../includes/tvr-microthemer-ui.php:832
 msgid ""
-"Chose to overwrite or merge the imported settings with your current settings"
+"Choose to overwrite or merge the imported settings with your current settings"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:805
-#: ../includes/tvr-microthemer-ui.php:808
+#: ../includes/tvr-microthemer-ui.php:835
+#: ../includes/tvr-microthemer-ui.php:838
 msgid "Overwrite"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:810
-#: ../includes/tvr-microthemer-ui.php:813
+#: ../includes/tvr-microthemer-ui.php:840
+#: ../includes/tvr-microthemer-ui.php:843
 msgid "Merge"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:816
-#: ../includes/tvr-microthemer-ui.php:842
+#: ../includes/tvr-microthemer-ui.php:846
+#: ../includes/tvr-microthemer-ui.php:872
 msgid "Import"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:821
+#: ../includes/tvr-microthemer-ui.php:851
 #, php-format
 msgid ""
 "Microthemer can be used to restyle any WordPress theme or plugin without the "
@@ -1854,27 +1842,27 @@ msgid ""
 "mean <i>have</i> to. That's where importable design packs come in. A design "
 "pack contains folders, selectors, hand-coded CSS, and background images that "
 "someone else has created while working with Microthemer. Of course it may "
-"not be someone else, you can create design packs too using the \"<span %"
-"s>Export</span>\" feature!"
+"not be someone else, you can create design packs too using the \"<span "
+"%s>Export</span>\" feature!"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:827
+#: ../includes/tvr-microthemer-ui.php:857
 #, php-format
 msgid ""
 "Note: you can install other people's design packs via the \"%s\" window."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:829
-#: ../includes/tvr-microthemer-ui.php:935 ../tvr-microthemer.php:460
+#: ../includes/tvr-microthemer-ui.php:859
+#: ../includes/tvr-microthemer-ui.php:965 ../tvr-microthemer.php:532
 msgid "Manage Design Packs"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:831
-#: ../includes/tvr-microthemer-ui.php:931
+#: ../includes/tvr-microthemer-ui.php:861
+#: ../includes/tvr-microthemer-ui.php:961
 msgid "You may want to make use of this feature for the following reasons:"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:833
+#: ../includes/tvr-microthemer-ui.php:863
 #, php-format
 msgid ""
 "You've download and installed a design pack that you found on %s for "
@@ -1883,55 +1871,51 @@ msgid ""
 "within the design pack into the Microthemer UI."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:836
+#: ../includes/tvr-microthemer-ui.php:866
 msgid ""
 "You previously exported your own work as a design pack and now you would "
 "like to reload it back into the Microthemer UI."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:849 ../tvr-microthemer.php:2522
+#: ../includes/tvr-microthemer-ui.php:879 ../tvr-microthemer.php:2813
 msgid "Export your work as a design pack"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:857
+#: ../includes/tvr-microthemer-ui.php:887
 msgid ""
 "Enter a new name or export to an existing design pack. Uncheck any folders "
 "or custom CSS you don't want included in the export."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:866
-msgid "Folders"
-msgstr ""
-
-#: ../includes/tvr-microthemer-ui.php:870
+#: ../includes/tvr-microthemer-ui.php:900
 msgid "Check All"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:875
+#: ../includes/tvr-microthemer-ui.php:905
 msgid "Custom CSS"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:890
+#: ../includes/tvr-microthemer-ui.php:920
 msgid "Hand coded CSS (all browsers)"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:894
+#: ../includes/tvr-microthemer-ui.php:924
 msgid "IE-specific CSS code"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:895
+#: ../includes/tvr-microthemer-ui.php:925
 msgid "IE9 and below CSS code"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:896
+#: ../includes/tvr-microthemer-ui.php:926
 msgid "IE8 and below CSS code"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:897
+#: ../includes/tvr-microthemer-ui.php:927
 msgid "IE7 and below CSS code"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:926
+#: ../includes/tvr-microthemer-ui.php:956
 #, php-format
 msgid ""
 "Microthemer gives you the flexibility to export your current work to a "
@@ -1942,7 +1926,7 @@ msgid ""
 "directory called config.json."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:934
+#: ../includes/tvr-microthemer-ui.php:964
 #, php-format
 msgid ""
 "To make extra sure that your work is backed up (even though there is an "
@@ -1951,13 +1935,13 @@ msgid ""
 "can do this from the \"%s\" window."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:937
+#: ../includes/tvr-microthemer-ui.php:967
 msgid ""
 "To save your current work but then start a fresh (using the \"reset\" option "
 "in the left-hand menu)"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:938
+#: ../includes/tvr-microthemer-ui.php:968
 msgid ""
 "To save one aspect of your design for reuse in other projects (e.g. styling "
 "for a menu). You can do this by organising the styles you plan to reuse into "
@@ -1965,27 +1949,27 @@ msgid ""
 "other folders before clicking the \"Export\" button."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:940
+#: ../includes/tvr-microthemer-ui.php:970
 #, php-format
 msgid "To submit a design pack for sale or free download on %s"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:949
+#: ../includes/tvr-microthemer-ui.php:979
 msgid "Export"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:954 ../tvr-microthemer.php:2525
+#: ../includes/tvr-microthemer-ui.php:984 ../tvr-microthemer.php:2783
 msgid "View the CSS code Microthemer generates"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:963
+#: ../includes/tvr-microthemer-ui.php:993
 msgid ""
 "What you see above is the CSS code Microthemer is currently generating. This "
 "can sometimes be useful for debugging issues if you know CSS. Or if you want "
 "to reuse the code Microthemer generates elsewhere."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:965
+#: ../includes/tvr-microthemer-ui.php:995
 #, php-format
 msgid ""
 "<b>Did you know</b> - it's possible to disable or completely uninstall "
@@ -1994,7 +1978,7 @@ msgid ""
 "a> for further information."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:969
+#: ../includes/tvr-microthemer-ui.php:999
 #, php-format
 msgid ""
 "<b>Also note</b>, Microthemer adds the \"!important\" declaration to all CSS "
@@ -2005,72 +1989,72 @@ msgid ""
 "fields."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:972
+#: ../includes/tvr-microthemer-ui.php:1002
 msgid "CSS specificity"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:982 ../tvr-microthemer.php:2526
+#: ../includes/tvr-microthemer-ui.php:1012 ../tvr-microthemer.php:2827
 msgid "Restore settings from a previous save point"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:992
+#: ../includes/tvr-microthemer-ui.php:1022
 msgid ""
 "Click the \"restore\" link in the right hand column of the table to restore "
 "your workspace settings to a previous save point."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:999
+#: ../includes/tvr-microthemer-ui.php:1029
 msgid "Show off your new discovery"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:1004
+#: ../includes/tvr-microthemer-ui.php:1034
 msgid ""
 "cash back feature - coupon code to give new customer, affiliate commission "
 "for existing"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:1005
+#: ../includes/tvr-microthemer-ui.php:1035
 msgid "For now, just a simply share widget."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:1014
+#: ../includes/tvr-microthemer-ui.php:1044
 msgid "Install & Manage Design Packs"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:1022
+#: ../includes/tvr-microthemer-ui.php:1052
 msgid "Help Centre"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:1030
+#: ../includes/tvr-microthemer-ui.php:1060
 msgid "Integration with 3rd party software"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:1032
+#: ../includes/tvr-microthemer-ui.php:1062
 msgid "WPTouch Mobile Plugin"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:1034
+#: ../includes/tvr-microthemer-ui.php:1064
 #, php-format
 msgid ""
 "Microthemer can be used to style the mobile-only theme that WPTouch presents "
 "to mobile devices. In order to load the mobile theme in Microthemer's "
 "preview window, simply enable WPTouch mode using the toggle in the left "
 "toolbar. This toggle will only appear if Microthemer detects that you have "
-"installed and activated WPTouch. There is a <a %1$s>free</a> and <a %2"
-"$s>premium version</a> of WPTouch."
+"installed and activated WPTouch. There is a <a %1$s>free</a> and <a "
+"%2$s>premium version</a> of WPTouch."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:1042
+#: ../includes/tvr-microthemer-ui.php:1072
 msgid ""
 "When possible, we'll add little features to make it easier to use "
 "Microthemer with complementary products."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:1070
+#: ../includes/tvr-microthemer-ui.php:1100
 msgid "Error saving settings"
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:1072
+#: ../includes/tvr-microthemer-ui.php:1102
 #, php-format
 msgid ""
 "Please <span %s>click this link to email an error report to Themeover</"
@@ -2080,7 +2064,7 @@ msgid ""
 "contacting you with a solution."
 msgstr ""
 
-#: ../includes/tvr-microthemer-ui.php:1076
+#: ../includes/tvr-microthemer-ui.php:1106
 msgid ""
 "<b>Note:</b> reloading the page is normally a quick fix for now. However, "
 "unsaved changes will need to be redone."
@@ -2090,12 +2074,12 @@ msgstr ""
 msgid "Microthemer requires that you deactivate Microloader. Please do so."
 msgstr ""
 
-#: ../tvr-microthemer.php:188
+#: ../tvr-microthemer.php:187
 msgid ""
 "Please see this help article for changing directory and file permissions:"
 msgstr ""
 
-#: ../tvr-microthemer.php:188
+#: ../tvr-microthemer.php:187
 msgid ""
 "Tip: you may want to jump to the \"Using an FTP Client\" section of the "
 "article. But bear in mind that if your web hosting runs windows it may not "
@@ -2104,245 +2088,328 @@ msgid ""
 "permissions for you."
 msgstr ""
 
-#: ../tvr-microthemer.php:194
+#: ../tvr-microthemer.php:193
 msgid ""
 "Try out the new targeting options for the selector wizard. We've replaced "
 "the slider with hover and click functionality."
 msgstr ""
 
-#: ../tvr-microthemer.php:217
+#: ../tvr-microthemer.php:216
 msgid "Large Desktop"
 msgstr ""
 
-#: ../tvr-microthemer.php:222
+#: ../tvr-microthemer.php:221
 msgid "Desktop & Tablet"
 msgstr ""
 
-#: ../tvr-microthemer.php:227
+#: ../tvr-microthemer.php:226
 msgid "Tablet & Phone"
 msgstr ""
 
-#: ../tvr-microthemer.php:232
+#: ../tvr-microthemer.php:231
 msgid "Phone"
 msgstr ""
 
-#: ../tvr-microthemer.php:240
+#: ../tvr-microthemer.php:239
 msgid "Tablet >"
 msgstr ""
 
-#: ../tvr-microthemer.php:245
+#: ../tvr-microthemer.php:244
 msgid "Desktop >"
 msgstr ""
 
-#: ../tvr-microthemer.php:250
+#: ../tvr-microthemer.php:249
 msgid "Large Desktop >"
 msgstr ""
 
-#: ../tvr-microthemer.php:258
+#: ../tvr-microthemer.php:257
 msgid "Narrow <"
 msgstr ""
 
-#: ../tvr-microthemer.php:263
+#: ../tvr-microthemer.php:262
 msgid "2 Col >"
 msgstr ""
 
-#: ../tvr-microthemer.php:268
+#: ../tvr-microthemer.php:267
 msgid "2 to 3 Col"
 msgstr ""
 
-#: ../tvr-microthemer.php:273
+#: ../tvr-microthemer.php:272
 msgid "3 Col >"
 msgstr ""
 
-#: ../tvr-microthemer.php:278
+#: ../tvr-microthemer.php:277
 msgid "3 Col to Wide"
 msgstr ""
 
-#: ../tvr-microthemer.php:283
+#: ../tvr-microthemer.php:282
 msgid "Wide >"
 msgstr ""
 
-#: ../tvr-microthemer.php:410
+#: ../tvr-microthemer.php:482
 #, php-format
 msgid ""
 "Sorry, Microthemer only runs on WordPress version %s or above. Deactivate "
 "Microthemer to remove this message."
 msgstr ""
 
-#: ../tvr-microthemer.php:430
+#: ../tvr-microthemer.php:502
 msgid ""
 "Sorry, Microthemer requires a memory limit of 16MB or higher to run. Your "
 "memory limit is less than this. Deactivate Microthemer to remove this "
 "message."
 msgstr ""
 
-#: ../tvr-microthemer.php:447
+#: ../tvr-microthemer.php:519
 #, php-format
 msgid "Please %s to unlock the full program."
 msgstr ""
 
-#: ../tvr-microthemer.php:447
+#: ../tvr-microthemer.php:519
 msgid "purchase Microthemer"
 msgstr ""
 
-#: ../tvr-microthemer.php:458
+#: ../tvr-microthemer.php:530
 msgid "Microthemer UI"
 msgstr ""
 
-#: ../tvr-microthemer.php:461
+#: ../tvr-microthemer.php:533
 msgid "Manage Packs"
 msgstr ""
 
-#: ../tvr-microthemer.php:464
+#: ../tvr-microthemer.php:536
 msgid "Manage Single Design Pack"
 msgstr ""
 
-#: ../tvr-microthemer.php:465
+#: ../tvr-microthemer.php:537
 msgid "Manage Single Pack"
 msgstr ""
 
-#: ../tvr-microthemer.php:467
+#: ../tvr-microthemer.php:539
 msgid "Microthemer Preferences"
 msgstr ""
 
-#: ../tvr-microthemer.php:468
+#: ../tvr-microthemer.php:540
 msgid "Preferences"
 msgstr ""
 
-#: ../tvr-microthemer.php:609
+#: ../tvr-microthemer.php:665
+msgid "Simple pixels (default)"
+msgstr ""
+
+#: ../tvr-microthemer.php:666
+msgid "Recommended (mostly ems)"
+msgstr ""
+
+#: ../tvr-microthemer.php:674
+msgid "pixels; 1px is equal to 1/96th of 1in."
+msgstr ""
+
+#: ../tvr-microthemer.php:678
+msgid ""
+"Pixels are added by Microthemer behind the scenes when no unit is specified "
+"(this is the default)."
+msgstr ""
+
+#: ../tvr-microthemer.php:682
+msgid "points; 1pt is equal to 1/72nd of 1in"
+msgstr ""
+
+#: ../tvr-microthemer.php:686
+msgid "picas; 1pc is equal to 12pt"
+msgstr ""
+
+#: ../tvr-microthemer.php:690
+msgid "centimeters"
+msgstr ""
+
+#: ../tvr-microthemer.php:694
+msgid "millimeters"
+msgstr ""
+
+#: ../tvr-microthemer.php:698
+msgid "inches"
+msgstr ""
+
+#: ../tvr-microthemer.php:703
+msgid "A percentage relative to another value, typically an enclosing element."
+msgstr ""
+
+#: ../tvr-microthemer.php:707
+msgid "Relative to the font size of the element"
+msgstr ""
+
+#: ../tvr-microthemer.php:711
+msgid "Relative to the font size of the root element"
+msgstr ""
+
+#: ../tvr-microthemer.php:715
+msgid ""
+"Relative to the x-height of the element's font (i.e. the font's lowercase "
+"letter x)."
+msgstr ""
+
+#: ../tvr-microthemer.php:719
+msgid "width of the \"0\" (ZERO, U+0030) glyph in the element's font"
+msgstr ""
+
+#: ../tvr-microthemer.php:724
+#, php-format
+msgid "1% of viewport's width"
+msgstr ""
+
+#: ../tvr-microthemer.php:729
+msgid "1% viewport's height"
+msgstr ""
+
+#: ../tvr-microthemer.php:734
+#, php-format
+msgid "1% of viewport's smaller dimension"
+msgstr ""
+
+#: ../tvr-microthemer.php:740
+#, php-format
+msgid "1% of viewport's larger dimension"
+msgstr ""
+
+#: ../tvr-microthemer.php:759 ../tvr-microthemer.php:799
 msgid "Permission Error"
 msgstr ""
 
-#: ../tvr-microthemer.php:610 ../tvr-microthemer.php:5193
-#: ../tvr-microthemer.php:5277
+#: ../tvr-microthemer.php:760 ../tvr-microthemer.php:800
+#: ../tvr-microthemer.php:5665 ../tvr-microthemer.php:5749
 #, php-format
 msgid "WordPress does not have permission to create: %s"
 msgstr ""
 
-#: ../tvr-microthemer.php:859
+#: ../tvr-microthemer.php:1043
+msgid "Yes"
+msgstr ""
+
+#: ../tvr-microthemer.php:1057
 msgid "No"
 msgstr ""
 
-#: ../tvr-microthemer.php:966
+#: ../tvr-microthemer.php:1161
 msgid ""
 "No Revisions have been created yet. This will happen after your next save."
 msgstr ""
 
-#: ../tvr-microthemer.php:972
+#: ../tvr-microthemer.php:1167
 msgid "The only revision is a copy of your current settings."
 msgstr ""
 
-#: ../tvr-microthemer.php:983
+#: ../tvr-microthemer.php:1178
 msgid "Revision"
 msgstr ""
 
-#: ../tvr-microthemer.php:984
+#: ../tvr-microthemer.php:1179
 msgid "Date & Time"
 msgstr ""
 
-#: ../tvr-microthemer.php:985
+#: ../tvr-microthemer.php:1180
 msgid "User Action"
 msgstr ""
 
-#: ../tvr-microthemer.php:987 ../tvr-microthemer.php:1008
+#: ../tvr-microthemer.php:1182 ../tvr-microthemer.php:1203
 msgid "Restore"
 msgstr ""
 
-#: ../tvr-microthemer.php:1039
+#: ../tvr-microthemer.php:1234
 msgid "The new options"
 msgstr ""
 
-#: ../tvr-microthemer.php:1041
+#: ../tvr-microthemer.php:1236
 msgid "The existing options"
 msgstr ""
 
-#: ../tvr-microthemer.php:1070
+#: ../tvr-microthemer.php:1265
 msgid "The hybrid options"
 msgstr ""
 
-#: ../tvr-microthemer.php:1128
+#: ../tvr-microthemer.php:1323
 msgid "Revision log update failed."
 msgstr ""
 
-#: ../tvr-microthemer.php:1130
+#: ../tvr-microthemer.php:1325
 msgid "Adding your latest save to the revisions table failed."
 msgstr ""
 
-#: ../tvr-microthemer.php:1132
+#: ../tvr-microthemer.php:1327
 msgid "Decode json error"
 msgstr ""
 
-#: ../tvr-microthemer.php:1134
+#: ../tvr-microthemer.php:1329
 #, php-format
 msgid "WordPress was not able to convert %s into a usable format."
 msgstr ""
 
-#: ../tvr-microthemer.php:1256
+#: ../tvr-microthemer.php:1451
 msgid "Preferences saved"
 msgstr ""
 
-#: ../tvr-microthemer.php:1257
+#: ../tvr-microthemer.php:1452
 msgid "Your Microthemer preferences have been successfully updated."
 msgstr ""
 
-#: ../tvr-microthemer.php:1346
+#: ../tvr-microthemer.php:1563
 msgid "Library image not downloaded"
 msgstr ""
 
-#: ../tvr-microthemer.php:1347
+#: ../tvr-microthemer.php:1564
 #, php-format
 msgid "%s could not be copied to the zip download file"
 msgstr ""
 
-#: ../tvr-microthemer.php:1375
+#: ../tvr-microthemer.php:1592
 msgid "Temporary image could not be deleted."
 msgstr ""
 
-#: ../tvr-microthemer.php:1376
+#: ../tvr-microthemer.php:1593
 #, php-format
 msgid ""
 "%s was temporarily copied to your theme pack before download but could not "
 "be deleted after the download operation finished."
 msgstr ""
 
-#: ../tvr-microthemer.php:1409
+#: ../tvr-microthemer.php:1626
 msgid "Save"
 msgstr ""
 
-#: ../tvr-microthemer.php:1429
+#: ../tvr-microthemer.php:1646
 msgid "Settings Saved"
 msgstr ""
 
-#: ../tvr-microthemer.php:1432
+#: ../tvr-microthemer.php:1649
 msgid " & Exported"
 msgstr ""
 
-#: ../tvr-microthemer.php:1436
+#: ../tvr-microthemer.php:1653
 msgid "The UI interface settings were successfully saved."
 msgstr ""
 
-#: ../tvr-microthemer.php:1442
+#: ../tvr-microthemer.php:1659
 msgid "Settings failed to save"
 msgstr ""
 
-#: ../tvr-microthemer.php:1443
+#: ../tvr-microthemer.php:1660
 msgid "Saving your setting to the database failed."
 msgstr ""
 
-#: ../tvr-microthemer.php:1462
+#: ../tvr-microthemer.php:1679
 #, php-format
 msgid " & Export to %s"
 msgstr ""
 
-#: ../tvr-microthemer.php:1467
+#: ../tvr-microthemer.php:1684
 msgid " (regular)"
 msgstr ""
 
-#: ../tvr-microthemer.php:1482
+#: ../tvr-microthemer.php:1699
 msgid "Data limit near"
 msgstr ""
 
-#: ../tvr-microthemer.php:1485
+#: ../tvr-microthemer.php:1702
 #, php-format
 msgid ""
 "<b>Warning:</b> you are approaching a data sending limit \"max_input_vars\" "
@@ -2350,133 +2417,133 @@ msgid ""
 "to solve this problem. Read more about this issue <a %s>here.</a>"
 msgstr ""
 
-#: ../tvr-microthemer.php:1538
+#: ../tvr-microthemer.php:1753
 #, php-format
 msgid " Import (%1$s) from %2$s"
 msgstr ""
 
-#: ../tvr-microthemer.php:1553
+#: ../tvr-microthemer.php:1768
 msgid "Folders were reset"
 msgstr ""
 
-#: ../tvr-microthemer.php:1554
+#: ../tvr-microthemer.php:1769
 msgid "The default empty folders have been reset."
 msgstr ""
 
-#: ../tvr-microthemer.php:1560
+#: ../tvr-microthemer.php:1775
 msgid "Revision failed to save"
 msgstr ""
 
-#: ../tvr-microthemer.php:1561
+#: ../tvr-microthemer.php:1776
 msgid "The revisions table could not be updated."
 msgstr ""
 
-#: ../tvr-microthemer.php:1577
+#: ../tvr-microthemer.php:1792
 msgid "Styles were cleared"
 msgstr ""
 
-#: ../tvr-microthemer.php:1578
+#: ../tvr-microthemer.php:1793
 msgid ""
 "All styles were cleared, but your folders and selectors remain fully intact."
 msgstr ""
 
-#: ../tvr-microthemer.php:1622
+#: ../tvr-microthemer.php:1837
 msgid "Email successfully sent"
 msgstr ""
 
-#: ../tvr-microthemer.php:1623
+#: ../tvr-microthemer.php:1838
 msgid ""
 "Your error report was successfully emailed to Themeover. Thanks, this really "
 "does help."
 msgstr ""
 
-#: ../tvr-microthemer.php:1630
+#: ../tvr-microthemer.php:1845
 msgid "Report email failed"
 msgstr ""
 
-#: ../tvr-microthemer.php:1631
+#: ../tvr-microthemer.php:1846
 msgid "Your error report email failed to send (are you on localhost?)"
 msgstr ""
 
-#: ../tvr-microthemer.php:1635
+#: ../tvr-microthemer.php:1850
 #, php-format
 msgid "Please email <a %1$s>this report</a> to %2$s"
 msgstr ""
 
-#: ../tvr-microthemer.php:1655
+#: ../tvr-microthemer.php:1870
 msgid "Settings successfully restored"
 msgstr ""
 
-#: ../tvr-microthemer.php:1656
+#: ../tvr-microthemer.php:1871
 msgid "Your settings were successfully restored from a previous save."
 msgstr ""
 
-#: ../tvr-microthemer.php:1661
+#: ../tvr-microthemer.php:1876
 msgid "Previous Settings Restored"
 msgstr ""
 
-#: ../tvr-microthemer.php:1667
+#: ../tvr-microthemer.php:1882
 msgid "Settings restore failed"
 msgstr ""
 
-#: ../tvr-microthemer.php:1668
+#: ../tvr-microthemer.php:1883
 msgid "Data could not be restored from a previous save."
 msgstr ""
 
-#: ../tvr-microthemer.php:1729
+#: ../tvr-microthemer.php:1945
 msgid "Media queries were reset"
 msgstr ""
 
-#: ../tvr-microthemer.php:1730
+#: ../tvr-microthemer.php:1946
 msgid "The default media queries were successfully reset."
 msgstr ""
 
-#: ../tvr-microthemer.php:1736
+#: ../tvr-microthemer.php:1952
 msgid "Media queries were updated"
 msgstr ""
 
-#: ../tvr-microthemer.php:1737
+#: ../tvr-microthemer.php:1953
 msgid "Your media queries were successfully updated."
 msgstr ""
 
-#: ../tvr-microthemer.php:1743
+#: ../tvr-microthemer.php:1959
 msgid "Media query set loaded"
 msgstr ""
 
-#: ../tvr-microthemer.php:1744
+#: ../tvr-microthemer.php:1960
 #, php-format
 msgid "A new media query set %1$s your existing media queries: %2$s"
 msgstr ""
 
-#: ../tvr-microthemer.php:1763
+#: ../tvr-microthemer.php:1978
 msgid "Full program unlocked!"
 msgstr ""
 
-#: ../tvr-microthemer.php:1764
+#: ../tvr-microthemer.php:1979
 msgid ""
 "Your email address has been successfully validated. Microthemer's full "
 "program features have been unlocked!"
 msgstr ""
 
-#: ../tvr-microthemer.php:1769
+#: ../tvr-microthemer.php:1984
 msgid "Already validated"
 msgstr ""
 
-#: ../tvr-microthemer.php:1770
+#: ../tvr-microthemer.php:1985
 msgid ""
 "Your email address has already been validated. The full program is currently "
 "active."
 msgstr ""
 
-#: ../tvr-microthemer.php:1780
+#: ../tvr-microthemer.php:1995
 msgid "Validation failed"
 msgstr ""
 
-#: ../tvr-microthemer.php:1781
+#: ../tvr-microthemer.php:1996
 msgid "Your email address could not be validated. Please try the following:"
 msgstr ""
 
-#: ../tvr-microthemer.php:1784
+#: ../tvr-microthemer.php:1999
 #, php-format
 msgid ""
 "Make sure you are entering your <b>PayPal email address</b> (which may be "
@@ -2486,7 +2553,7 @@ msgid ""
 "Downloads</a>"
 msgstr ""
 
-#: ../tvr-microthemer.php:1789
+#: ../tvr-microthemer.php:2004
 #, php-format
 msgid ""
 "If you purchased Microthemer from <b>CodeCanyon</b>, please send us a "
@@ -2495,7 +2562,7 @@ msgid ""
 "CodeCanyon)."
 msgstr ""
 
-#: ../tvr-microthemer.php:1793
+#: ../tvr-microthemer.php:2008
 #, php-format
 msgid ""
 "The connection to Themeover's server may have failed due to an intermittent "
@@ -2503,7 +2570,7 @@ msgid ""
 "the trick."
 msgstr ""
 
-#: ../tvr-microthemer.php:1797
+#: ../tvr-microthemer.php:2012
 msgid ""
 "Try temporarily <b>disabling any plugins</b> that may be blocking "
 "Microthemer's connection to the valid users database on themeover.com. You "
@@ -2511,7 +2578,7 @@ msgid ""
 "sometimes block Microthemer."
 msgstr ""
 
-#: ../tvr-microthemer.php:1798
+#: ../tvr-microthemer.php:2013
 msgid ""
 "Security settings on your server may block all outgoing PHP connections to "
 "domains not on a trusted whitelist (e.g. sites that are not wordpress.org). "
@@ -2519,7 +2586,7 @@ msgid ""
 "temporarily to allow you to activate the plugin."
 msgstr ""
 
-#: ../tvr-microthemer.php:1803
+#: ../tvr-microthemer.php:2018
 #, php-format
 msgid ""
 "If none of the above solve your problem please send WP login details for the "
@@ -2529,100 +2596,100 @@ msgid ""
 "email via the <a %s>contact form</a> to discuss alternative measures."
 msgstr ""
 
-#: ../tvr-microthemer.php:1811
+#: ../tvr-microthemer.php:2026
 msgid "Unlock status not saved"
 msgstr ""
 
-#: ../tvr-microthemer.php:1812
+#: ../tvr-microthemer.php:2027
 msgid ""
 "Your validation status could not be saved. The program may need to be "
 "unlocked again."
 msgstr ""
 
-#: ../tvr-microthemer.php:1824
+#: ../tvr-microthemer.php:2038
 msgid "Preferences were reset"
 msgstr ""
 
-#: ../tvr-microthemer.php:1825
+#: ../tvr-microthemer.php:2039
 msgid "The default program preferences were reset."
 msgstr ""
 
-#: ../tvr-microthemer.php:1854
+#: ../tvr-microthemer.php:2067
 msgid "Design pack deleted"
 msgstr ""
 
-#: ../tvr-microthemer.php:1855
+#: ../tvr-microthemer.php:2068
 msgid "The design pack was successfully deleted."
 msgstr ""
 
-#: ../tvr-microthemer.php:1869
+#: ../tvr-microthemer.php:2082
 msgid "Please specify a name"
 msgstr ""
 
-#: ../tvr-microthemer.php:1870
+#: ../tvr-microthemer.php:2083
 msgid "You didn't enter anything in the \"Name\" field. Please try again."
 msgstr ""
 
-#: ../tvr-microthemer.php:1894
+#: ../tvr-microthemer.php:2107
 #, php-format
 msgid "%s Activated"
 msgstr ""
 
-#: ../tvr-microthemer.php:1908
+#: ../tvr-microthemer.php:2121
 msgid "Item deactivated"
 msgstr ""
 
-#: ../tvr-microthemer.php:1911
+#: ../tvr-microthemer.php:2124
 #, php-format
 msgid "%s was deactivated."
 msgstr ""
 
-#: ../tvr-microthemer.php:1996
+#: ../tvr-microthemer.php:2209
 msgid "File deleted"
 msgstr ""
 
-#: ../tvr-microthemer.php:1997 ../tvr-microthemer.php:5107
+#: ../tvr-microthemer.php:2210 ../tvr-microthemer.php:5579
 #, php-format
 msgid "%s was successfully deleted."
 msgstr ""
 
-#: ../tvr-microthemer.php:2005
+#: ../tvr-microthemer.php:2218
 msgid "File delete failed"
 msgstr ""
 
-#: ../tvr-microthemer.php:2006
+#: ../tvr-microthemer.php:2219
 #, php-format
 msgid "%s was not deleted."
 msgstr ""
 
-#: ../tvr-microthemer.php:2068
+#: ../tvr-microthemer.php:2281
 msgid "Go to Microthemer UI Page"
 msgstr ""
 
-#: ../tvr-microthemer.php:2069
+#: ../tvr-microthemer.php:2282
 msgid "Go to Manage Micro Themes Page"
 msgstr ""
 
-#: ../tvr-microthemer.php:2070
+#: ../tvr-microthemer.php:2283
 msgid "Go to Microthemer Preferences Page"
 msgstr ""
 
-#: ../tvr-microthemer.php:2080
+#: ../tvr-microthemer.php:2293
 msgid "Need Help?"
 msgstr ""
 
-#: ../tvr-microthemer.php:2082
+#: ../tvr-microthemer.php:2295
 #, php-format
 msgid ""
 "Browse Our <span %1$s>Video Guides</span> and <span %2$s>Tutorials</span> or "
 "<span %3$s>Search Our Forum</span>"
 msgstr ""
 
-#: ../tvr-microthemer.php:2098
+#: ../tvr-microthemer.php:2311
 msgid "Internet Explorer Choice"
 msgstr ""
 
-#: ../tvr-microthemer.php:2101
+#: ../tvr-microthemer.php:2314
 #, php-format
 msgid ""
 "Microthemer has been designed for modern browsers. You are using Internet "
@@ -2630,377 +2697,431 @@ msgid ""
 "the latest version of %1$s or %2$s."
 msgstr ""
 
-#: ../tvr-microthemer.php:2102
+#: ../tvr-microthemer.php:2315
 msgid "Download The World's Best Internet Browser"
 msgstr ""
 
-#: ../tvr-microthemer.php:2103 ../tvr-microthemer.php:2104
+#: ../tvr-microthemer.php:2316 ../tvr-microthemer.php:2317
 msgid "en-US"
 msgstr ""
 
-#: ../tvr-microthemer.php:2107
+#: ../tvr-microthemer.php:2320
 msgid ""
 "<b>Note</b>: Web browsers do not conflict with each other, you can install "
 "as many as you want on your computer at any one time. But if you love "
 "Internet Explorer you can turn this message off on the preferences page."
 msgstr ""
 
-#: ../tvr-microthemer.php:2119
+#: ../tvr-microthemer.php:2332
 msgid "IMPORTANT - Free Trial Mode is Active"
 msgstr ""
 
-#: ../tvr-microthemer.php:2121
+#: ../tvr-microthemer.php:2334
 #, php-format
 msgid "Please <a %s>validate your purchase to unlock the full program</a>."
 msgstr ""
 
-#: ../tvr-microthemer.php:2127
+#: ../tvr-microthemer.php:2340
 msgid ""
 "The Free Trial limits you to editing or creating 3 Sections and 9 Selectors "
 "(3 per Section)."
 msgstr ""
 
-#: ../tvr-microthemer.php:2130
+#: ../tvr-microthemer.php:2343
 #, php-format
 msgid ""
 "Purchase a <a %s>Standard</a> ($45) or <a %s>Developer</a> ($90) License Now!"
 msgstr ""
 
-#: ../tvr-microthemer.php:2135
+#: ../tvr-microthemer.php:2348
 #, php-format
 msgid ""
 "<b>This Plugin is Supported!</b> Themeover provides the <a %s>best forum "
 "support</a> you'll get any where (and it's free of course)"
 msgstr ""
 
-#: ../tvr-microthemer.php:2175
+#: ../tvr-microthemer.php:2383 ../tvr-microthemer.php:3654
+msgid "General CSS that will apply to all devices"
+msgstr ""
+
+#: ../tvr-microthemer.php:2400
 msgid "/micro-themes folder error"
 msgstr ""
 
-#: ../tvr-microthemer.php:2178
+#: ../tvr-microthemer.php:2403
 #, php-format
 msgid "WordPress was not able to create the %1$s directory. "
 msgstr ""
 
-#: ../tvr-microthemer.php:2436
+#: ../tvr-microthemer.php:2669
 msgid "Upload a new design pack"
 msgstr ""
 
-#: ../tvr-microthemer.php:2484
+#: ../tvr-microthemer.php:2717
 #, php-format
 msgid "Displaying %1$s - %2$s of %3$s"
 msgstr ""
 
-#: ../tvr-microthemer.php:2506
+#: ../tvr-microthemer.php:2739
 msgid "Validate license using a different email address"
 msgstr ""
 
-#: ../tvr-microthemer.php:2509
+#: ../tvr-microthemer.php:2742
 msgid ""
 "Enter your PayPal email (or the email listed in My Downloads) to unlock "
 "Microthemer"
 msgstr ""
 
-#: ../tvr-microthemer.php:2515
-msgid "Manually save settings"
+#: ../tvr-microthemer.php:2757
+msgid "Manually save UI settings (Ctrl+S)"
 msgstr ""
 
-#: ../tvr-microthemer.php:2517
+#: ../tvr-microthemer.php:2760
+msgid "Toggle highlighting"
+msgstr ""
+
+#: ../tvr-microthemer.php:2765
+msgid "Toggle rulers on/off"
+msgstr ""
+
+#: ../tvr-microthemer.php:2770
+msgid "Remove all guides"
+msgstr ""
+
+#: ../tvr-microthemer.php:2779
+msgid "Code editor view"
+msgstr ""
+
+#: ../tvr-microthemer.php:2791
 msgid "Set your global Microthemer preferences"
 msgstr ""
 
-#: ../tvr-microthemer.php:2518
+#: ../tvr-microthemer.php:2797
 msgid "Edit Media Queries"
 msgstr ""
 
-#: ../tvr-microthemer.php:2529
-msgid "Spread the word about Microthemer"
-msgstr ""
-
-#: ../tvr-microthemer.php:2530
-msgid "Reset options"
-msgstr ""
-
-#: ../tvr-microthemer.php:2534
-msgid "Reset the interface to the default empty folders"
-msgstr ""
-
-#: ../tvr-microthemer.php:2536
-msgid "Clear all styles, but leave folders and selectors intact"
-msgstr ""
-
-#: ../tvr-microthemer.php:2540
+#: ../tvr-microthemer.php:2806
 msgid "Install & Manage your design packages"
 msgstr ""
 
-#: ../tvr-microthemer.php:2547
+#: ../tvr-microthemer.php:2820
+msgid "Spread the word about Microthemer"
+msgstr ""
+
+#: ../tvr-microthemer.php:2832
+msgid "Reset the interface to the default empty folders"
+msgstr ""
+
+#: ../tvr-microthemer.php:2834
+msgid "Clear all styles, but leave folders and selectors intact"
+msgstr ""
+
+#: ../tvr-microthemer.php:2841
+msgid "Learn how to use Microthemer"
+msgstr ""
+
+#: ../tvr-microthemer.php:2843
 msgid "Return to WordPress dashboard"
 msgstr ""
 
-#: ../tvr-microthemer.php:2597
+#: ../tvr-microthemer.php:2894
 msgid "Open/close folder"
 msgstr ""
 
-#: ../tvr-microthemer.php:2598
+#: ../tvr-microthemer.php:2895
 msgid "Reorder folder"
 msgstr ""
 
-#: ../tvr-microthemer.php:2599
-msgid "Folder"
-msgstr ""
-
-#: ../tvr-microthemer.php:2613
+#: ../tvr-microthemer.php:2910
 msgid "Rename folder"
 msgstr ""
 
-#: ../tvr-microthemer.php:2613
+#: ../tvr-microthemer.php:2910
 msgid "Rename"
 msgstr ""
 
-#: ../tvr-microthemer.php:2614
+#: ../tvr-microthemer.php:2911
 msgid "Cancel rename"
 msgstr ""
 
-#: ../tvr-microthemer.php:2614 ../tvr-microthemer.php:2783
+#: ../tvr-microthemer.php:2911 ../tvr-microthemer.php:3080
 msgid "Cancel"
 msgstr ""
 
-#: ../tvr-microthemer.php:2618
+#: ../tvr-microthemer.php:2915
 msgid "Delete Folder"
 msgstr ""
 
-#: ../tvr-microthemer.php:2619
+#: ../tvr-microthemer.php:2916
 msgid "Copy Folder"
 msgstr ""
 
-#: ../tvr-microthemer.php:2620
+#: ../tvr-microthemer.php:2917
 msgid "Rename Folder"
 msgstr ""
 
-#: ../tvr-microthemer.php:2621
+#: ../tvr-microthemer.php:2918
 msgid "Add selector to this folder"
 msgstr ""
 
-#: ../tvr-microthemer.php:2630
+#: ../tvr-microthemer.php:2927
 msgid ""
 "Non-coders should use the selector wizard instead of using these form "
 "fields. Just double-click something on your site!"
 msgstr ""
 
-#: ../tvr-microthemer.php:2697
+#: ../tvr-microthemer.php:2994
 msgid "Reorder or move selector into a different folder"
 msgstr ""
 
-#: ../tvr-microthemer.php:2708
+#: ../tvr-microthemer.php:3005
 msgid "Delete Selector"
 msgstr ""
 
-#: ../tvr-microthemer.php:2709
+#: ../tvr-microthemer.php:3006
 msgid "Copy Selector"
 msgstr ""
 
-#: ../tvr-microthemer.php:2710
+#: ../tvr-microthemer.php:3007
 msgid "Edit Selector"
 msgstr ""
 
-#: ../tvr-microthemer.php:2713
+#: ../tvr-microthemer.php:3010
 msgid ""
 "Give your selector a better descriptive name and/or modify the CSS selector "
 "code (if you know CSS)"
 msgstr ""
 
-#: ../tvr-microthemer.php:2768
+#: ../tvr-microthemer.php:3039
+msgid "Descriptive Name:"
+msgstr ""
+
+#: ../tvr-microthemer.php:3043
+msgid "CSS Selector Code:"
+msgstr ""
+
+#: ../tvr-microthemer.php:3065
 msgid ""
 "Note: also adds a \"position\" value of \"relative\" unless you explicitly "
 "set a value for position (pie needs the target element or parent element to "
 "have a non-static position value in order to work)."
 msgstr ""
 
-#: ../tvr-microthemer.php:2774
+#: ../tvr-microthemer.php:3071
 #, php-format
 msgid "Click to turn the %1$s pollyfill on/off for this selector. %2$s"
 msgstr ""
 
-#: ../tvr-microthemer.php:2782
+#: ../tvr-microthemer.php:3079
 msgid "selector"
 msgstr ""
 
-#: ../tvr-microthemer.php:2782
+#: ../tvr-microthemer.php:3079
 #, php-format
 msgid "%s Selector"
 msgstr ""
 
-#: ../tvr-microthemer.php:2783
+#: ../tvr-microthemer.php:3080
 #, php-format
 msgid "Cancel %s Selector"
 msgstr ""
 
-#: ../tvr-microthemer.php:3173
+#: ../tvr-microthemer.php:3542
+msgid "Delete this media query"
+msgstr ""
+
+#: ../tvr-microthemer.php:3544
+msgid "Give your media query a descriptive name"
+msgstr ""
+
+#: ../tvr-microthemer.php:3545
+msgid "Label:"
+msgstr ""
+
+#: ../tvr-microthemer.php:3550
+msgid "Set the media query condition"
+msgstr ""
+
+#: ../tvr-microthemer.php:3551
+msgid "Media Query:"
+msgstr ""
+
+#: ../tvr-microthemer.php:3557
+msgid ""
+"Hide this tab in the interface if you don't need it right now and you'd like "
+"to keep the number of tabs in the interface manageably low"
+msgstr ""
+
+#: ../tvr-microthemer.php:3558
+msgid "Hide Tab In Interface"
+msgstr ""
+
+#: ../tvr-microthemer.php:3571
+msgid "Yes (no settings will be lost)"
+msgstr ""
+
+#: ../tvr-microthemer.php:3586 ../tvr-microthemer.php:3629
 msgid "Edit media queries"
 msgstr ""
 
-#: ../tvr-microthemer.php:3174
+#: ../tvr-microthemer.php:3630
 #, php-format
 msgid "Manage tabs for %1$s"
 msgstr ""
 
-#: ../tvr-microthemer.php:3198
-msgid "General CSS that will apply to all devices"
-msgstr ""
-
-#: ../tvr-microthemer.php:3248 ../tvr-microthemer.php:3257
+#: ../tvr-microthemer.php:3704 ../tvr-microthemer.php:3713
 msgid "Styles will apply to all screen sizes"
 msgstr ""
 
-#: ../tvr-microthemer.php:3254 ../tvr-microthemer.php:3275
+#: ../tvr-microthemer.php:3710 ../tvr-microthemer.php:3731
 msgid "Remove tab"
 msgstr ""
 
-#: ../tvr-microthemer.php:3255 ../tvr-microthemer.php:3276
+#: ../tvr-microthemer.php:3711 ../tvr-microthemer.php:3732
 msgid "Clear tab styles"
 msgstr ""
 
-#: ../tvr-microthemer.php:3256 ../tvr-microthemer.php:3277
+#: ../tvr-microthemer.php:3712 ../tvr-microthemer.php:3733
 msgid "Add tab"
 msgstr ""
 
-#: ../tvr-microthemer.php:3285
+#: ../tvr-microthemer.php:3741
 #, php-format
 msgid "Remove all \"%1$s\" styling options for this selector"
 msgstr ""
 
-#: ../tvr-microthemer.php:3287
+#: ../tvr-microthemer.php:3743
 msgid "Remove all tabs"
 msgstr ""
 
-#: ../tvr-microthemer.php:3443
+#: ../tvr-microthemer.php:3916
 msgid "Malformed error"
 msgstr ""
 
-#: ../tvr-microthemer.php:3447
+#: ../tvr-microthemer.php:3920
 #, php-format
 msgid ""
 "To fix this issue, please delete the malformed '%1$s' selector (which may "
 "not be displaying a name) in the '%2$s' folder"
 msgstr ""
 
-#: ../tvr-microthemer.php:3450
+#: ../tvr-microthemer.php:3923
 msgid "Array is: "
 msgstr ""
 
-#: ../tvr-microthemer.php:3655
+#: ../tvr-microthemer.php:4127
 msgid "Because CSS3 PIE is enabled. It requires this to work."
 msgstr ""
 
-#: ../tvr-microthemer.php:3668
+#: ../tvr-microthemer.php:4140
 msgid "Selector Custom CSS"
 msgstr ""
 
-#: ../tvr-microthemer.php:3705
+#: ../tvr-microthemer.php:4177
 msgid "Create stylesheet error"
 msgstr ""
 
-#: ../tvr-microthemer.php:3706 ../tvr-microthemer.php:3875
-#: ../tvr-microthemer.php:3942
+#: ../tvr-microthemer.php:4178 ../tvr-microthemer.php:4347
+#: ../tvr-microthemer.php:4414
 msgid "WordPress does not have permission to create: "
 msgstr ""
 
-#: ../tvr-microthemer.php:3763
+#: ../tvr-microthemer.php:4235
 msgid "Hand Coded CSS"
 msgstr ""
 
-#: ../tvr-microthemer.php:3784 ../tvr-microthemer.php:3793
+#: ../tvr-microthemer.php:4256 ../tvr-microthemer.php:4265
 msgid "Write stylesheet error"
 msgstr ""
 
-#: ../tvr-microthemer.php:3785 ../tvr-microthemer.php:3891
+#: ../tvr-microthemer.php:4257 ../tvr-microthemer.php:4363
 #, php-format
 msgid "Writing to %s failed. "
 msgstr ""
 
-#: ../tvr-microthemer.php:3794 ../tvr-microthemer.php:4019
+#: ../tvr-microthemer.php:4266 ../tvr-microthemer.php:4491
 msgid "WordPress does not have \"write\" permission\tfor: "
 msgstr ""
 
-#: ../tvr-microthemer.php:3852
+#: ../tvr-microthemer.php:4324
 msgid "Design pack activated"
 msgstr ""
 
-#: ../tvr-microthemer.php:3853
+#: ../tvr-microthemer.php:4325
 msgid "The design pack was successfully activated."
 msgstr ""
 
-#: ../tvr-microthemer.php:3874
+#: ../tvr-microthemer.php:4346
 msgid "Create IE stylesheet error"
 msgstr ""
 
-#: ../tvr-microthemer.php:3890 ../tvr-microthemer.php:3900
+#: ../tvr-microthemer.php:4362 ../tvr-microthemer.php:4372
 msgid "Write IE stylesheet error"
 msgstr ""
 
-#: ../tvr-microthemer.php:3901 ../tvr-microthemer.php:5262
-#: ../tvr-microthemer.php:5315
+#: ../tvr-microthemer.php:4373 ../tvr-microthemer.php:5734
+#: ../tvr-microthemer.php:5787
 msgid "WordPress does not have \"write\" permission for: "
 msgstr ""
 
-#: ../tvr-microthemer.php:3941
+#: ../tvr-microthemer.php:4413
 msgid "Create json error"
 msgstr ""
 
-#: ../tvr-microthemer.php:3976
+#: ../tvr-microthemer.php:4448
 msgid "unset: hand-coded"
 msgstr ""
 
-#: ../tvr-microthemer.php:3984
+#: ../tvr-microthemer.php:4456
 msgid "unset: "
 msgstr ""
 
-#: ../tvr-microthemer.php:3986
+#: ../tvr-microthemer.php:4458
 msgid "<b>don't</b> unset: "
 msgstr ""
 
-#: ../tvr-microthemer.php:3994
+#: ../tvr-microthemer.php:4466
 msgid "The Selectively Exported Options"
 msgstr ""
 
-#: ../tvr-microthemer.php:3996
+#: ../tvr-microthemer.php:4468
 msgid "The Full Options"
 msgstr ""
 
-#: ../tvr-microthemer.php:4011
+#: ../tvr-microthemer.php:4483
 msgid "Encode json error"
 msgstr ""
 
-#: ../tvr-microthemer.php:4012
+#: ../tvr-microthemer.php:4484
 msgid "WordPress failed to convert your settings into json."
 msgstr ""
 
-#: ../tvr-microthemer.php:4018
+#: ../tvr-microthemer.php:4490
 msgid "Write json error"
 msgstr ""
 
-#: ../tvr-microthemer.php:4035
+#: ../tvr-microthemer.php:4507
 msgid "Read json error"
 msgstr ""
 
-#: ../tvr-microthemer.php:4036
+#: ../tvr-microthemer.php:4508
 #, php-format
 msgid "WordPress was not able to read %s. "
 msgstr ""
 
-#: ../tvr-microthemer.php:4072
+#: ../tvr-microthemer.php:4544
 msgid "Settings were imported"
 msgstr ""
 
-#: ../tvr-microthemer.php:4073
+#: ../tvr-microthemer.php:4545
 msgid "The design pack settings were successfully imported."
 msgstr ""
 
-#: ../tvr-microthemer.php:4088
+#: ../tvr-microthemer.php:4560
 msgid "Media queries added"
 msgstr ""
 
-#: ../tvr-microthemer.php:4089
+#: ../tvr-microthemer.php:4561
 msgid ""
 "The design pack you imported contained media queries that are different from "
 "the ones used in your current setup. In order for the design pack settings "
@@ -3008,7 +3129,7 @@ msgid ""
 "into your workspace."
 msgstr ""
 
-#: ../tvr-microthemer.php:4091
+#: ../tvr-microthemer.php:4563
 #, php-format
 msgid ""
 "Please <span %s>review (and possibly rename) the imported media queries</"
@@ -3016,49 +3137,49 @@ msgid ""
 "remove from the label name once you've reviewed them."
 msgstr ""
 
-#: ../tvr-microthemer.php:4124
+#: ../tvr-microthemer.php:4596
 msgid "Config file missing"
 msgstr ""
 
-#: ../tvr-microthemer.php:4126
+#: ../tvr-microthemer.php:4598
 #, php-format
 msgid "%1$s settings file could not be loaded because it doesn't exist in %2$s"
 msgstr ""
 
-#: ../tvr-microthemer.php:4196
+#: ../tvr-microthemer.php:4668
 msgid "The current options"
 msgstr ""
 
-#: ../tvr-microthemer.php:4269
+#: ../tvr-microthemer.php:4741
 msgid "The MQ Analysis"
 msgstr ""
 
-#: ../tvr-microthemer.php:4271
+#: ../tvr-microthemer.php:4743
 msgid "The to merge options"
 msgstr ""
 
-#: ../tvr-microthemer.php:4286 ../tvr-microthemer.php:4300
+#: ../tvr-microthemer.php:4758 ../tvr-microthemer.php:4772
 msgid "CSS from design pack imported with 'Merge'"
 msgstr ""
 
-#: ../tvr-microthemer.php:4311
+#: ../tvr-microthemer.php:4783
 msgid "The Merged options"
 msgstr ""
 
-#: ../tvr-microthemer.php:4356
+#: ../tvr-microthemer.php:4828
 msgid "/micro-themes create error"
 msgstr ""
 
-#: ../tvr-microthemer.php:4358
+#: ../tvr-microthemer.php:4830
 #, php-format
 msgid "WordPress was not able to create the %s directory. "
 msgstr ""
 
-#: ../tvr-microthemer.php:4382
+#: ../tvr-microthemer.php:4854
 msgid "CSS3 PIE not copied"
 msgstr ""
 
-#: ../tvr-microthemer.php:4384
+#: ../tvr-microthemer.php:4856
 #, php-format
 msgid ""
 "CSS3 PIE (%s) could not be copied to correct location. This is needed to "
@@ -3066,38 +3187,38 @@ msgid ""
 "Internet Explorer."
 msgstr ""
 
-#: ../tvr-microthemer.php:4409
+#: ../tvr-microthemer.php:4881
 msgid "/micro-themes write error"
 msgstr ""
 
-#: ../tvr-microthemer.php:4411 ../tvr-microthemer.php:4438
-#: ../tvr-microthemer.php:4935
+#: ../tvr-microthemer.php:4883 ../tvr-microthemer.php:4910
+#: ../tvr-microthemer.php:5407
 #, php-format
 msgid "The directory %s is not writable. "
 msgstr ""
 
-#: ../tvr-microthemer.php:4426
+#: ../tvr-microthemer.php:4898
 msgid "design pack create error"
 msgstr ""
 
-#: ../tvr-microthemer.php:4428
+#: ../tvr-microthemer.php:4900
 #, php-format
 msgid "WordPress was not able to create the %s directory."
 msgstr ""
 
-#: ../tvr-microthemer.php:4436
+#: ../tvr-microthemer.php:4908
 msgid "design pack write error"
 msgstr ""
 
-#: ../tvr-microthemer.php:4445
+#: ../tvr-microthemer.php:4917
 msgid "Safe-mode is on"
 msgstr ""
 
-#: ../tvr-microthemer.php:4446
+#: ../tvr-microthemer.php:4918
 msgid "The PHP server setting \"Safe-Mode\" is on."
 msgstr ""
 
-#: ../tvr-microthemer.php:4448
+#: ../tvr-microthemer.php:4920
 #, php-format
 msgid ""
 "<b>This isn't necessarily a problem. But if the design pack \"%1$s\" hasn't "
@@ -3105,19 +3226,19 @@ msgid ""
 "permission code 777. "
 msgstr ""
 
-#: ../tvr-microthemer.php:4491
+#: ../tvr-microthemer.php:4963
 msgid "Design pack created"
 msgstr ""
 
-#: ../tvr-microthemer.php:4492
+#: ../tvr-microthemer.php:4964
 msgid "The design pack directory was successfully created on the server."
 msgstr ""
 
-#: ../tvr-microthemer.php:4498
+#: ../tvr-microthemer.php:4970
 msgid "Design pack installed"
 msgstr ""
 
-#: ../tvr-microthemer.php:4500
+#: ../tvr-microthemer.php:4972
 #, php-format
 msgid ""
 "The design pack was successfully uploaded and extracted. You can import it "
@@ -3125,358 +3246,358 @@ msgid ""
 "span>"
 msgstr ""
 
-#: ../tvr-microthemer.php:4509
+#: ../tvr-microthemer.php:4981
 msgid "Settings exported"
 msgstr ""
 
-#: ../tvr-microthemer.php:4510
+#: ../tvr-microthemer.php:4982
 msgid ""
 "Your settings were successfully exported as a design pack directory on the "
 "server."
 msgstr ""
 
-#: ../tvr-microthemer.php:4534
+#: ../tvr-microthemer.php:5006
 msgid "Missing meta file"
 msgstr ""
 
-#: ../tvr-microthemer.php:4536
+#: ../tvr-microthemer.php:5008
 #, php-format
 msgid ""
 "The zip file doesn't contain a necessary %s file or it could not be read."
 msgstr ""
 
-#: ../tvr-microthemer.php:4548
+#: ../tvr-microthemer.php:5020
 msgid "File doesn't exist"
 msgstr ""
 
-#: ../tvr-microthemer.php:4550
+#: ../tvr-microthemer.php:5022
 #, php-format
 msgid "%s does not exist on the server."
 msgstr ""
 
-#: ../tvr-microthemer.php:4558
+#: ../tvr-microthemer.php:5030
 msgid "File not readable"
 msgstr ""
 
-#: ../tvr-microthemer.php:4560
+#: ../tvr-microthemer.php:5032
 #, php-format
 msgid " %s could not be read."
 msgstr ""
 
-#: ../tvr-microthemer.php:4652
+#: ../tvr-microthemer.php:5124
 msgid "Move to media library failed"
 msgstr ""
 
-#: ../tvr-microthemer.php:4654
+#: ../tvr-microthemer.php:5126
 #, php-format
 msgid "%s was not imported due to an error."
 msgstr ""
 
-#: ../tvr-microthemer.php:4681
+#: ../tvr-microthemer.php:5153
 msgid "Images transferred to media library"
 msgstr ""
 
-#: ../tvr-microthemer.php:4682
+#: ../tvr-microthemer.php:5154
 msgid ""
 "The following images were transferred from the design pack to your WordPress "
 "media library:"
 msgstr ""
 
-#: ../tvr-microthemer.php:4715
+#: ../tvr-microthemer.php:5187
 msgid "Images paths updated"
 msgstr ""
 
-#: ../tvr-microthemer.php:4716
+#: ../tvr-microthemer.php:5188
 msgid ""
 "Images paths were successfully updated to reflect the new location or "
 "deletion of an image(s)."
 msgstr ""
 
-#: ../tvr-microthemer.php:4722
+#: ../tvr-microthemer.php:5194
 msgid "Image paths failed to update."
 msgstr ""
 
-#: ../tvr-microthemer.php:4723
+#: ../tvr-microthemer.php:5195
 msgid ""
 "Images paths could not be updated to reflect the new location of the images "
 "transferred to your media library. This happened because Microthemer could "
 "not rewrite the config.json file."
 msgstr ""
 
-#: ../tvr-microthemer.php:4738
+#: ../tvr-microthemer.php:5210
 msgid "Uploads folder error"
 msgstr ""
 
-#: ../tvr-microthemer.php:4749
+#: ../tvr-microthemer.php:5221
 msgid "Wrong file type"
 msgstr ""
 
-#: ../tvr-microthemer.php:4750
+#: ../tvr-microthemer.php:5222
 msgid "Sorry, this file type is not permitted for security reasons."
 msgstr ""
 
-#: ../tvr-microthemer.php:4765
+#: ../tvr-microthemer.php:5237
 msgid "Image already in library"
 msgstr ""
 
-#: ../tvr-microthemer.php:4767
+#: ../tvr-microthemer.php:5239
 #, php-format
 msgid ""
 "%s already exists in the WordPress media library and was therefore not moved"
 msgstr ""
 
-#: ../tvr-microthemer.php:4782
+#: ../tvr-microthemer.php:5254
 msgid "Move to library failed"
 msgstr ""
 
-#: ../tvr-microthemer.php:4784
+#: ../tvr-microthemer.php:5256
 #, php-format
 msgid "%1$s could not be moved to %2$s"
 msgstr ""
 
-#: ../tvr-microthemer.php:4872
+#: ../tvr-microthemer.php:5344
 msgid "Faulty zip file"
 msgstr ""
 
-#: ../tvr-microthemer.php:4873
+#: ../tvr-microthemer.php:5345
 msgid "The uploaded file was faulty or was not a zip file."
 msgstr ""
 
-#: ../tvr-microthemer.php:4874
+#: ../tvr-microthemer.php:5346
 msgid "The server recognised this file type: "
 msgstr ""
 
-#: ../tvr-microthemer.php:4894
+#: ../tvr-microthemer.php:5366
 msgid "Extract zip error"
 msgstr ""
 
-#: ../tvr-microthemer.php:4895 ../tvr-microthemer.php:4916
+#: ../tvr-microthemer.php:5367 ../tvr-microthemer.php:5388
 msgid "Error : "
 msgstr ""
 
-#: ../tvr-microthemer.php:4915
+#: ../tvr-microthemer.php:5387
 msgid "Create zip error"
 msgstr ""
 
-#: ../tvr-microthemer.php:4921
+#: ../tvr-microthemer.php:5393
 msgid "Zip package created"
 msgstr ""
 
-#: ../tvr-microthemer.php:4922
+#: ../tvr-microthemer.php:5394
 msgid "Zip package successfully created."
 msgstr ""
 
-#: ../tvr-microthemer.php:4924
+#: ../tvr-microthemer.php:5396
 msgid "Download zip file"
 msgstr ""
 
-#: ../tvr-microthemer.php:4933
+#: ../tvr-microthemer.php:5405
 msgid "Zip store error"
 msgstr ""
 
-#: ../tvr-microthemer.php:4966
+#: ../tvr-microthemer.php:5438
 msgid "Read meta.txt error"
 msgstr ""
 
-#: ../tvr-microthemer.php:4967 ../tvr-microthemer.php:4997
+#: ../tvr-microthemer.php:5439 ../tvr-microthemer.php:5469
 msgid "WordPress does not have permission to read: "
 msgstr ""
 
-#: ../tvr-microthemer.php:4996
+#: ../tvr-microthemer.php:5468
 msgid "Read readme.txt error"
 msgstr ""
 
-#: ../tvr-microthemer.php:5054
+#: ../tvr-microthemer.php:5526
 msgid "Anonymous"
 msgstr ""
 
-#: ../tvr-microthemer.php:5060
+#: ../tvr-microthemer.php:5532
 msgid "Visit author homepage"
 msgstr ""
 
-#: ../tvr-microthemer.php:5074
+#: ../tvr-microthemer.php:5546
 msgid "File delete error"
 msgstr ""
 
-#: ../tvr-microthemer.php:5075
+#: ../tvr-microthemer.php:5547
 msgid "Unable to delete: "
 msgstr ""
 
-#: ../tvr-microthemer.php:5087
+#: ../tvr-microthemer.php:5559
 #, php-format
 msgid "All files within %s were successfully deleted."
 msgstr ""
 
-#: ../tvr-microthemer.php:5095
+#: ../tvr-microthemer.php:5567
 msgid "Delete directory error"
 msgstr ""
 
-#: ../tvr-microthemer.php:5097
+#: ../tvr-microthemer.php:5569
 #, php-format
 msgid "The empty directory: %s could not be deleted."
 msgstr ""
 
-#: ../tvr-microthemer.php:5105
+#: ../tvr-microthemer.php:5577
 msgid "Directory successfully deleted"
 msgstr ""
 
-#: ../tvr-microthemer.php:5159
+#: ../tvr-microthemer.php:5631
 msgid "Design pack renamed"
 msgstr ""
 
-#: ../tvr-microthemer.php:5160
+#: ../tvr-microthemer.php:5632
 msgid "The design pack directory was successfully renamed on the server."
 msgstr ""
 
-#: ../tvr-microthemer.php:5167 ../tvr-microthemer.php:5177
+#: ../tvr-microthemer.php:5639 ../tvr-microthemer.php:5649
 msgid "Directory rename error"
 msgstr ""
 
-#: ../tvr-microthemer.php:5169
+#: ../tvr-microthemer.php:5641
 #, php-format
 msgid "The directory, %s could not be renamed for some reason."
 msgstr ""
 
-#: ../tvr-microthemer.php:5179
+#: ../tvr-microthemer.php:5651
 #, php-format
 msgid ""
 "WordPress does not have permission to rename the directory %1$s to match "
 "your new theme name \"%2$s\". "
 msgstr ""
 
-#: ../tvr-microthemer.php:5192 ../tvr-microthemer.php:5275
+#: ../tvr-microthemer.php:5664 ../tvr-microthemer.php:5747
 #, php-format
 msgid "Create %s error"
 msgstr ""
 
-#: ../tvr-microthemer.php:5255 ../tvr-microthemer.php:5306
+#: ../tvr-microthemer.php:5727 ../tvr-microthemer.php:5778
 #, php-format
 msgid "The %1$s file for the design pack was %2$s"
 msgstr ""
 
-#: ../tvr-microthemer.php:5261 ../tvr-microthemer.php:5314
+#: ../tvr-microthemer.php:5733 ../tvr-microthemer.php:5786
 #, php-format
 msgid "Write %s error"
 msgstr ""
 
-#: ../tvr-microthemer.php:5335
+#: ../tvr-microthemer.php:5807
 msgid "File successfully uploaded"
 msgstr ""
 
-#: ../tvr-microthemer.php:5337
+#: ../tvr-microthemer.php:5809
 #, php-format
 msgid "<b>%s</b> was successfully uploaded."
 msgstr ""
 
-#: ../tvr-microthemer.php:5366
+#: ../tvr-microthemer.php:5838
 msgid "Screenshot thumbnail error"
 msgstr ""
 
-#: ../tvr-microthemer.php:5368
+#: ../tvr-microthemer.php:5840
 #, php-format
 msgid "Could not resize <b>%s</b> to thumbnail proportions."
 msgstr ""
 
-#: ../tvr-microthemer.php:5370
+#: ../tvr-microthemer.php:5842
 msgid " thumb: "
 msgstr ""
 
-#: ../tvr-microthemer.php:5378
+#: ../tvr-microthemer.php:5850
 msgid "Screenshot thumbnail successfully created"
 msgstr ""
 
-#: ../tvr-microthemer.php:5380
+#: ../tvr-microthemer.php:5852
 #, php-format
 msgid "<b>%s</b> was successfully created."
 msgstr ""
 
-#: ../tvr-microthemer.php:5394
+#: ../tvr-microthemer.php:5866
 msgid "Write to directory error"
 msgstr ""
 
-#: ../tvr-microthemer.php:5395
+#: ../tvr-microthemer.php:5867
 msgid "WordPress does not have \"Write\" permission to the directory: "
 msgstr ""
 
-#: ../tvr-microthemer.php:5402
+#: ../tvr-microthemer.php:5874
 msgid "Invalid file type"
 msgstr ""
 
-#: ../tvr-microthemer.php:5403
+#: ../tvr-microthemer.php:5875
 msgid "You have uploaded a file type that is not allowed."
 msgstr ""
 
-#: ../tvr-microthemer.php:5419
+#: ../tvr-microthemer.php:5891
 msgid "File upload limit reached"
 msgstr ""
 
-#: ../tvr-microthemer.php:5420
+#: ../tvr-microthemer.php:5892
 msgid ""
 "The file you uploaded exceeded your \"upload_max_filesize\" limit. This is a "
 "PHP setting on your server."
 msgstr ""
 
-#: ../tvr-microthemer.php:5425
+#: ../tvr-microthemer.php:5897
 msgid "File size too big"
 msgstr ""
 
-#: ../tvr-microthemer.php:5426
+#: ../tvr-microthemer.php:5898
 msgid ""
 "The file you uploaded exceeded your \"max_file_size\" limit. This is a PHP "
 "setting on your server."
 msgstr ""
 
-#: ../tvr-microthemer.php:5431
+#: ../tvr-microthemer.php:5903
 msgid "Partial upload"
 msgstr ""
 
-#: ../tvr-microthemer.php:5432
+#: ../tvr-microthemer.php:5904
 msgid "The file you uploaded only partially uploaded."
 msgstr ""
 
-#: ../tvr-microthemer.php:5437
+#: ../tvr-microthemer.php:5909
 msgid "No file uploaded"
 msgstr ""
 
-#: ../tvr-microthemer.php:5438
+#: ../tvr-microthemer.php:5910
 msgid "No file was detected for upload."
 msgstr ""
 
-#: ../tvr-microthemer.php:5461
+#: ../tvr-microthemer.php:5933
 msgid "GD not loaded"
 msgstr ""
 
-#: ../tvr-microthemer.php:5462
+#: ../tvr-microthemer.php:5934
 msgid "The PHP extension GD is not loaded."
 msgstr ""
 
-#: ../tvr-microthemer.php:5474
+#: ../tvr-microthemer.php:5946
 msgid "File type error"
 msgstr ""
 
-#: ../tvr-microthemer.php:5475
+#: ../tvr-microthemer.php:5947
 msgid "Unsuported file type. Are you sure you uploaded an image?"
 msgstr ""
 
-#: ../tvr-microthemer.php:5493
+#: ../tvr-microthemer.php:5965
 msgid "Dimensions too big"
 msgstr ""
 
-#: ../tvr-microthemer.php:5495
+#: ../tvr-microthemer.php:5967
 #, php-format
 msgid ""
 "The resize dimensions you specified (%1$s x %2$s) are bigger than the "
 "original image (%3$s x %4$s). This is not allowed."
 msgstr ""
 
-#: ../tvr-microthemer.php:5538
+#: ../tvr-microthemer.php:6010
 msgid "Image resize failed"
 msgstr ""
 
-#: ../tvr-microthemer.php:5539
+#: ../tvr-microthemer.php:6011
 msgid "Your image could not be resized."
 msgstr ""
 
-#: ../tvr-microthemer.php:5774
+#: ../tvr-microthemer.php:6246
 msgid "Jump to the Microthemer interface"
 msgstr ""

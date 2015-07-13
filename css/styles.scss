@@ -6,9 +6,28 @@ Set up scss environment
 @import "scss/css3-mixins";
 @import "scss/scroll";
 
+/*--------------------------------------------------------------
+Custom Functions
+--------------------------------------------------------------*/
+@function pc($px, $w: 325){ // default to 325 because that is the current width of the selector wizard
+  @return $px/$w * 100%;
+}
+@function em($px, $con: 12){
+  @return $px/$con+em;
+}
+
+// try having the MT on the right
+$mt_space: 40px;
+
 //set up colour scheme
 $white: #fff;
 $nearlyWhite: #fbfbfb;
+$rulerGrooves: rgba(230, 230, 230, .3);
+$rulerNumbers: rgba(230, 230, 230, .6);
+// non-opacity
+$rulerGrooves: #6e7582;
+$rulerNumbers: #9ba5ac;
+
 //$red: #dd3d36;
 $red: #f0636d;
 $darkRed: #c64f63;
@@ -16,10 +35,12 @@ $orange: #FFBA42;
 $lightGreen: #94d3af;
 $green: #77a38c;
 $darkGreen: #6f937f;
-
 $darkBlue:#18202a;
+$darkBlueAlpha: rgba(24, 32, 42, 0.9);
 $mediumBlue: #2f3846;
+$mediumBlueAlpha: rgba(47, 56, 70, .7);
 $lightBlue: #3b4658;
+$lightBlueAlpha:rgba(59, 70, 88, 0.9);
 $lighterBlue: #768293;
 
 // wordpress link color
@@ -27,7 +48,9 @@ $wp_link: #0074a2;
 $wp_link_hover: #2ea2cc;
 $wp_link_focus: #124964;
 
+$alphaShadow: rgba(0, 0, 0, 0.2);
 $shadowColor:#999998;
+$mediumGreyb: #bfbfbf;
 $mediumGrey: #cbcbcb;
 $lightGrey: #e6e6e6;
 $lightestGrey: #f6f6f6;
@@ -44,7 +67,7 @@ $options_split: max-width 600px;
 $options_split_again: max-width 400px;
 
 // other variables
-$sprite: url('../images/MT_sprite.png?v=27');
+$sprite: url('../images/MT_sprite_34.png?v=27');
 
 $largeLoadingGif: url('../images/logo-loader-30.gif?v=1') no-repeat center center;
 $background_size: 1920px 1120px; // half the actual size so high res screens render well.
@@ -79,24 +102,36 @@ Mixins - see also css3 mixins import above
   background-image:$sprite;
   background-repeat: no-repeat;
   background-position: ($left*-40)+40+px ($top*-40)+40+px;
-  &:hover,
   &.hasValues {
-    background-position: ($left*-40)+40+px (($top+1)*-40)+40+px;
+    background-position: ($left*-40)+40+px (($top+23)*-40)+40+px;
   }
+  &:hover,
   &.active {
     background-position: ($left*-40)+40+px (($top+2)*-40)+40+px;
+    background-color: $green;
+    &.hasValues {
+      background-position: ($left*-40)+40+px (($top+1)*-40)+40+px;
+    }
+  }
+  &:hover {
+    background-color: $lightBlue;
   }
   background-size: $background_size;
 }
 
 // grey shadow
 @mixin grey-shadow() {
-  @include box-shadow(0, 0, 6px, $shadowColor);
+  @include box-shadow(0, 0, 6px, $alphaShadow);
+}
+
+// grey shadow
+@mixin grey-shadow-bottom() {
+  @include box-shadow(0, 3px, 6px, $alphaShadow);
 }
 
 // dialog shadow
 @mixin dialog-shadow() {
-  @include box-shadow(0, 0, 6px, #000000);
+  @include box-shadow(0, 0, 6px, $alphaShadow);
 
 }
 
@@ -121,7 +156,7 @@ body.tvr-visual { // refine to only sels that need it - also add to frontend
 
 body .ui-tooltip {
   z-index: 999915 !important;
-  @include box-shadow(0, 0, 0, $shadowColor);
+  @include box-shadow(0, 0, 0, $alphaShadow);
   @include border-radius(3px);
   background: $mediumBlue;
   color:$white;
@@ -237,7 +272,7 @@ a.no-line {
     border:1px solid $lightGrey;
     line-height: 1.5;
     box-shadow:none;
-    background:$nearlyWhite;
+    background:$white;
     width: auto;
     height:26px;
     display: inline-block;
@@ -270,7 +305,6 @@ a.no-line {
     @include box-sizing();
     height:26px;
     width:26px;
-
     @include sprite(5.2, 7.2);
     background-color:$lightestGrey;
     border: 1px solid $lightGrey;
@@ -462,14 +496,14 @@ a.no-line {
     cursor: pointer;
   }
   .menu-arrow {
-    @include sprite(5.4, 4.28);
+    @include sprite(5.4, 4.18);
     &:hover {
-      @include sprite(5.4, 5.28);
+      @include sprite(5.4, 5.18);
     }
     &.on {
-      @include sprite(6.35, 4.28);
+      @include sprite(6.35, 4.18);
       &:hover {
-        @include sprite(6.35, 5.28);
+        @include sprite(6.35, 5.18);
       }
     }
   }
@@ -477,6 +511,12 @@ a.no-line {
     @include sprite(1.3, 4.28);
     &:hover {
       @include sprite(1.3, 5.28);
+    }
+  }
+  .item-row .folder-icon {
+    @include sprite(1.3, 4.18);
+    &:hover {
+      @include sprite(1.3, 5.18);
     }
   }
   .code-icon {
@@ -507,10 +547,22 @@ a.no-line {
     }
   }
   .selector-icon {
-    @include sprite(24.3, 4.28);
+     @include sprite(24.3, 4.28);
+     &:hover {
+       @include sprite(24.3, 5.28);
+     }
+  }
+  .item-row .selector-icon {
+    @include sprite(24.3, 4.18);
     &:hover {
-      @include sprite(24.3, 5.28);
+      @include sprite(24.3, 5.18);
     }
+  }
+  .feather-icon {
+    @include sprite(1.3, 26.28);
+  }
+  .item-row .feather-icon {
+    @include sprite(1.3, 26.18);
   }
   .info-icon {
     @include sprite(8.3, 7.28);
@@ -615,6 +667,7 @@ a.no-line {
     .dialog-main {
       box-shadow: none;
       padding:0;
+      max-height: 100%;
     }
     .dialog-content {
       padding:10px 0;
@@ -631,6 +684,40 @@ a.no-line {
 /*--------------------------------------------------------------
   Dialogs
   --------------------------------------------------------------*/
+
+// dialog header styling is useful for wizard, hence it's outside of .tvr-dialog {}
+.dialog-header,
+.dialog-footer {
+  background:$lightGrey;
+
+}
+.dialog-header {
+  height:40px;
+  margin:0 !important;
+  .dialog-icon {
+    float:left;
+    width:40px;
+    height:40px;
+    cursor:default !important;
+    &.active {
+      background-size:auto !important;
+      background:$darkGreen $largeLoadingGif !important;
+      margin-right:1em;
+    }
+  }
+  .text {
+    margin:11px;
+    margin-left:0;
+    display: inline-block;
+  }
+  .close-icon {
+    float:right;
+    margin:11px;
+    @include state-sprite(7.3, 4.28);
+  }
+}
+
+// tvr-dialog
 .tvr-dialog {
   position:fixed;
   @include box-sizing();
@@ -652,6 +739,7 @@ a.no-line {
     padding:80px 15%;
     padding-bottom:130px;
   }
+
   .dialog-main {
     cursor: default;
     padding-bottom:40px;
@@ -661,36 +749,7 @@ a.no-line {
     background:$lightestGrey;
     @include dialog-shadow();
   }
-  .dialog-header,
-  .dialog-footer {
-    background:$lightGrey;
 
-  }
-  .dialog-header {
-    height:40px;
-    margin:0 !important;
-    .dialog-icon {
-      float:left;
-      width:40px;
-      height:40px;
-      cursor:default !important;
-      &.active {
-        background-size:auto !important;
-        background:$darkGreen $largeLoadingGif !important;
-        margin-right:1em;
-      }
-    }
-    .text {
-      margin:11px;
-      margin-left:0;
-      display: inline-block;
-    }
-    .close-icon {
-      float:right;
-      margin:11px;
-      @include state-sprite(7.3, 4.28);
-    }
-  }
   .dialog-footer {
     @include susy-clearfix;
     @include box-sizing();
@@ -717,9 +776,14 @@ a.no-line {
     height:100%;
     @include box-sizing();
     padding:24px;
+
     .mCSB_container {
 
     }
+  }
+
+  &.has-mt-tabs .dialog-content {
+    padding-bottom:62px;
   }
 
   .explain {
@@ -790,6 +854,17 @@ a.no-line {
   }
 
 }
+
+// dialog tabs
+div.dialog-tabs {
+  //display: none;
+  margin:0;
+  padding:.5em 0 0 40px;
+  .mt-tab {
+    top:1px;
+  }
+}
+
 // export
 #export-to-pack-dialog {
   p.enter-name-explain {
@@ -824,6 +899,10 @@ a.no-line {
 
 
 }
+
+
+
+
 // import
 #import-from-pack-dialog {
   .dialog-icon {
@@ -876,6 +955,9 @@ a.no-line {
   .dialog-icon {
     @include sprite(20, 1);
   }
+  .ui-autocomplete.ui-menu {
+    max-height: 112px; // css units
+  }
 
 }
 .form-field-list {
@@ -918,6 +1000,24 @@ a.no-line {
   .reveal-mq-sets {
 
   }
+
+  // Css Units Preferences
+  &.css_units {
+    .section_title {
+        font-weight: bold;
+        margin: 1em 0 .4em 0;
+    }
+    .input-wrap {
+      margin: 0 0 .5em 2em;
+    }
+    .text-label {
+      min-width: 175px;
+    }
+    .combobox {
+      min-width: 130px;
+      width: 130px !important;
+    }
+  }
 }
 
 // responsive media queries
@@ -954,19 +1054,34 @@ a.no-line {
   }
   .mq-edit-wrap {
     margin-right:24px;
+    margin-bottom:1em;
     input {
       display: inline-block;
       width:75%;
     }
   }
   .mq-label-wrap {
-    margin-bottom:1em;
+
 
   }
   label {
     cursor: move;
     display: inline-block;
     width:20%;
+  }
+  .mq-checkbox-wrap {
+    overflow: hidden;
+    margin-bottom:0;
+    label {
+      float:left;
+    }
+    .fake-checkbox,
+    .ef-label {
+      line-height: 1.5;
+    }
+    .fake-checkbox {
+      margin-top:2px;
+    }
   }
 
   input.m-label {
@@ -1037,7 +1152,6 @@ Visual View Areas
   width: 100%;
   z-index:9999;
   background:$lightGrey;
-
 }
 
 
@@ -1047,37 +1161,43 @@ Top Toolbar
 
 #v-top-controls {
   min-height:40px;
-  background:$lightestGrey;
+  background:$lightGrey;
   position: relative;
   z-index:99997;
   // to fix bug when options are opacity 50 (disabled)
   .right-stuff-wrap {
-    position: relative;
+    position: absolute;
+    top:40px;
+    right:0;
     z-index:99998;
+  }
+  .show-rulers & {
+    .frame-shadow {
+      display: none;
+    }
   }
 }
 
 #starter-message {
   line-height: 40px;
   font-style: italic;
-  margin-left:50px;
-  .show-wizard & {
-    display: none;
-  }
+  float:left;
 }
-#help-on-right,
-.edit-css-code {
-  float:right;
-  width:40px;
+.cta-wrap {
+  width:200px;
+  position:absolute;
+  top:0px;
+  right:440px;
+  z-index: 99998;
 }
 .cta-button {
   float:right;
-  margin:7px !important;
+  margin:7px 8px 0 0 !important;
   .tvr-icon {
     margin-right:5px;
   }
   &.unlock-cta {
-    @include border-radius-separate(3px, 0, 0, 3px);
+
     span {
       float:left;
       &.tvr-icon {
@@ -1104,7 +1224,10 @@ Top Toolbar
   height:8px;
   background: url(../images/drop-shadow-top.png);
   #tvr-options & {
-    top:40px;
+    top:120px;
+    &.pg-has-labels {
+      top:135px;
+    }
   }
 }
 
@@ -1159,7 +1282,14 @@ Popdown/right menu
 --------------------------------------------------------------*/
 .tvr-popdown-wrap {
   height:40px;
-
+  &:hover {
+    .tvr-popdown {
+      top:40px;
+      &#full-logs {
+        top:71px;
+      }
+    }
+  }
 }
 .tvr-popdown {
   //visibility: hidden;
@@ -1170,52 +1300,61 @@ Popdown/right menu
   width: 500px;
   max-height:400px;
   overflow:hidden;
-  background:$lightGrey url(../images/drop-shadow-top.png) repeat-x;
-  @include box-shadow(0, 3px, 3px, $shadowColor);
-  .tvr-popdown-wrap:hover & {
-   // visibility: visible
-    top:40px;
-  }
+  background:$lightGrey;
+  border:1px solid $mediumGrey;
+  //@include grey-shadow-bottom();
+
 }
 
 .tvr-popright-wrap {
   height:40px;
   position: relative;
+  border:1px solid $lightGrey;
+  .tvr-dialog & {
+    border:0;
+  }
+  &.ruler-tools {
+    display: none; // not done guides yet
+  }
+  &:hover {
+    border-color: $mediumGrey;
+    height:80px;
+    &.pack-tools,
+    &.reset-tools {
+      height:120px;
+    }
+
+    .tvr-popright {
+      visibility: visible;
+    }
+  }
 }
 .tvr-popright {
   visibility: hidden;
   position: absolute;
   z-index:99995;
-  top:-5px;
-  left:40px;
-  width: 80px;
+  left:0;
+  top:40px;
+  width: auto;
   overflow:hidden;
-  padding:5px 5px 5px 0;
+  background: $lightGrey;
   .tvr-dialog & {
     top:40px;
     left:0;
     padding:0;
     .popright-sub {
-      background: $lightGrey;
+
     }
   }
-  .tvr-popright-wrap:hover & {
-    visibility: visible
-  }
-  &.integration-right {
-
-  }
-
 }
 .popright-sub {
-  width: 80px;
   overflow: hidden;
-  background:$lightestGrey;
-  @include box-shadow(0, 3px, 3px, $shadowColor);
-  .v-left-button {
-    width:40px;
-    float:left;
+  width: 40px;
+  @include box-shadow(0, 2px, 2px, $alphaShadow);
+  .popright-sub & {
+
   }
+
 }
 .integration-sub {
   width: 160px;
@@ -1240,13 +1379,20 @@ Status board and full logs
     float:right;
     display:inline-block;
     line-height: 1;
+    margin:5px 5px 5px 0;
     &.active {
       color:$darkGreen;
     }
     &.active,
     &.tvr-message {
       padding:5px 8px;
-      margin:9px 0;
+      margin-right:5px;
+    }
+    &.hide-boring {
+      display: none;
+    }
+    .show-code_editor & {
+      margin-right:8px;
     }
   }
   .info-icon {
@@ -1283,39 +1429,28 @@ Status board and full logs
 /*--------------------------------------------------------------
 Quick Selector Nav Arrows
 --------------------------------------------------------------*/
-
-#tvr-nav {
-  .show-code-editor &,
-  .show-wizard & {
+#tvr-nav,
+#responsive-bar {
+  position: absolute;
+  z-index:99994;
+  .show-code_editor & {
     display: none;
   }
-  border-left:1px solid $lightGrey;
-  padding-left:10px;
-  position: absolute;
-  z-index:99998;
+}
+#tvr-nav {
   height:40px;
-  left:480px;
-  #toggle-highlighting {
-    width:40px;
-    height:40px;
-    display: block;
-    float:left;
-    cursor: pointer;
-    @include sprite(23, 1);
-    opacity:.4;
-    &:hover {
-      opacity:.6;
-    }
-    &.on {
-      opacity:1;
-    }
-  }
+  top:0;
+  left:0;
+  padding-left: 40px;
+  width:100%;
+  background: $lightGrey;
+  @include box-sizing();
   #quick-nav {
     float:left;
   }
   .scroll-buttons {
     float:left;
-    margin:11px 5px 11px 10px;
+    margin:11px 5px 11px 3px;
   }
   #vb-focus-prev {
     @include state-sprite(17.3, 4.28);
@@ -1363,6 +1498,66 @@ Quick Selector Nav Arrows
 }
 
 
+
+/*--------------------------------------------------------------
+  General Tab Styling
+  --------------------------------------------------------------*/
+.query-tabs {
+  padding:0 250px 0 0;
+  background: $lightGrey;
+  @include susy-clearfix;
+  border-bottom: 1px solid $mediumGrey;
+  .mt-tab {
+    border-radius: 6px 6px 0 0;
+    float: left;
+    padding: 6px 11px;
+    line-height: 18px;
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    left: 1px;
+    cursor: pointer;
+    border: 1px solid $mediumGrey;
+    border-bottom-color: $mediumGrey;
+    opacity: .6;
+    &.hasValues {
+      @include sprite(1.1, 26.1);
+      padding-left: 30px;
+    }
+    &:hover {
+      opacity: .8;
+    }
+    &.active {
+      border-bottom-color: $lightestGrey;
+      background-color: $lightestGrey;
+      font-weight: bold;
+      opacity: 1;
+    }
+  }
+
+}
+
+// The responsive tabs
+#responsive-bar {
+  top:40px;
+  left:0;
+  width:100%;
+  @include box-sizing();
+  background: $lightGrey;
+  .edit-mq {
+    display: block;
+    float: left;
+    width: 38px;
+    height: 27px;
+    margin-top: 3px;
+    @include sprite(10, 4.22);
+    cursor: pointer;
+  }
+  .mq-tab {
+    //top: 2px;
+  }
+}
+
 /*--------------------------------------------------------------
 Folder navigation menu
 --------------------------------------------------------------*/
@@ -1382,22 +1577,24 @@ Folder navigation menu
   }
   .main-menu-popdown {
     cursor: default;
-    left:481px;
+    left:0;
     position: fixed;
-    z-index:99995;
+    z-index:99999;
     top:-99999px;
     // top:40px;
     width: 500px;
     max-height:500px;
     overflow:hidden;
-    background:$lightGrey url(../images/drop-shadow-top.png) repeat-x;
-    @include box-shadow(0, 3px, 3px, $shadowColor);
+    background:$lightGrey;
+    border:1px solid $mediumGrey;
+    //@include box-shadow(0, 3px, 3px, $shadowColor);
+    //@include grey-shadow();
     &.bye-for-now {
       overflow:visible;
     }
   }
   &.on .main-menu-popdown {
-    top:40px;
+    top:41px;
   }
 
 }
@@ -1407,9 +1604,10 @@ Folder navigation menu
 
 #add-new-section {
   width:100%;
-  border-bottom:1px solid $lightestGrey;
+  //border-bottom:1px solid $mediumGrey;
   .inner-wrap {
     @include susy-clearfix;
+    padding-bottom:0;
   }
   .new-section {
     input {
@@ -1443,9 +1641,14 @@ Folder navigation menu
   }
   .item-row {
     @include susy-clearfix;
-    padding:4px 6px;
     &:hover {
       background: $lightestGrey;
+    }
+    padding:0 6px;
+    & > span {
+      padding-top:4px;
+      padding-bottom:4px;
+
     }
 
   }
@@ -1455,6 +1658,12 @@ Folder navigation menu
   .item-row {
     .item-name {
       cursor:pointer;
+      padding:0;
+      .name-text {
+        padding-top:4px;
+        padding-bottom:4px;
+        display: inline-block;
+      }
     }
   }
   .section-name {
@@ -1463,6 +1672,8 @@ Folder navigation menu
   .sel-row {
     margin-left:44px;
   }
+
+
 
   .edit-section-form {
     display: inline-block;
@@ -1477,7 +1688,8 @@ Folder navigation menu
   .menu-arrow,
   .folder-icon,
   .section-name,
-  .selector-icon {
+  .selector-icon,
+  .feather-icon {
     float:left;
   }
   .folder-icon,
@@ -1524,17 +1736,26 @@ Folder navigation menu
     display: none;
   }
 
+  .feather-icon {
+    display: none !important;
+    margin-right:6px;
+  }
+  &.hasValues .feather-icon {
+    display: inline-block !important;
+  }
+
 }
 #ui-totals-count {
   font-weight:bold;
   vertical-align: bottom;
   padding:1em;
-  border-top:1px solid $lightestGrey;
+  border-top:1px solid $mediumGrey;
   @include susy-clearfix;
   span {
     display:block;
     float:left;
     margin-right:5px;
+    cursor: default !important;
   }
   .total-stats,
   .total-folders {
@@ -1599,22 +1820,17 @@ Folder navigation menu
   .quick-edit-mode {
     position:fixed;
     z-index:999911 !important;
-    top:40px;
-    left:481px;
+    top:41px;
+    left:0;
     width:500px;
     background: $lightGrey;
-    @include grey-shadow();
-    .hide-top-shadow {
-      position:fixed;
-      top:32px;
-      left:481px;
-      width:530px;
-      height:8px;
-      background:$lightestGrey;
-      z-index:999912 !important;
-    }
+    border:1px solid $mediumGrey;
+    //@include grey-shadow();
     .sel-row {
       margin-left:0;
+    }
+    div.edit-selector {
+      padding:1em 0 !important;
     }
 
   }
@@ -1633,17 +1849,60 @@ Folder navigation menu
 Frontend
 --------------------------------------------------------------*/
 #v-frontend-wrap {
+  //z-index:99992;
+  @include box-sizing();
+  background: $lightBlue;
   position:relative;
-  z-index:99992;
-  .show-advanced & {
+  width: 100%;
+  .show-rulers.show-interface & {
+    padding:19px 0 0 19px;
+  }
+  .show-advanced.show-interface & {
     padding-right:350px;
   }
 }
 #v-frontend {
-  margin:0 auto;
+  margin:0 auto 0 0;
   height: 100%;
   max-width: 100%;
+  //position:relative;
+  @include box-sizing();
+  @include grey-shadow();
+  //padding-right:18px;
 }
+#rHighlight-wrap {
+  position: absolute;
+  top:0;
+  z-index: 10;
+  height:19px;
+  width:100%;
+  .show-code_editor & {
+    display: none;
+  }
+  div {
+    position: absolute;
+    left:0;
+    height:19px;
+    background: $lightBlue;
+    opacity: .5;
+  }
+  #min-neg {
+    left:0;
+  }
+
+}
+#rHighlight {
+  position: absolute;
+  top:0;
+  height:19px;
+  z-index: 8;
+  opacity: 1;
+  background: $darkBlue;
+  .show-code_editor & {
+    display: none;
+  }
+}
+
 #viframe {
   background: #FFFFFF;
   border: 0;
@@ -1652,37 +1911,45 @@ Frontend
   width: 100%;
   position:relative;
 }
+#iframe-dragger {
+  display: none;
+  position:absolute;
+  right:0;
+  top:0;
+  width:17px;
+  border-right: 1px solid $mediumBlueAlpha;
+  height:100%;
+  background: transparent;
+}
 
 
 
 /*--------------------------------------------------------------
 Left Toolbar
 --------------------------------------------------------------*/
+
 #v-left-controls-wrap {
   position:absolute;
   z-index:99998;
-  left:0;
+  right:0;
   top:0;
-  width:40px;
-  @include grey-shadow();
-}
-#toggle-left-menu {
-  cursor: pointer;
-  height:15px;
-  background-color:$lightGrey;
-  @include sprite(3, 4.3);
-  &.showing {
-    @include sprite(4, 4.3);
+  height:40px;
+  width:(11*40)+(5*2)+px; //2px for hover border
+  .plugin-unlocked & {
+    width:(10*40)+(5*2)+px;
   }
 }
+
+
 #v-left-controls {
-  background: $lightestGrey;
+  @include susy-clearfix;
   .program-docs {
-    display: none;
   }
 }
 .v-left-button {
+  float:left;
   height:40px;
+  width:40px;
   cursor: pointer;
   display: block;
   -webkit-transition:none !important;
@@ -1693,16 +1960,40 @@ Left Toolbar
     outline: none;
     box-shadow:none;
   }
+  &.new-icon-group {
+
+  }
 
 }
 #m-logo {
+  position:absolute;
+  z-index:99998;
+  left:5px;
+  top:5px;
+  width:30px;
+  height:30px;
   cursor: pointer;
   background:$darkBlue;
-  @include sprite(9, 5);
+  @include sprite(9.13, 5.13);
+  opacity: 0.6;
+  &:hover,
+  &.on {
+    opacity: 1;
+  }
   &.active {
     background-size:auto;
     background:$darkGreen $largeLoadingGif;
   }
+}
+
+#toggle-highlighting {
+  @include state-sprite(23, 1);
+}
+.toggle-rulers {
+  @include state-sprite(42, 1);
+}
+.remove-guides {
+  @include state-sprite(14, 7);
 }
 .program-docs {
   @include state-sprite(19, 1);
@@ -1744,7 +2035,7 @@ Left Toolbar
 
 }
 .reset-tools {
-  @include state-sprite(30, 1);
+  //@include state-sprite(30, 1);
 }
 .folder-reset{
   @include state-sprite(31, 1);
@@ -1765,6 +2056,12 @@ Left Toolbar
 .back-to-wordpress {
   @include state-sprite(24, 1);
 }
+.toggle-full-screen {
+  @include state-sprite(28, 4);
+  &.on {
+    @include sprite(29, 5);
+  }
+}
 
 /*--------------------------------------------------------------
 iframe width slider
@@ -1775,34 +2072,46 @@ iframe width slider
 }
 #v-mq-controls {
   position:absolute;
-  top:48px;
-  right:10px;
-  width:550px;
+  z-index:99900;
+  top:0;
+  left:18px;
+  width:100%;
+  @include box-sizing();
+  padding-right:18px;
   @include susy-clearfix();
-  color:$mediumBlue;
+  height:18px;
+  //margin-left:18px;
 }
 #v-mq-slider,
 #iframe-pixel-width,
 #iframe-max-width,
 #iframe-min-width  {
-  float:right;
-  display:inline-block;
+  //float:right;
+  display:block;
 }
 #v-mq-slider {
-  width:300px;
-  height:6px;
-  margin:9px 4px;
+  width:100%;
+  height:100%;
+  margin:0 auto;
   cursor:pointer;
-  background: $sliderAtRest;
-  border:1px solid $sliderAtRest;
+  background: transparent;
+  border:0;
+  //opacity: .9;
+  @include grey-shadow();
+  cursor:e-resize;
+  //display: none;
+  #v-mq-controls:hover & {
+
+  }
 
   .ui-slider-handle {
-    background: $lighterBlue;
-    border:1px solid $lighterBlue;
-    height:6px;
-    top:-1px;
-    width:15px;
-    cursor:pointer;
+    visibility: hidden;
+    background: $lightGreen;
+    border:0;
+    top:0;
+    right:0;
+    width:1px;
+    height:18px;
     @include border-radius(3px);
   }
 }
@@ -1811,6 +2120,7 @@ iframe width slider
   padding:2px 8px;
   min-width:40px;
   text-align:center;
+  display: none;
 }
 #iframe-max-width,
 #iframe-min-width  {
@@ -1818,101 +2128,93 @@ iframe width slider
   display:inline-block;
   margin:4px 8px;
   font-size:11px;
+  display: none;
 }
 
 /*--------------------------------------------------------------
-The selector wizard
+Common device preview
 --------------------------------------------------------------*/
-#selector-wizard {
-  display: none;
+#common-devices-preview {
+  position:absolute;
+  z-index:99900;
+  top:0;
+  left:0;
+  width:18px;
+  height:18px;
+  border:0;
+  .white-arrows {
+    background: url(../images/preview-arrows.png) no-repeat -11px -11px;
+    &:hover {
 
-  .show-wizard & {
-    display: block;
-  }
-  .explain-wizard,
-  .quick-create,
-  .query-tabs,
-  .wizard-panes {
-    padding:0 0 0 50px;
-  }
-  .explain-wizard {
-    margin-right:250px;
-    p {
-      line-height:40px;
-      margin: 0;
     }
-
   }
-  .quick-create {
-    height:33px;
-    padding-top:7px;
-    background: $lightGrey;
+  .tvr-popright {
+    top:0;
+    left:0;
+    width: 280px;
+    background: $mediumBlueAlpha;
   }
-  label,
-  input,
-  .combo-arrow,
-  .wizard-add,
-  .cancel-wizard {
-    float:left;
+  .scrollable-area {
+    padding-top:25px;
+    max-height: 250px;
   }
-  input.combobox {
-    margin-right: 0;
+  .mCSB_dragger_bar {
+    background-color: $mediumBlue !important;
   }
-  label {
-    display: inline-block;
-    margin-right:8px;
-    line-height: 26px;
-    font-weight: bold;
-}
-  input.wizard-input {
-    width:200px;
+  ul {
+    margin:0;
+    padding:0 0 0 16px;
   }
-  input.wizard-name,
-  .combo-arrow {
-    margin-right:16px;
-  }
-  .wizard-add {
-    margin-right:8px;
-  }
-
-  .slider-with-wizard {
-    height:40px;
-    background: $lightestGrey;
-  }
-
-  // firebug style inspector
-  .inspector {
-    display: none;
-    background: $lightGrey;
-    border-top:1px solid $white;
-  }
-}
-
-// adv icons
-#adv-wizard-toggle {
-  display: none;
-  .show-wizard & {
+  li {
     display: block;
+    margin:0;
+    cursor: pointer;
+    color:$white;
+    font-weight: bold;
+    padding:0;
+    opacity:.7;
+    &.mt-screen-preview {
+      overflow: hidden;
+    }
+    &:hover,
+    &.clicked {
+      opacity:1;
+    }
+    &.clicked {
+      background: $white;
+      color: $mediumBlue;
+    }
+    span {
+      display: block;
+      padding:2px 3px;
+      float:left;
+      &.mob-wxh {
+        width:70px;
+      }
+    }
   }
-  float:right;
-  line-height:1;
-  padding:13px 16px;
-  font-weight: bold;
-  border-right:1px solid $lightGrey;
-  span {
-    float:left;
+  #current-screen-width {
+    width:18px;
+    height:18px;
+    position: absolute;
+    top:0;
+    left:0;
+    &.warn {
+      @include sprite(46.28, 1.27);
+    }
   }
-  .always-adv-wrap {
-    display: none; // it just remembers
-    padding-left:10px;
-  }
+}
+#height-screen {
+  width:100%;
+  height:100%;
+  position: absolute;
+  top:100%;
+  background: $lightBlueAlpha;
 }
 
 /*--------------------------------------------------------------
-The advanced selector wizard
+Accordion styling
 --------------------------------------------------------------*/
-
-// Accordion styling
 .accordion-heading {
   cursor: pointer;
 }
@@ -1923,17 +2225,83 @@ The advanced selector wizard
   }
 }
 
+/*--------------------------------------------------------------
+The selector wizard
+--------------------------------------------------------------*/
 #advanced-wizard {
   display: none;
   position: absolute;
+  z-index:99999;
   top:0;
   right:0;
-  width:350px;
+  width:349px;
+  border-right:1px solid $mediumGrey;
+  @include grey-shadow();
   height:100%;
   background: $lightestGrey;
   .show-advanced & {
     display: block;
   }
+
+  // wizard header
+  .dialog-header {
+    background: $lightestGrey;
+    border-bottom: 1px solid $mediumGrey;
+    .dialog-icon {
+      @include sprite(24, 4);
+    }
+    a {
+      text-transform: none;
+      text-decoration: none;
+    }
+  }
+
+  // name and folder
+  #selector-wizard {
+    padding:12px;
+    background:$lightGrey;
+    .quick-wrap {
+      @include susy-clearfix;
+      &.wiz-name {
+        margin-bottom:12px;
+      }
+    }
+    label,
+    .input-wrap {
+      float: left;
+      display: inline-block;
+    }
+    input.combobox {
+      margin-right: 0;
+    }
+    label {
+      line-height: 26px;
+      font-weight: bold;
+      width:pc(50);
+    }
+    .input-wrap {
+      width:pc(275);
+      @include box-sizing();
+      padding-right:26px;
+      position: relative;
+    }
+    input {
+      width:100%;
+      border-color:$mediumGrey;
+    }
+    .combo-arrow {
+      position: absolute;
+      border-color:$mediumGrey;
+      right:0;
+    }
+    // firebug style inspector
+    .inspector {
+      display: none;
+      background: $lightGrey;
+      border-top:1px solid $white;
+    }
+  }
+
   .wizard-panes {
     .scrollable-refined {
       position:relative;
@@ -1941,10 +2309,21 @@ The advanced selector wizard
       overflow: hidden;
     }
   }
+
+  .create-sel-wrap {
+    height:40px;
+    text-align: right;
+    background: $lightGrey;
+    .wizard-add {
+      margin:7px;
+    }
+  }
 }
 #adv-tabs {
-  padding:0 0 0 2px;
+  padding:0 0 0 12px;
   background: $lightGrey;
+  width:100%;
+  border-bottom:1px solid $mediumGrey;
 }
 .adv-area-refine-targeting,
 .adv-area-html-inspector {
@@ -1962,11 +2341,9 @@ The advanced selector wizard
 $sliderHeight: 26px;
 
 #code-suggestions {
-
   .selector-category {
     display: none;
   }
-
   textarea {
     width: 100%;
     background: transparent;
@@ -1989,7 +2366,6 @@ $sliderHeight: 26px;
 
   }
 
-  // alternative system for trying selectors
   margin: 0;
   li {
     margin-bottom: 0;
@@ -2107,6 +2483,13 @@ $sliderHeight: 26px;
     &.css-group-heading {
       font-weight: bold;
       text-transform: uppercase;
+      margin-bottom:0;
+      .menu-arrow {
+        padding:3px 0;
+      }
+      .text-for-group {
+        padding:3px 0;
+      }
     }
     &.property-item {
       padding:3px 6px;
@@ -2151,185 +2534,80 @@ $sliderHeight: 26px;
 }
 
 
+
+
 /*--------------------------------------------------------------
 The custom code editor
 --------------------------------------------------------------*/
-// custom code editor
-#code-editors-wrap pre {
-  margin: 0;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
+
 #hand-css-area {
   display: none;
-  .show-code-editor & {
+  .show-code_editor & {
     display: block;
   }
-  .show-wizard & {
-    display: none;
+  #custom-code-toolbar {
+    min-height: 40px;
+    line-height:40px;
+    margin-left:50px;
+    .heading {
+      margin-bottom:0;
+    }
   }
-  .css-code-tabs,
+  // code editors
   #code-editors-wrap {
-    padding:0 570px 0 50px; // 570px to account for mq slider on the right
-  }
-  #code-editors-wrap {
-    padding-top:8px;
-    padding-bottom:8px;
+    //margin-left:200px;
+    padding:0 8px 8px 8px;
+    .query-tabs {
+      padding-left:38px;
+    }
+    pre {
+      margin:0;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    .ace-chrome {
+      background: $lightestGrey;
+      .ace_active-line {
+        background: $lightestGrey;
+      }
+      .ace_gutter-layer {
+        background: $mediumGrey;
+        padding-top:.5em;
+      }
+      .ace_content {
+        padding-top:.5em;
+      }
+    }
   }
   .css-code-wrap {
     position: relative;
-    margin:0 0 0 6px;
+    margin:0 0 0 0;
+
     min-height:160px;
   }
   textarea {
     min-height: 75px;
-  }
-}
-
-/*--------------------------------------------------------------
-  Media Query & Custom CSS Tabs
-  --------------------------------------------------------------*/
-.query-tabs {
-  padding-right:590px; /* to allow for slider on the right */
-  padding-left:43px;
-  background:$lightGrey;
-  height:40px;
-  .edit-mq {
-    display: block;
-    float:left;
-    width:40px;
-    height:27px;
-    margin-top:13px;
-    @include sprite(10, 4.22);
-    cursor:pointer;
-  }
-  .mq-tab,
-  .add-mq {
-    border-radius: 6px 6px 0 0;
-    float: left;
-    margin-left: 6px;
-    margin-top: 6px;
-    padding: 7px 10px;
-    line-height:18px;
-    position: relative;
-    top: 2px;
-    cursor:pointer;
-  }
-  .mq-tab {
-    display:none;
-  }
-  .show {
-    display: inline-block;
-  }
-  .active,
-  .add-mq {
-    border: 1px solid $lightGrey;
-    border-bottom:0;
-    background: $lightestGrey;
-  }
-  .add-mq {
-    display: inline-block;
-  }
-  .add-mq-icon {
-    @include state-sprite(21.28, 7.28);
-    float:left;
-  }
-
-  /*--------------------------------------------------------------
-  Media Query Checkboxes
-  --------------------------------------------------------------*/
-  .mq-options,
-  .comp-mixed-table {
-    visibility: hidden;
-    display:block;
-    min-width: 200px;
-    text-align:left;
-    position: absolute;
-    font-weight:normal;
-    z-index: 39999;
-    top:31px;
-    left:0;
-    background: $lightestGrey;
-    border: 1px solid $lightGrey;
-    // @include grey-shadow();
-  }
-  .add-mq.on .mq-options {
-    visibility: visible
-  }
-  .mq-button {
-    display:block;
-    padding:3px 9px;
-    border-top:1px solid $lightGrey;
-    color:$mediumBlue;
-    &:first-child {
-      border-top:0;
-    }
-    @include susy-clearfix;
-    .tvr-icon {
-      float:right;
-      margin-left:6px;
-      display: none !important;
-      &.mq-remove-all {
-        display: inline-block !important;
-      }
-    }
-    &:hover {
-      .tvr-icon {
-        display: inline-block !important;
-      }
-    }
-  }
-
-  .mq-add.tvr-icon {
-    @include state-sprite(2.3, 4.28);
-  }
-  .mq-clear {
-    @include state-sprite(22.3, 7.28);
-  }
-  .mq-remove {
-    @include state-sprite(4.3, 7.28);
-    opacity: .3;
-  }
-
-  .mq-button.on {
-    .mq-add.tvr-icon {
-      opacity: .3;
-    }
-    .mq-remove {
-      opacity: 1;
-    }
-  }
-  .mq-button-text {
-    float:left;
-    cursor: default;
-    cursor: pointer;
-  }
-  .mq-button.on {
-    font-weight:bold;
-    color:$darkBlue;
-    .mq-add-remove {
-      @include state-sprite(7.3, 7.28);
-    }
-  }
-  .mq-button.remove-all {
-    cursor: pointer;
-    span {
-      float:right;
-      margin-left:7px;
+    &.hand-css-textarea {
+      display: none;
     }
   }
 }
+
+
+
+
 
 /*--------------------------------------------------------------
 The editing options
 --------------------------------------------------------------*/
 #tvr-options {
+  padding:72px 0 0 0;
   margin:0;
-  .show-code-editor &,
-  .show-wizard & {
+  background: $lightestGrey;
+  .show-code_editor & {
     display: none;
   }
   ul, li {
@@ -2347,14 +2625,16 @@ The editing options
   Style Group Icons
   --------------------------------------------------------------*/
   .styling-option-icons {
-    margin-left:40px;
-    width:440px;
-    float:left;
+    overflow: hidden;
+    //@include grey-shadow();
+    border-bottom: 1px solid $mediumGrey;
     li {
       cursor: pointer;
       float:left;
-      width:40px;
-      height:40px;
+      width:30px;
+      padding:5px;
+      height:30px;
+      background-clip:content-box;
       &.pg-icon-font {
         @include state-sprite-pg(1, 1);
       }
@@ -2396,6 +2676,7 @@ The editing options
   .styling-options {
     clear:left;
     max-height:160px;
+    border-top:1px solid $white;
   }
 
 
@@ -2406,7 +2687,7 @@ The editing options
 
     @include susy-clearfix;
     position: relative;
-    padding-left:50px;
+    padding-left:10px;
     &.show {
       display:block;
     }
@@ -2423,6 +2704,15 @@ The editing options
 
     &.property-border {
       //padding-left:145px;
+      .field-wrap {
+        min-width: 138px; // so color fields line up
+        &.is-picker {
+          .important-toggle {
+            margin-right:63px;
+          }
+        }
+      }
+
       .sub-label {
         min-width:101px;
         margin:0;
@@ -2620,17 +2910,19 @@ The editing options
     --------------------------------------------------------------*/
 
     .manual-val input,
-    .manual-val select,
-    input:hover,
-    select:hover {
-      background-color:$white;
+    .manual-val .combo-arrow,
+    .input-wrap:hover input,
+    .input-wrap:hover .combo-arrow {
+      //background-color:$white;
       font-weight: bold;
+      border-color:$mediumGrey;
+      color:#000;
     }
     span.comp-style {
       position:absolute;
       top:7px;
       left:7px;
-      color:$shadowColor;
+      color:$mediumGreyb;
       line-height: 1;
       font-family: inherit;
     }
@@ -2657,6 +2949,26 @@ The editing options
     }
     span.comp-style.hidden {
       visibility: hidden;
+    }
+    .is-picker span.comp-style {
+      text-indent: -9999px;
+      width:26px;
+      height:8px;
+      top:none;
+      top:19px;
+      left:0;
+      border:1px solid $lightGrey;
+      @include box-sizing();
+      @include border-radius-separate(0, 0, 3px, 3px);
+      //@include grey-shadow();
+      background-image: url(../images/trans.png);
+      span {
+        width:100%;
+        height:100%;
+        display: block;
+        @include border-radius-separate(0, 0, 3px, 3px);
+      }
+
     }
     // mixed dropdown table
     span.comp-mixed-table {
@@ -3233,7 +3545,382 @@ Manage Packs Page (single)
 }
 
 
+/*--------------------------------------------------------------
+Ruler
+--------------------------------------------------------------*/
+.ruler {
+  background: transparent;
+  color: $rulerNumbers;
+  //font-family: source code pro, "Arial Narrow", "Helvetica Neue", Helvetica, Arial, Veranda, sans-serif;
+  font-size: 9px;
+  line-height: 14px;
+  overflow: hidden;
+}
+.ruler-stuff {
+  display: none;
+  .show-rulers & {
+    display: block;
+  }
+}
+.ruler > div {
+  background: $rulerGrooves;
+}
+.hRule {
+  background: transparent;
+  position: absolute;
+  width: 100%;
+  height: 18px;
+  left: 0px;
+  top: 0px;
+  padding-bottom: 1px;
+  @include grey-shadow();
+  z-index: 9;
+}
+.vRule {
+  position: absolute;
+  min-height: 100%;
+  width: 18px;
+  left: 0px;
+  top: 0px;
+  border-right: 1px solid $lightBlue;
+  z-index: 9;
+}
+.corner {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 18px;
+  height: 18px;
+  border-right: 1px solid $rulerGrooves;
+  border-bottom: 1px solid $rulerGrooves;
+  z-index: 10;
+  cursor: help;
+  &.warn {
+    @include sprite(46.28, 1.27);
+  }
+  .show-code_editor & {
+    background: none;
+  }
+}
+.hRule .tickLabel {
+  position: absolute;
+  bottom: 1px;
+  width: 1px;
+  height: 100%;
+  text-indent: 3px;
+}
+.hRule .tickMajor {
+  position: absolute;
+  bottom: 1px;
+  width: 1px;
+  height: 6px;
+}
+.hRule .tickMinor {
+  position: absolute;
+  bottom: 1px;
+  width: 1px;
+  height: 4px;
+}
+.vRule .tickLabel {
+  position: absolute;
+  right: 0px;
+  height: 1px;
+  width: 100%;
+  text-indent: 1px;
+}
+.vRule .tickLabel span {
+  display: block;
+  position: absolute;
+
+  top: 3px;
+  right: 0px;
+  margin-right: 18px;
+
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+
+  -webkit-transform-origin: top right;
+  -moz-transform-origin: top right;
+  -ms-transform-origin: top right;
+  -o-transform-origin: top right;
+  transform-origin: top right;
+
+}
+.vRule .tickMajor {
+  position: absolute;
+  right: 0px;
+  height: 1px;
+  width: 6px;
+}
+.vRule .tickMinor {
+  position: absolute;
+  right: 0px;
+  height: 1px;
+  width: 4px;
+}
+
+.vMouse {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 0px;
+  left: 0;
+  background: rgba(0,0,0,0);
+  border-bottom: 1px dotted;
+  z-index: 11;
+}
+.hMouse {
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 0px;
+  top: 0;
+
+  background: rgba(0,0,0,0);
+  border-left: 1px dotted;
+  z-index: 11;
+}
+.mousePosBox {
+  height: 16px;
+  background: rgba(0,0,0,0.25);
+  color: #fff;
+  font-family: source code pro;
+  font-size: 12px;
+  line-height: 16px;
+  border: 1px solid rgba(0,0,0,0.5);
+  position: absolute;
+  white-space: no-wrap;
+  display: block;
+  overflow-y:hidden;
+  float: left;
+  text-align: left;
+  left: -50%;
+  top: -50%;
+  padding: 0 2px;
+}
+
+/*--------------------------------------------------------------
+// Overwrite Spectrum color picker style
+// https://github.com/bgrins/spectrum/blob/master/spectrum.css
+--------------------------------------------------------------*/
+#tvr #tvr-options {
+
+  // borders
+  .sp-preview,
+  .sp-input,
+  .sp-alpha-inner,
+  .sp-alpha-handle,
+  .sp-slider {
+    @include border-radius(3px);
+    border:1px solid $mediumGrey;
+    &:hover {
+      border:1px solid $mediumGrey;
+    }
+  }
+
+  // custom clear representation
+  .sp-clear-display {
+    @include sprite(47.2, 1.2);
+  }
+
+  // the inline preview
+  .sp-replacer {
+    border: none;
+    padding: 0;
+    background: none;
+  }
+  .sp-preview {
+    width: 26px;
+    height: 26px;
+    @include box-sizing();
+    margin: 0;
+    border:1px solid $lightGrey;
+  }
+  .sp-preview-inner {
+    @include border-radius(3px);
+
+  }
+
+  .sp-dd {
+    display: none;
+  }
+
+  // the popup color picker
+  .sp-container {
+    z-index: 999000;
+    color: $darkBlue;
+    background-color: $lightestGrey;
+    border: 1px solid $white;
+    border:0;
+    //@include box-shadow(0, 3px, 12px, rgba(0,0,0, 0.4));
+    @include grey-shadow();
+  }
+  .sp-wrap {
+    position: relative;
+    width: 420px;
+    height: 210px;
+  }
+
+  .sp-color {
+    border:none;
+    // 134x145
+    width:190px;
+    height:190px;
+  }
+
+  .sp-top-inner .sp-clear {
+    float:right;
+    width:18px;
+    height:18px;
+    display: inline-block;
+    left:383px;
+    border:0;
+    cursor:pointer;
+    @include sprite(4.3, 7.28);
+    &:hover {
+      @include sprite(4.3, 8.28);
+    }
+  }
+
+  .sp-hue {
+    border:none;
+    top:0;
+    left:200px;
+    width:20px;
+    height:190px;
+
+  }
+
+  .sp-top {
+    height:190px;
+    margin-bottom:0;
+  }
+  .sp-alpha {
+    width:95px;
+    top:-87px;
+    left:300px;
+    z-index:9;
+  }
+  .sp-alpha-handle {
+    background: $white;
+    opacity: 1;
+  }
+
+  // custom mt color inputs
+  .sp-mt-inputs {
+    position: absolute;
+    left: 240px;
+    top:65px;
+    z-index:8;
+  }
+  .sp-input {
+    //position: absolute;
+    //right: 0;
+    margin:0 10px 10px 0;
+    width: 170px;
+    font-family: $appFont;
+    font-weight: bold;
+    border:1px solid $lightGrey;
+  }
+  .sp-input-hex {
+    //top: 60px;
+    //right: 70px;
+  }
+  .sp-input-opacity {
+    //top: 60px;
+    width: 60px;
+  }
+  .sp-input-rgb {
+    //top: 90px;
+  }
+  .sp-input-hsl {
+    //top: 120px;
+  }
+
+  .sp-picker-container,
+  .sp-palette-container {
+    position: initial;
+    //padding: 10px;
+    padding:0;
+    margin: 10px;
+    width:190px;
+    height: 190px;
+  }
+
+  .sp-picker-container {
+
+  }
+  .sp-color {
+
+  }
+  .sp-dragger {
+    background: none;
+    height: 6px;
+    width: 6px;
+    //border-style: inset;
+    @include grey-shadow();
+  }
+
+  .sp-button-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+
+  .sp-initial {
+    position: absolute;
+    top: 10px;
+    left: 240px;
+    border:0;
+
+    span {
+      width: 25px;
+      height: 25px;
+    }
+
+    .sp-thumb-el,
+    .sp-clear-display {
+      cursor: pointer;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index:5;
+      border:1px solid $lightestGrey;
+      @include grey-shadow();
+      &:first-child + span {
+        top: 0;
+        left: 0;
+        z-index:6;
+      }
+    }
+  }
 
 
 
+}
 
+
+
+// COMPLETELY HIDE INTERFACE
+#v-top-controls,
+.show-rulers .ruler-stuff,
+.show-advanced #advanced-wizard,
+#v-left-controls-wrap {
+  display: none;
+}
+.show-interface {
+  &.show-rulers .ruler-stuff,
+  &.show-advanced #advanced-wizard,
+  #v-top-controls,
+  #v-left-controls-wrap {
+    display: block;
+  }
+  // exceptions
+  &.show-rulers .ruler-stuff.hidden {
+    display: none;
+  }
+}

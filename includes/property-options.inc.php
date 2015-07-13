@@ -13,7 +13,7 @@ $propertyOptions['font']['font_family'] = array(
     'type' => 'combobox',
     'input-class' => 'tvr-font-select size-big',
     'select_options' => array(
-        '',
+		'',
         'Google Font...',
         'Arial',
         '"Book Antiqua"',
@@ -74,6 +74,7 @@ $propertyOptions['font']['google_font'] = array(
 $propertyOptions['font']['color'] = array(
     'short_label' => _x('Color', 'noun', 'tvr-microthemer'),
     'label' => _x('Color', 'noun', 'tvr-microthemer'),
+    'field-class' => 'is-picker',
     'input-class' => 'color',
     'icon' => '26',
     // ref
@@ -87,7 +88,7 @@ $propertyOptions['font']['font_size'] = array(
     'label' => _x('Font Size', 'noun', 'tvr-microthemer'),
     'field-class' => 'icon-size-0',
     'input-class' => 'size-0',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '21',
     // ref
     'ref_desc' => "<p>As you might imagine, the font-size property sets the font-size of text.</p>",
@@ -114,7 +115,7 @@ $propertyOptions['font']['font_weight'] = array(
     'input-class' => 'size-2',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         "normal",
         "bold",
         "100",
@@ -150,7 +151,7 @@ $propertyOptions['font']['font_style'] = array(
     'field-class' => 'icon-size-0a',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         "normal",
         "italic",
         "oblique"),
@@ -170,7 +171,7 @@ $propertyOptions['font']['text_decoration'] = array(
     'input-class' => 'size-5',
     'type' => 'combobox',
     'select_options' => array(
-        "",
+		"",
         "underline",
         "overline",
         "line-through",
@@ -192,7 +193,7 @@ $propertyOptions['font']['font_variant'] = array(
     'input-class' => 'size-4',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         "normal",
         "small-caps"),
     'icon' => '29',
@@ -213,7 +214,7 @@ $propertyOptions['text']['text_align'] = array(
     'input-class' => 'size-1',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         "left",
         "right",
         "center",
@@ -233,7 +234,7 @@ $propertyOptions['text']['text_indent'] = array(
     'label' => __('Text Indent', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
     'input-class' => 'size-0b',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '23, 4',
     // ref
     'ref_desc' => "<p>The text-indent property specifies the indentation of the first line in a text-block. You might choose to set this property on dense articles of text to improve readability where paragraphs have no bottom margin.</p>",
@@ -247,7 +248,7 @@ $propertyOptions['text']['text_transform'] = array(
     'input-class' => 'size-4',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         "capitalize",
         "uppercase",
         "lowercase",
@@ -268,7 +269,7 @@ $propertyOptions['text']['word_spacing'] = array(
     'field-class' => 'icon-size-4',
     'input-class' => 'size-0b',
     'label' => __('Word Spacing', 'tvr-microthemer'),
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '22, 4',
     // ref
     'ref_desc' => "<p>The word-spacing property increases or decreases the white space between words.</p>",
@@ -280,7 +281,7 @@ $propertyOptions['text']['letter_spacing'] = array(
     'short_label' => __('Letter Spacing', 'tvr-microthemer'),
     'label' => __('Letter Spacing', 'tvr-microthemer'),
     'input-class' => 'size-0b',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '24',
     // ref
     'ref_desc' => "<p>The letter-spacing property increases or decreases the space between characters in text.<p>",
@@ -294,7 +295,7 @@ $propertyOptions['text']['word_wrap'] = array(
     'input-class' => 'size-4a',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         "normal",
         "break-word"),
     'icon' => '41, 14',
@@ -306,7 +307,7 @@ $propertyOptions['text']['white_space'] = array(
     'input-class' => 'size-3a',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         "normal",
         "nowrap",
         "pre",
@@ -321,7 +322,7 @@ $propertyOptions['text']['direction'] = array(
     'input-class' => '',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         "ltr",
         "rtl"),
     'icon' => '42, 14',
@@ -338,7 +339,7 @@ $propertyOptions['list']['list_style_type'] = array(
     'input-class' => 'size-big',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         'circle',
         'disc',
         'square',
@@ -397,7 +398,7 @@ $propertyOptions['list']['list_style_position'] = array(
     'input-class' => 'size-2',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         "inside",
         "outside"
     ),
@@ -410,6 +411,7 @@ $propertyOptions['shadow']['text_shadow_color'] = array(
     'label' => __('Text Shadow Color', 'tvr-microthemer'),
     'pg_label' => __('Shadow', 'tvr-microthemer'),
     'sub_label' => __('Text Shadow', 'tvr-microthemer'),
+    'field-class' => 'is-picker',
     'input-class' => 'color',
     'hide imp' => 1,
     'icon' => '41',
@@ -423,7 +425,7 @@ $propertyOptions['shadow']['text_shadow_x'] = array(
     'short_label' => __('X-Offset', 'tvr-microthemer'),
     'label' => __('Text Shadow x-offset', 'tvr-microthemer'),
     'input-class' => 'size-0b',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'hide imp' => 1,
     'icon' => '39',
     // ref
@@ -436,7 +438,7 @@ $propertyOptions['shadow']['text_shadow_y'] = array(
     'short_label' => __('Y-Offset', 'tvr-microthemer'),
     'label' => __('Text Shadow y-offset', 'tvr-microthemer'),
     'input-class' => 'size-0b',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'hide imp' => 1,
     'icon' => '40',
     // ref
@@ -449,7 +451,7 @@ $propertyOptions['shadow']['text_shadow_blur'] = array(
     'short_label' => _x('Blur', 'noun', 'tvr-microthemer'),
     'label' => __('Text Shadow Blur', 'tvr-microthemer'),
     'input-class' => 'size-0b',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'field-class' => 'last',
     'icon' => '42',
     // ref
@@ -463,7 +465,7 @@ $propertyOptions['shadow']['box_shadow_color'] = array(
     'short_label' => _x('Color', 'noun', 'tvr-microthemer'),
     'label' => __('Box Shadow Color', 'tvr-microthemer'),
     'sub_label' => __('Box Shadow', 'tvr-microthemer'),
-    'field-class' => 'icon-size-3',
+    'field-class' => 'icon-size-3 is-picker',
     'input-class' => 'color',
     'hide imp' => 1,
     'icon' => '36',
@@ -476,7 +478,7 @@ $propertyOptions['shadow']['box_shadow_color'] = array(
 $propertyOptions['shadow']['box_shadow_x'] = array(
     'short_label' => __('X-Offset', 'tvr-microthemer'),
     'label' => __('Box Shadow x-offset', 'tvr-microthemer'),
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'input-class' => 'size-0b',
     'hide imp' => 1,
     'icon' => '34',
@@ -490,7 +492,7 @@ $propertyOptions['shadow']['box_shadow_y'] = array(
     'short_label' => __('Y-Offset', 'tvr-microthemer'),
     'label' => __('Box Shadow y-offset', 'tvr-microthemer'),
     'field-class' => 'icon-size-3',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'input-class' => 'size-0b',
     'hide imp' => 1,
     'icon' => '35',
@@ -503,7 +505,7 @@ $propertyOptions['shadow']['box_shadow_y'] = array(
 $propertyOptions['shadow']['box_shadow_blur'] = array(
     'short_label' => _x('Blur', 'noun', 'tvr-microthemer'),
     'label' => __('Box Shadow Blur', 'tvr-microthemer'),
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'input-class' => 'size-0b',
     'field-class' => 'last',
     'icon' => '37',
@@ -519,6 +521,7 @@ $propertyOptions['background']['background_color'] = array(
     'label' => __('Background Color', 'tvr-microthemer'),
     'pg_label' => __('Background', 'tvr-microthemer'),
     'sub_label' => __('Background', 'tvr-microthemer'),
+    'field-class' => 'is-picker',
     'input-class' => 'color',
     'icon' => '25',
     // ref
@@ -534,7 +537,7 @@ $propertyOptions['background']['background_image'] = array(
     'field-class' => 'last span-3',
     'input-class' => 'bg-image-select size-very-big strictly-dropdown',
     'select_options' => array(
-        '',
+		'',
         'none'
     ),
     'icon' => '39, 14',
@@ -550,7 +553,7 @@ $propertyOptions['background']['background_position'] = array(
     'type' => 'combobox',
     'input-class' => 'bg-position-select size-6',
     'select_options' => array(
-        '',
+		'',
         'left top',
         'left center',
         'left bottom',
@@ -583,7 +586,7 @@ $propertyOptions['background']['background_repeat'] = array(
     'input-class' => 'size-3a',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         'repeat',
         'repeat-x',
         'repeat-y',
@@ -603,7 +606,7 @@ $propertyOptions['background']['background_attachment'] = array(
     'label' => __('Background Attachment', 'tvr-microthemer'),
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         'scroll',
         'fixed'
     ), 'icon' => '2, 14',
@@ -621,7 +624,7 @@ $propertyOptions['background']['background_size'] = array(
     'type' => 'combobox',
     'input-class' => 'size-3a',
     'select_options' => array(
-        '',
+		'',
         'auto',
         'cover',
         'contain'
@@ -636,7 +639,7 @@ $propertyOptions['background']['background_clip'] = array(
     'type' => 'combobox',
     'input-class' => 'size-5',
     'select_options' => array(
-        '',
+		'',
         'border-box',
         'padding-box',
         'content-box'
@@ -663,7 +666,7 @@ $propertyOptions['dimensions']['width'] = array(
     'pg_label' => __('Dimensions', 'tvr-microthemer'),
     'sub_label' => __('Width', 'tvr-microthemer'),
     'input-class' => 'size-1',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', '%'),
     'icon' => '9',
     // ref
     'ref_desc' => "<p>The width property sets the width of an element. If 'box-sizing' is set to 'content-box' (default) the total width of an element is
@@ -677,7 +680,7 @@ $propertyOptions['dimensions']['min_width'] = array(
     'short_label' => __('Min', 'tvr-microthemer'),
     'label' => __('Min Width', 'tvr-microthemer'),
     'input-class' => 'size-1',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '36, 14',
     // ref
     'ref_desc' => "<p>The min-width property sets the minimum width of an element. Note: The min-width property does not include padding, borders, or margins.</p>",
@@ -689,7 +692,7 @@ $propertyOptions['dimensions']['max_width'] = array(
     'short_label' => __('Max', 'tvr-microthemer'),
     'label' => __('Max Width', 'tvr-microthemer'),
     'input-class' => 'size-1',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '34, 14',
     // ref
     'ref_desc' => "<p>The max-width property sets the maximum width of an element. Note: The max-width property does not include padding, borders, or margins.</p>",
@@ -703,7 +706,7 @@ $propertyOptions['dimensions']['height'] = array(
     'field-class' => 'icon-size-0b',
     'sub_label' => __('Height', 'tvr-microthemer'),
     'input-class' => 'size-1',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '10',
     // ref
     'ref_desc' => "<p>The height property sets the height of an element. <b>Note:</b> The total height of an element is
@@ -717,7 +720,7 @@ $propertyOptions['dimensions']['min_height'] = array(
     'label' => __('Min Height', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
     'input-class' => 'size-1',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '37, 14',
     // ref
     'ref_desc' => "<p>The min-height property sets the minimum height of an element. Note: The min-height property does not include padding, borders, or margins</p>",
@@ -730,7 +733,7 @@ $propertyOptions['dimensions']['max_height'] = array(
     'label' => __('Max Height', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
     'input-class' => 'size-1',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '35, 14',
     // ref
     'ref_desc' => "<p>The max-height property sets the maximum height of an element. Note: The max-height property does not include padding, borders, or margins.</p>",
@@ -744,7 +747,7 @@ $propertyOptions['dimensions']['box_sizing'] = array(
     'input-class' => 'size-5',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         'content-box',
         'border-box'
     ),
@@ -760,8 +763,8 @@ $propertyOptions['padding_margin']['padding_top'] = array(
     'pg_label' => __('Padding & Margin', 'tvr-microthemer'),
     'sub_label' => __('Padding', 'tvr-microthemer'),
     'input-class' => 'size-0',
-    'default_unit' => 'px',
-    'rel' => 'paddding',
+    'default_unit' => array('px (implicit)', 'em'),
+    'rel' => 'padding',
     'icon' => '3',
     // ref
     'ref_desc' => "<p>The padding-top property sets the top padding (space) of an element. The space is created <i>inside</i> the element's border.</p>",
@@ -773,8 +776,8 @@ $propertyOptions['padding_margin']['padding_right'] = array(
     'short_label' => __('Right', 'tvr-microthemer'),
     'label' => __('Padding Right', 'tvr-microthemer'),
     'input-class' => 'size-0',
-    'default_unit' => 'px',
-    'rel' => 'paddding',
+    'default_unit' => array('px (implicit)', 'em'),
+    'rel' => 'padding',
     'icon' => '2',
     // ref
     'ref_desc' => "<p>The padding-right property sets the right padding (space) of an element. The space is created <i>inside</i> the element's border.</p>",
@@ -786,8 +789,8 @@ $propertyOptions['padding_margin']['padding_bottom'] = array(
     'short_label' => __('Bottom', 'tvr-microthemer'),
     'label' => __('Padding Bottom', 'tvr-microthemer'),
     'input-class' => 'size-0',
-    'default_unit' => 'px',
-    'rel' => 'paddding',
+    'default_unit' => array('px (implicit)', 'em'),
+    'rel' => 'padding',
     'icon' => '4',
     // ref
     'ref_desc' => "<p>The padding-bottom property sets the bottom padding (space) of an element. The space is created <i>inside</i> the element's border.</p>",
@@ -799,8 +802,8 @@ $propertyOptions['padding_margin']['padding_left'] = array(
     'short_label' => __('Left', 'tvr-microthemer'),
     'label' => __('Padding Left', 'tvr-microthemer'),
     'input-class' => 'size-0',
-    'default_unit' => 'px',
-    'rel' => 'paddding',
+    'default_unit' => array('px (implicit)', 'em'),
+    'rel' => 'padding',
     'field-class' => 'last',
     'icon' => '1',
     // ref
@@ -814,7 +817,7 @@ $propertyOptions['padding_margin']['margin_top'] = array(
     'label' => __('Margin Top', 'tvr-microthemer'),
     'sub_label' => __('Margin', 'tvr-microthemer'),
     'input-class' => 'size-0',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'rel' => 'margin',
     'icon' => '7',
     // ref
@@ -828,7 +831,7 @@ $propertyOptions['padding_margin']['margin_right'] = array(
     'short_label' => __('Right', 'tvr-microthemer'),
     'label' => __('Margin Right', 'tvr-microthemer'),
     'input-class' => 'size-0',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'rel' => 'margin',
     'icon' => '6',
     // ref
@@ -841,7 +844,7 @@ $propertyOptions['padding_margin']['margin_bottom'] = array(
     'short_label' => __('Bottom', 'tvr-microthemer'),
     'label' => __('Margin Bottom', 'tvr-microthemer'),
     'input-class' => 'size-0',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'rel' => 'margin',
     'icon' => '8',
     // ref
@@ -854,7 +857,7 @@ $propertyOptions['padding_margin']['margin_left'] = array(
     'short_label' => __('Left', 'tvr-microthemer'),
     'label' => __('Margin Left', 'tvr-microthemer'),
     'input-class' => 'size-0',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'rel' => 'margin',
     'field-class' => 'last',
     'icon' => '5',
@@ -870,8 +873,8 @@ $propertyOptions['border']['border_top_color'] = array(
     'label' => __('Border Top Color', 'tvr-microthemer'),
     'pg_label' => __('Border', 'tvr-microthemer'),
     'sub_label' => __('Border Color', 'tvr-microthemer'),
-    'default_unit' => 'px',
     'rel' => 'border_color',
+    'field-class' => 'is-picker',
     'input-class' => 'color',
     'icon' => '10, 14',
     // ref
@@ -883,8 +886,8 @@ $propertyOptions['border']['border_top_color'] = array(
 $propertyOptions['border']['border_right_color'] = array(
     'short_label' => __('Right', 'tvr-microthemer'),
     'label' => __('Border Right Color', 'tvr-microthemer'),
-    'default_unit' => 'px',
     'rel' => 'border_color',
+    'field-class' => 'is-picker',
     'input-class' => 'color',
     'icon' => '13, 14',
     // ref
@@ -896,8 +899,8 @@ $propertyOptions['border']['border_right_color'] = array(
 $propertyOptions['border']['border_bottom_color'] = array(
     'short_label' => __('Bottom', 'tvr-microthemer'),
     'label' => __('Border Bottom Color', 'tvr-microthemer'),
-    'default_unit' => 'px',
     'rel' => 'border_color',
+    'field-class' => 'is-picker',
     'input-class' => 'color',
     'icon' => '11, 14',
     // ref
@@ -909,10 +912,9 @@ $propertyOptions['border']['border_bottom_color'] = array(
 $propertyOptions['border']['border_left_color'] = array(
     'short_label' => __('Left', 'tvr-microthemer'),
     'label' => __('Border Left Color', 'tvr-microthemer'),
-    'default_unit' => 'px',
     'rel' => 'border_color',
+    'field-class' => 'last is-picker',
     'input-class' => 'color',
-    'field-class' => 'last',
     'icon' => '12, 14',
     // ref
     'ref_desc' => "<p>The border-left-color property sets the left border color of an element. <b>Note</b>: the Border Style property must be set for any of the other border properties to work.</p>",
@@ -925,7 +927,7 @@ $propertyOptions['border']['border_top_width'] = array(
     'label' => __('Border Top Width', 'tvr-microthemer'),
     'sub_label' => __('Border Width', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'px (implicit)'),
     'rel' => 'border_width',
     'icon' => '6, 14',
     // ref
@@ -937,7 +939,7 @@ $propertyOptions['border']['border_top_width'] = array(
 $propertyOptions['border']['border_right_width'] = array(
     'short_label' => __('Right', 'tvr-microthemer'),
     'label' => __('Border Right Width', 'tvr-microthemer'),
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'px (implicit)'),
     'rel' => 'border_width',
     'icon' => '9, 14',
     // ref
@@ -949,7 +951,7 @@ $propertyOptions['border']['border_right_width'] = array(
 $propertyOptions['border']['border_bottom_width'] = array(
     'short_label' => __('Bottom', 'tvr-microthemer'),
     'label' => __('Border Bottom Width', 'tvr-microthemer'),
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'px (implicit)'),
     'rel' => 'border_width',
     'icon' => '7, 14',
     // ref
@@ -961,7 +963,7 @@ $propertyOptions['border']['border_bottom_width'] = array(
 $propertyOptions['border']['border_left_width'] = array(
     'short_label' => __('Left', 'tvr-microthemer'),
     'label' => __('Border Left Width', 'tvr-microthemer'),
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'px (implicit)'),
     'rel' => 'border_width',
     'field-class' => 'last',
     'icon' => '8, 14',
@@ -1081,7 +1083,7 @@ $propertyOptions['border']['border_top_left_radius'] = array(
     'label' => __('Top Left Border Radius', 'tvr-microthemer'),
     'sub_label' => __('Border Radius', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '17',
     'rel' => 'border_radius',
     'hide imp' => 1,
@@ -1094,7 +1096,7 @@ $propertyOptions['border']['border_top_left_radius'] = array(
 $propertyOptions['border']['border_top_right_radius'] = array(
     'short_label' => __('Top Right', 'tvr-microthemer'),
     'label' => __('Top Right Border Radius', 'tvr-microthemer'),
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '18',
     'rel' => 'border_radius',
     'hide imp' => 1,
@@ -1107,7 +1109,7 @@ $propertyOptions['border']['border_top_right_radius'] = array(
 $propertyOptions['border']['border_bottom_right_radius'] = array(
     'short_label' => __('Bottom Right', 'tvr-microthemer'),
     'label' => __('Bottom Right Border Radius', 'tvr-microthemer'),
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '20',
     'rel' => 'border_radius',
     'hide imp' => 1,
@@ -1120,7 +1122,7 @@ $propertyOptions['border']['border_bottom_right_radius'] = array(
 $propertyOptions['border']['border_bottom_left_radius'] = array(
     'short_label' => __('Bottom Left', 'tvr-microthemer'),
     'label' => __('Bottom Left Border Radius', 'tvr-microthemer'),
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '19',
     'rel' => 'border_radius',
     'field-class' => 'last',
@@ -1139,7 +1141,7 @@ $propertyOptions['behaviour']['display'] = array(
     'input-class' => 'size-4',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         'block',
         'inline',
         'inline-block',
@@ -1162,7 +1164,7 @@ $propertyOptions['behaviour']['overflow'] = array(
     'input-class' => 'size-2',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         'visible',
         'scroll',
         'auto',
@@ -1185,7 +1187,7 @@ $propertyOptions['behaviour']['overflow_x'] = array(
     'input-class' => 'size-2',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         'visible',
         'scroll',
         'auto',
@@ -1201,7 +1203,7 @@ $propertyOptions['behaviour']['overflow_y'] = array(
     'input-class' => 'size-2',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         'visible',
         'scroll',
         'auto',
@@ -1216,7 +1218,7 @@ $propertyOptions['behaviour']['visibility'] = array(
     'type' => 'combobox',
     'input-class' => 'size-3',
     'select_options' => array(
-        '',
+		'',
         'visible',
         'hidden',
         'collapse'
@@ -1237,7 +1239,7 @@ $propertyOptions['behaviour']['cursor'] = array(
     'input-class' => 'size-3',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         'auto',
         'crosshair',
         'default',
@@ -1283,7 +1285,7 @@ $propertyOptions['behaviour']['opacity'] = array(
     'short_label' => __('Opacity', 'tvr-microthemer'),
     'label' => __('Opacity', 'tvr-microthemer'),
     'field-class' => 'icon-size-2',
-    'input-class' => 'size-0c',
+    'input-class' => 'size-0b',
     'icon' => '4, 14',
     // ref
     'ref_desc' => "<p>The opacity property sets the opacity level for an element. You can enter any numeric value between 0 and 1 (e.g. 0.25 or 0.9)</p>",
@@ -1300,7 +1302,7 @@ $propertyOptions['position']['position'] = array(
     'input-class' => 'size-3',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         'absolute',
         'relative',
         'fixed',
@@ -1319,7 +1321,7 @@ $propertyOptions['position']['position'] = array(
 $propertyOptions['position']['top'] = array(
     'short_label' => __('Top', 'tvr-microthemer'),
     'label' => __('Top (Position)', 'tvr-microthemer'),
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '11',
     // ref
     'ref_desc' => "<p>For absolutely positioned elements, the top property sets the top edge of an element to a unit above/below the top edge of its containing element. For relatively positioned elements, the top property sets the top edge of an element to a unit above/below its normal position. Negative values are allowed.</p>
@@ -1331,7 +1333,7 @@ $propertyOptions['position']['top'] = array(
 $propertyOptions['position']['bottom'] = array(
     'short_label' => __('Bottom', 'tvr-microthemer'),
     'label' => __('Bottom (Position)', 'tvr-microthemer'),
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '12',
     // ref
     'ref_desc' => "<p>For absolutely positioned elements, the bottom property sets the bottom edge of an element to a unit above/below the bottom edge of its containing element. For relatively positioned elements, the bottom property sets the bottom edge of an element to a unit above/below its normal position. Negative values are allowed.</p>
@@ -1344,7 +1346,7 @@ $propertyOptions['position']['bottom'] = array(
 $propertyOptions['position']['left'] = array(
     'short_label' => __('Left', 'tvr-microthemer'),
     'label' => __('Left (Position)', 'tvr-microthemer'),
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '13',
     // ref
     'ref_desc' => "<p>For absolutely positioned elements, the left property sets the left edge of an element to a unit to the
@@ -1358,7 +1360,7 @@ $propertyOptions['position']['left'] = array(
 $propertyOptions['position']['right'] = array(
     'short_label' => __('Right', 'tvr-microthemer'),
     'label' => __('Right (Position)', 'tvr-microthemer'),
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'icon' => '14',
     'field-class' => 'last',
     // ref
@@ -1385,7 +1387,7 @@ $propertyOptions['position']['float'] = array(
     'input-class' => 'size-0',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         'left',
         'right',
         'none'
@@ -1405,7 +1407,7 @@ $propertyOptions['position']['clear'] = array(
     'input-class' => 'size-0',
     'type' => 'combobox',
     'select_options' => array(
-        '',
+		'',
         'left',
         'right',
         'both',
@@ -1458,7 +1460,7 @@ $propertyOptions['gradient']['gradient_angle'] = array(
 $propertyOptions['gradient']['gradient_a'] = array(
     'short_label' => 'A',
     'label' => __('Gradient A', 'tvr-microthemer'),
-    'field-class' => 'always-label',
+    'field-class' => 'always-label is-picker',
     'input-class' => 'color',
     'hide imp' => 1,
     'icon' => '25',
@@ -1471,7 +1473,7 @@ $propertyOptions['gradient']['gradient_a'] = array(
 $propertyOptions['gradient']['gradient_b'] = array(
     'short_label' => 'B',
     'label' => __('Gradient B', 'tvr-microthemer'),
-    'field-class' => 'always-label',
+    'field-class' => 'always-label is-picker',
     'input-class' => 'color',
     'hide imp' => 1,
     'icon' => '25',
@@ -1485,7 +1487,7 @@ $propertyOptions['gradient']['gradient_b_pos'] = array(
     'short_label' => __('B Position', 'tvr-microthemer'),
     'label' => __('Gradient B Position', 'tvr-microthemer'),
     'field-class' => 'icon-size-0b',
-    'default_unit' => 'px',
+    'default_unit' => array('px (implicit)', 'em'),
     'hide imp' => 1,
     'icon' => '40, 14',
     // ref
@@ -1497,7 +1499,7 @@ $propertyOptions['gradient']['gradient_b_pos'] = array(
 $propertyOptions['gradient']['gradient_c'] = array(
     'short_label' => 'C',
     'label' => __('Gradient C', 'tvr-microthemer'),
-    'field-class' => 'always-label',
+    'field-class' => 'always-label is-picker',
     'input-class' => 'color',
     'icon' => '25',
     // ref
@@ -1573,7 +1575,7 @@ $legacy_groups['padding_margin'] = array(
         'padding_right' => 1,
         'padding_bottom' => 1,
         'padding_left' => 1
-    ),
+     ),
     'margin' => array(
         'margin_top' => 1,
         'margin_right' => 1,

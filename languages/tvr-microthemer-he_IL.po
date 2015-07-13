@@ -2,72 +2,76 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: Microthemer 3.7.5\n"
+"Project-Id-Version: tvr-microthemer\n"
 "Report-Msgid-Bugs-To: sales@themeover.com\n"
 "POT-Creation-Date: 2015-06-11 22:15+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2015-06-09 21:35+0200\n"
+"Last-Translator: Ahrale <contact@atar4u.com>\n"
+"Language-Team: Ahrale | Atar4U.com <contact@atar4u.com>\n"
+"Language: he\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: ../includes/js-i18n.inc.php:5
 msgid "A folder with that name already exists. Please enter a unique name."
-msgstr ""
+msgstr "כבר קיימת תיקיה בשם זה. נא להזין שם ייחודי."
 
 #: ../includes/js-i18n.inc.php:6
 msgid "A selector with that name already exists. Please enter a unique name."
-msgstr ""
+msgstr "כבר קיים סלקטור בשם זה, נא להזין שם ייחודי."
 
 #: ../includes/js-i18n.inc.php:7
 #, php-format
 msgid "A %s with that name already exists. Please enter a unique name."
-msgstr ""
+msgstr "%s בשם זה כבר קיים. נא להזין שם ייחודי."
 
 #: ../includes/js-i18n.inc.php:8
 msgid "New Folder..."
-msgstr ""
+msgstr "תיקיה חדשה..."
 
 #: ../includes/js-i18n.inc.php:9
 msgid "Please enter a value for the folder name"
-msgstr ""
+msgstr "נא להזין ערך עבור שם התיקיה"
 
 #: ../includes/js-i18n.inc.php:10
 msgid "Please enter a value for the selector name"
-msgstr ""
+msgstr "נא להזין ערך עבור שם הסלקטור"
 
 #: ../includes/js-i18n.inc.php:11
 #, php-format
 msgid "Please enter a value for the %s name"
-msgstr ""
+msgstr "נא להזין ערך עבור שם ה %s"
 
 #: ../includes/js-i18n.inc.php:12
 msgid "load selector after moving"
-msgstr ""
+msgstr "לטעון את הסלקטור לאחר העברה"
 
 #: ../includes/js-i18n.inc.php:13
 msgid ""
 "Please validate your purchase to unlock the full program! \\nWith the free "
 "trial you are limited to editing or creating 9 Selectors."
 msgstr ""
+"נא לאמת את הרכישה כדי לשחרר את הנעילה מהתוכנה המלאה! \\n עם גרסת הניסיון "
+"החינמית יש הגבלה לעריכת או יצירת 9 סלקטורים."
 
 #: ../includes/js-i18n.inc.php:14
 msgid "Please complete all media query fields or delete empty ones."
-msgstr ""
+msgstr "נא למלא את כל שדות שאילתת המדיה או למחוק את השדות הריקים."
 
 #: ../includes/js-i18n.inc.php:15
 msgid "Loading Style Options..."
-msgstr ""
+msgstr "טוען את אפשרויות העיצוב..."
 
 #: ../includes/js-i18n.inc.php:16
 msgid "Options failed to load"
-msgstr ""
+msgstr "הטעינה נכשלה"
 
 #: ../includes/js-i18n.inc.php:17
 msgid ""
@@ -76,71 +80,73 @@ msgid ""
 "as a result of inactivity. Please refresh the page and try to log back in if "
 "necessary."
 msgstr ""
+"נכשלה טעינת האפשרויות לממשק. זה קורה לפעמים כאשר וורדפרס מנתק אותך, לפעמים "
+"כתוצאה מחוסר פעילות. נא לרענן את העמוד ולנסות להתחבר מחדש למערכת במקרה הצורך."
 
 #: ../includes/js-i18n.inc.php:18
 msgid "load selector before modifying"
-msgstr ""
+msgstr "לטעון את הסלקטור לפני השינוי"
 
 #: ../includes/js-i18n.inc.php:19
 msgid "load selector before iterating"
-msgstr ""
+msgstr "לטעון את הסלקטור לפני החזרה"
 
 #: ../includes/js-i18n.inc.php:20
 msgid "load selector before copying"
-msgstr ""
+msgstr "לטעון את הסלקטור פני ההעתקה"
 
 #: ../includes/js-i18n.inc.php:21
 msgid "sec rename, load styles discretely"
-msgstr ""
+msgstr "שינוי שם, לטעון את העיצובים באופן דיסקרטי"
 
 #: ../includes/js-i18n.inc.php:22
 msgid "sec copy, load styles discretely"
-msgstr ""
+msgstr "עותק יבש, העלאה דיסקרטית של העיצובים"
 
 #: ../includes/js-i18n.inc.php:23
 msgid "Quick Edit - Current Folder"
-msgstr ""
+msgstr "עריכה מהירה - תיקיה נוכחית"
 
 #: ../includes/js-i18n.inc.php:24
 msgid "Quick Edit - Current Selector"
-msgstr ""
+msgstr "עריכה מהירה - סלקטור נוכחי"
 
 #: ../includes/js-i18n.inc.php:25
 msgid "Loading Revisions Table..."
-msgstr ""
+msgstr "טוען טבלת טיוטות..."
 
 #: ../includes/js-i18n.inc.php:26
 msgid "Revisions failed to load"
-msgstr ""
+msgstr "טעינת הטיוטות נכשלה"
 
 #: ../includes/js-i18n.inc.php:27
 msgid "Retrieving CSS..."
-msgstr ""
+msgstr "אחזור CSS..."
 
 #: ../includes/js-i18n.inc.php:28
 msgid "CSS failed to load"
-msgstr ""
+msgstr "נכשלה טעינת ה CSS"
 
 #: ../includes/js-i18n.inc.php:29
 msgid "Loading Javascript..."
-msgstr ""
+msgstr "טעינת Javascript..."
 
 #: ../includes/js-i18n.inc.php:30
 msgid "Script failed to load"
-msgstr ""
+msgstr "טעינת הסקריפט נכשלה"
 
 #: ../includes/js-i18n.inc.php:31
 #, php-format
 msgid "The %s failed to load."
-msgstr ""
+msgstr "טעינת ה %s נכשלה"
 
 #: ../includes/js-i18n.inc.php:32
 msgid "Are you sure you want to reset all settings?"
-msgstr ""
+msgstr "בטוח שרוצה לאפס את כל ההגדרות?"
 
 #: ../includes/js-i18n.inc.php:33
 msgid "Resetting empty folders..."
-msgstr ""
+msgstr "איפוס תיקיות ריקות..."
 
 #: ../includes/js-i18n.inc.php:34
 msgid ""
@@ -148,206 +154,211 @@ msgid ""
 "please save any unsaved folders/selectors first (Use Control+S keyboard "
 "shortcut to save)."
 msgstr ""
+"בטוח שרוצה לנקות את כל העיצובים? הערה: העמוד ייטען מחדש, אז נא לבצע קודם "
+"שמירה של תיקיות/סלקטורים שלא נשמרו. נא להשתמש בקיצור המקלדת Control+S כדי "
+"לשמור."
 
 #: ../includes/js-i18n.inc.php:35
 msgid "Clearing styles..."
-msgstr ""
+msgstr "מנקה עיצובים..."
 
 #: ../includes/js-i18n.inc.php:36
 msgid "Are you sure you want to restore previous settings?"
-msgstr ""
+msgstr "בטוח שרוצה לשחזר הגדרות קודמות?"
 
 #: ../includes/js-i18n.inc.php:37
 msgid "Restoring settings..."
-msgstr ""
+msgstr "משחזר הגדרות..."
 
 #: ../includes/js-i18n.inc.php:38
 msgid "Saving Settings..."
-msgstr ""
+msgstr "שומר את ההגדרות..."
 
 #: ../includes/js-i18n.inc.php:39
 msgid "Save Error"
-msgstr ""
+msgstr "שגיאת שמירה"
 
 #: ../includes/js-i18n.inc.php:40
 msgid "Refreshing Frontend Styles..."
-msgstr ""
+msgstr "רענון עיצובי צד קדמי..."
 
 #: ../includes/js-i18n.inc.php:41
 msgid "Connection Error. Request Failed. Please Try again."
-msgstr ""
+msgstr "שגיאת התחברות. הבקשה נכשלה, נא לנסות שוב."
 
 #: ../includes/js-i18n.inc.php:42
 msgid "Requested URL not found."
-msgstr ""
+msgstr "כתובת ה URL המבוקשת לא נמצאה."
 
 #: ../includes/js-i18n.inc.php:43
 msgid "Internet Server Error."
-msgstr ""
+msgstr "שגיאת שרת."
 
 #: ../includes/js-i18n.inc.php:44
 msgid "Error.\\nParsing JSON Request failed."
-msgstr ""
+msgstr "שגיאה. ניתוח \\n בקשת JSON נכשל."
 
 #: ../includes/js-i18n.inc.php:45
 msgid "Request Timed out."
-msgstr ""
+msgstr "הבקשה פסקה"
 
 #: ../includes/js-i18n.inc.php:46
 msgid "Unknow Error."
-msgstr ""
+msgstr "שגיאה לא ידועה."
 
 #: ../includes/js-i18n.inc.php:47
 msgid "Sending error report..."
-msgstr ""
+msgstr "שולח דוח שגיאה..."
 
 #: ../includes/js-i18n.inc.php:48
 msgid "Error sending failed"
-msgstr ""
+msgstr "שליחת הדוח נכשלה"
 
 #: ../includes/js-i18n.inc.php:49
 msgid "Please select a design pack from the list"
-msgstr ""
+msgstr "נא לבחור חבילת עיצוב מן הרשימה"
 
 #: ../includes/js-i18n.inc.php:50
 msgid ""
 "Please choose an import method (overwrite or merge with your current settings"
-msgstr ""
+msgstr "נא לבחור שיטת יבוא (דריסה או מיזוג עם ההגדרות הקיימות"
 
 #: ../includes/js-i18n.inc.php:51
 #, php-format
 msgid "Importing Settings (%s)..."
-msgstr ""
+msgstr "מייבא הגדרות (%s)..."
 
 #: ../includes/js-i18n.inc.php:52
 msgid "Please select an existing settings pack or name a new one to export to"
-msgstr ""
+msgstr "נא לבחור חבילת הגדרות קיימת או לתת שם חדש לייצוא"
 
 #: ../includes/js-i18n.inc.php:53
 msgid "Please enter a value for the Selector name"
-msgstr ""
+msgstr "נא להזין ערך עבור שם הסלקטור"
 
 #: ../includes/js-i18n.inc.php:54
 msgid "Please enter some CSS selector code e.g. #header"
-msgstr ""
+msgstr "נא להזין קוד CSS של סלקטור, למשל: #header"
 
 #: ../includes/js-i18n.inc.php:55
 msgid " (this selector does not target anything on the page)"
-msgstr ""
+msgstr "סלקטור זה אינו מוכוון לשום דבר בעמוד"
 
 #: ../includes/js-i18n.inc.php:56
 msgid ": value varies across multiple elements on the page"
-msgstr ""
+msgstr ": הערך שונה באלמנטים שונים בעמוד"
 
 #: ../includes/js-i18n.inc.php:57
 msgid ": style not applicable"
-msgstr ""
+msgstr ": העיצוב אינו ניתן ליישום"
 
 #: ../includes/js-i18n.inc.php:58
 msgid " (highest specificity)"
-msgstr ""
+msgstr " (הייחודיות הגבוהה ביותר)"
 
 #: ../includes/js-i18n.inc.php:59 ../includes/tvr-microthemer-ui.php:456
 msgid "Enter new or select a folder..."
-msgstr ""
+msgstr "להזין חדשה או לבחור תיקיה..."
 
 #: ../includes/js-i18n.inc.php:60
 msgid "Please select an existing folder or enter a new folder name"
-msgstr ""
+msgstr "נא לבחור בתיקיה קיימת או להזין או לההזין שם לתיקיה חדשה"
 
 #: ../includes/js-i18n.inc.php:61
 msgid "Loading WordPress Site..."
-msgstr ""
+msgstr "טוען אתר וורדפרס..."
 
 #: ../includes/js-i18n.inc.php:67
 msgid "Theme Skin"
-msgstr ""
+msgstr "מעטפת תבנית"
 
 #: ../includes/js-i18n.inc.php:68
 msgid "Plugin Skin"
-msgstr ""
+msgstr "מעטפת תוסף"
 
 #: ../includes/js-i18n.inc.php:69
 msgid "Theme Scaffold"
-msgstr ""
+msgstr "פיגום תבנית"
 
 #: ../includes/js-i18n.inc.php:70
 msgid "Plugin Scaffold"
-msgstr ""
+msgstr "פיגום תוסף"
 
 #: ../includes/js-i18n.inc.php:71
 msgid "Please select a design pack zip file to upload"
-msgstr ""
+msgstr "נא לבחור בקובץ zip של חבילת עיצוב להעלאה"
 
 #: ../includes/js-i18n.inc.php:72
 msgid "Microthemer was not able to download the design pack"
-msgstr ""
+msgstr "Microthemer לא הצליח להוריד את חבילת העיצוב"
 
 #: ../includes/js-i18n.inc.php:73
 msgid "Are you sure you want to delete this design pack?"
-msgstr ""
+msgstr "בטוח שרוצה למחוק את חבילת העיצוב הזו?"
 
 #: ../includes/js-i18n.inc.php:74
 msgid "Microthemer was not able to delete the design pack"
-msgstr ""
+msgstr "Microthemer לא הצליח למחוק את חבילת העיצוב"
 
 #: ../includes/js-i18n.inc.php:81
 msgid ""
 "Warning: this theme links to external images. If someone else installs your "
 "zipped theme the background images won't show."
 msgstr ""
+"אזהרה: תבנית זו מקשרת לתמונות חיצוניות, אם מישהו אחר מתקין את התבנית המכווצת "
+"שלך תמונות הרקע לא תוצגנה."
 
 #: ../includes/js-i18n.inc.php:82
 msgid "Are you sure you want to delete this file?"
-msgstr ""
+msgstr "בטוח שרוצה למחוק את הקובץ הזה?"
 
 #: ../includes/js-i18n.inc.php:83
 msgid "This file could not be opened in a browser."
-msgstr ""
+msgstr "אי אפשר היה לפתוח את הקובץ הזה בדפדפן."
 
 #: ../includes/js-i18n.inc.php:84
 msgid "Delete failed"
-msgstr ""
+msgstr "המחיקה נכשלה"
 
 #: ../includes/js-i18n.inc.php:85
 msgid "Microthemer was not able to load: "
-msgstr ""
+msgstr "Microthemer לא הצליח להיטען:"
 
 #: ../includes/js-i18n.inc.php:91
 msgid "Element Type Targeting (very broad)"
-msgstr ""
+msgstr "מיקוד סוג אלמנט (רחב מאד)"
 
 #: ../includes/js-i18n.inc.php:92
 msgid "elements of type:"
-msgstr ""
+msgstr "אלמנטים של סוג:"
 
 #: ../includes/js-i18n.inc.php:93
 #, php-format
 msgid "all <%s> elements"
-msgstr ""
+msgstr "כל אלמנטי <%s>"
 
 #: ../includes/js-i18n.inc.php:94
 msgid "Element With Class Targeting"
-msgstr ""
+msgstr "אלמנט עם יעד מחלקה"
 
 #: ../includes/js-i18n.inc.php:95
 msgid "elements with a class of "
-msgstr ""
+msgstr "אלמנטים עם מחלקה של "
 
 #: ../includes/js-i18n.inc.php:96
 msgid "Parent With Class Targeting"
-msgstr ""
+msgstr "הורה עם יעד מחלקה"
 
 #: ../includes/js-i18n.inc.php:97
 #, php-format
 msgid ""
 "child <%1$s> elements inside parent <%2$s> container elements that have a "
 "class of <%3$s>"
-msgstr ""
+msgstr "אלמנטי בן <%1$s> בתוך מיכלי אלמנטי אב<%2$s> שיש להם מחלקה של <%3$s>"
 
 #: ../includes/js-i18n.inc.php:98
 msgid "Parent & Element With Class Targeting"
-msgstr ""
+msgstr "הורה ואלמנט עם יעד מחלקה"
 
 #: ../includes/js-i18n.inc.php:99
 #, php-format
@@ -355,19 +366,21 @@ msgid ""
 "child <%1$s> elements that have a class of '%2$s' inside parent <%3$s> "
 "container elements that have a class of '%4$s'"
 msgstr ""
+"אלמנטים בנים <%1$s> עם מחלקת '%2$s' בתוך מיכלי אלמנטים שיש להם מחלקה של "
+"'%4$s'"
 
 #: ../includes/js-i18n.inc.php:100
 msgid "Element ID Targeting"
-msgstr ""
+msgstr "אלמנט עם יעד מזהה"
 
 #: ../includes/js-i18n.inc.php:101
 #, php-format
 msgid "<%1$s> element with a unique id of '%2$s'"
-msgstr ""
+msgstr "<%1$s> אלמנט עם מזהה ייחודי של '%2$s'"
 
 #: ../includes/js-i18n.inc.php:102
 msgid "Parent With ID Targeting"
-msgstr ""
+msgstr "הורה עם יעד מזהה"
 
 #: ../includes/js-i18n.inc.php:103
 #, php-format
@@ -375,10 +388,13 @@ msgid ""
 "child <%1$s> elements inside a parent <%2$s> container element that has a "
 "unique id of '%3$s'"
 msgstr ""
+"אלמנטים בנים <%1$s> בתוך מיכלי אלמנט הורה <%2$s> שיש להם מזהה ייחודי של "
+"'%3$s\n"
+"'"
 
 #: ../includes/js-i18n.inc.php:104
 msgid "Parent With ID & Element With Class Targeting"
-msgstr ""
+msgstr "הורה עם מזהה ואלמנט עם יעד מחלקה"
 
 #: ../includes/js-i18n.inc.php:105
 #, php-format
@@ -386,10 +402,12 @@ msgid ""
 "child <%1$s> elements that have a class of '%2$s' inside a parent <%3$s> "
 "container element that has a unique id of '%4$s'"
 msgstr ""
+"אלמנטים בנים <%1$s> עם מחלקה של '%2$s' במיכל אלמנט הורה שיש לו מזהה ייחודי "
+"של '%4$s'"
 
 #: ../includes/js-i18n.inc.php:106
 msgid "Parent & Element With ID Targeting"
-msgstr ""
+msgstr "הורה ואלמנט עם יעד מזהה"
 
 #: ../includes/js-i18n.inc.php:107
 #, php-format
@@ -397,10 +415,12 @@ msgid ""
 "child <%1$s> element that has a unique id of '%2$s' inside a parent <%3$s> "
 "container element that has a unique id of '%4$s'"
 msgstr ""
+"אלמנט בן <%1$s> שיש לו מזהה ייחודי של '%2$s' בתוך מיכל אלמנט הורה <%3$s> שיש "
+"לו מזהה ייחודי של '%4$s'"
 
 #: ../includes/js-i18n.inc.php:108
 msgid "Update your jQuery! (1.9+)"
-msgstr ""
+msgstr "נא לעדכן את ה jQuery שלך! (1.9+)"
 
 #: ../includes/js-i18n.inc.php:109
 msgid ""
@@ -411,6 +431,11 @@ msgid ""
 "any functions that deregister the default version of jQuery. You can ask "
 "Themeover to help you with this. Thanks."
 msgstr ""
+"התקנת הוורדפרס שלך מריצה גרסת jQuery ישנה מ 1.9. זה אומר ש Microthemer לא "
+"יכול לאחזר את ערכי ה CSS הקיימים בעמוד האתר. נא לעדכן לגרסה העדכנית של "
+"וורדפרס (שתעדכן גם את ה jQuery). אם זה לא עוזר, נא לבדוק את הקוד שלך "
+"לפונקציות שמנטרלות את רישום גרסת ה  jQuery שלך. אפשר לבקש עזרה לכך מ "
+"Themeover. תודה."
 
 #: ../includes/js-i18n.inc.php:110
 msgid ""
@@ -418,35 +443,37 @@ msgid ""
 "avoided. Conceivably, you could end up editing a Microthemer interface from "
 "within a Microthemer interface. Think of the universe."
 msgstr ""
+"יש להימנע מניווט ללוח הבקרה מתוך Microthemer. מתקבל על הדעת שתסיים בעריכת "
+"המימשק של Microthemer מתוך ממשק Microthemer. לחשוב על היקום."
 
 #: ../includes/js-i18n.inc.php:111
 msgid "the 'Close Wizard' link in the top toolbar."
-msgstr ""
+msgstr "קישור 'סגירת האשף' בסרגל העליון."
 
 #: ../includes/js-i18n.inc.php:112
 msgid "the icon with horizontal green lines in the top toolbar."
-msgstr ""
+msgstr "הצלמית עם הקווים הירוקים הסרגל העליון."
 
 #: ../includes/property-options.inc.php:9
 msgid "Family"
-msgstr ""
+msgstr "משפחה"
 
 #: ../includes/property-options.inc.php:10
 msgid "Font Family"
-msgstr ""
+msgstr "משפחת גופנים"
 
 #: ../includes/property-options.inc.php:11
 #: ../includes/property-options.inc.php:12
 msgid "Font"
-msgstr ""
+msgstr "גופן"
 
 #: ../includes/property-options.inc.php:63
 msgid "Google Font"
-msgstr ""
+msgstr "גופן Google"
 
 #: ../includes/property-options.inc.php:64
 msgid "Google Font Family"
-msgstr ""
+msgstr "משפחת גופני Google"
 
 #: ../includes/property-options.inc.php:75
 #: ../includes/property-options.inc.php:76
@@ -454,129 +481,129 @@ msgstr ""
 #: ../includes/property-options.inc.php:463
 #: ../includes/property-options.inc.php:518
 msgid "Color"
-msgstr ""
+msgstr "צבע"
 
 #: ../includes/property-options.inc.php:86
 #: ../includes/property-options.inc.php:619 ../tvr-microthemer.php:1181
 msgid "Size"
-msgstr ""
+msgstr "גודל"
 
 #: ../includes/property-options.inc.php:87
 msgid "Font Size"
-msgstr ""
+msgstr "גודל הגופן"
 
 #: ../includes/property-options.inc.php:99
 #: ../includes/property-options.inc.php:100
 msgid "Line Height"
-msgstr ""
+msgstr "גובה השורה"
 
 #: ../includes/property-options.inc.php:111
 msgid "Weight"
-msgstr ""
+msgstr "משקל"
 
 #: ../includes/property-options.inc.php:112
 msgid "Font Weight"
-msgstr ""
+msgstr "משקל הגופן"
 
 #: ../includes/property-options.inc.php:148
 msgid "Style"
-msgstr ""
+msgstr "עיצוב"
 
 #: ../includes/property-options.inc.php:149
 msgid "Font Style"
-msgstr ""
+msgstr "עיצוב הגופן"
 
 #: ../includes/property-options.inc.php:167
 msgid "Decoration"
-msgstr ""
+msgstr "קישוט טקסט"
 
 #: ../includes/property-options.inc.php:168
 msgid "Text Decoration"
-msgstr ""
+msgstr "קישוט טקסט"
 
 #: ../includes/property-options.inc.php:189
 msgid "Variant"
-msgstr ""
+msgstr "גרסת גופן"
 
 #: ../includes/property-options.inc.php:190
 msgid "Font Variant"
-msgstr ""
+msgstr "גרסת גופן"
 
 #: ../includes/property-options.inc.php:209
 #: ../includes/property-options.inc.php:210
 msgid "Text Align"
-msgstr ""
+msgstr "יישור טקסט"
 
 #: ../includes/property-options.inc.php:211
 #: ../includes/property-options.inc.php:212
 msgid "Text"
-msgstr ""
+msgstr "טקסט"
 
 #: ../includes/property-options.inc.php:232
 msgid "Indent"
-msgstr ""
+msgstr "הזחה"
 
 #: ../includes/property-options.inc.php:233
 msgid "Text Indent"
-msgstr ""
+msgstr "הזחת טקסט"
 
 #: ../includes/property-options.inc.php:245
 msgid "Transform"
-msgstr ""
+msgstr "טרנספורמציה"
 
 #: ../includes/property-options.inc.php:246
 msgid "Text Transform"
-msgstr ""
+msgstr "טרנספורמציית גופן"
 
 #: ../includes/property-options.inc.php:267
 #: ../includes/property-options.inc.php:270
 msgid "Word Spacing"
-msgstr ""
+msgstr "מרווח מילים"
 
 #: ../includes/property-options.inc.php:280
 #: ../includes/property-options.inc.php:281
 msgid "Letter Spacing"
-msgstr ""
+msgstr "מרווח אותיות"
 
 #: ../includes/property-options.inc.php:292
 #: ../includes/property-options.inc.php:293
 msgid "Word Wrap"
-msgstr ""
+msgstr "מעטפת מילה"
 
 #: ../includes/property-options.inc.php:304
 #: ../includes/property-options.inc.php:305
 msgid "White Space"
-msgstr ""
+msgstr "מרווח לבן"
 
 #: ../includes/property-options.inc.php:319
 msgid "Direction"
-msgstr ""
+msgstr "כיוון"
 
 #: ../includes/property-options.inc.php:320
 msgid "Text Direction"
-msgstr ""
+msgstr "כיוון טקסט"
 
 #: ../includes/property-options.inc.php:334
 msgid "Type"
-msgstr ""
+msgstr "סוג"
 
 #: ../includes/property-options.inc.php:335
 msgid "List Style Type"
-msgstr ""
+msgstr "סוג סגנון רשימה"
 
 #: ../includes/property-options.inc.php:336
 #: ../includes/property-options.inc.php:337
 msgid "List"
-msgstr ""
+msgstr "רשימה"
 
 #: ../includes/property-options.inc.php:381
 #: ../includes/property-options.inc.php:531
 msgid "Image"
-msgstr ""
+msgstr "תמונה"
 
 #: ../includes/property-options.inc.php:382
 msgid "List Style Image"
-msgstr ""
+msgstr "תמונת סגנון רשימה"
 
 #: ../includes/property-options.inc.php:394
 #: ../includes/property-options.inc.php:548
@@ -585,162 +612,162 @@ msgstr ""
 #: ../includes/property-options.inc.php:1294
 #: ../includes/property-options.inc.php:1295
 msgid "Position"
-msgstr ""
+msgstr "מיקום"
 
 #: ../includes/property-options.inc.php:395
 msgid "List Style Position"
-msgstr ""
+msgstr "מיקום סגנון הרשימה"
 
 #: ../includes/property-options.inc.php:410
 msgid "Text Shadow Color"
-msgstr ""
+msgstr "צבע צל טקסט"
 
 #: ../includes/property-options.inc.php:411
 msgid "Shadow"
-msgstr ""
+msgstr "הצללה"
 
 #: ../includes/property-options.inc.php:412
 msgid "Text Shadow"
-msgstr ""
+msgstr "הצללת טקסט"
 
 #: ../includes/property-options.inc.php:423
 #: ../includes/property-options.inc.php:477
 msgid "X-Offset"
-msgstr ""
+msgstr "קיזוז X"
 
 #: ../includes/property-options.inc.php:424
 msgid "Text Shadow x-offset"
-msgstr ""
+msgstr "קיזוז אופקי של צל טקסט"
 
 #: ../includes/property-options.inc.php:436
 #: ../includes/property-options.inc.php:490
 msgid "Y-Offset"
-msgstr ""
+msgstr "קיזוז Y"
 
 #: ../includes/property-options.inc.php:437
 msgid "Text Shadow y-offset"
-msgstr ""
+msgstr "קיזוז אנכי של צל טקסט"
 
 #: ../includes/property-options.inc.php:449
 #: ../includes/property-options.inc.php:504
 msgid "Blur"
-msgstr ""
+msgstr "טשטוש"
 
 #: ../includes/property-options.inc.php:450
 msgid "Text Shadow Blur"
-msgstr ""
+msgstr "טשטוש הצללת טקסט"
 
 #: ../includes/property-options.inc.php:464
 msgid "Box Shadow Color"
-msgstr ""
+msgstr "צבע צל תיבה"
 
 #: ../includes/property-options.inc.php:465
 msgid "Box Shadow"
-msgstr ""
+msgstr "הצללת תיבה"
 
 #: ../includes/property-options.inc.php:478
 msgid "Box Shadow x-offset"
-msgstr ""
+msgstr "קיזוז אופקי של צל תיבה"
 
 #: ../includes/property-options.inc.php:491
 msgid "Box Shadow y-offset"
-msgstr ""
+msgstr "קיזוז אנכי של צל תיבה"
 
 #: ../includes/property-options.inc.php:505
 msgid "Box Shadow Blur"
-msgstr ""
+msgstr "טשטוש הצללת תיבה"
 
 #: ../includes/property-options.inc.php:519
 msgid "Background Color"
-msgstr ""
+msgstr "צבע רקע"
 
 #: ../includes/property-options.inc.php:520
 #: ../includes/property-options.inc.php:521
 msgid "Background"
-msgstr ""
+msgstr "רקע"
 
 #: ../includes/property-options.inc.php:532
 msgid "Background Image"
-msgstr ""
+msgstr "תמונת רקע"
 
 #: ../includes/property-options.inc.php:549
 msgid "Background Position"
-msgstr ""
+msgstr "מיקום הרקע"
 
 #: ../includes/property-options.inc.php:581
 msgid "Repeat"
-msgstr ""
+msgstr "חזרה"
 
 #: ../includes/property-options.inc.php:582
 msgid "Background Repeat"
-msgstr ""
+msgstr "חזרת רקע"
 
 #: ../includes/property-options.inc.php:602
 msgid "Attachment"
-msgstr ""
+msgstr "קובץ מצורף"
 
 #: ../includes/property-options.inc.php:603
 msgid "Background Attachment"
-msgstr ""
+msgstr "קובץ מצורף של הרקע"
 
 #: ../includes/property-options.inc.php:620
 msgid "Background Size"
-msgstr ""
+msgstr "גודל הרקע"
 
 #: ../includes/property-options.inc.php:634
 msgid "Clip"
-msgstr ""
+msgstr "קליפ"
 
 #: ../includes/property-options.inc.php:635
 msgid "Background Clip"
-msgstr ""
+msgstr "קליפ רקע"
 
 #: ../includes/property-options.inc.php:661
 #: ../includes/property-options.inc.php:662
 #: ../includes/property-options.inc.php:664
 msgid "Width"
-msgstr ""
+msgstr "רוחב"
 
 #: ../includes/property-options.inc.php:663
 msgid "Dimensions"
-msgstr ""
+msgstr "מידות"
 
 #: ../includes/property-options.inc.php:677
 #: ../includes/property-options.inc.php:716
 msgid "Min"
-msgstr ""
+msgstr "מינימום"
 
 #: ../includes/property-options.inc.php:678
 msgid "Min Width"
-msgstr ""
+msgstr "רוחב מינימלי"
 
 #: ../includes/property-options.inc.php:689
 #: ../includes/property-options.inc.php:729
 msgid "Max"
-msgstr ""
+msgstr "מקסימום"
 
 #: ../includes/property-options.inc.php:690
 msgid "Max Width"
-msgstr ""
+msgstr "רוחב מירבי"
 
 #: ../includes/property-options.inc.php:701
 #: ../includes/property-options.inc.php:702
 #: ../includes/property-options.inc.php:704
 msgid "Height"
-msgstr ""
+msgstr "גובה"
 
 #: ../includes/property-options.inc.php:717
 msgid "Min Height"
-msgstr ""
+msgstr "גובה מינימלי"
 
 #: ../includes/property-options.inc.php:730
 msgid "Max Height"
-msgstr ""
+msgstr "גובה מירבי"
 
 #: ../includes/property-options.inc.php:742
 #: ../includes/property-options.inc.php:743
 msgid "Box Sizing"
-msgstr ""
+msgstr "מידות תיבה"
 
 #: ../includes/property-options.inc.php:758
 #: ../includes/property-options.inc.php:813
@@ -749,19 +776,19 @@ msgstr ""
 #: ../includes/property-options.inc.php:984
 #: ../includes/property-options.inc.php:1316
 msgid "Top"
-msgstr ""
+msgstr "למעלה"
 
 #: ../includes/property-options.inc.php:759
 msgid "Padding Top"
-msgstr ""
+msgstr "מרווח עליון"
 
 #: ../includes/property-options.inc.php:760
 msgid "Padding & Margin"
-msgstr ""
+msgstr "מרווח ושוליים"
 
 #: ../includes/property-options.inc.php:761
 msgid "Padding"
-msgstr ""
+msgstr "מרווח"
 
 #: ../includes/property-options.inc.php:773
 #: ../includes/property-options.inc.php:828
@@ -770,11 +797,11 @@ msgstr ""
 #: ../includes/property-options.inc.php:1007
 #: ../includes/property-options.inc.php:1355
 msgid "Right"
-msgstr ""
+msgstr "ימין"
 
 #: ../includes/property-options.inc.php:774
 msgid "Padding Right"
-msgstr ""
+msgstr "מרווח ימין"
 
 #: ../includes/property-options.inc.php:786
 #: ../includes/property-options.inc.php:841
@@ -783,11 +810,11 @@ msgstr ""
 #: ../includes/property-options.inc.php:1029
 #: ../includes/property-options.inc.php:1328
 msgid "Bottom"
-msgstr ""
+msgstr "למטה"
 
 #: ../includes/property-options.inc.php:787
 msgid "Padding Bottom"
-msgstr ""
+msgstr "מרווח תחתון"
 
 #: ../includes/property-options.inc.php:799
 #: ../includes/property-options.inc.php:854
@@ -796,298 +823,298 @@ msgstr ""
 #: ../includes/property-options.inc.php:1051
 #: ../includes/property-options.inc.php:1341
 msgid "Left"
-msgstr ""
+msgstr "שמאל"
 
 #: ../includes/property-options.inc.php:800
 msgid "Padding Left"
-msgstr ""
+msgstr "מרווח שמאל"
 
 #: ../includes/property-options.inc.php:814
 msgid "Margin Top"
-msgstr ""
+msgstr "שוליים עליונים"
 
 #: ../includes/property-options.inc.php:815
 msgid "Margin"
-msgstr ""
+msgstr "שוליים"
 
 #: ../includes/property-options.inc.php:829
 msgid "Margin Right"
-msgstr ""
+msgstr "שוליים ימניים"
 
 #: ../includes/property-options.inc.php:842
 msgid "Margin Bottom"
-msgstr ""
+msgstr "שוליים תחתונים"
 
 #: ../includes/property-options.inc.php:855
 msgid "Margin Left"
-msgstr ""
+msgstr "שוליים שמאליים"
 
 #: ../includes/property-options.inc.php:870
 msgid "Border Top Color"
-msgstr ""
+msgstr "צבע מסגרת עליונה"
 
 #: ../includes/property-options.inc.php:871
 msgid "Border"
-msgstr ""
+msgstr "מסגרת"
 
 #: ../includes/property-options.inc.php:872
 msgid "Border Color"
-msgstr ""
+msgstr "צבע המסגרת"
 
 #: ../includes/property-options.inc.php:884
 msgid "Border Right Color"
-msgstr ""
+msgstr "צבע מסגרת ימין"
 
 #: ../includes/property-options.inc.php:896
 msgid "Border Bottom Color"
-msgstr ""
+msgstr "צבע מסגרת תחתונה"
 
 #: ../includes/property-options.inc.php:908
 msgid "Border Left Color"
-msgstr ""
+msgstr "צבע מסגרת שמאל"
 
 #: ../includes/property-options.inc.php:921
 msgid "Border Top Width"
-msgstr ""
+msgstr "עובי מסגרת עליונה"
 
 #: ../includes/property-options.inc.php:922
 msgid "Border Width"
-msgstr ""
+msgstr "עובי המסגרת"
 
 #: ../includes/property-options.inc.php:935
 msgid "Border Right Width"
-msgstr ""
+msgstr "עובי מסגרת ימין"
 
 #: ../includes/property-options.inc.php:947
 msgid "Border Bottom Width"
-msgstr ""
+msgstr "עובי מסגרת תחתונה"
 
 #: ../includes/property-options.inc.php:959
 msgid "Border Left Width"
-msgstr ""
+msgstr "עובי מסגרת שמאל"
 
 #: ../includes/property-options.inc.php:985
 msgid "Border Top Style"
-msgstr ""
+msgstr "עיצוב מסגרת עליונה"
 
 #: ../includes/property-options.inc.php:986
 msgid "Border Style"
-msgstr ""
+msgstr "עיצוב מסגרת"
 
 #: ../includes/property-options.inc.php:1008
 msgid "Border Right Style"
-msgstr ""
+msgstr "עיצוב מסגרת ימין"
 
 #: ../includes/property-options.inc.php:1030
 msgid "Border Bottom Style"
-msgstr ""
+msgstr "עיצוב מסגרת תחתונה"
 
 #: ../includes/property-options.inc.php:1052
 msgid "Border Left Style"
-msgstr ""
+msgstr "עיצוב מסגרת שמאל"
 
 #: ../includes/property-options.inc.php:1076
 msgid "Top Left"
-msgstr ""
+msgstr "שמאל למעלה"
 
 #: ../includes/property-options.inc.php:1077
 msgid "Top Left Border Radius"
-msgstr ""
+msgstr "רדיוס המסגרת בצד שמאל למעלה"
 
 #: ../includes/property-options.inc.php:1078
 msgid "Border Radius"
-msgstr ""
+msgstr "רדיוס המסגרת"
 
 #: ../includes/property-options.inc.php:1091
 msgid "Top Right"
-msgstr ""
+msgstr "ימין למעלה"
 
 #: ../includes/property-options.inc.php:1092
 msgid "Top Right Border Radius"
-msgstr ""
+msgstr "רדיוס המסגרת בצד ימין למעלה"
 
 #: ../includes/property-options.inc.php:1104
 msgid "Bottom Right"
-msgstr ""
+msgstr "ימין למטה"
 
 #: ../includes/property-options.inc.php:1105
 msgid "Bottom Right Border Radius"
-msgstr ""
+msgstr "רדיוס המסגרת בצד שמאל למטה"
 
 #: ../includes/property-options.inc.php:1117
 msgid "Bottom Left"
-msgstr ""
+msgstr "שמאל למטה"
 
 #: ../includes/property-options.inc.php:1118
 msgid "Bottom Left Border Radius"
-msgstr ""
+msgstr "רדיוס המסגרת בצד שמאל למטה"
 
 #: ../includes/property-options.inc.php:1131
 #: ../includes/property-options.inc.php:1132
 msgid "Display"
-msgstr ""
+msgstr "תצוגה"
 
 #: ../includes/property-options.inc.php:1133
 #: ../includes/property-options.inc.php:1134
 msgid "Behaviour"
-msgstr ""
+msgstr "התנהגות"
 
 #: ../includes/property-options.inc.php:1155
 #: ../includes/property-options.inc.php:1156
 msgid "Overflow"
-msgstr ""
+msgstr "גלישה"
 
 #: ../includes/property-options.inc.php:1178
 #: ../includes/property-options.inc.php:1179
 msgid "Overflow X"
-msgstr ""
+msgstr "גלישה אופקית"
 
 #: ../includes/property-options.inc.php:1194
 #: ../includes/property-options.inc.php:1195
 msgid "Overflow Y"
-msgstr ""
+msgstr "גלישה אנכית"
 
 #: ../includes/property-options.inc.php:1210
 #: ../includes/property-options.inc.php:1211
 msgid "Visibility"
-msgstr ""
+msgstr "נראות"
 
 #: ../includes/property-options.inc.php:1230
 #: ../includes/property-options.inc.php:1231
 msgid "Cursor"
-msgstr ""
+msgstr "סמן"
 
 #: ../includes/property-options.inc.php:1279
 #: ../includes/property-options.inc.php:1280
 msgid "Opacity"
-msgstr ""
+msgstr "אטימות"
 
 #: ../includes/property-options.inc.php:1317
 msgid "Top (Position)"
-msgstr ""
+msgstr "למעלה (מיקום)"
 
 #: ../includes/property-options.inc.php:1329
 msgid "Bottom (Position)"
-msgstr ""
+msgstr "למטה (מיקום)"
 
 #: ../includes/property-options.inc.php:1342
 msgid "Left (Position)"
-msgstr ""
+msgstr "שמאל (מיקום)"
 
 #: ../includes/property-options.inc.php:1356
 msgid "Right (Position)"
-msgstr ""
+msgstr "ימין (מיקום)"
 
 #: ../includes/property-options.inc.php:1368
 #: ../includes/property-options.inc.php:1369
 msgid "Z-index"
-msgstr ""
+msgstr "מדד Z"
 
 #: ../includes/property-options.inc.php:1378
 #: ../includes/property-options.inc.php:1379
 msgid "Float"
-msgstr ""
+msgstr "ציפה"
 
 #: ../includes/property-options.inc.php:1398
 #: ../includes/property-options.inc.php:1399
 msgid "Clear"
-msgstr ""
+msgstr "ניקוי"
 
 #: ../includes/property-options.inc.php:1421
 msgid "Angle"
-msgstr ""
+msgstr "זווית"
 
 #: ../includes/property-options.inc.php:1422
 msgid "Gradient Angle"
-msgstr ""
+msgstr "זווית צבע מדורג"
 
 #: ../includes/property-options.inc.php:1423
 #: ../includes/property-options.inc.php:1424
 msgid "Gradient"
-msgstr ""
+msgstr "צבע מדורג"
 
 #: ../includes/property-options.inc.php:1456
 msgid "Gradient A"
-msgstr ""
+msgstr "צבע 1"
 
 #: ../includes/property-options.inc.php:1469
 msgid "Gradient B"
-msgstr ""
+msgstr "צבע 2"
 
 #: ../includes/property-options.inc.php:1481
 msgid "B Position"
-msgstr ""
+msgstr "מיקום 2"
 
 #: ../includes/property-options.inc.php:1482
 msgid "Gradient B Position"
-msgstr ""
+msgstr "מיקום צבע 2"
 
 #: ../includes/property-options.inc.php:1495
 msgid "Gradient C"
-msgstr ""
+msgstr "צבע 3"
 
 #: ../includes/resolve-input-fields.inc.php:211
 msgid "Hover over the rows to highlight the individual elements on the page"
-msgstr ""
+msgstr "רחף מעל לשורות כדי לסמן את האלמנטים המשוייכים להם בעמוד"
 
 #: ../includes/resolve-input-fields.inc.php:211
 msgid "Page Analysis"
-msgstr ""
+msgstr "סטטיסטיקת עמוד"
 
 #: ../includes/resolve-input-fields.inc.php:216
 msgid "Value"
-msgstr ""
+msgstr "ערך"
 
 #: ../includes/tvr-manage-micro-themes.php:71
 #: ../includes/tvr-manage-micro-themes.php:80
 #: ../includes/tvr-manage-micro-themes.php:90
 #, php-format
 msgid "Edit %s"
-msgstr ""
+msgstr "עריכת %s"
 
 #: ../includes/tvr-manage-micro-themes.php:74
 #, php-format
 msgid "Delete %s"
-msgstr ""
+msgstr "מחיקת %s"
 
 #: ../includes/tvr-manage-micro-themes.php:77
 #, php-format
 msgid "Download %s"
-msgstr ""
+msgstr "הורדת %s"
 
 #: ../includes/tvr-manage-micro-themes.php:83
 #, php-format
 msgid "Import %s into the Microthemer interface"
-msgstr ""
+msgstr "יבוא %s לממשק של Microthemer"
 
 #: ../includes/tvr-manage-single.php:91
 msgid "Description"
-msgstr ""
+msgstr "תיאור"
 
 #: ../includes/tvr-manage-single.php:96
 msgid "No Description Available"
-msgstr ""
+msgstr "אין תיאור זמין"
 
 #: ../includes/tvr-manage-single.php:97
 msgid "Optionally enter a description using the \"Info\" form below."
-msgstr ""
+msgstr "באפשרותך להזין תיאור באמצעות טופס ה\"מידע\" שלהלן."
 
 #: ../includes/tvr-manage-single.php:103
 msgid "Tags"
-msgstr ""
+msgstr "תגיות"
 
 #: ../includes/tvr-manage-single.php:113
 msgid "Deactivate"
-msgstr ""
+msgstr "כיבוי"
 
 #: ../includes/tvr-manage-single.php:118
 msgid "Activate"
-msgstr ""
+msgstr "הפעלה"
 
 #: ../includes/tvr-manage-single.php:166 ../includes/tvr-manage-single.php:239
 #: ../includes/tvr-manage-single.php:361
 msgid "About This Feature"
-msgstr ""
+msgstr "אודות תכונה זו"
 
 #: ../includes/tvr-manage-single.php:170
 #, php-format
@@ -1098,14 +1125,18 @@ msgid ""
 "will also need to upload a thumbnail image on the %1$s and (optionally) some "
 "instructions for the end user on the %2$s"
 msgstr ""
+"כדי להפוך את חבילת העיצוב שלך לזמינה למכירה או להורדב ב themeover.com, נא "
+"למלא את שדות הטופס. ריחוף עם העכבר מעל לתוויות השדות יציג הנחיות עבור כל "
+"שדה. יש צורך גם בהעלאת תמונה ממוזערת ב  %1$s ואפשר גם להוסיף הנחיות למשתמש ב "
+"%2$s"
 
 #: ../includes/tvr-manage-single.php:172 ../includes/tvr-manage-single.php:183
 msgid "Attachments tab"
-msgstr ""
+msgstr "לשונית קבצים משוייכים"
 
 #: ../includes/tvr-manage-single.php:174
 msgid "Instructions tab"
-msgstr ""
+msgstr "לשונית הנחיות"
 
 #: ../includes/tvr-manage-single.php:178
 msgid ""
@@ -1113,6 +1144,8 @@ msgid ""
 "pack. Themeover willi make use of this information if you submit your design "
 "pack for inclusion in our marketplace."
 msgstr ""
+"המידע המוזן יעדכן את קבצי meta.txt בחבילת העיצוב שלך. Themeover תשתמש במידע "
+"זה אם חבילת העיצוב שלך תוגש כדי להיכלל בשוק שלנו."
 
 #: ../includes/tvr-manage-single.php:181
 #, php-format
@@ -1121,46 +1154,48 @@ msgid ""
 "design pack. But you may wish to upload a thumbnail image to replace the "
 "\"No Screenshot\" placeholder on the %s."
 msgstr ""
+"אין צורך למלא שדות אלו אם אינך רוצה לחלוק את חבילת העיצוב, אבל אפשר להעלות "
+"תמונה כדי להחליף את מציין המיקום \"אין תמונה\" ב %s."
 
 #: ../includes/tvr-manage-single.php:186
 msgid "Design Pack Meta Info"
-msgstr ""
+msgstr "מידע תיאור חבילת העיצוב"
 
 #: ../includes/tvr-manage-single.php:191
 msgid "Type of Design Pack: "
-msgstr ""
+msgstr "סוג חבילת העיצוב:"
 
 #: ../includes/tvr-manage-single.php:196
 msgid "Design Pack Name: "
-msgstr ""
+msgstr "שם חבילת העיצוב:"
 
 #: ../includes/tvr-manage-single.php:201
 msgid "allowed characters: a-z, A-Z, 0-9, -, _"
-msgstr ""
+msgstr "תווים מותרים: a-z, A-Z, 0-9, -, _"
 
 #: ../includes/tvr-manage-single.php:202
 msgid "Version: "
-msgstr ""
+msgstr "גרסה:"
 
 #: ../includes/tvr-manage-single.php:208
 msgid "Description: "
-msgstr ""
+msgstr "תיאור:"
 
 #: ../includes/tvr-manage-single.php:211
 msgid "Author: "
-msgstr ""
+msgstr "מחבר:"
 
 #: ../includes/tvr-manage-single.php:214
 msgid "Author URI: "
-msgstr ""
+msgstr "כתובת URI של המחבר: "
 
 #: ../includes/tvr-manage-single.php:217
 msgid "Target Theme or Plugin: "
-msgstr ""
+msgstr "ערכת נושא או תוסף יעד: "
 
 #: ../includes/tvr-manage-single.php:221
 msgid "Tags: "
-msgstr ""
+msgstr "תגיות: "
 
 #: ../includes/tvr-manage-single.php:241
 msgid ""
@@ -1171,6 +1206,11 @@ msgid ""
 "It will also automatically create a smaller version called screenshot-small."
 "gif/jpg/png."
 msgstr ""
+"העלאת קובץ  תמונת צילום מסך ברוחב 896 פיקסל וגובה 513 פיקסל בשם \"screenshot."
+"gif/jpg/png\" כדי לתת לעיצוב שלך תמונה ממוזערת יפה. זה חשוב להעלות קובץ "
+"בגודל מלא במידות 896 על 513 או יותר. Microthemer תחתוך את התמונה למידות 896 "
+"x 513 אם תועלה תמונה גדולה יותר. גם תיווצר באופן אוטומטי גרסה מוקטנת שתיקרא "
+"screenshot-small.gif/jpg/png."
 
 #: ../includes/tvr-manage-single.php:245
 msgid ""
@@ -1180,6 +1220,10 @@ msgid ""
 "from the Microthemer UI page, when you select a background image for "
 "inclusion in your design."
 msgstr ""
+"<b>הערה חשובה:</b> נכון לגרסה 3 ומעלה Microthemer משתמש במנהל המדיה של "
+"וורדפרס לאחסון תמונות רקע.  לכן אין צורך ולא מומלץ להעלות תמונות רקע כאן. "
+"הרבה יותר טוב להעלות אותם מעמוד ממשק המשתמש של Microthemer, כאשר נעשה שימוש "
+"בתמונת רקע להכללה בעיצוב שלך."
 
 #: ../includes/tvr-manage-single.php:247
 msgid ""
@@ -1188,18 +1232,21 @@ msgid ""
 "file, all the images will be copied to the WordPress media library. Image "
 "file paths will be updated accordingly."
 msgstr ""
+"כל תמונה שחבילת העיצוב שלך מקשרת אליה תיכלל בחבילת העיצוב אם בחרת להוריד "
+"אותה כקובץ zip. כאשר חבילת העיצוב תותקן, כל התמונות תועתקנה לספריית המדיה של "
+"וורדפרס. נתיבי התמונות יעודכנו בהתאמה."
 
 #: ../includes/tvr-manage-single.php:249
 msgid "Design Pack Files"
-msgstr ""
+msgstr "קבצי חבילת העיצוב"
 
 #: ../includes/tvr-manage-single.php:311
 msgid "Media library images this design pack incorporates"
-msgstr ""
+msgstr "תמונות ספריית המדיה שחבילת עיצוב זו משלבת"
 
 #: ../includes/tvr-manage-single.php:349
 msgid "File types you are allowed to upload:"
-msgstr ""
+msgstr "סוגי קובץ הניתנים להעלאה:"
 
 #: ../includes/tvr-manage-single.php:362
 msgid ""
@@ -1209,24 +1256,30 @@ msgid ""
 "best practices. The instructions you add will feature on Themeover's listing "
 "page."
 msgstr ""
+"אם בכוונתך להגיש את חבילת העיצוב שלך להצגה ב Themeover, בהוספת הנחיות "
+"למשתמשי הקצה של חבילת העיצוב שלך יש טאצ' נחמד. זה יכול לכלול הצבעה על "
+"חסרונות פוטנציאליים או שיטות עבודה מומלצות. ההנחיות תוצגנה בהבלטה בעמוד "
+"הרישום של Themeover"
 
 #: ../includes/tvr-manage-single.php:366
 msgid ""
 "Some design packs may not benefit much from additional instructions of "
 "course. In which case feel free to leave this blank."
 msgstr ""
+"יש חבילות עיצוב שלא תהיה בהן תועלת בהנחיות נוספות, ובמקרה כזה, אפשר להשאיר "
+"את השדה ריק."
 
 #: ../includes/tvr-manage-single.php:369
 msgid "Instructions For The End User"
-msgstr ""
+msgstr "הנחיות למשתמש הקצה"
 
 #: ../includes/tvr-manage-single.php:387
 msgid "Design Pack File"
-msgstr ""
+msgstr "קובץ חבילת עיצוב"
 
 #: ../includes/tvr-manage-single.php:389
 msgid "About this file"
-msgstr ""
+msgstr "אודות קובץ זה"
 
 #: ../includes/tvr-manage-single.php:392
 msgid ""
@@ -1235,6 +1288,10 @@ msgid ""
 "your work. When you import a design pack into the Microthemer UI the style "
 "settings, media queries, and any custom CSS code are loaded from this file."
 msgstr ""
+"זה קובץ ההגדרות הכולל את כל ההגדרות של Microthemer עבור חבילת העיצוב. הוא "
+"נוצר אוטומטית במהלך היצוא של העבודה שלך. כאשר מייבאים חבילת עיצוב אל ממשק "
+"המשתמש של Microthemer, הגדרות העיצוב, שאילתות המדיה וכל עיצוב CSS אחר נטענים "
+"מקובץ זה."
 
 #: ../includes/tvr-manage-single.php:395
 msgid ""
@@ -1243,6 +1300,9 @@ msgid ""
 "upload it using the \"Upload File\" button at the top of the design pack "
 "files table."
 msgstr ""
+"סביר שלא תרצו לערוך את הקובץ הזה באופן ידני, אבל לפעמים מתכנתים מורידים אותו "
+"מוצאים משהו ומחליפים בהתאמה ואז מעלים אותו מחדש באמצעות כפתור \"העלאת קובץ\" "
+"שבראש טבלת קבצי חבילת העיצוב."
 
 #: ../includes/tvr-manage-single.php:400
 msgid ""
@@ -1251,6 +1311,9 @@ msgid ""
 "design pack on themeover.com. You can edit this file using the \"Design Pack "
 "Meta Info\" form."
 msgstr ""
+"זהו קובץ המידע המכיל את המידע המתאר את חבילת העיצוב. Themeover משתמשת במידע "
+"שבקובץ זה כדי להציג בחבילות העיצוב המוגשות לתצוגה ב themeover.com. ניתן "
+"לערוך את הקובץ באמצעות הטופס \"מידע תיאור חבילת עיצוב\"."
 
 #: ../includes/tvr-manage-single.php:405
 msgid ""
@@ -1258,6 +1321,8 @@ msgid ""
 "design pack - if the author decided that instructions would be beneficial. "
 "You can edit this file using the \"Instructions\" form."
 msgstr ""
+"זהו קובץ הקריאה המכיל הנחיות למשתמש הקצה עבור חבילת העיצוב - אם המחבר החליט "
+"שהנחיות תבאנה תועלת. ניתן לערוך את הקובץ הזה בטאמצעות הטופס \"הנחיות\"."
 
 #: ../includes/tvr-manage-single.php:412
 #: ../includes/tvr-microthemer-ui.php:664
@@ -1268,15 +1333,16 @@ msgstr ""
 #: ../includes/tvr-microthemer-ui.php:1057
 #: ../includes/tvr-microthemer-ui.php:1076
 msgid "Close"
-msgstr ""
+msgstr "סגירה"
 
 #: ../includes/tvr-microthemer-preferences.php:18
 msgid "Edit your Microthemer preferences"
-msgstr ""
+msgstr "עריכת העדפות ה Microthemer שלך"
 
 #: ../includes/tvr-microthemer-preferences.php:20
+#, fuzzy
 msgid "General Preferences"
-msgstr ""
+msgstr "שמירת ההעדפות"
 
 #: ../includes/tvr-microthemer-preferences.php:21
 msgid "CSS Units"
@@ -1284,29 +1350,29 @@ msgstr ""
 
 #: ../includes/tvr-microthemer-preferences.php:33
 msgid "Nothing to try in Edge mode."
-msgstr ""
+msgstr "אין מה לנסות במצב קצה."
 
 #: ../includes/tvr-microthemer-preferences.php:34
 msgid "Learn about the last pilot"
-msgstr ""
+msgstr "אודות הפיילוט האחרון"
 
 #: ../includes/tvr-microthemer-preferences.php:40
 msgid "Enable edge mode. "
-msgstr ""
+msgstr "הפעלת מצב קצה. "
 
 #: ../includes/tvr-microthemer-preferences.php:41
 msgid ""
 "Read a full explanation of the changes and give us constructive feedback on "
 "this forum thread."
-msgstr ""
+msgstr "לקריאת הסבר מלא על השינויים ולמתן משוב בונה בעניין נושא זה בפורום."
 
 #: ../includes/tvr-microthemer-preferences.php:42
 msgid "Read about/comment here"
-msgstr ""
+msgstr "קריאה אודות/תגובה כאן"
 
 #: ../includes/tvr-microthemer-preferences.php:46
 msgid "Add \"first\" and \"last\" classes to menu items"
-msgstr ""
+msgstr "הוספת מחלקות \"ראשון\" ו\"אחרון\" לפריטי תפריט"
 
 #: ../includes/tvr-microthemer-preferences.php:47
 msgid ""
@@ -1315,20 +1381,25 @@ msgid ""
 "rest. Note: this only works with \"Custom Menus\" created on the  Appearance "
 "> Menus page."
 msgstr ""
+"Microthemer יכול להוסיף מחלקות \"ראשון\" ו\"אחרון\" בתפריטי וורדפרס כך אפשר "
+"יהיה לעצב את הפריט הראשון או האחרון באופן שונה מיתר התפריט. הערה: זה פועל רק "
+"כאשר מופעלים \"תפריטים אישיים\" שנוצרו בעיצוב> תפריטים."
 
 #: ../includes/tvr-microthemer-preferences.php:51
 msgid "Gzip the Microthemer UI page for faster loading"
-msgstr ""
+msgstr "החל כיווץ Gzip על עמוד ממשק המשתמש של Microthemer לטעינה מהירה יותר"
 
 #: ../includes/tvr-microthemer-preferences.php:52
 msgid ""
 "The Microthemer interface generates quite a bit of HTML. Having this gzip "
 "option enabled will speed up the initial page loading."
 msgstr ""
+"הממשק של Microthemer מייצר לא מעט HTML. הפעלת אפשרות זו של כיווץ gzip תאיץ "
+"את הטעינה הראשונית של העמוד."
 
 #: ../includes/tvr-microthemer-preferences.php:55
 msgid "Display Internet Explorer notice"
-msgstr ""
+msgstr "הצגת הערת אינטרנט אקספלורר"
 
 #: ../includes/tvr-microthemer-preferences.php:56
 msgid ""
@@ -1337,6 +1408,9 @@ msgid ""
 "using IE you might want to disable the notice telling you to use Firefox or "
 "Chrome instead."
 msgstr ""
+"Microthemer יכול להיות קצת מסורבל כאשר הוא רץ באינטרנט אקספלורר ואינו פועל "
+"בגרסאות ישנות כמו  IE8. אבל אם אתם מתעקשים להשתמש באינטרנט אקספלורר יתכן "
+"שתרצו לכבות את ההערה שאומרת לכם להשתמש במקומם זה בפיירפוקס או כרום."
 
 #: ../includes/tvr-microthemer-preferences.php:60
 msgid ""
@@ -1345,10 +1419,13 @@ msgid ""
 "will alert you to safe-mode being on. But if that's old news to you, you may "
 "want to disable the warnings about it."
 msgstr ""
+"אם בשרת שלכם מופעלת פקודת PHP של \"מצב בטוח\", יתכן שתיתקלו בשגיאות הרשאה "
+"כאשר Microthemer מנסה ליצור ספריות. Microthemer יזהיר אותך שמצב בטוח פועל, "
+"אבל אם זה חדשות ישנות עבורכם, יתכן שתרצו לכבות את האזהרה הזו."
 
 #: ../includes/tvr-microthemer-preferences.php:63
 msgid "Always add !important to CSS styles"
-msgstr ""
+msgstr "להוסיף תמיד !important לעיצובי CSS"
 
 #: ../includes/tvr-microthemer-preferences.php:65
 msgid ""
@@ -1358,14 +1435,18 @@ msgid ""
 "\" on a per style basis by clicking the faint \"i's\" that will appear to "
 "the right of every style input."
 msgstr ""
+"להוסיף תמיד הצהרת CSS מסוג  !important לעיצובי CSS. זה בדרך-כלל פותר את "
+"הבעיה של הצורך להבין כיצד מיקוד CSS פועל. אבל אם אתם מעדיפים, ניתן לכבות את "
+"התפקוד הזה ועדיין להחיל  !important על עיצובים ספציפיים על ידי לחיצה על  "
+"\"i's\" שיופיע מימין לכל שדה קלט של עיצוב."
 
 #: ../includes/tvr-microthemer-preferences.php:68
 msgid "Always use CSS3 PIE pollyfill where relevant"
-msgstr ""
+msgstr "להשתמש תמיד ב CSS3 PIE pollyfill כאשר זה רלוונטי"
 
 #: ../includes/tvr-microthemer-preferences.php:69
 msgid "(configure manually)"
-msgstr ""
+msgstr "(הגדרה ידנית)"
 
 #: ../includes/tvr-microthemer-preferences.php:70
 msgid ""
@@ -1376,20 +1457,25 @@ msgid ""
 "or some other value. Set this option to \"No\" if you would like to enable "
 "this pollyfill on a per selector basis."
 msgstr ""
+"לכלול תמיד את קובץ CSS3 PIE htc אם צבע מדורג, פינות מעוגלות או הצללת תיבות "
+"יושמו כדי לגרום להם לפעול גם באינטרנט אקספלורר 6-8. הערה: ערך מיקום \"יחסי\" "
+"יחול אוטומטית על הסלקטור אלא אם תגדירו אותו במפורש ל\"סטטי\" או ערך אחר. "
+"הגדירו אפשרות זו כ\"לא\" אם תרצו להפעיל את התכונה על בסיס עיצוב סלקטור "
+"ספציפי."
 
 #: ../includes/tvr-microthemer-preferences.php:73
 msgid "Add a Microthemer shortcut to the WP admin bar"
-msgstr ""
+msgstr "הוספת קיצור דרך ל Microthemer לסרגל הניהול העליון"
 
 #: ../includes/tvr-microthemer-preferences.php:74
 msgid ""
 "Include a link to the Microthemer interface from the WordPress admin toolbar "
 "at the top of every page."
-msgstr ""
+msgstr "לכלול קישור לממשק Microthemer מסרגל הניהול העליון של כל עמוד."
 
 #: ../includes/tvr-microthemer-preferences.php:77
 msgid "Include admin bar shortcut as a top level link"
-msgstr ""
+msgstr "לכלול קיצור דרך בלוח הבקרה כקישור רמה עליונה"
 
 #: ../includes/tvr-microthemer-preferences.php:78
 msgid ""
@@ -1397,10 +1483,12 @@ msgid ""
 "either have it as a top level menu link or as a sub-menu item of the main "
 "menu."
 msgstr ""
+"אם הפעלת את קיצור הדרך ל Microthemer בסרגל הניהול, ניתן לבחור אם הוא יוצג "
+"כקישור רמה עליונה או כתפריט משנה של התפריט הראשי."
 
 #: ../includes/tvr-microthemer-preferences.php:89
 msgid "Frontend preview URL Microthemer should load"
-msgstr ""
+msgstr "תצוגה מוקדמת של כתובת ה URL ש Microthemer צריך לטעון"
 
 #: ../includes/tvr-microthemer-preferences.php:90
 msgid ""
@@ -1409,10 +1497,13 @@ msgid ""
 "page or the last page you visited. This option is useful if you want to "
 "style a page that can't be navigated to from the home page or other pages."
 msgstr ""
+"לציין ידנית קישור לעמוד שייטען על-ידי Microthemer לעריכה עם הפעלתו. כברירת "
+"מחדל Microthemer יטען את עמוד הבית שלך או את העמוד האחרון שבו ביקרת. אפשרות "
+"זו שימושית לעיצוב עמוד שאין אפשרות לנווט אליו מעמוד הבית או עמודים אחרים."
 
 #: ../includes/tvr-microthemer-preferences.php:93
 msgid "Google Font subset URL parameter"
-msgstr ""
+msgstr "פרמטר כתובת URL של ערכת גופני Google"
 
 #: ../includes/tvr-microthemer-preferences.php:94
 msgid ""
@@ -1421,10 +1512,13 @@ msgid ""
 "quotes). Note: Microthemer only generates a Google Font URL if it detects "
 "that you have applied Google Fonts in your design."
 msgstr ""
+"אפשר להורות לגופני Google לכלול ערכת גופנים על-ידי הזנת פרמטר כתובת URL כאן. "
+"לדוגמה \"&subset=latin,latin-ext\" (ללא מרכאות). הערה: Microthemer מייצר רק "
+"כתובת URL של גופני Google אם הוא מזהה שהחלת אותם בעיצוב שלך."
 
 #: ../includes/tvr-microthemer-preferences.php:96
 msgid "Tooltip delay time (in milliseconds)"
-msgstr ""
+msgstr "זמן השהיית בועת טולטיפ (באלפיות השניה)."
 
 #: ../includes/tvr-microthemer-preferences.php:97
 msgid ""
@@ -1433,6 +1527,10 @@ msgid ""
 "value like \"2000\" for a 2 second delay (so it never shows when you don't "
 "need it to). The default is 500 milliseconds."
 msgstr ""
+"בקרת משך ההשהיה שייקח לבועת טולטיפ של Microthemer להיות מוצגת. להגדיר \"0\" "
+"להצגה מידית, \"מקומי\" כדי להשתמש בברירת המחדל של הדפדפן, או ערך כמו "
+"\"2000\" להשהיה של שתי שניות (כך שלעולם לא יוצג ללא צורך). ברירת המחדל היא "
+"500 אלפיות השניה."
 
 #: ../includes/tvr-microthemer-preferences.php:123
 #: ../includes/tvr-microthemer-preferences.php:128
@@ -1449,7 +1547,7 @@ msgstr ""
 #: ../includes/tvr-microthemer-preferences.php:167
 #: ../includes/tvr-microthemer-preferences.php:194
 msgid "Save Preferences"
-msgstr ""
+msgstr "שמירת ההעדפות"
 
 #: ../includes/tvr-microthemer-preferences.php:170
 #: ../includes/tvr-microthemer-ui.php:647
@@ -1461,13 +1559,15 @@ msgstr ""
 #: ../includes/tvr-microthemer-ui.php:1032
 #: ../includes/tvr-microthemer-ui.php:1070
 msgid "About this feature"
-msgstr ""
+msgstr "אודות תכונה זו"
 
 #: ../includes/tvr-microthemer-preferences.php:173
 msgid ""
 "Set your global Microthemer preferences on this page. Hover your mouse over "
 "the option labels for further information on each option."
 msgstr ""
+"הגדרת העדפות כלליות של Microthemer בעמוד זה. ריחוף עם העכבר מעל אפשרות תציג "
+"תווית עם מידע נוסף עבורה."
 
 #: ../includes/tvr-microthemer-preferences.php:178
 #, php-format
@@ -1475,6 +1575,8 @@ msgid ""
 "Please unlock the full program by entering your PayPal email address on "
 "<span %s>this page</span>."
 msgstr ""
+"נא לשחרר את נעילת התוכנה המלאה על-ידי הזנת אימייל פייפל שלך ב<span %s>עמוד "
+"זה</span>."
 
 #: ../includes/tvr-microthemer-preferences.php:186
 #, php-format
@@ -1482,6 +1584,8 @@ msgid ""
 "You may also wan to customise the default media queries Microthemer suggests "
 "on <span %s>this page</span>."
 msgstr ""
+"יתכן שתרצו גם להתאים את שאילתות המדיה ש Microthemer  מציע ב<span %s>עמוד זה</"
+"span>."
 
 #: ../includes/tvr-microthemer-ui.php:162
 msgid "Edit custom code tabs"
@@ -1489,68 +1593,69 @@ msgstr ""
 
 #: ../includes/tvr-microthemer-ui.php:173 ../tvr-microthemer.php:201
 msgid "All Browsers"
-msgstr ""
+msgstr "כל הדפדפנים"
 
 #: ../includes/tvr-microthemer-ui.php:174 ../tvr-microthemer.php:203
 msgid "All versions of IE"
-msgstr ""
+msgstr "כל גרסאות אינטרנט אקספלורר"
 
 #: ../includes/tvr-microthemer-ui.php:175 ../tvr-microthemer.php:204
 msgid "IE9 and below"
-msgstr ""
+msgstr "אינטרנט אקספלורר 9 ומטה"
 
 #: ../includes/tvr-microthemer-ui.php:176 ../tvr-microthemer.php:205
 msgid "IE8 and below"
-msgstr ""
+msgstr "אינטרנט אקספלורר 8 ומטה"
 
 #: ../includes/tvr-microthemer-ui.php:177 ../tvr-microthemer.php:206
 msgid "IE7 and below"
-msgstr ""
+msgstr "אינטרנט אקספלורר 7 ומטה"
 
 #: ../includes/tvr-microthemer-ui.php:266
 msgid "Go To Previous Selector"
-msgstr ""
+msgstr "מעבר לסלקטור הקודם"
 
 #: ../includes/tvr-microthemer-ui.php:267
 msgid "Go To Next Selector"
-msgstr ""
+msgstr "מעבר לסלקטור הבא"
 
 #: ../includes/tvr-microthemer-ui.php:274
 msgid "Manage folders & selectors"
-msgstr ""
+msgstr "ניהול תיקיות וסלקטורים"
 
 #: ../includes/tvr-microthemer-ui.php:279
 msgid "Enter a new folder name"
-msgstr ""
+msgstr "הזנת שם תיקיה חדשה"
 
 #: ../includes/tvr-microthemer-ui.php:280
 msgid "Create a new folder"
-msgstr ""
+msgstr "יצירת תיקיה חדשה"
 
 #: ../includes/tvr-microthemer-ui.php:280
 msgid "Add Folder"
-msgstr ""
+msgstr "הוספת תיקיה"
 
 #: ../includes/tvr-microthemer-ui.php:305
 #: ../includes/tvr-microthemer-ui.php:896
 msgid "Folders"
-msgstr ""
+msgstr "תיקיות"
 
 #: ../includes/tvr-microthemer-ui.php:309
+#, fuzzy
 msgid "Selectors"
-msgstr ""
+msgstr "סלקטור"
 
 #: ../includes/tvr-microthemer-ui.php:327
 msgid "Microthemer Notifications"
-msgstr ""
+msgstr "הערות Microthemer"
 
 #: ../includes/tvr-microthemer-ui.php:340
 msgid "Purchase a license to use the full program"
-msgstr ""
+msgstr "נא לרכוש רישיון כדי להשתמש בתוכנה המלאה"
 
 #: ../includes/tvr-microthemer-ui.php:342
 msgid "Buy"
-msgstr ""
+msgstr "רכישה"
 
 #: ../includes/tvr-microthemer-ui.php:345
 msgid ""
@@ -1558,29 +1663,32 @@ msgid ""
 "the full program. If you have not yet purchased Microthemer, you cannot "
 "unlock the full version."
 msgstr ""
+"אם רכשת את Microthemer נא להזין את האימייל שלך כדי לשחרר את נעילת התוכנה. אם "
+"טרם רכשת את Microthemer, אין באפשרותך לשחרר את הנעילה מהגרסה המלאה."
 
 #: ../includes/tvr-microthemer-ui.php:347
 msgid "Unlock"
-msgstr ""
+msgstr "שחרור נעילה"
 
 #: ../includes/tvr-microthemer-ui.php:353
 msgid "Double-click anything on the page to begin restyling it."
-msgstr ""
+msgstr "נא ללחוץ לחיצה כפולה על כל דבר שהוא בעמוד כדי להתחיל לעצב אותו מחדש."
 
 #: ../includes/tvr-microthemer-ui.php:395 ../tvr-microthemer.php:2382
 #: ../tvr-microthemer.php:3654 ../tvr-microthemer.php:3714
 msgid "All Devices"
-msgstr ""
+msgstr "כל ההתקנים"
 
 #: ../includes/tvr-microthemer-ui.php:438
+#, fuzzy
 msgid "Close the selector sizard"
-msgstr ""
+msgstr "ביטול פעולה - סגירת אשף הסלקטור"
 
 #: ../includes/tvr-microthemer-ui.php:445
 msgid ""
 "Give your selector a memorable name that describes the element or set of "
 "elements on the page"
-msgstr ""
+msgstr "נא לתת לסלקטור שלך שם ניתן לזכירה המתאר את האלמנט או סט האלמנטים בעמוד"
 
 #: ../includes/tvr-microthemer-ui.php:445
 msgid "Name"
@@ -1588,79 +1696,82 @@ msgstr ""
 
 #: ../includes/tvr-microthemer-ui.php:452
 msgid "Organise your selector into a folder"
-msgstr ""
+msgstr "ארגן את הסלקטור שלך בתיקיה"
 
 #: ../includes/tvr-microthemer-ui.php:452 ../tvr-microthemer.php:2896
 msgid "Folder"
-msgstr ""
+msgstr "תיקיה"
 
 #: ../includes/tvr-microthemer-ui.php:473
 msgid "Targeting"
-msgstr ""
+msgstr "יעד"
 
 #: ../includes/tvr-microthemer-ui.php:474
 msgid "Inspector"
-msgstr ""
+msgstr "אינספקטור"
 
 #: ../includes/tvr-microthemer-ui.php:512
 msgid "Move to Previous Sibling Element"
-msgstr ""
+msgstr "עבור לאלמנט אח קודם"
 
 #: ../includes/tvr-microthemer-ui.php:514
 msgid "Move to Parent Element"
-msgstr ""
+msgstr "עבור לאלמנט אב"
 
 #: ../includes/tvr-microthemer-ui.php:515
 msgid "Move to Child Element"
-msgstr ""
+msgstr "עבור לאלמנט בן"
 
 #: ../includes/tvr-microthemer-ui.php:517
 msgid "Move to Next Sibling Element"
-msgstr ""
+msgstr "עבור ללאלמנט אח הבא"
 
 #: ../includes/tvr-microthemer-ui.php:533
 msgid "Open/close group"
-msgstr ""
+msgstr "פתיחת/סגירת קבוצה"
 
 #: ../includes/tvr-microthemer-ui.php:550
+#, fuzzy
 msgid "Create a new selector"
-msgstr ""
+msgstr "יצירת תיקיה חדשה"
 
 #: ../includes/tvr-microthemer-ui.php:550
 msgid "Create Selector"
-msgstr ""
+msgstr "יצירת הסלקטור"
 
 #: ../includes/tvr-microthemer-ui.php:572
 msgid "Visit themeover.com"
-msgstr ""
+msgstr "ביקור ב themeover.com"
 
 #: ../includes/tvr-microthemer-ui.php:604
 msgid "Microthemer Has Been Successfully Unlocked"
-msgstr ""
+msgstr "הנעילה של Microthemer שוחררה בהצלחה"
 
 #: ../includes/tvr-microthemer-ui.php:606
 msgid ""
 "Enter your PayPal email (or the email listed in \"My Downloads\") to unlock "
 "Microthemer"
 msgstr ""
+"נא להזין את אימייל הפייפל שלך (או האימייל שברשימת \"ההורדות שלי\") כדי לשחרר "
+"את נעילת Microthemer"
 
 #: ../includes/tvr-microthemer-ui.php:614
 msgid "License Type: "
-msgstr ""
+msgstr "סוג רישיון: "
 
 #: ../includes/tvr-microthemer-ui.php:617
 msgid "Validate software using a different email address"
-msgstr ""
+msgstr "אימות התוכנה באמצעות כתובת מייל אחרת"
 
 #: ../includes/tvr-microthemer-ui.php:635
 msgid ""
 "Enter your PayPal or Email Address - or the email address listed on 'My "
 "Downloads'"
-msgstr ""
+msgstr "נא להזין את אימייל הפייפל שלך או כתובת אימייל המופיעה ב'הורדות שלי'"
 
 #: ../includes/tvr-microthemer-ui.php:635
 msgid "Enter PayPal email or see email in \"My Downloads\""
-msgstr ""
+msgstr "נא להזין כתובת אימייל פייפל או להציג את האימייל שב\"הורדות שלי\""
 
 #: ../includes/tvr-microthemer-ui.php:650
 #, php-format
@@ -1671,12 +1782,19 @@ msgid ""
 "hand side of <a %s>this page</a> (you will need to log in to CodeCanyon "
 "first). Receiving this email allows us to verify your purchase."
 msgstr ""
+"כדי לבטל את מצב הניסיון החינמי ולשחרר את הנעילה של התוכנה המלאה, נא להזין את "
+"כתובת אימייל הפייפל שלך. אם רכשת את Microthemer דרך CodeCanyon, נא לשלוח לנו "
+"את הודעת \"אימות האימייל\" באמצעות טופס יצירת הקשר שבצד <a %s>עמוד זה</a> "
+"(צריך תחילה להתחבר ל CodeCanyon). קבלת אימייל זה מאפשרת לנו לאמת את הרכישה "
+"שלך."
 
 #: ../includes/tvr-microthemer-ui.php:651
 msgid ""
 "<b>Note:</b> Themeover will record your domain name when you submit your "
 "email address for license verification purposes."
 msgstr ""
+"<b>הערה:</b> Themeover תשמור את שם הדומיין כאשר האימייל יוגש לצורך אימות "
+"רישיון."
 
 #: ../includes/tvr-microthemer-ui.php:652
 #, php-format
@@ -1684,20 +1802,23 @@ msgid ""
 "<b>Note:</b> if you have any problems with the validator <a %s>send "
 "Themeover a quick email</a> and we\"ll get you unlocked ASAP."
 msgstr ""
+"<b>הערה:</b> אם יש לך בעיה כלשהי עם האימות <a %s>נא לשלוח אלינו אימייל מהיר</"
+"a> ונססיע לך לשחרר את הנעילה בהקדם האפשרי."
 
 #: ../includes/tvr-microthemer-ui.php:662
 msgid "Validate"
-msgstr ""
+msgstr "אימות"
 
 #: ../includes/tvr-microthemer-ui.php:679
 msgid "Edit Media Queries (For Designing Responsively)"
-msgstr ""
+msgstr "עריכת שאילתות מדיה (לעיצוב רספונסיבי)"
 
 #: ../includes/tvr-microthemer-ui.php:689
 msgid "Set device viewport zoom level to \"1\""
-msgstr ""
+msgstr "הגדרת רמת הזום של וויופורט ההתקן ל \"1\""
 
 #: ../includes/tvr-microthemer-ui.php:690
+#, fuzzy
 msgid ""
 "Set this to yes if you're using media queries to make your site look good on "
 "mobile devices. Otherwise mobile phones etc will continue to scale your site "
@@ -1705,10 +1826,13 @@ msgid ""
 "leave this set to \"No\" it will not override any viewport settings in your "
 "theme, Microthemer just won't add a viewport tag at all."
 msgstr ""
+"להגדיר זאת להפעלה אם אתם משתמשים בשאילתות מדיה כדי להציג את האתר שלכם גם "
+"בהתקנים ניידים. אחרת טלפונים ניידים ימשיכו להקטין אוטומטית את האתר שלכם כפי "
+"שקורה כשלא מציינים שאילתות מדיה."
 
 #: ../includes/tvr-microthemer-ui.php:697
 msgid "Default screen width for \"All Devices\" tab"
-msgstr ""
+msgstr "רוחב ברירת המחדל של המסך עבור לשונית \"כל ההתקנים\""
 
 #: ../includes/tvr-microthemer-ui.php:698
 msgid ""
@@ -1718,10 +1842,14 @@ msgid ""
 "min-width media queries to apply styles that will only have an effect on "
 "larger screens."
 msgstr ""
+"להשאיר ריק כדי לאפשר לתצוגה המוקדמת למלא את כל רוחב המסך כאשר אתם בלשונית "
+"\"כל ההתקנים\". יחד עם זאת, אם אתם מעצבים קודם לטלפון נייד, אפשר להגדיר 480 "
+"פיקסל (לדוגמה) ואחר-כך להשתמש בשאילתות רוחב מינימלי כדי להחיל עיצובים שיחולו "
+"רק על מסכים גדולים יותר."
 
 #: ../includes/tvr-microthemer-ui.php:706
 msgid "Select a media query set"
-msgstr ""
+msgstr "בחירת סט שאילתת מדיה"
 
 #: ../includes/tvr-microthemer-ui.php:707
 msgid ""
@@ -1730,14 +1858,17 @@ msgid ""
 "use the default \"Desktop-first device MQs\" set. If you designing mobile "
 "first, you may want to try an alternative set."
 msgstr ""
+"Microthemer נותן לך לבחור מרשימת \"ערכות\" של שאילתות מדיה. כדי לעשות אתר לא "
+"רספונסיבי שייראה טוב בנייד, אפשר להשתמש כברירת מחדל בערכת Desktop-first "
+"device MQs\". כדי לעצב קודם לנייד, אפשר להשתמש בערכה אחרת."
 
 #: ../includes/tvr-microthemer-ui.php:714
 msgid "yes"
-msgstr ""
+msgstr "כן"
 
 #: ../includes/tvr-microthemer-ui.php:715
 msgid "Overwrite your existing media queries?"
-msgstr ""
+msgstr "לדרוס את שאילתות המדיה הקיימות שלך?"
 
 #: ../includes/tvr-microthemer-ui.php:716
 msgid ""
@@ -1745,18 +1876,20 @@ msgid ""
 "if you would like to merge the selected media query set with your existing "
 "media queries please choose \"No\"."
 msgstr ""
+"אפשר לדרוס את שאילתות המדיה הקיימות על-ידי בחירת \"כן\". יחד עם זאת, אם תרצו "
+"למזג את ערכת שאילתות המדיה הנבחרת עם הקיימת נא לבחור \"לא\"."
 
 #: ../includes/tvr-microthemer-ui.php:725
 msgid "Load an alternative media query set"
-msgstr ""
+msgstr "טעינת ערכת שאילתות מדיה חלופית"
 
 #: ../includes/tvr-microthemer-ui.php:739
 msgid "Media Queries"
-msgstr ""
+msgstr "שאילתות מדיה"
 
 #: ../includes/tvr-microthemer-ui.php:754
 msgid "+ New"
-msgstr ""
+msgstr "+ הוספה"
 
 #: ../includes/tvr-microthemer-ui.php:766
 msgid ""
@@ -1768,13 +1901,19 @@ msgid ""
 "as expected on mobile devices (otherwise mobile devices will just show a "
 "proportionally reduced version of the full-size site)."
 msgstr ""
+"אם אינכם משתמשים בשאילתות מדיה ב Microthemer כדי שהאתר שלכם ייראה טוב "
+"בהתקנים ניידים, אין צורך להגדיר את רמת הזום של וויופורט ל 1. ההחלטה תהיה "
+"בידי ההתקנים (למשל אייפון) אם להציג את האתר על-ידי הקטנה אוטומטית, אבל אם יש "
+"שימוש בשאילתות מדיה יש צורך להגדיר אפשרות זו ל\"כן\" כדי שהכל יפעל כמצופה "
+"בהתקנים ניידים (אחרת התקנים ניידים יציגו רק גרסה מוקטנת באופן פרופורציונלי "
+"של האתר המלא)."
 
 #: ../includes/tvr-microthemer-ui.php:767
 #, php-format
 msgid ""
 "You may want to read <a %s>this tutorial which gives a bit of background on "
 "the viewport meta tag</a>."
-msgstr ""
+msgstr "כדאי לקרוא את<a %s> המדריך הזה הנותן קצת רקע על תגית מטא וויופורט</a>."
 
 #: ../includes/tvr-microthemer-ui.php:768
 msgid ""
@@ -1783,17 +1922,22 @@ msgid ""
 "determine the order in which the media queries are written to the stylesheet "
 "and the order that they are displayed in the Microthemer interface."
 msgstr ""
+"ניתן לשנות את שמות שאילתות המדיה ולשנות את קוד השאילתה. אפשר גם לשנות את סדר "
+"השאילתות על-ידי גרירה ושחרור שלהן. זה יקבע את הסדר בו נכתבות השאילתות לגליון "
+"העיצוב והסדר שבו הן מוצגות בממשק Microthemer."
 
 #: ../includes/tvr-microthemer-ui.php:769
 msgid ""
 "<b>Tip:</b> to reset the default media queries simply delete all media query "
 "boxes and then save your settings"
 msgstr ""
+"<b>טיפ:</b> כדי לאפס את שאילתות המדיה לברירת המחדל אפשר פשוט למחוק את כל "
+"תיבות שאילתות המדיה ואז לשמור את ההגדרות."
 
 #: ../includes/tvr-microthemer-ui.php:775
 #: ../includes/tvr-microthemer-ui.php:811
 msgid "Update Media Queries"
-msgstr ""
+msgstr "עדכון שאילתות מדיה"
 
 #: ../includes/tvr-microthemer-ui.php:788
 msgid "Manage Custom Code Editors"
@@ -1801,31 +1945,32 @@ msgstr ""
 
 #: ../includes/tvr-microthemer-ui.php:823 ../tvr-microthemer.php:2811
 msgid "Import settings from a design pack"
-msgstr ""
+msgstr "יבוא הגדרות מחבילת עיצוב"
 
 #: ../includes/tvr-microthemer-ui.php:826
 msgid "Select a design pack to import"
-msgstr ""
+msgstr "בחירת חבילת עיצוב ליבוא"
 
 #: ../includes/tvr-microthemer-ui.php:832
+#, fuzzy
 msgid ""
 "Choose to overwrite or merge the imported settings with your current settings"
-msgstr ""
+msgstr "לבחור אם לדרוס או למזג את ההגדרות המיובאות עם ההגדרות הקיימות"
 
 #: ../includes/tvr-microthemer-ui.php:835
 #: ../includes/tvr-microthemer-ui.php:838
 msgid "Overwrite"
-msgstr ""
+msgstr "דריסה"
 
 #: ../includes/tvr-microthemer-ui.php:840
 #: ../includes/tvr-microthemer-ui.php:843
 msgid "Merge"
-msgstr ""
+msgstr "מיזוג"
 
 #: ../includes/tvr-microthemer-ui.php:846
 #: ../includes/tvr-microthemer-ui.php:872
 msgid "Import"
-msgstr ""
+msgstr "יבוא"
 
 #: ../includes/tvr-microthemer-ui.php:851
 #, php-format
@@ -1839,22 +1984,28 @@ msgid ""
 "not be someone else, you can create design packs too using the \"<span "
 "%s>Export</span>\" feature!"
 msgstr ""
+"אפשר להשתמש ב Microthemer כדי לעצב מחדש כל תבנית וורדפרס ללא צורך בהגדרה "
+"מוקדמת. זאת הודות לתכונת \"הלחיצה הכפולה לעריכה\". אבל רק בגלל שאפשר לעשות "
+"הכל <i>לבד</i> לא אומר ש<i>חייבים</i>  לעשות זאת. זה המקום שבו מגיעות חבילות "
+"עיצוב מיובאות. חבילת עיצוב מכילה תיקיות, סלקטורים, גליון עיצוב CSS מקודד "
+"ידנית ותמונות רקע שמישהו אחר יצר בעזרת Microthemer. כמובן שזה לא חייב להיות "
+"מישהו אחר ואתם יכולים לעשות זאת גם בעזרת \"<span %s>תכונת היצוא</span>\""
 
 #: ../includes/tvr-microthemer-ui.php:857
 #, php-format
 msgid ""
 "Note: you can install other people's design packs via the \"%s\" window."
-msgstr ""
+msgstr "הערה: אפשר להתקין חבילות עיצוב של אנשים אחרים דרך חלון \"%s\" ."
 
 #: ../includes/tvr-microthemer-ui.php:859
 #: ../includes/tvr-microthemer-ui.php:965 ../tvr-microthemer.php:532
 msgid "Manage Design Packs"
-msgstr ""
+msgstr "ניהול חבילות עיצוב"
 
 #: ../includes/tvr-microthemer-ui.php:861
 #: ../includes/tvr-microthemer-ui.php:961
 msgid "You may want to make use of this feature for the following reasons:"
-msgstr ""
+msgstr "יתכן ותרצו להשתמש באפשרות זו מן הסיבות הבאות:"
 
 #: ../includes/tvr-microthemer-ui.php:863
 #, php-format
@@ -1864,50 +2015,57 @@ msgid ""
 "think of. Importing it will load the folders and hand-coded CSS contained "
 "within the design pack into the Microthemer UI."
 msgstr ""
+"הורדת והתקנת חבילת עיצוב שמצאת ב %s לעיצוב תבנית, טופס יצירת קשר, או כל תוכן "
+"אחר של וורדפרס. היבוא יטען את התיקיות וגליונות עיצוב ה CSS המקודדים ידנית "
+"הכלולים בחבילת העיצוב לממשק המשתמש של Microthemer."
 
 #: ../includes/tvr-microthemer-ui.php:866
 msgid ""
 "You previously exported your own work as a design pack and now you would "
 "like to reload it back into the Microthemer UI."
 msgstr ""
+"ביצעתם קודם יצוא של העבודה שלכם כחבילת עיצוב ומעוניינים כעת לטעון אותה מחדש "
+"לממשק המשתמש של Microthemer."
 
 #: ../includes/tvr-microthemer-ui.php:879 ../tvr-microthemer.php:2813
 msgid "Export your work as a design pack"
-msgstr ""
+msgstr "לייצא את העבודה שלכם כחבילת עיצוב"
 
 #: ../includes/tvr-microthemer-ui.php:887
 msgid ""
 "Enter a new name or export to an existing design pack. Uncheck any folders "
 "or custom CSS you don't want included in the export."
 msgstr ""
+"להזין שם חדש או לייצא לחבילת עיצוב קיימת. לבטל את סימון התיקיות או עיצוב CSS "
+"שאינכם מעוניינים לכלול ביצוא."
 
 #: ../includes/tvr-microthemer-ui.php:900
 msgid "Check All"
-msgstr ""
+msgstr "סימון הכל"
 
 #: ../includes/tvr-microthemer-ui.php:905
 msgid "Custom CSS"
-msgstr ""
+msgstr "עיצוב CSS"
 
 #: ../includes/tvr-microthemer-ui.php:920
 msgid "Hand coded CSS (all browsers)"
-msgstr ""
+msgstr "עיצוב CSS מקודד ידנית (כל הדפדפנים)"
 
 #: ../includes/tvr-microthemer-ui.php:924
 msgid "IE-specific CSS code"
-msgstr ""
+msgstr "קוד CSS ייחודי לאינטרנט אקספלורר"
 
 #: ../includes/tvr-microthemer-ui.php:925
 msgid "IE9 and below CSS code"
-msgstr ""
+msgstr "קוד CSS ייחודי לאינטרנט אקספלורר 9 ומטה"
 
 #: ../includes/tvr-microthemer-ui.php:926
 msgid "IE8 and below CSS code"
-msgstr ""
+msgstr "קוד CSS ייחודי לאינטרנט אקספלורר 8 ומטה"
 
 #: ../includes/tvr-microthemer-ui.php:927
 msgid "IE7 and below CSS code"
-msgstr ""
+msgstr "קוד CSS ייחודי לאינטרנט אקספלורר 7 ומטה"
 
 #: ../includes/tvr-microthemer-ui.php:956
 #, php-format
@@ -1919,6 +2077,11 @@ msgid ""
 "and hand-coded css settings are saved to a configuration file in this "
 "directory called config.json."
 msgstr ""
+"Microthemer נותן לך גמישות לייצא את העבודה הנוכחית שלך לחבילת עיצוב לשימוש "
+"מאוחר יותר (אפשר יהיה <span %1$s>לייבא</span> אותה בחזרה). Microthemer ייצור "
+"תיקיה בשרת שלך ב %2$s שישמש לאחסון ההגדרות שלך ותמונות רקע. התיקיות שלך, "
+"סלקטורים, והגדרות קידוד CSS ידני נשמרים לקובץ הגדרות בספריה זו הנקראת config."
+"json."
 
 #: ../includes/tvr-microthemer-ui.php:964
 #, php-format
@@ -1928,12 +2091,17 @@ msgid ""
 "pack you can also download it as a zip package for extra reassurance. You "
 "can do this from the \"%s\" window."
 msgstr ""
+"כדי לוודא שלעבודה שלך יש גיבוי (אפילו שיש תכונת שחזור טיוטה). לאחר יצוא "
+"העבודה שלך לחבילת עיצוב אפשר גם להוריד אותה כקובץ zip. אפשר לעשות זאת מחלון "
+"\"%s\""
 
 #: ../includes/tvr-microthemer-ui.php:967
 msgid ""
 "To save your current work but then start a fresh (using the \"reset\" option "
 "in the left-hand menu)"
 msgstr ""
+"כדי לשמור את העבודה הנוכחית שלך, אבל אחר כך להתחיל מחדש (באמצעות אפשרות ה"
+"\"איפוס\"  שבתפריט)"
 
 #: ../includes/tvr-microthemer-ui.php:968
 msgid ""
@@ -1942,19 +2110,23 @@ msgid ""
 "a folder and then export only that folder to a design pack by unchecking the "
 "other folders before clicking the \"Export\" button."
 msgstr ""
+"כדי לשמור רק אספקט אחד של העיצוב שלך לשימוש בפרויקטים אחרים, (למשל עיצוב "
+"תפריט), ניתן לעשות זאת באמצעות ארגון העיצובים המתוכננים לשימוש חוזר בתיקיה "
+"ואז לייצא רק אותה לחבילת עיצוב על-ידי ביטול סימון התיקיות האחרות לפני הלחיצה "
+"על כפתור ה\"יצוא\"."
 
 #: ../includes/tvr-microthemer-ui.php:970
 #, php-format
 msgid "To submit a design pack for sale or free download on %s"
-msgstr ""
+msgstr "כדי להגיש חבילת עיצוב למכירה או בחינם ב  %s"
 
 #: ../includes/tvr-microthemer-ui.php:979
 msgid "Export"
-msgstr ""
+msgstr "יצוא"
 
 #: ../includes/tvr-microthemer-ui.php:984 ../tvr-microthemer.php:2783
 msgid "View the CSS code Microthemer generates"
-msgstr ""
+msgstr "הצגת קוד ה CSS שמיוצר על-ידי Microthemer"
 
 #: ../includes/tvr-microthemer-ui.php:993
 msgid ""
@@ -1962,6 +2134,9 @@ msgid ""
 "can sometimes be useful for debugging issues if you know CSS. Or if you want "
 "to reuse the code Microthemer generates elsewhere."
 msgstr ""
+"מה שרואים למעלה זה קוד ה CSS ש Microthemer מייצר כעת. זה יכול להיות שימושי "
+"לפעמים לניפוי שגיאות אם יש לך היכרות עם CSS, או כדי להשתמש בקוד ש "
+"Microthemer מייצר למקום אחר."
 
 #: ../includes/tvr-microthemer-ui.php:995
 #, php-format
@@ -1971,6 +2146,9 @@ msgid ""
 "piece of code in your theme's functions.php file. See this <a %s>forum post</"
 "a> for further information."
 msgstr ""
+"<b>הידעת?</b> - אפשר לכבות או להסיר לחלוטין את ההתקנה של Microthemer ועדיין "
+"להשתמש בהתאמות העיצוב. צריך רק להדביק מקטע של קוד בקובץ functions.php של "
+"התבנית שלך.  ראו  <a %s>פוסט זה בפורום</a> למידע נוסף."
 
 #: ../includes/tvr-microthemer-ui.php:999
 #, php-format
@@ -1982,50 +2160,56 @@ msgid ""
 "clicking the faint \"i\"s that will appear to the right of all style option "
 "fields."
 msgstr ""
+"<b>הערה נוספת</b>, Microthemer מוסיף הצהרת \"!important\" לכל עיצובי ה CSS "
+"כברירת מחדל. להאצה ב  %1$s יתכן שתרצו לכבות את ההתנהגות הזו ב <span "
+"%2$s>עמוד ההעדפות</span>. אם כך, עדיין אפשר יהיה להחיל הצהרת \"!important\" "
+"על בסיס פרטני, בלחיצה על סימני \"i\" שמופיעים לצד שדות אפשרויות העיצוב."
 
 #: ../includes/tvr-microthemer-ui.php:1002
 msgid "CSS specificity"
-msgstr ""
+msgstr "מיקוד CSS"
 
 #: ../includes/tvr-microthemer-ui.php:1012 ../tvr-microthemer.php:2827
 msgid "Restore settings from a previous save point"
-msgstr ""
+msgstr "שחזור ההגדרות מנקודת שמירה קודמת"
 
 #: ../includes/tvr-microthemer-ui.php:1022
 msgid ""
 "Click the \"restore\" link in the right hand column of the table to restore "
 "your workspace settings to a previous save point."
 msgstr ""
+"כדי לשחזר את הגדרות סביבת העבודה שלך לנקודה האחרונה שנשמרה, יש ללחוץ על "
+"הקישור \"שחזור\" בעמודה הימנית של הטבלה."
 
 #: ../includes/tvr-microthemer-ui.php:1029
 msgid "Show off your new discovery"
-msgstr ""
+msgstr "הצג לראווה את התגלית החדשה שלך"
 
 #: ../includes/tvr-microthemer-ui.php:1034
 msgid ""
 "cash back feature - coupon code to give new customer, affiliate commission "
 "for existing"
-msgstr ""
+msgstr "תכונת החזר כספי - קופון לתת ללקוח ועמלה לשותף קיים."
 
 #: ../includes/tvr-microthemer-ui.php:1035
 msgid "For now, just a simply share widget."
-msgstr ""
+msgstr "לעת עתה, רק וידג'ט שיתוף פשוט."
 
 #: ../includes/tvr-microthemer-ui.php:1044
 msgid "Install & Manage Design Packs"
-msgstr ""
+msgstr "התקנת וניהול חבילות עיצוב"
 
 #: ../includes/tvr-microthemer-ui.php:1052
 msgid "Help Centre"
-msgstr ""
+msgstr "מרכז סיוע"
 
 #: ../includes/tvr-microthemer-ui.php:1060
 msgid "Integration with 3rd party software"
-msgstr ""
+msgstr "שילוב עם תוכנות צד ג'"
 
 #: ../includes/tvr-microthemer-ui.php:1062
 msgid "WPTouch Mobile Plugin"
-msgstr ""
+msgstr "תוסף WPTouch Mobile"
 
 #: ../includes/tvr-microthemer-ui.php:1064
 #, php-format
@@ -2037,16 +2221,23 @@ msgid ""
 "installed and activated WPTouch. There is a <a %1$s>free</a> and <a "
 "%2$s>premium version</a> of WPTouch."
 msgstr ""
+"Microthemer יכול לשמש לעיצוב תבנית לנייד בלבד ש WPTouch מציג להתקנים ניידים. "
+"כדי לטעון את תבנית הנייד בתצוגה המוקדמת של Microthemer, פשוט יש להפעיל את "
+"מצב WPTouch באמצעות המתג שבסרגל השמאלי. מתג זה יופיע רק אם Microthemer מזהה "
+"שהתקנת והפעלת את WPTouch. יש גרסה<a %1$s>חינמית</a> וגרסת <a %2$s>פרימיום</"
+"a> של WPTouch."
 
 #: ../includes/tvr-microthemer-ui.php:1072
 msgid ""
 "When possible, we'll add little features to make it easier to use "
 "Microthemer with complementary products."
 msgstr ""
+"כשיתאפשר, נוסיף תכונות נוספות כדי להקל על השימוש ב Microthemer עם מוצרים "
+"משלימים."
 
 #: ../includes/tvr-microthemer-ui.php:1100
 msgid "Error saving settings"
-msgstr ""
+msgstr "שגיאה בשמירת ההגדרות"
 
 #: ../includes/tvr-microthemer-ui.php:1102
 #, php-format
@@ -2057,21 +2248,27 @@ msgid ""
 "We use this information purely for replicating your issue and then "
 "contacting you with a solution."
 msgstr ""
+"נא <span %s>ללחוץ על קישור זה כדי לשלוח אימייל לדיווח על שגיאה ל Themeover</"
+"span>. דיח השגיאה שולח לנו מידע על ההגדרות הנוכחיות שלך ב  Microthemer ומידע "
+"על הדפדפן והשרת ואת כתובת האימייל שלך בלוח הבקרה של וורדפרס. אנו משתמשים "
+"במידע זה אך ורק כדי לשכפל את הבעיה וליצור אתך קשר למתן פתרון עבורה."
 
 #: ../includes/tvr-microthemer-ui.php:1106
 msgid ""
 "<b>Note:</b> reloading the page is normally a quick fix for now. However, "
 "unsaved changes will need to be redone."
 msgstr ""
+"<b>הערה:</b> ריענון הדף הוא בדרך-כלל תיקון מהיר לעת עתה. יחד עם זאת, יהיה "
+"צורך לבצע שוב שינויים שלא נשמרו."
 
 #: ../tvr-microthemer.php:42
 msgid "Microthemer requires that you deactivate Microloader. Please do so."
-msgstr ""
+msgstr "Microthemer צריך שתכבה את Microloader. נא לעשות זאת."
 
 #: ../tvr-microthemer.php:187
 msgid ""
 "Please see this help article for changing directory and file permissions:"
-msgstr ""
+msgstr "נא לעיין במאמרי העזרה לשינוי הרשאות קובץ וספריה:"
 
 #: ../tvr-microthemer.php:187
 msgid ""
@@ -2081,64 +2278,70 @@ msgid ""
 "into your hosting control panel, or request that your host adjust the "
 "permissions for you."
 msgstr ""
+"טיפ: יתכן שתרצו לקפוץ למקטע במאמר על \"שימוש בשרת FTP\", אך נא לקחת בחשבון "
+"שאם האחסון שלך מריץ חלונות יתכן שאי אפשר יהיה להתאים הרשאות באמצעות תוכנת "
+"FTP. יתכן שיהיה צורך להתחבר לחשבון שלך בחברת האחסון ללוח הבקרה, או לבקש "
+"מחברת האחסון להגדיר את ההרשאות עבורך."
 
 #: ../tvr-microthemer.php:193
 msgid ""
 "Try out the new targeting options for the selector wizard. We've replaced "
 "the slider with hover and click functionality."
 msgstr ""
+"נסו את אפשרויות היעד החדשות עבור אשף הסלקטור. החלפנו את הסליידר בתפקודי "
+"ריחוף ולחיצה."
 
 #: ../tvr-microthemer.php:216
 msgid "Large Desktop"
-msgstr ""
+msgstr "מסך גדול"
 
 #: ../tvr-microthemer.php:221
 msgid "Desktop & Tablet"
-msgstr ""
+msgstr "מסך וטאבלט"
 
 #: ../tvr-microthemer.php:226
 msgid "Tablet & Phone"
-msgstr ""
+msgstr "טאבלט ונייד"
 
 #: ../tvr-microthemer.php:231
 msgid "Phone"
-msgstr ""
+msgstr "נייד"
 
 #: ../tvr-microthemer.php:239
 msgid "Tablet >"
-msgstr ""
+msgstr "טאבלט>"
 
 #: ../tvr-microthemer.php:244
 msgid "Desktop >"
-msgstr ""
+msgstr "מסך>"
 
 #: ../tvr-microthemer.php:249
 msgid "Large Desktop >"
-msgstr ""
+msgstr "מסך גדול>"
 
 #: ../tvr-microthemer.php:257
 msgid "Narrow <"
-msgstr ""
+msgstr "צר<"
 
 #: ../tvr-microthemer.php:262
 msgid "2 Col >"
-msgstr ""
+msgstr "2 עמודות>"
 
 #: ../tvr-microthemer.php:267
 msgid "2 to 3 Col"
-msgstr ""
+msgstr "2 עד 3 עמודות"
 
 #: ../tvr-microthemer.php:272
 msgid "3 Col >"
-msgstr ""
+msgstr "3 עמודות>"
 
 #: ../tvr-microthemer.php:277
 msgid "3 Col to Wide"
-msgstr ""
+msgstr "3 עמודות  לרחב"
 
 #: ../tvr-microthemer.php:282
 msgid "Wide >"
-msgstr ""
+msgstr "רחב>"
 
 #: ../tvr-microthemer.php:482
 #, php-format
@@ -2146,6 +2349,8 @@ msgid ""
 "Sorry, Microthemer only runs on WordPress version %s or above. Deactivate "
 "Microthemer to remove this message."
 msgstr ""
+"מצטערים, Microthemer פועל רק בגרסת %s ומעלה של וורדפרס. נא לכבות את "
+"Microthemer כדי להסיר הודעה זו."
 
 #: ../tvr-microthemer.php:502
 msgid ""
@@ -2153,39 +2358,41 @@ msgid ""
 "memory limit is less than this. Deactivate Microthemer to remove this "
 "message."
 msgstr ""
+"מצטערים, Microthemer זקוק למגבלת זכרון של לפחות 16MB או יותר כדי לפעול. "
+"מגבלת הזכרון שלך נמוכה יותר. נא לכבות את Microthemer כדי להסיר הודעה זו."
 
 #: ../tvr-microthemer.php:519
 #, php-format
 msgid "Please %s to unlock the full program."
-msgstr ""
+msgstr "bt %s כדי לשחרר את נעילת התוכנה המלאה."
 
 #: ../tvr-microthemer.php:519
 msgid "purchase Microthemer"
-msgstr ""
+msgstr "נא לרכוש את Microthemer"
 
 #: ../tvr-microthemer.php:530
 msgid "Microthemer UI"
-msgstr ""
+msgstr "ממשק משתמש Microthemer"
 
 #: ../tvr-microthemer.php:533
 msgid "Manage Packs"
-msgstr ""
+msgstr "ניהול חבילות"
 
 #: ../tvr-microthemer.php:536
 msgid "Manage Single Design Pack"
-msgstr ""
+msgstr "ניהול חבילת עיצוב יחידה"
 
 #: ../tvr-microthemer.php:537
 msgid "Manage Single Pack"
-msgstr ""
+msgstr "ניהול חבילה יחידה"
 
 #: ../tvr-microthemer.php:539
 msgid "Microthemer Preferences"
-msgstr ""
+msgstr "העדפות Microthemer"
 
 #: ../tvr-microthemer.php:540
 msgid "Preferences"
-msgstr ""
+msgstr "העדפות"
 
 #: ../tvr-microthemer.php:665
 msgid "Simple pixels (default)"
@@ -2268,96 +2475,96 @@ msgstr ""
 
 #: ../tvr-microthemer.php:759 ../tvr-microthemer.php:799
 msgid "Permission Error"
-msgstr ""
+msgstr "שגיאת הרשאה"
 
 #: ../tvr-microthemer.php:760 ../tvr-microthemer.php:800
 #: ../tvr-microthemer.php:5665 ../tvr-microthemer.php:5749
 #, php-format
 msgid "WordPress does not have permission to create: %s"
-msgstr ""
+msgstr "לוורדפרס אין הרשאה ליצור את:  %s"
 
 #: ../tvr-microthemer.php:1043
 msgid "Yes"
-msgstr ""
+msgstr "כן"
 
 #: ../tvr-microthemer.php:1057
 msgid "No"
-msgstr ""
+msgstr "לא"
 
 #: ../tvr-microthemer.php:1161
 msgid ""
 "No Revisions have been created yet. This will happen after your next save."
-msgstr ""
+msgstr "לא נוצרו גרסאות עדיין. זה יקרה אחרי השמירה הבאה שלך."
 
 #: ../tvr-microthemer.php:1167
 msgid "The only revision is a copy of your current settings."
-msgstr ""
+msgstr "הגרסה היחידה היא עותק של ההגדרות הנוכחיות שלך."
 
 #: ../tvr-microthemer.php:1178
 msgid "Revision"
-msgstr ""
+msgstr "גרסה"
 
 #: ../tvr-microthemer.php:1179
 msgid "Date & Time"
-msgstr ""
+msgstr "תאריך ושעה"
 
 #: ../tvr-microthemer.php:1180
 msgid "User Action"
-msgstr ""
+msgstr "פעילות משתמש"
 
 #: ../tvr-microthemer.php:1182 ../tvr-microthemer.php:1203
 msgid "Restore"
-msgstr ""
+msgstr "שחזור"
 
 #: ../tvr-microthemer.php:1234
 msgid "The new options"
-msgstr ""
+msgstr "האפשרויות החדשות"
 
 #: ../tvr-microthemer.php:1236
 msgid "The existing options"
-msgstr ""
+msgstr "האפשרויות הקיימות"
 
 #: ../tvr-microthemer.php:1265
 msgid "The hybrid options"
-msgstr ""
+msgstr "האפשרויות המשולבות"
 
 #: ../tvr-microthemer.php:1323
 msgid "Revision log update failed."
-msgstr ""
+msgstr "עדכון הגרסה נכשל."
 
 #: ../tvr-microthemer.php:1325
 msgid "Adding your latest save to the revisions table failed."
-msgstr ""
+msgstr "הוספת השמירה האחרונה שלך לטבלת הגרסאות נכשלה."
 
 #: ../tvr-microthemer.php:1327
 msgid "Decode json error"
-msgstr ""
+msgstr "פענוח שגיאת JSON"
 
 #: ../tvr-microthemer.php:1329
 #, php-format
 msgid "WordPress was not able to convert %s into a usable format."
-msgstr ""
+msgstr "וורדפרס לא הצליח להמיר את %s לפורמט בר שימוש."
 
 #: ../tvr-microthemer.php:1451
 msgid "Preferences saved"
-msgstr ""
+msgstr "ההעדפות נשמרו"
 
 #: ../tvr-microthemer.php:1452
 msgid "Your Microthemer preferences have been successfully updated."
-msgstr ""
+msgstr "העדפות ה Microthemer שלך עודכנו בהצלחה."
 
 #: ../tvr-microthemer.php:1563
 msgid "Library image not downloaded"
-msgstr ""
+msgstr "התמונה מהספריה לא ירדה"
 
 #: ../tvr-microthemer.php:1564
 #, php-format
 msgid "%s could not be copied to the zip download file"
-msgstr ""
+msgstr "אי אפשר היה להעתיק את %s לקובץ ה zip להורדה"
 
 #: ../tvr-microthemer.php:1592
 msgid "Temporary image could not be deleted."
-msgstr ""
+msgstr "אי אפשר היה למחוק את התמונה הזמנית"
 
 #: ../tvr-microthemer.php:1593
 #, php-format
@@ -2365,43 +2572,45 @@ msgid ""
 "%s was temporarily copied to your theme pack before download but could not "
 "be deleted after the download operation finished."
 msgstr ""
+"%s הועתק באופן זמני לחבילת התבנית שלך לפני ההורדה אבל אי אפשר היה לבצע מחיקה "
+"לאחר שתהליך ההורדה הסתיים."
 
 #: ../tvr-microthemer.php:1626
 msgid "Save"
-msgstr ""
+msgstr "שמירה"
 
 #: ../tvr-microthemer.php:1646
 msgid "Settings Saved"
-msgstr ""
+msgstr "ההגדרות נשמרו."
 
 #: ../tvr-microthemer.php:1649
 msgid " & Exported"
-msgstr ""
+msgstr " ויוצאו"
 
 #: ../tvr-microthemer.php:1653
 msgid "The UI interface settings were successfully saved."
-msgstr ""
+msgstr "הגדרות ממשק המשתמש נשמרו בהצלחה."
 
 #: ../tvr-microthemer.php:1659
 msgid "Settings failed to save"
-msgstr ""
+msgstr "שמירת ההגדרות נכשלה"
 
 #: ../tvr-microthemer.php:1660
 msgid "Saving your setting to the database failed."
-msgstr ""
+msgstr "שמירת ההגדרות שלך למסד הנתונים נכשלה."
 
 #: ../tvr-microthemer.php:1679
 #, php-format
 msgid " & Export to %s"
-msgstr ""
+msgstr " ויוצאו ל %s"
 
 #: ../tvr-microthemer.php:1684
 msgid " (regular)"
-msgstr ""
+msgstr "(רגיל)"
 
 #: ../tvr-microthemer.php:1699
 msgid "Data limit near"
-msgstr ""
+msgstr "מגבלת נתונים קרובה"
 
 #: ../tvr-microthemer.php:1702
 #, php-format
@@ -2410,132 +2619,137 @@ msgid ""
 "set by your server. Please save your settings and then reload the interface "
 "to solve this problem. Read more about this issue <a %s>here.</a>"
 msgstr ""
+"<b>אזהרה:</b> אתם מתקרבים למגבלת הגדרת \"max_input_vars\" בשרת שלכם. נא "
+"לשמור את ההגדרות ולטעון את הממשק מחדש כדי לפתור את הבעיה. לקריאת מידע נוסף "
+"בעניין זה <a %s>כאן.</a>"
 
 #: ../tvr-microthemer.php:1753
 #, php-format
 msgid " Import (%1$s) from %2$s"
-msgstr ""
+msgstr "יבוא (%1$s) מ %2$s"
 
 #: ../tvr-microthemer.php:1768
 msgid "Folders were reset"
-msgstr ""
+msgstr "התיקיות אופסו"
 
 #: ../tvr-microthemer.php:1769
 msgid "The default empty folders have been reset."
-msgstr ""
+msgstr "תיקיות ברירת המחדל הריקות אופסו."
 
 #: ../tvr-microthemer.php:1775
 msgid "Revision failed to save"
-msgstr ""
+msgstr "נכשלה שמירת הגרסה"
 
 #: ../tvr-microthemer.php:1776
 msgid "The revisions table could not be updated."
-msgstr ""
+msgstr "טבלת הגרסאות לא יכלה להתעדכן."
 
 #: ../tvr-microthemer.php:1792
 msgid "Styles were cleared"
-msgstr ""
+msgstr "העיצובים נוקו"
 
 #: ../tvr-microthemer.php:1793
 msgid ""
 "All styles were cleared, but your folders and selectors remain fully intact."
-msgstr ""
+msgstr "כל העיצובים נוקו, אבל התיקיות והסלקטורים שלך נשארו ללא שינוי."
 
 #: ../tvr-microthemer.php:1837
 msgid "Email successfully sent"
-msgstr ""
+msgstr "האימייל נשלח בהצלחה"
 
 #: ../tvr-microthemer.php:1838
 msgid ""
 "Your error report was successfully emailed to Themeover. Thanks, this really "
 "does help."
-msgstr ""
+msgstr "דיווח השגיאה נשלח בהצלחה ל Themeover. תודה, זה באמת עוזר."
 
 #: ../tvr-microthemer.php:1845
 msgid "Report email failed"
-msgstr ""
+msgstr "אימייל הדיווח נכשל"
 
 #: ../tvr-microthemer.php:1846
 msgid "Your error report email failed to send (are you on localhost?)"
-msgstr ""
+msgstr "אימייל הדיווח שלך נכשל מלהישלח (האם אתה בשרת מקומי?)"
 
 #: ../tvr-microthemer.php:1850
 #, php-format
 msgid "Please email <a %1$s>this report</a> to %2$s"
-msgstr ""
+msgstr "נא לשלוח באימייל <a %1$s>דיווח זה</a> ל %2$s"
 
 #: ../tvr-microthemer.php:1870
 msgid "Settings successfully restored"
-msgstr ""
+msgstr "ההגדרות שוחזרו בהצלחה"
 
 #: ../tvr-microthemer.php:1871
 msgid "Your settings were successfully restored from a previous save."
-msgstr ""
+msgstr "ההגדרות שלך שוחזרו בהצלחה משמירה קודמת."
 
 #: ../tvr-microthemer.php:1876
 msgid "Previous Settings Restored"
-msgstr ""
+msgstr "ההגדרות הקודמות שוחזרו"
 
 #: ../tvr-microthemer.php:1882
 msgid "Settings restore failed"
-msgstr ""
+msgstr "שחזור ההגדרות נכשל"
 
 #: ../tvr-microthemer.php:1883
 msgid "Data could not be restored from a previous save."
-msgstr ""
+msgstr "אי אפשר היה לשחזר את הנתונים מן השמירה הקודמת"
 
 #: ../tvr-microthemer.php:1945
 msgid "Media queries were reset"
-msgstr ""
+msgstr "שאילתות המדיה אופסו"
 
 #: ../tvr-microthemer.php:1946
 msgid "The default media queries were successfully reset."
-msgstr ""
+msgstr "שאילתות ברירת המחדל של המדיה אופסו בהצלחה."
 
 #: ../tvr-microthemer.php:1952
 msgid "Media queries were updated"
-msgstr ""
+msgstr "שאילתות המדיה עודכנו"
 
 #: ../tvr-microthemer.php:1953
 msgid "Your media queries were successfully updated."
-msgstr ""
+msgstr "שאילתות המדיה שלך עודכנו בהצלחה"
 
 #: ../tvr-microthemer.php:1959
 msgid "Media query set loaded"
-msgstr ""
+msgstr "ערכת שאילתות המדיה נטענה"
 
 #: ../tvr-microthemer.php:1960
 #, php-format
 msgid "A new media query set %1$s your existing media queries: %2$s"
-msgstr ""
+msgstr "ערכה חדשה של שאילתות מדיה %1$s נטענה לשאילתות המדיה הקיימות שלך: %2$s"
 
 #: ../tvr-microthemer.php:1978
 msgid "Full program unlocked!"
-msgstr ""
+msgstr "נעילת התוכנה המלאה שוחררה!"
 
 #: ../tvr-microthemer.php:1979
 msgid ""
 "Your email address has been successfully validated. Microthemer's full "
 "program features have been unlocked!"
 msgstr ""
+"כתובת האימייל שלך אומתה בהצלחה. שוחררה הנעילה לכל תכונות התוכנה המלאה של "
+"Microthemer!"
 
 #: ../tvr-microthemer.php:1984
 msgid "Already validated"
-msgstr ""
+msgstr "כבר אומת"
 
 #: ../tvr-microthemer.php:1985
 msgid ""
 "Your email address has already been validated. The full program is currently "
 "active."
-msgstr ""
+msgstr "כתובת האימייל שלך כבר אומתה. התוכנה המלאה פעילה כעת."
 
 #: ../tvr-microthemer.php:1995
 msgid "Validation failed"
-msgstr ""
+msgstr "האימות נכשל"
 
 #: ../tvr-microthemer.php:1996
 msgid "Your email address could not be validated. Please try the following:"
-msgstr ""
+msgstr "אי אפשר היה לאמת את כתובת האימייל שלך. נא לנסות:"
 
 #: ../tvr-microthemer.php:1999
 #, php-format
@@ -2546,6 +2760,10 @@ msgid ""
 "correct email address to unlock the program will be shown on <a %s>My "
 "Downloads</a>"
 msgstr ""
+"לוודא שהזנת את <b>כתובת אימייל הפייפל</b> שלך שיתכן והיא שונה מכתובת האימייל "
+"שלך שאיתה נרשמת כחבר ב themeover.com, או מכתובת האימייל שסיפקת כשהורדת את "
+"הגרסה הניסיון החינמי). כתובת האימייל הנכונה לשחרור הנעילה של התוכנה תוצג ב "
+"<a %s>My Downloads</a>"
 
 #: ../tvr-microthemer.php:2004
 #, php-format
@@ -2555,6 +2773,9 @@ msgid ""
 "<a %s>this page</a> (you will need to ensure that you are logged in to "
 "CodeCanyon)."
 msgstr ""
+"אם רכשת את Microthemer דרך CodeCanyon, נא לשלוח לנו את הודעת \"אימות האימייל"
+"\" באמצעות טופס יצירת הקשר שבצד <a %s>עמוד זה</a> (צריך תחילה להתחבר ל "
+"CodeCanyon). קבלת אימייל זה מאפשרת לנו לאמת את הרכישה שלך."
 
 #: ../tvr-microthemer.php:2008
 #, php-format
@@ -2563,6 +2784,8 @@ msgid ""
 "network error. <span %s>Resubmitting your email one more time</span> may do "
 "the trick."
 msgstr ""
+"יתכן שהתקשורת עם השרת של Themeover נכשלה בגלל שגיאת רשת. <span %s>שליחה מחדש "
+"של האימייל שלך פעם נוספת</span> יתכן שתעבוד."
 
 #: ../tvr-microthemer.php:2012
 msgid ""
@@ -2571,6 +2794,10 @@ msgid ""
 "can re-enable them after you unlock Microthemer. WP Security plugins "
 "sometimes block Microthemer."
 msgstr ""
+"לנסות באופן זמני <b>לכבות את כל התוספים</b> שעלולים לחסום את התקשורת של "
+"Microthemer למסד הנתונים של המשתמשים המאומתים ב themeover.com. אפשר יהיה "
+"להפעיל אותם מחדש לאחר שחרור הנעילה של Microthemer. תוספי אבטחה של וורדפרס "
+"לפעמים חוסמים את Microthemer."
 
 #: ../tvr-microthemer.php:2013
 msgid ""
@@ -2579,6 +2806,9 @@ msgid ""
 "Ask your web host about unblocking themeover.com - even if they just do it "
 "temporarily to allow you to activate the plugin."
 msgstr ""
+"הגדרות אבטחה בשרת שלך עלולות לחסום חיבורי PHP לדומיינים שאינם ברשימה הלבנה "
+"(למשל אתרים שאינם wordpress.org). כדאי לברר בחברת האחסון ל השרת על אי חסימת "
+"themeover.com - אפילו אם זה רק זמנית כדי לאפשר לך להפעיל את התוסף."
 
 #: ../tvr-microthemer.php:2018
 #, php-format
@@ -2589,88 +2819,94 @@ msgid ""
 "password. If you'd prefer not to provide login details please send us an "
 "email via the <a %s>contact form</a> to discuss alternative measures."
 msgstr ""
+"אם שום דבר לעיל לא פתר הבעיה נא לשלוח לנו את פרטי הכניסה לאתר שלך באמצעות <a "
+"%s>טופס בטוח זה</a>. נא לזכור לכלול את כתובת ה URL לאתר שלך עם שם המשתמש "
+"והסיסמה. אם איכם רוצים לשלוח לנו פרטי כניסה, נא לשלוח לנו אימייל באמצעות <a "
+"%s>טופס יצירת הקשר</a> כדי לדון באפשרויות חלופיות."
 
 #: ../tvr-microthemer.php:2026
 msgid "Unlock status not saved"
-msgstr ""
+msgstr "מצב שחרור הנעילה לא נשמר"
 
 #: ../tvr-microthemer.php:2027
 msgid ""
 "Your validation status could not be saved. The program may need to be "
 "unlocked again."
 msgstr ""
+"אי אפשר היה לשמור את מצב האימות שלך. יתכן ויהיה צורך לשחרר שוב את נעילת "
+"התוכנה."
 
 #: ../tvr-microthemer.php:2038
 msgid "Preferences were reset"
-msgstr ""
+msgstr "ההעדפות אופסו"
 
 #: ../tvr-microthemer.php:2039
 msgid "The default program preferences were reset."
-msgstr ""
+msgstr "העדפות ברירת המחדל של התוכנה אופסו."
 
 #: ../tvr-microthemer.php:2067
 msgid "Design pack deleted"
-msgstr ""
+msgstr "חבילת העיצוב נמחקה"
 
 #: ../tvr-microthemer.php:2068
 msgid "The design pack was successfully deleted."
-msgstr ""
+msgstr "חבילת העיצוב נמחקה בהצלחה."
 
 #: ../tvr-microthemer.php:2082
 msgid "Please specify a name"
-msgstr ""
+msgstr "נא לציין שם"
 
 #: ../tvr-microthemer.php:2083
 msgid "You didn't enter anything in the \"Name\" field. Please try again."
-msgstr ""
+msgstr "לא הזנת שום דבר לשדה \"שם\". נא לנסות שוב."
 
 #: ../tvr-microthemer.php:2107
 #, php-format
 msgid "%s Activated"
-msgstr ""
+msgstr "%s הופעלו"
 
 #: ../tvr-microthemer.php:2121
 msgid "Item deactivated"
-msgstr ""
+msgstr "הפריט כובה"
 
 #: ../tvr-microthemer.php:2124
 #, php-format
 msgid "%s was deactivated."
-msgstr ""
+msgstr "%s כובה"
 
 #: ../tvr-microthemer.php:2209
 msgid "File deleted"
-msgstr ""
+msgstr "הקובץ נמחק"
 
 #: ../tvr-microthemer.php:2210 ../tvr-microthemer.php:5579
 #, php-format
 msgid "%s was successfully deleted."
-msgstr ""
+msgstr "%s נמחק בהצלחה"
 
 #: ../tvr-microthemer.php:2218
 msgid "File delete failed"
-msgstr ""
+msgstr "מחיקת הקובץ נכשלה"
 
 #: ../tvr-microthemer.php:2219
 #, php-format
 msgid "%s was not deleted."
-msgstr ""
+msgstr "%s לא נמחק"
 
 #: ../tvr-microthemer.php:2281
 msgid "Go to Microthemer UI Page"
-msgstr ""
+msgstr "מעבר אל עמוד ממשק הניהול של Microthemer"
 
 #: ../tvr-microthemer.php:2282
 msgid "Go to Manage Micro Themes Page"
-msgstr ""
+msgstr "מעבר אל עמוד ניהול תבניות מיקרו"
 
 #: ../tvr-microthemer.php:2283
 msgid "Go to Microthemer Preferences Page"
-msgstr ""
+msgstr "מעבר אל עמוד ההעדפות של Microthemer"
 
 #: ../tvr-microthemer.php:2293
 msgid "Need Help?"
-msgstr ""
+msgstr "יש צורך בעזרה?"
 
 #: ../tvr-microthemer.php:2295
 #, php-format
@@ -2678,10 +2914,12 @@ msgid ""
 "Browse Our <span %1$s>Video Guides</span> and <span %2$s>Tutorials</span> or "
 "<span %3$s>Search Our Forum</span>"
 msgstr ""
+"לעיון ב<span %1$s> מדריכי הוידאו</span> שלנו וב<span %2$s>מדריכים</span> או "
+"ל<span %3$s>חיפוש בפורום</span>"
 
 #: ../tvr-microthemer.php:2311
 msgid "Internet Explorer Choice"
-msgstr ""
+msgstr "ברירת אינטרנט אקספלורר"
 
 #: ../tvr-microthemer.php:2314
 #, php-format
@@ -2690,14 +2928,16 @@ msgid ""
 "Explorer. For a noticeably faster experience, please use Microthemer with "
 "the latest version of %1$s or %2$s."
 msgstr ""
+"Microthemer עוצב לדפדפנים מודרניים. אתם משתמשים כעת באינטרנט אקספלורר. "
+"לחווייה מהירה יותר, נא להשתמש ב Microthemer בגרסה האחרונה של %1$s או %2$s."
 
 #: ../tvr-microthemer.php:2315
 msgid "Download The World's Best Internet Browser"
-msgstr ""
+msgstr "הורדת דפדפן האינטרנט הטוב בעולם"
 
 #: ../tvr-microthemer.php:2316 ../tvr-microthemer.php:2317
 msgid "en-US"
-msgstr ""
+msgstr "en-US"
 
 #: ../tvr-microthemer.php:2320
 msgid ""
@@ -2705,27 +2945,32 @@ msgid ""
 "as many as you want on your computer at any one time. But if you love "
 "Internet Explorer you can turn this message off on the preferences page."
 msgstr ""
+"<b>הערה</b>: דפדפני אינטרנט אינם מתנגשים אחד בשני, אפשר להתקין כמה דפדפנים "
+"על המחשב בו זמנית, אבל אם אתם אוהבים את אינטרנט אקספלורר אתם יכולים לכבות את "
+"האזהרה הזו בעמוד ההעדפות."
 
 #: ../tvr-microthemer.php:2332
 msgid "IMPORTANT - Free Trial Mode is Active"
-msgstr ""
+msgstr "<b>חשוב</b> - מצב בדיקה חינמית מופעל"
 
 #: ../tvr-microthemer.php:2334
 #, php-format
 msgid "Please <a %s>validate your purchase to unlock the full program</a>."
-msgstr ""
+msgstr "נא <a %s>לאמת את הרכישה שלך כדי לשחרר את הנעילה מן התוכנה המלאה</a>."
 
 #: ../tvr-microthemer.php:2340
 msgid ""
 "The Free Trial limits you to editing or creating 3 Sections and 9 Selectors "
 "(3 per Section)."
 msgstr ""
+"גרסת הניסיון החינמית מגבילה אותך לעריכת או יצירת 3 מקטעים ו 9 סלקטורים (3 "
+"בכל מקטע)."
 
 #: ../tvr-microthemer.php:2343
 #, php-format
 msgid ""
 "Purchase a <a %s>Standard</a> ($45) or <a %s>Developer</a> ($90) License Now!"
-msgstr ""
+msgstr "לרכישתכעת של רישיון <a %s>סטנדרטי</a> ($45) או <a %s>מפתח </a> ($90) "
 
 #: ../tvr-microthemer.php:2348
 #, php-format
@@ -2733,166 +2978,178 @@ msgid ""
 "<b>This Plugin is Supported!</b> Themeover provides the <a %s>best forum "
 "support</a> you'll get any where (and it's free of course)"
 msgstr ""
+"<b>תוסף זה נתמך!</b> Themeover מספקת את <a %s>פורום התמיכה הטוב ביותר</a> "
+"תגיעו לכל מקום (וזה בחינם כמובן)"
 
 #: ../tvr-microthemer.php:2383 ../tvr-microthemer.php:3654
 msgid "General CSS that will apply to all devices"
-msgstr ""
+msgstr "עיצוב CSS כללי המתאים לכל ההתקנים"
 
 #: ../tvr-microthemer.php:2400
 msgid "/micro-themes folder error"
-msgstr ""
+msgstr "שגיאת תיקיית /micro-themes"
 
 #: ../tvr-microthemer.php:2403
 #, php-format
 msgid "WordPress was not able to create the %1$s directory. "
-msgstr ""
+msgstr "וורדפרס לא יכול היה ליצור את ספריית %1$s "
 
 #: ../tvr-microthemer.php:2669
 msgid "Upload a new design pack"
-msgstr ""
+msgstr "העלאת חבילת עיצוב חדשה"
 
 #: ../tvr-microthemer.php:2717
 #, php-format
 msgid "Displaying %1$s - %2$s of %3$s"
-msgstr ""
+msgstr "מציג  %1$s - %2$s מתוך%3$s"
 
 #: ../tvr-microthemer.php:2739
 msgid "Validate license using a different email address"
-msgstr ""
+msgstr "אימות התוכנה באמצעות כתובת אימייל אחרת"
 
 #: ../tvr-microthemer.php:2742
 msgid ""
 "Enter your PayPal email (or the email listed in My Downloads) to unlock "
 "Microthemer"
 msgstr ""
+"נא להזין את אימייל הפייפל שלך (או האימייל ברשימת ההורדות שלי) כדי לשחרר את "
+"נעילת Microthemer"
 
 #: ../tvr-microthemer.php:2757
+#, fuzzy
 msgid "Manually save UI settings (Ctrl+S)"
-msgstr ""
+msgstr "שמירה ידנית של ההגדרות"
 
 #: ../tvr-microthemer.php:2760
 msgid "Toggle highlighting"
-msgstr ""
+msgstr "מיתוג סימון"
 
 #: ../tvr-microthemer.php:2765
 msgid "Toggle rulers on/off"
 msgstr ""
 
 #: ../tvr-microthemer.php:2770
+#, fuzzy
 msgid "Remove all guides"
-msgstr ""
+msgstr "הסרת כל הלשוניות"
 
 #: ../tvr-microthemer.php:2779
 msgid "Code editor view"
-msgstr ""
+msgstr "תצוגת עורך קוד"
 
 #: ../tvr-microthemer.php:2791
 msgid "Set your global Microthemer preferences"
-msgstr ""
+msgstr "הגדרת ההעדפות הכלליות שלך ב Microthemer"
 
 #: ../tvr-microthemer.php:2797
 msgid "Edit Media Queries"
-msgstr ""
+msgstr "עריכת שאילתות מדיה"
 
 #: ../tvr-microthemer.php:2806
 msgid "Install & Manage your design packages"
-msgstr ""
+msgstr "התקנת וניהול חבילות העיצוב שלך"
 
 #: ../tvr-microthemer.php:2820
 msgid "Spread the word about Microthemer"
-msgstr ""
+msgstr "הפץ בעולם אודות Microthemer"
 
 #: ../tvr-microthemer.php:2832
 msgid "Reset the interface to the default empty folders"
-msgstr ""
+msgstr "איפוס הממשק לתיקיות הריקות של ברירת המחדל"
 
 #: ../tvr-microthemer.php:2834
 msgid "Clear all styles, but leave folders and selectors intact"
-msgstr ""
+msgstr "ניקוי כל העיצובים, אבל השארת התיקיות והסלקטורים ללא שינוי"
 
 #: ../tvr-microthemer.php:2841
 msgid "Learn how to use Microthemer"
-msgstr ""
+msgstr "כיצד להשתמש ב Microthemer"
 
 #: ../tvr-microthemer.php:2843
 msgid "Return to WordPress dashboard"
-msgstr ""
+msgstr "חזרה ללוח הבקרה של וורדפרס"
 
 #: ../tvr-microthemer.php:2894
 msgid "Open/close folder"
-msgstr ""
+msgstr "פתיחת/סגירת תיקיה"
 
 #: ../tvr-microthemer.php:2895
 msgid "Reorder folder"
-msgstr ""
+msgstr "סידור תיקיה מחדש"
 
 #: ../tvr-microthemer.php:2910
 msgid "Rename folder"
-msgstr ""
+msgstr "שינוי שם תיקיה"
 
 #: ../tvr-microthemer.php:2910
 msgid "Rename"
-msgstr ""
+msgstr "שינוי שם"
 
 #: ../tvr-microthemer.php:2911
 msgid "Cancel rename"
-msgstr ""
+msgstr "ביטול שינוי שם"
 
 #: ../tvr-microthemer.php:2911 ../tvr-microthemer.php:3080
 msgid "Cancel"
-msgstr ""
+msgstr "ביטול"
 
 #: ../tvr-microthemer.php:2915
 msgid "Delete Folder"
-msgstr ""
+msgstr "מחיקת תיקיה"
 
 #: ../tvr-microthemer.php:2916
 msgid "Copy Folder"
-msgstr ""
+msgstr "העתקת תיקיה"
 
 #: ../tvr-microthemer.php:2917
 msgid "Rename Folder"
-msgstr ""
+msgstr "שינוי שם תיקיה"
 
 #: ../tvr-microthemer.php:2918
 msgid "Add selector to this folder"
-msgstr ""
+msgstr "הוספת סלקטור לתיקיה זו"
 
 #: ../tvr-microthemer.php:2927
 msgid ""
 "Non-coders should use the selector wizard instead of using these form "
 "fields. Just double-click something on your site!"
 msgstr ""
+"מי שלא מתכנת צריך להשתמש באשף הסלקטור במקום להשתמש בשדות אלו של הטופס. רק "
+"לחיצה כפולה על משהו באתר שלך!"
 
 #: ../tvr-microthemer.php:2994
 msgid "Reorder or move selector into a different folder"
-msgstr ""
+msgstr "שינוי הסדר או העברת סלקטור לתיקיה אחרת"
 
 #: ../tvr-microthemer.php:3005
 msgid "Delete Selector"
-msgstr ""
+msgstr "מחיקת הסלקטור"
 
 #: ../tvr-microthemer.php:3006
 msgid "Copy Selector"
-msgstr ""
+msgstr "העתקת הסלקטור"
 
 #: ../tvr-microthemer.php:3007
 msgid "Edit Selector"
-msgstr ""
+msgstr "עריכת הסלקטור"
 
 #: ../tvr-microthemer.php:3010
 msgid ""
 "Give your selector a better descriptive name and/or modify the CSS selector "
 "code (if you know CSS)"
 msgstr ""
+"תן לסלקטור שלך שם תיאור טוב יותר ו/או לשנות את קוד ה CSS של הסלקטור (אם יש "
+"לך ידע ב CSS)"
 
 #: ../tvr-microthemer.php:3039
+#, fuzzy
 msgid "Descriptive Name:"
-msgstr ""
+msgstr "תיאור:"
 
 #: ../tvr-microthemer.php:3043
+#, fuzzy
 msgid "CSS Selector Code:"
-msgstr ""
+msgstr "שם הסלקטור:"
 
 #: ../tvr-microthemer.php:3065
 msgid ""
@@ -2900,45 +3157,47 @@ msgid ""
 "set a value for position (pie needs the target element or parent element to "
 "have a non-static position value in order to work)."
 msgstr ""
+"הערה: נא להוסיף ערך \"מיקום\" אלא אם יצויין במפורש ערך מיקום (pie צריך את "
+"אלמנט היעד או אלמנט הורה לערך מיקום שאינו סטטי כדי לפעול)."
 
 #: ../tvr-microthemer.php:3071
 #, php-format
 msgid "Click to turn the %1$s pollyfill on/off for this selector. %2$s"
-msgstr ""
+msgstr "נא ללחוץ כדי להפעיל או לכבות את הפוליפיל %1$s עבור סלקטור זה, %2$s"
 
 #: ../tvr-microthemer.php:3079
 msgid "selector"
-msgstr ""
+msgstr "סלקטור"
 
 #: ../tvr-microthemer.php:3079
 #, php-format
 msgid "%s Selector"
-msgstr ""
+msgstr "סלקטור %s"
 
 #: ../tvr-microthemer.php:3080
 #, php-format
 msgid "Cancel %s Selector"
-msgstr ""
+msgstr "ביטול סלקטור %s"
 
 #: ../tvr-microthemer.php:3542
 msgid "Delete this media query"
-msgstr ""
+msgstr "מחיקת שאילתת מדיה זו"
 
 #: ../tvr-microthemer.php:3544
 msgid "Give your media query a descriptive name"
-msgstr ""
+msgstr "נא לתת שם תואר למדיה שלך"
 
 #: ../tvr-microthemer.php:3545
 msgid "Label:"
-msgstr ""
+msgstr "תווית:"
 
 #: ../tvr-microthemer.php:3550
 msgid "Set the media query condition"
-msgstr ""
+msgstr "הגדרת תנאי לשאילתת המדיה"
 
 #: ../tvr-microthemer.php:3551
 msgid "Media Query:"
-msgstr ""
+msgstr "שאילתת מדיה:"
 
 #: ../tvr-microthemer.php:3557
 msgid ""
@@ -2956,41 +3215,41 @@ msgstr ""
 
 #: ../tvr-microthemer.php:3586 ../tvr-microthemer.php:3629
 msgid "Edit media queries"
-msgstr ""
+msgstr "עריכת שאילתות מדיה"
 
 #: ../tvr-microthemer.php:3630
 #, php-format
 msgid "Manage tabs for %1$s"
-msgstr ""
+msgstr "ניהול לשוניות עבור %1$s"
 
 #: ../tvr-microthemer.php:3704 ../tvr-microthemer.php:3713
 msgid "Styles will apply to all screen sizes"
-msgstr ""
+msgstr "העיצוב יחול על כל גדלי המסך"
 
 #: ../tvr-microthemer.php:3710 ../tvr-microthemer.php:3731
 msgid "Remove tab"
-msgstr ""
+msgstr "הסרת לשונית"
 
 #: ../tvr-microthemer.php:3711 ../tvr-microthemer.php:3732
 msgid "Clear tab styles"
-msgstr ""
+msgstr "ניקוי עיצוב הלשונית"
 
 #: ../tvr-microthemer.php:3712 ../tvr-microthemer.php:3733
 msgid "Add tab"
-msgstr ""
+msgstr "הוספת לשונית"
 
 #: ../tvr-microthemer.php:3741
 #, php-format
 msgid "Remove all \"%1$s\" styling options for this selector"
-msgstr ""
+msgstr "הסרת כל אפשרויות עיצובי \"%1$s\" עבור סלקטור זה"
 
 #: ../tvr-microthemer.php:3743
 msgid "Remove all tabs"
-msgstr ""
+msgstr "הסרת כל הלשוניות"
 
 #: ../tvr-microthemer.php:3916
 msgid "Malformed error"
-msgstr ""
+msgstr "שגיאה בעלת מבנה פגום"
 
 #: ../tvr-microthemer.php:3920
 #, php-format
@@ -2998,122 +3257,124 @@ msgid ""
 "To fix this issue, please delete the malformed '%1$s' selector (which may "
 "not be displaying a name) in the '%2$s' folder"
 msgstr ""
+"כדי לתקן בעיה זו, נא למחוק את הסלקטור הפגום '%1$s' (שיתכן ואינו מציג שם) "
+"בתיקיית '%2$s'"
 
 #: ../tvr-microthemer.php:3923
 msgid "Array is: "
-msgstr ""
+msgstr "המערך הוא: "
 
 #: ../tvr-microthemer.php:4127
 msgid "Because CSS3 PIE is enabled. It requires this to work."
-msgstr ""
+msgstr "בגלל ש CSS3 PIE פועל.. זה דורש את ההפעלה של זה."
 
 #: ../tvr-microthemer.php:4140
 msgid "Selector Custom CSS"
-msgstr ""
+msgstr "עיצוב CSS של הסלקטור"
 
 #: ../tvr-microthemer.php:4177
 msgid "Create stylesheet error"
-msgstr ""
+msgstr "שגיאת יצירת גליון עיצוב"
 
 #: ../tvr-microthemer.php:4178 ../tvr-microthemer.php:4347
 #: ../tvr-microthemer.php:4414
 msgid "WordPress does not have permission to create: "
-msgstr ""
+msgstr "לוורדפרס אין הרשאה ליצור:"
 
 #: ../tvr-microthemer.php:4235
 msgid "Hand Coded CSS"
-msgstr ""
+msgstr "CSS לקידוד ידני"
 
 #: ../tvr-microthemer.php:4256 ../tvr-microthemer.php:4265
 msgid "Write stylesheet error"
-msgstr ""
+msgstr "שגיאה בכתיבת גליון העיצוב"
 
 #: ../tvr-microthemer.php:4257 ../tvr-microthemer.php:4363
 #, php-format
 msgid "Writing to %s failed. "
-msgstr ""
+msgstr "הכתיבה ל %s נכשלה"
 
 #: ../tvr-microthemer.php:4266 ../tvr-microthemer.php:4491
 msgid "WordPress does not have \"write\" permission\tfor: "
-msgstr ""
+msgstr "לוורדפרס אין הרשאת כתיבה עבור: "
 
 #: ../tvr-microthemer.php:4324
 msgid "Design pack activated"
-msgstr ""
+msgstr "חבילת העיצוב הופעלה"
 
 #: ../tvr-microthemer.php:4325
 msgid "The design pack was successfully activated."
-msgstr ""
+msgstr "חבילת העיצוב הופעלה בהצלחה"
 
 #: ../tvr-microthemer.php:4346
 msgid "Create IE stylesheet error"
-msgstr ""
+msgstr "שגיאה ביצירת גליון עיצוב לאינטרנט אקספלורר"
 
 #: ../tvr-microthemer.php:4362 ../tvr-microthemer.php:4372
 msgid "Write IE stylesheet error"
-msgstr ""
+msgstr "שגיאת כתיבת גליון עיצוב לאינטרנט אקספלורר"
 
 #: ../tvr-microthemer.php:4373 ../tvr-microthemer.php:5734
 #: ../tvr-microthemer.php:5787
 msgid "WordPress does not have \"write\" permission for: "
-msgstr ""
+msgstr "אין לוורדפרס הרשאות כתיבה עבור: "
 
 #: ../tvr-microthemer.php:4413
 msgid "Create json error"
-msgstr ""
+msgstr "שגיאת יצירת JSON"
 
 #: ../tvr-microthemer.php:4448
 msgid "unset: hand-coded"
-msgstr ""
+msgstr "לא מוגדר: קידוד ידני"
 
 #: ../tvr-microthemer.php:4456
 msgid "unset: "
-msgstr ""
+msgstr "לא מוגדר: "
 
 #: ../tvr-microthemer.php:4458
 msgid "<b>don't</b> unset: "
-msgstr ""
+msgstr "<b>לא</b> לא להגדיר: "
 
 #: ../tvr-microthemer.php:4466
 msgid "The Selectively Exported Options"
-msgstr ""
+msgstr "האפשרויות שיוצאו באופן סלקטיבי"
 
 #: ../tvr-microthemer.php:4468
 msgid "The Full Options"
-msgstr ""
+msgstr "האפשרויות המלאות"
 
 #: ../tvr-microthemer.php:4483
 msgid "Encode json error"
-msgstr ""
+msgstr "שגיאת קידוד json"
 
 #: ../tvr-microthemer.php:4484
 msgid "WordPress failed to convert your settings into json."
-msgstr ""
+msgstr "וורדפרס נכשל בהמרת ההגדרות שלך ל json"
 
 #: ../tvr-microthemer.php:4490
 msgid "Write json error"
-msgstr ""
+msgstr "שגיאת כתיבת json"
 
 #: ../tvr-microthemer.php:4507
 msgid "Read json error"
-msgstr ""
+msgstr "שגיאת קריאת json"
 
 #: ../tvr-microthemer.php:4508
 #, php-format
 msgid "WordPress was not able to read %s. "
-msgstr ""
+msgstr "וורדפרס לא יכול היה לקרוא את %s. "
 
 #: ../tvr-microthemer.php:4544
 msgid "Settings were imported"
-msgstr ""
+msgstr "ההגדרות יובאו"
 
 #: ../tvr-microthemer.php:4545
 msgid "The design pack settings were successfully imported."
-msgstr ""
+msgstr "הגדרות חבילת העיצוב יובאו בהצלחה."
 
 #: ../tvr-microthemer.php:4560
 msgid "Media queries added"
-msgstr ""
+msgstr "נוספו שאילתות מדיה"
 
 #: ../tvr-microthemer.php:4561
 msgid ""
@@ -3122,6 +3383,8 @@ msgid ""
 "to function correctly, these additional media queries have been imported "
 "into your workspace."
 msgstr ""
+"חבילת העיצוב שייבאת הכילה שאילתות מדיה שונות מאלו שבהגדרה הנוכחית שלך. כדי "
+"שהגדרות חבילת העיצוב תפעלנה כראוי, יובאו שאילתות מדיה אלו לחלל העבודה שלך."
 
 #: ../tvr-microthemer.php:4563
 #, php-format
@@ -3130,48 +3393,51 @@ msgid ""
 "span>. Note: imported queries are marked with \"(imp)\", which you can "
 "remove from the label name once you've reviewed them."
 msgstr ""
+"נא <span %s>לסקור (ואפשר גם לתת שם חדש) את שאילתות המדיה שיובאו</span>. "
+"הערה: שאילתות מיובאות מסומנות ב \"(imp)\", שאפשר להסיר משם התווית לאחר שסקרת "
+"אותם."
 
 #: ../tvr-microthemer.php:4596
 msgid "Config file missing"
-msgstr ""
+msgstr "קובץ Config חסר"
 
 #: ../tvr-microthemer.php:4598
 #, php-format
 msgid "%1$s settings file could not be loaded because it doesn't exist in %2$s"
-msgstr ""
+msgstr "euc. vvdsru, %1$s לא יכול היה להיטען כי הוא לא קיים ב %2$s"
 
 #: ../tvr-microthemer.php:4668
 msgid "The current options"
-msgstr ""
+msgstr "האפשרויות הנוכחיות"
 
 #: ../tvr-microthemer.php:4741
 msgid "The MQ Analysis"
-msgstr ""
+msgstr "אנליזת MQ"
 
 #: ../tvr-microthemer.php:4743
 msgid "The to merge options"
-msgstr ""
+msgstr "אפשרויות המיזוג"
 
 #: ../tvr-microthemer.php:4758 ../tvr-microthemer.php:4772
 msgid "CSS from design pack imported with 'Merge'"
-msgstr ""
+msgstr "ה CSS מחבילת העיצוב יובא עם 'מיזוג'"
 
 #: ../tvr-microthemer.php:4783
 msgid "The Merged options"
-msgstr ""
+msgstr "אפשרויות המיזוג"
 
 #: ../tvr-microthemer.php:4828
 msgid "/micro-themes create error"
-msgstr ""
+msgstr "שגיאת יצירת /micro-themes"
 
 #: ../tvr-microthemer.php:4830
 #, php-format
 msgid "WordPress was not able to create the %s directory. "
-msgstr ""
+msgstr "וורדפרס לא יכול היה ליצור את ספריית %s. "
 
 #: ../tvr-microthemer.php:4854
 msgid "CSS3 PIE not copied"
-msgstr ""
+msgstr "CSS3 PIE לא הועתק"
 
 #: ../tvr-microthemer.php:4856
 #, php-format
@@ -3180,37 +3446,39 @@ msgid ""
 "support gradients, rounded corners and box-shadow in old versions of "
 "Internet Explorer."
 msgstr ""
+"אי אפשר היה להעתיק את CSS3 PIE (%s) למיקום הנכון. זה נחוץ כדי לתמוך בצבע "
+"מדורג, פינות מעוגלות ותיבות הצללה בגרסאות ישנות של אינטרנט אקספלורר."
 
 #: ../tvr-microthemer.php:4881
 msgid "/micro-themes write error"
-msgstr ""
+msgstr "שגיאת כתיבת /micro-themes"
 
 #: ../tvr-microthemer.php:4883 ../tvr-microthemer.php:4910
 #: ../tvr-microthemer.php:5407
 #, php-format
 msgid "The directory %s is not writable. "
-msgstr ""
+msgstr "הספריה %s אינה ניתנת לכתיבה."
 
 #: ../tvr-microthemer.php:4898
 msgid "design pack create error"
-msgstr ""
+msgstr "שגיאת יצירת חבילת עיצוב"
 
 #: ../tvr-microthemer.php:4900
 #, php-format
 msgid "WordPress was not able to create the %s directory."
-msgstr ""
+msgstr "וורדפרס לא יכול היה ליצור את ספריית %s"
 
 #: ../tvr-microthemer.php:4908
 msgid "design pack write error"
-msgstr ""
+msgstr "שגיאה בכתיבת חבילת העיצוב"
 
 #: ../tvr-microthemer.php:4917
 msgid "Safe-mode is on"
-msgstr ""
+msgstr "מצב בטוח מופעל"
 
 #: ../tvr-microthemer.php:4918
 msgid "The PHP server setting \"Safe-Mode\" is on."
-msgstr ""
+msgstr "מצב בטוח מופעל בהגדרת PHP בשרת"
 
 #: ../tvr-microthemer.php:4920
 #, php-format
@@ -3219,18 +3487,20 @@ msgid ""
 "been created</b>, please create the directory %2$s manually and give it "
 "permission code 777. "
 msgstr ""
+"<b>זו לא בהכרח בעיה, אבל אם חבילת העיצוב \"%1$s\" לא נוצרה</b>, נא ליצור את "
+"הספריה %2$s באופן ידני ולתת לה קוד הרשאה 777."
 
 #: ../tvr-microthemer.php:4963
 msgid "Design pack created"
-msgstr ""
+msgstr "חבילת העיצוב נוצרה"
 
 #: ../tvr-microthemer.php:4964
 msgid "The design pack directory was successfully created on the server."
-msgstr ""
+msgstr "ספריית חבילת העיצוב נוצרה בהצלחה בשרת."
 
 #: ../tvr-microthemer.php:4970
 msgid "Design pack installed"
-msgstr ""
+msgstr "חבילת העיצוב מותקנת"
 
 #: ../tvr-microthemer.php:4972
 #, php-format
@@ -3239,77 +3509,80 @@ msgid ""
 "into your Microthemer workspace any time using the <span %s>import option</"
 "span>"
 msgstr ""
+"חבילת העיצוב הועלתה וחולצה בהצלחה. אפשר לייבא אותה לחלל העבודה שלך ב "
+"Microthemer בכל עת באמצעות <span %s>אפשרות יבוא</span>"
 
 #: ../tvr-microthemer.php:4981
 msgid "Settings exported"
-msgstr ""
+msgstr "ההגדרות יוצאו"
 
 #: ../tvr-microthemer.php:4982
 msgid ""
 "Your settings were successfully exported as a design pack directory on the "
 "server."
-msgstr ""
+msgstr "ההגדרות שלך יוצאו בהצלחה כספריית חבילת עיצוב בשרת."
 
 #: ../tvr-microthemer.php:5006
 msgid "Missing meta file"
-msgstr ""
+msgstr "חסר קובץ תיאור"
 
 #: ../tvr-microthemer.php:5008
 #, php-format
 msgid ""
 "The zip file doesn't contain a necessary %s file or it could not be read."
-msgstr ""
+msgstr "קובץ ה zip אינו מכיל את הקובץ הנחוץ %s או שאי אפשר היה לקרוא אותו."
 
 #: ../tvr-microthemer.php:5020
 msgid "File doesn't exist"
-msgstr ""
+msgstr "הקובץ אינו קיים"
 
 #: ../tvr-microthemer.php:5022
 #, php-format
 msgid "%s does not exist on the server."
-msgstr ""
+msgstr "%s אינו קיים בשרת."
 
 #: ../tvr-microthemer.php:5030
 msgid "File not readable"
-msgstr ""
+msgstr "הקובץ אינו קריא"
 
 #: ../tvr-microthemer.php:5032
 #, php-format
 msgid " %s could not be read."
-msgstr ""
+msgstr "אי אפשר היה לקרוא את %s "
 
 #: ../tvr-microthemer.php:5124
 msgid "Move to media library failed"
-msgstr ""
+msgstr "העברת ספריית המדיה נכשלה"
 
 #: ../tvr-microthemer.php:5126
 #, php-format
 msgid "%s was not imported due to an error."
-msgstr ""
+msgstr "%s לא יובא בגלל שגיאה."
 
 #: ../tvr-microthemer.php:5153
 msgid "Images transferred to media library"
-msgstr ""
+msgstr "התמונות הועברו אל ספריית המדיה"
 
 #: ../tvr-microthemer.php:5154
 msgid ""
 "The following images were transferred from the design pack to your WordPress "
 "media library:"
-msgstr ""
+msgstr "התמונות שלהלן הועברו מחבילת העיצוב אל ספריית המדיה שלך בוורדפרס:"
 
 #: ../tvr-microthemer.php:5187
 msgid "Images paths updated"
-msgstr ""
+msgstr "נתיבי התמונות עודכנו"
 
 #: ../tvr-microthemer.php:5188
 msgid ""
 "Images paths were successfully updated to reflect the new location or "
 "deletion of an image(s)."
 msgstr ""
+"נתיבי התמונות עודכנו בהצלחה כדי לשקף את המיקום החדש או מחיקה של תמונה(ות)."
 
 #: ../tvr-microthemer.php:5194
 msgid "Image paths failed to update."
-msgstr ""
+msgstr "עדכון נתיבי תמונה נכשל."
 
 #: ../tvr-microthemer.php:5195
 msgid ""
@@ -3317,140 +3590,142 @@ msgid ""
 "transferred to your media library. This happened because Microthemer could "
 "not rewrite the config.json file."
 msgstr ""
+"אי אפשר היה לעדכן את נתיבי התמונה כדי לשקף את המיקום החדש של התמונות שהועברו "
+"לספריית המדיה שלך. זה קורה בגלל ש Microthemer לא יכול לכתוב לקובץ config.json"
 
 #: ../tvr-microthemer.php:5210
 msgid "Uploads folder error"
-msgstr ""
+msgstr "שגיאת העעלאה לתיקיה"
 
 #: ../tvr-microthemer.php:5221
 msgid "Wrong file type"
-msgstr ""
+msgstr "סוג קובץ שגוי"
 
 #: ../tvr-microthemer.php:5222
 msgid "Sorry, this file type is not permitted for security reasons."
-msgstr ""
+msgstr "מצטערים, סוג קובץ זה אסור מסיבות של אבטחה."
 
 #: ../tvr-microthemer.php:5237
 msgid "Image already in library"
-msgstr ""
+msgstr "התמונה כבר בספריה"
 
 #: ../tvr-microthemer.php:5239
 #, php-format
 msgid ""
 "%s already exists in the WordPress media library and was therefore not moved"
-msgstr ""
+msgstr "%s כבר קיים בספריית המדיה של וורדפרס ולכן לא הועבר"
 
 #: ../tvr-microthemer.php:5254
 msgid "Move to library failed"
-msgstr ""
+msgstr "ההעברה לספריה נכשלה"
 
 #: ../tvr-microthemer.php:5256
 #, php-format
 msgid "%1$s could not be moved to %2$s"
-msgstr ""
+msgstr "th tpar vhv kvgchr t, %1$s אל %2$s"
 
 #: ../tvr-microthemer.php:5344
 msgid "Faulty zip file"
-msgstr ""
+msgstr "קובץ zip פגום"
 
 #: ../tvr-microthemer.php:5345
 msgid "The uploaded file was faulty or was not a zip file."
-msgstr ""
+msgstr "הקובץ שהועלה פגום או שאינו קובץ zip."
 
 #: ../tvr-microthemer.php:5346
 msgid "The server recognised this file type: "
-msgstr ""
+msgstr "השרת זיהה את סוג הקובץ הזה: "
 
 #: ../tvr-microthemer.php:5366
 msgid "Extract zip error"
-msgstr ""
+msgstr "שגיאה בחילוץ קובץ ה zip"
 
 #: ../tvr-microthemer.php:5367 ../tvr-microthemer.php:5388
 msgid "Error : "
-msgstr ""
+msgstr "שגיאה: "
 
 #: ../tvr-microthemer.php:5387
 msgid "Create zip error"
-msgstr ""
+msgstr "שגיאת יצירת zip"
 
 #: ../tvr-microthemer.php:5393
 msgid "Zip package created"
-msgstr ""
+msgstr "נוצרה חבילת zip"
 
 #: ../tvr-microthemer.php:5394
 msgid "Zip package successfully created."
-msgstr ""
+msgstr "חבילת zip נוצרה בהצלחה"
 
 #: ../tvr-microthemer.php:5396
 msgid "Download zip file"
-msgstr ""
+msgstr "הורדת קובץ zip"
 
 #: ../tvr-microthemer.php:5405
 msgid "Zip store error"
-msgstr ""
+msgstr "שגיאת שמירת zip"
 
 #: ../tvr-microthemer.php:5438
 msgid "Read meta.txt error"
-msgstr ""
+msgstr "שגיאה בקריאת קובץ meta.txt"
 
 #: ../tvr-microthemer.php:5439 ../tvr-microthemer.php:5469
 msgid "WordPress does not have permission to read: "
-msgstr ""
+msgstr "אין לוורדפרס הרשאת קריאה: "
 
 #: ../tvr-microthemer.php:5468
 msgid "Read readme.txt error"
-msgstr ""
+msgstr "שגיאת קריאת readme.txt"
 
 #: ../tvr-microthemer.php:5526
 msgid "Anonymous"
-msgstr ""
+msgstr "אנונימי"
 
 #: ../tvr-microthemer.php:5532
 msgid "Visit author homepage"
-msgstr ""
+msgstr "ביקור באתר המחבר"
 
 #: ../tvr-microthemer.php:5546
 msgid "File delete error"
-msgstr ""
+msgstr "שגיאת מחיקת קובץ"
 
 #: ../tvr-microthemer.php:5547
 msgid "Unable to delete: "
-msgstr ""
+msgstr "לא יכול למחוק את: "
 
 #: ../tvr-microthemer.php:5559
 #, php-format
 msgid "All files within %s were successfully deleted."
-msgstr ""
+msgstr "כל הקבצים ב%s נמחקו בהצלחה"
 
 #: ../tvr-microthemer.php:5567
 msgid "Delete directory error"
-msgstr ""
+msgstr "שגיאת מחיקת ספריה"
 
 #: ../tvr-microthemer.php:5569
 #, php-format
 msgid "The empty directory: %s could not be deleted."
-msgstr ""
+msgstr "אי אפשר היה למחוק את הספריה הריקה: %s"
 
 #: ../tvr-microthemer.php:5577
 msgid "Directory successfully deleted"
-msgstr ""
+msgstr "הספריה נמחקה בהצלחה"
 
 #: ../tvr-microthemer.php:5631
 msgid "Design pack renamed"
-msgstr ""
+msgstr "שינית את שם חבילת העיצוב"
 
 #: ../tvr-microthemer.php:5632
 msgid "The design pack directory was successfully renamed on the server."
-msgstr ""
+msgstr "שם ספריית חבילת העיצוב השתנה בהצלחה בשרת."
 
 #: ../tvr-microthemer.php:5639 ../tvr-microthemer.php:5649
 msgid "Directory rename error"
-msgstr ""
+msgstr "שגיאת החלפת שם"
 
 #: ../tvr-microthemer.php:5641
 #, php-format
 msgid "The directory, %s could not be renamed for some reason."
-msgstr ""
+msgstr "מסיבה כלשהי, אי-אפשר היה לשנות את שם הספריה %s."
 
 #: ../tvr-microthemer.php:5651
 #, php-format
@@ -3458,124 +3733,130 @@ msgid ""
 "WordPress does not have permission to rename the directory %1$s to match "
 "your new theme name \"%2$s\". "
 msgstr ""
+"אין לוורדפרס הרשאה לשנות את שם הספריה %1$s כדי להתאים לשם התבנית החדשה שלך "
+"\"%2$s\". "
 
 #: ../tvr-microthemer.php:5664 ../tvr-microthemer.php:5747
 #, php-format
 msgid "Create %s error"
-msgstr ""
+msgstr "שגיאת יצירת %s"
 
 #: ../tvr-microthemer.php:5727 ../tvr-microthemer.php:5778
 #, php-format
 msgid "The %1$s file for the design pack was %2$s"
-msgstr ""
+msgstr "קובץ ה %1$s עבור חבילת העיצוב %2$s"
 
 #: ../tvr-microthemer.php:5733 ../tvr-microthemer.php:5786
 #, php-format
 msgid "Write %s error"
-msgstr ""
+msgstr "שגיאת כתיבת %s"
 
 #: ../tvr-microthemer.php:5807
 msgid "File successfully uploaded"
-msgstr ""
+msgstr "הקובץ הועלה בהצלחה"
 
 #: ../tvr-microthemer.php:5809
 #, php-format
 msgid "<b>%s</b> was successfully uploaded."
-msgstr ""
+msgstr "<b>%s</b> הועלה בהצלחה."
 
 #: ../tvr-microthemer.php:5838
 msgid "Screenshot thumbnail error"
-msgstr ""
+msgstr "שגיאת תמונת צילום מסך"
 
 #: ../tvr-microthemer.php:5840
 #, php-format
 msgid "Could not resize <b>%s</b> to thumbnail proportions."
-msgstr ""
+msgstr "אי אפשר היה לשנות את גודל <b>%s</b> לגודל תמונה ממוזערת."
 
 #: ../tvr-microthemer.php:5842
 msgid " thumb: "
-msgstr ""
+msgstr "תמונה ממוזערת:"
 
 #: ../tvr-microthemer.php:5850
 msgid "Screenshot thumbnail successfully created"
-msgstr ""
+msgstr "תמונה ממוזערת של צילום מסך נוצרה בהצלחה"
 
 #: ../tvr-microthemer.php:5852
 #, php-format
 msgid "<b>%s</b> was successfully created."
-msgstr ""
+msgstr "<b>%s</b> נוצרה בהצלחה"
 
 #: ../tvr-microthemer.php:5866
 msgid "Write to directory error"
-msgstr ""
+msgstr "שגיאת כתיבה לספריה"
 
 #: ../tvr-microthemer.php:5867
 msgid "WordPress does not have \"Write\" permission to the directory: "
-msgstr ""
+msgstr "אין לוורדפרס הרשאת כתיבה לספריה: "
 
 #: ../tvr-microthemer.php:5874
 msgid "Invalid file type"
-msgstr ""
+msgstr "סוג קובץ שגוי"
 
 #: ../tvr-microthemer.php:5875
 msgid "You have uploaded a file type that is not allowed."
-msgstr ""
+msgstr "הקובץ שהועלה אינו סוג קובץ מורשה"
 
 #: ../tvr-microthemer.php:5891
 msgid "File upload limit reached"
-msgstr ""
+msgstr "חריגה ממגבלת גודל קובץ"
 
 #: ../tvr-microthemer.php:5892
 msgid ""
 "The file you uploaded exceeded your \"upload_max_filesize\" limit. This is a "
 "PHP setting on your server."
 msgstr ""
+"הקובץ שהעלית חורג ממגבלת גודל קובץ להעלאה ( \"upload_max_filesize\"). זו "
+"הגדרת PHP בשרת."
 
 #: ../tvr-microthemer.php:5897
 msgid "File size too big"
-msgstr ""
+msgstr "גודל הקובץ גדול מדי"
 
 #: ../tvr-microthemer.php:5898
 msgid ""
 "The file you uploaded exceeded your \"max_file_size\" limit. This is a PHP "
 "setting on your server."
 msgstr ""
+"הקובץ שהעלית חורג ממגבלת גודל קובץ להעלאה ( \"upload_max_filesize\"). זו "
+"הגדרת PHP בשרת."
 
 #: ../tvr-microthemer.php:5903
 msgid "Partial upload"
-msgstr ""
+msgstr "העלאה חלקית"
 
 #: ../tvr-microthemer.php:5904
 msgid "The file you uploaded only partially uploaded."
-msgstr ""
+msgstr "הקובץ שהעלית הועלה רק בחלקו"
 
 #: ../tvr-microthemer.php:5909
 msgid "No file uploaded"
-msgstr ""
+msgstr "לא הועלה אף קובץ"
 
 #: ../tvr-microthemer.php:5910
 msgid "No file was detected for upload."
-msgstr ""
+msgstr "לא זוהה אף קובץ להעלאה"
 
 #: ../tvr-microthemer.php:5933
 msgid "GD not loaded"
-msgstr ""
+msgstr "ספריית GD לא מותקנת"
 
 #: ../tvr-microthemer.php:5934
 msgid "The PHP extension GD is not loaded."
-msgstr ""
+msgstr "הרחבת PHP מסוג GD אינה מותקנת."
 
 #: ../tvr-microthemer.php:5946
 msgid "File type error"
-msgstr ""
+msgstr "שגיאת סוג קובץ"
 
 #: ../tvr-microthemer.php:5947
 msgid "Unsuported file type. Are you sure you uploaded an image?"
-msgstr ""
+msgstr "סוג קובץ לא נתמך. בטוח שהעלית תמונה?"
 
 #: ../tvr-microthemer.php:5965
 msgid "Dimensions too big"
-msgstr ""
+msgstr "המידות גדולות מדי"
 
 #: ../tvr-microthemer.php:5967
 #, php-format
@@ -3583,15 +3864,35 @@ msgid ""
 "The resize dimensions you specified (%1$s x %2$s) are bigger than the "
 "original image (%3$s x %4$s). This is not allowed."
 msgstr ""
+"המידות החדשות שציינת לשינוי גודל (%1$s x %2$s) גדולות מן התמונה המקורית "
+"(%3$s x %4$s). זה אסור."
 
 #: ../tvr-microthemer.php:6010
 msgid "Image resize failed"
-msgstr ""
+msgstr "שינוי גודל התמונה נכשל"
 
 #: ../tvr-microthemer.php:6011
 msgid "Your image could not be resized."
-msgstr ""
+msgstr "אי אפשר היה לשנות את גודל התמונה שלך"
 
 #: ../tvr-microthemer.php:6246
 msgid "Jump to the Microthemer interface"
-msgstr ""
+msgstr "קפיצה לממשק Microthemer"
+
+#~ msgid "No %s"
+#~ msgstr "לא %s"
+
+#~ msgid "Advanced options"
+#~ msgstr "אפשרויות מתקדמות"
+
+#~ msgid "always show"
+#~ msgstr "להציג תמיד"
+
+#~ msgid "Where:"
+#~ msgstr "איפה:"
+
+#~ msgid "Close Wizard"
+#~ msgstr "סגירת האשף"
+
+#~ msgid "Reset options"
+#~ msgstr "איפוס האפשרויות"

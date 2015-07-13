@@ -1,6 +1,6 @@
 === Microthemer Lite ===
 
-Contributors: bastywebb
+Contributors: bastywebb, ahrale
 Donate link: http://themeover.com/microthemer/
 Tags: microthemer, theme customizer, theme editor, theme tweaker, theme generator, css plugin, css editor, css code generator, visual css editor, visual design tool, css3 pie, stylesheet, style.css, micro themes, microloader, wordpress, google fonts, google web fonts, web fonts, wordpress web fonts, google fonts plugin, wp google fonts, google
 Requires at least: 3.6
@@ -100,8 +100,45 @@ View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-cha
 
 == Upgrade Notice ==
 
-= 3.7.6 (May 27, 2015) =
-* Labels for Behaviour, Position, and Gradient went missing on the property fields row.
+= 4.0 (July 12th) =
+
+New Features
+* Easier to add responsive styles.
+* Improved color picker.
+* Pixel rulers on the X and Y axis.
+* Quick preview feature for common devices added to top left corner of the rulers
+* Ems/rems used in media queries now preview at the correct width on the responsive tabs
+* Specify default CSS units e.g. ems, vw, % instead of implicitly defaulting to pixels.
+* Full screen mode.
+* Collapse or expand the Microthemer interface with the logo.
+* Preview selectors when hovering over selector names.
+
+Design Changes
+* The left toolbar icons have been moved to the top right of the interface. Some have been grouped together. Related options display on hover.
+* The folder and selector management options have been moved to the top left.
+* The responsive slider has been replaced by the rulers. Drag the rulers or click on a point to adjust the screen width. Rulers shading shows the scope of the current responsive tab.
+* The media query tabs are now above the CSS property groups and are always visible. They can be hidden via the Edit Media Queries popup.
+* The selector wizard options all display to the right of the page. The advanced options are always visible. The selector wizard does not replace the normal editing options. It appears above them.
+* Little blue or white feather icons are used to indicate when styles have been added to a selector, media query tab, or property group.
+* The color picker has been updated. It now supports RGB/A and HSL/A color codes.
+* Default computed colors are show by a bottom border on the new color picker field (which is a small square now).
+
+Functional Changes
+* Microthemer doesn't use the crosshair mouse icon anymore because this was artificially changing the computed CSS for the mouse cursor property.
+* The media query tabs do not lock the screen width slider at a minimum or maximum screen width. The shading shows the scope of the media query conditions. And if the user drags outside the scope of the media query a warning icon is displayed in the top left of the rulers.
+* Hovering over the selector's name in the top toolbar temporarily triggers highlighting and auto-scrolls to the right place in the page.
+* Continuity has been given precedence. When switching between property groups (e.g. font to padding) the responsive tab never changes. This holds true when switching between selectors. When switching between selectors, Microthemer no longer remembers the property group that was last edited on that selector. It favours continuity and stays on the same property group the previous selector was on.
+
+3.9 Beta Bugs fixed
+* Color picker had some annoying glitches when dragging the picker outside the bounds of the box
+* Comma separated CSS selectors weren't highlighting properly (only the first in the list would highlight)
+
+= 3.9.2 (beta) (July 1, 2015) =
+* A fresh install of the new beta version could cause an Javascript error because the frontend script tried to load a non-existent stylesheet.
+* The dynamic javascript wasn't enqueued in the correct way which prevented the interface from fully loading.
+
+= 3.9.0 (beta) (June 26, 2015) =
+* Many new updates. A full description will come when we're past the beta stage.
 
 = 3.7.5 (May 24, 2015) =
 * Microthemer is now translation ready following JoseLuís' sterling work.

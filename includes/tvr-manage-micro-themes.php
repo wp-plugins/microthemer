@@ -31,10 +31,6 @@ if ($end > $total_packs) {
         $this->manage_packs_header($this->microthemespage);
         ?>
 
-        <pre>
-            <?php // print_r($this->file_structure); ?>
-        </pre>
-
         <div id="full-logs">
             <?php echo $this->display_log(); ?>
         </div>

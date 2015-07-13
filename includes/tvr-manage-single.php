@@ -202,9 +202,7 @@ $json_config_file = $this->micro_root_dir . $this->preferences['theme_in_focus']
 					<p><label><?php printf(wp_kses(__('Version: ', 'tvr-microthemer'), array())); ?></label>
                         <input type='text' autocomplete="off" name='theme_meta[Version]' value='<?php echo $meta_info['Version'];?>' />
                     </p>
-                    <!--<p><label>Design Pack URI: </label>
-                        <input type='text' autocomplete="off" name='theme_meta[URI]' value='<?php echo $meta_info['URI'];?>' />
-                    </p>-->
+
 					<p><label><?php printf(wp_kses(__('Description: ', 'tvr-microthemer'), array())); ?></label>
                         <textarea name='theme_meta[Description]' autocomplete="off"><?php echo $meta_info['Description'];?></textarea>
                     </p>
@@ -332,7 +330,7 @@ $json_config_file = $this->micro_root_dir . $this->preferences['theme_in_focus']
                                     <span class='delete-file view-file tvr-icon delete-icon'
                                           data-href='admin.php?page=<?php echo
                                     $this->managesinglepage;?>&action=tvr_delete_micro_file&file=<?php
-                                    echo $this->site_url . $array['file_url']; ?>&location=<?php
+                                    echo $array['file_url']; ?>&location=<?php
                                     echo $array['location']; ?>&_wpnonce=<?php echo wp_create_nonce('tvr_delete_micro_file'); ?>'>
                                     </span>
                                 </td>
