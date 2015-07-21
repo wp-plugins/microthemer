@@ -6,6 +6,10 @@ These include: media queries, default CSS units, suggested values, design packs.
 
 $data = '';
 
+// Only run performance functions if dev_mode is enabled
+$dev_mode = TVR_DEV_MODE ? 'true' : 'false';
+$data.= 'TVR_DEV_MODE = ' . $dev_mode . ';' . "\n\n";
+
 // add the design pack directories to the TvrCombo object already defined in the static version JS file
 $directories = array();
 foreach ($this->file_structure as $dir => $array) {

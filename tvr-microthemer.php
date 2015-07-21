@@ -5,7 +5,7 @@ Plugin URI: http://www.themeover.com/microthemer
 Text Domain: tvr-microthemer
 Domain Path: /languages
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. posts, pages, contact forms, headers, footers, sidebars) down to the smallest detail (unlike typical theme options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress theme or plugin. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced theme and plugin customization.
-Version: 4.0
+Version: 4.0.8
 Author: Themeover
 Author URI: http://www.themeover.com
 Text Domain: tvr-microthemer
@@ -53,7 +53,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 
-			var $version = '4.0';
+			var $version = '4.0.8';
             var $time = 0;
             // set this to true if version saved in DB is different, other actions may follow if new v
             var $new_version = false;
@@ -165,22 +165,34 @@ if ( is_admin() ) {
 					add_action("admin_menu", array(&$this, "microloader_menu_link"));
 				}
 
+                // get the directory paths
+                include dirname(__FILE__) .'/get-dir-paths.inc.php';
 
-				/***
-				limit the amount of code that runs on non-microthemer admin pages
-				-- the main functions need to run for the sake of creating
-				menu links to the plugin pages, but the code contained within is conditional.
-				***/
-				// save all plugin pages in an array for evaluation throughout the program
-				$this->all_pages = array(
-					$this->microthemeruipage,
-					$this->microthemespage,
+                /***
+                limit the amount of code that runs on non-microthemer admin pages
+                -- the main functions need to run for the sake of creating
+                menu links to the plugin pages, but the code contained within is conditional.
+                 ***/
+                // save all plugin pages in an array for evaluation throughout the program
+                $this->all_pages = array(
+                    $this->microthemeruipage,
+                    $this->microthemespage,
                     $this->managesinglepage,
-					$this->preferencespage
-				);
+                    $this->preferencespage
+                );
+                $page = isset($_GET['page']) ? $_GET['page'] : false;
 
-				// only initilize on plugin admin pages
-				if ( is_admin() and isset($_GET['page']) and in_array($_GET['page'], $this->all_pages) ) {
+                // use quick method of getting preferences at this stage (maybe shift code around another time)
+                $this->preferences = get_option($this->preferencesName);
+
+                // add shortcut to Microthemer if preference
+                if (!empty($this->preferences['admin_bar_shortcut'])
+                    and $this->preferences['admin_bar_shortcut'] == 1) {
+                    add_action( 'admin_bar_menu', array(&$this, 'custom_toolbar_link'), 999999);
+                }
+
+				// only initialize on plugin admin pages
+				if ( is_admin() and in_array($page, $this->all_pages) ) {
 
                     // save time for use with ensuring non-cached files
                     $this->time = time();
@@ -294,21 +306,36 @@ if ( is_admin() ) {
 
                     // easy preview of common devices
                     $this->mob_preview = array(
-                        array('Apple iPhone 4', 320, 480),
-                        array('Nokia Lumia 520', 320, 533),
-                        array('Apple iPhone 5', 320, 568),
-                        array('BlackBerry Z30', 360, 640),
-                        array('Google Nexus 5', 360, 640),
-                        array('Nokia N9', 360, 640),
-                        array('Samsung Gallaxy (All)', 360, 640),
-                        array('Apple iPhone 6', 375, 667),
-                        array('Google Nexus 4', 384, 640),
-                        array('LG Optimus L70', 384, 640),
-                        array('Apple iPhone 6 Plus', 414, 736),
-                        array('Google Nexus 7', 960, 600),
-                        array('BlackBerry PlayBook', 1024, 600),
-                        array('Apple iPad', 1024, 768),
-                        array('Google Nexus 10', 1280, 800),
+                        array('(P) Apple iPhone 4', 320, 480),
+                        array('(P) Apple iPhone 5', 320, 568),
+                        array('(P) BlackBerry Z30', 360, 640),
+                        array('(P) Google Nexus 5', 360, 640),
+                        array('(P) Nokia N9', 360, 640),
+                        array('(P) Samsung Gallaxy (All)', 360, 640),
+                        array('(P) Apple iPhone 6', 375, 667),
+                        array('(P) Google Nexus 4', 384, 640),
+                        array('(P) LG Optimus L70', 384, 640),
+                        array('(P) Apple iPhone 6 Plus', 414, 736),
+                        // landscape (with some exceptions)
+                        array('(L) Apple iPhone 4', 480, 320),
+                        array('(L) Nokia Lumia 520', 533, 320),
+                        array('(L) Apple iPhone 5', 568, 320),
+                        array('(P) Google Nexus 7', 600, 960),
+                        array('(P) BlackBerry PlayBook', 600, 1024),
+                        array('(L) BlackBerry Z30', 640, 360),
+                        array('(L) Google Nexus 5', 640, 360),
+                        array('(L) Nokia N9', 640, 360),
+                        array('(L) Samsung Gallaxy (All)', 640, 360),
+                        array('(L) Google Nexus 4', 640, 384),
+                        array('(L) LG Optimus L70', 640, 384),
+                        array('(L) Apple iPhone 6', 667, 375),
+                        array('(L) Apple iPhone 6 Plus', 736, 414),
+                        array('(P) Apple iPad', 768, 1024),
+                        array('(P) Google Nexus 10', 800, 1280),
+                        array('(L) Google Nexus 7', 960, 600),
+                        array('(L) BlackBerry PlayBook', 1024, 600),
+                        array('(L) Apple iPad', 1024, 768),
+                        array('(L) Google Nexus 10', 1280, 800)
                     );
 
                     // populate the default media queries
@@ -397,6 +424,8 @@ if ( is_admin() ) {
                         "safe_mode_notice" => 1,
                         "css_important" => 1,
                         "pie_by_default" => 0,
+                        //"admin_bar_main_ui" => 0, // adding
+                        "admin_bar_preview" => 0,
                         "admin_bar_shortcut" => 1,
                         "top_level_shortcut" => 0,
                         "first_and_last" => 0,
@@ -408,9 +437,6 @@ if ( is_admin() ) {
                         "tooltip_delay" => 500,
                         // "auto_capitalize" => 0 later, need to save folder name like selector (not just param)
                     );
-
-                    // get the directory paths
-                    include dirname(__FILE__) .'/get-dir-paths.inc.php';
 
                     // preferences that should not be reset if user resets global preferences (not actually an option yet)
                     $this->default_preferences_dont_reset = array(
@@ -496,6 +522,7 @@ if ( is_admin() ) {
 					}
 					// add scripts and styles
 					add_action( 'admin_init', array(&$this, 'add_css'));
+
 					// only microthemer needs custom jQuery and gzipping
 					if (TVR_MICRO_VARIANT == 'themer') {
 						add_action('admin_init', array(&$this, 'add_js'));
@@ -507,8 +534,59 @@ if ( is_admin() ) {
 								ob_start();
 						}
 					}
-				}
+
+                    /* PAGE SPECIFIC PHP PROCESSING (that must come before page is rendered)  */
+                    if ($page == $this->microthemeruipage or $page == $this->preferencespage){
+                        // update preferences (because admin bar prefs can't be updated if called later)
+                        add_action( 'admin_init', array(&$this, 'process_preferences_form'));
+                    }
+
+                }
 			}
+
+            // add a link to the WP Toolbar (this was copied from frontend class - use better method later)
+            function custom_toolbar_link($wp_admin_bar) {
+                if (!empty($this->preferences['top_level_shortcut'])
+                    and $this->preferences['top_level_shortcut'] == 1){
+                    $parent = false;
+                } else {
+                    $parent = 'site-name';
+                }
+
+                $args = array(
+                    'id' => 'wp-mcr-shortcut',
+                    'title' => 'Microthemer',
+                    'parent' => $parent,
+                    'href' => $this->wp_admin_url . 'admin.php?page=' . $this->microthemeruipage,
+                    'meta' => array(
+                        'class' => 'wp-mcr-shortcut',
+                        'title' => __('Jump to the Microthemer interface', 'tvr-microthemer')
+                    )
+                );
+                $wp_admin_bar->add_node($args);
+            }
+
+            // check if an url is valid
+            function is_valid_url( $url ) {
+                if ( '' != $url ) {
+                    /* Using a HEAD request, we'll be able to know if the URL actually exists.
+                     * the reason we're not using a GET request is because it might take (much) longer. */
+                    $response = wp_remote_head( $url, array( 'timeout' => 3 ) );
+                    /* We'll match these status codes against the HTTP response. */
+                    $accepted_status_codes = array( 200, 301, 302 );
+
+                    /* If no error occured and the status code matches one of the above, go on... */
+                    if ( ! is_wp_error( $response ) &&
+                        in_array( wp_remote_retrieve_response_code( $response ), $accepted_status_codes ) ) {
+                        /* Target URL exists. Let's return the (working) URL */
+                        return $url;
+                    }
+                    /* If we have reached this point, it means that either the HEAD request didn't work or that the URL
+                     * doesn't exist. This is a fallback so we don't show the malformed URL */
+                    return '';
+                }
+                return $url;
+            }
 
             // set defaults for user's property preferences
             function set_my_props_defaults(){
@@ -1501,6 +1579,13 @@ if ( is_admin() ) {
                             '<p>' . wp_kses(__('Your Microthemer preferences have been successfully updated.', 'tvr-microthemer'), array()) . '</p>',
                             'notice'
                         );
+                        // the admin bar shortcut needs to be applied here else it will only show on next page load
+                        if (!empty($this->preferences['admin_bar_shortcut']) and
+                            $this->preferences['admin_bar_shortcut'] == 1) {
+                            add_action( 'admin_bar_menu', array(&$this, 'custom_toolbar_link'), 999999);
+                        } else {
+                            remove_action( 'admin_bar_menu', array(&$this, 'custom_toolbar_link'), 999999 );
+                        }
                     }
                 }
             }
@@ -1985,9 +2070,6 @@ if ( is_admin() ) {
 
                     /* PREFERENCES FUNCTIONS MOVED TO MAIN UI */
 
-                    // update preferences
-                    $this->process_preferences_form();
-
                     // update the MQs
                     if (isset($_POST['tvr_update_media_queries_submit'])){
                         check_admin_referer('tvr_media_queries_form');
@@ -2330,8 +2412,7 @@ if ( is_admin() ) {
 				// only run code on preferences page
 				if( $_GET['page'] == $this->preferencespage ) {
 
-                    // update preferences
-                    $this->process_preferences_form();
+
 
 					// include preferences interface (only microthemer)
 					if (TVR_MICRO_VARIANT == 'themer') {
@@ -6374,7 +6455,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '4.0';
+			var $version = '4.0.8';
             var $microthemeruipage = 'tvr-microthemer.php';
 
 			/**
@@ -6588,7 +6669,7 @@ if (!is_admin()) {
 							return $curpageURL;
 						}
 					}
-                    ?><meta name='iframe-url' id='iframe-url' content='<?php echo rawurlencode(currentPageURL());?>' /><?php
+                    ?><meta name='iframe-url' id='iframe-url' content='<?php echo rawurlencode(currentPageURL());?>' /><meta name='mt-show-admin-bar' id='mt-show-admin-bar' content='<?php echo $this->preferences['admin_bar_preview'];?>' /><?php
 				}
 			}
 

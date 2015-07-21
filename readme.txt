@@ -100,6 +100,16 @@ View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-cha
 
 == Upgrade Notice ==
 
+= 4.0.8 (July 21st) =
+* Landscape dimensions for common phone previews added.
+* Fallback added for getting Microthemer's stylesheet when a 3rd party plugin strips out it's id.
+* A cap on the number of elements (20) Microthemer will highlight and analyse has been added. This prevents broad selectors applied to pages with large amounts of HTML from overloading the browser.
+* Admin bar in the preview can be optionally shown. I discovered a situation where hiding the admin bar with CSS could artificially interfere with the page layout. Also, some users might prefer to make use of the admin bar if it helps their workflow.
+* To make the admin bar more useful for those that enable it, Microthemer now follows links to the admin area (rather than warning against it). The difference now is that following an admin link in the preview will direct the whole Microthemer interface to a new page, not just in the preview.
+* More auto-saves have been added to the following actions so that leaving the Microthemer interface (potentially by accident) doesn't result in the loss of settings. Auto-save now happens when a folder or selector is: created, deleted, moved, or renamed.
+* Setting the shortcut to Microthemer in the admin bar wasn't having an effect on admin pages (only the admin bar on the frontend of the site). Overall it was a bit glitchy.
+* The common screen previews at the top left of the rulers were not disappearing properly when hiding the interface with the logo toggle.
+
 = 4.0 (July 12th) =
 
 New Features

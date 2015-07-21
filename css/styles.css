@@ -1724,6 +1724,8 @@ a.no-line {
     #tvr .tvr-message .short {
       font-weight: bold;
       display: block; }
+    #tvr .tvr-message.tvr-info {
+      border-left-color: #768293; }
     #tvr .tvr-message.tvr-warning {
       border-left-color: #FFBA42; }
     #tvr .tvr-message.tvr-error {
@@ -2769,10 +2771,11 @@ Left Toolbar
     box-shadow: none; }
 
 #m-logo {
+  top: 37px;
+  opacity: 0.6;
   position: absolute;
   z-index: 99998;
   left: 5px;
-  top: 5px;
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -2780,8 +2783,11 @@ Left Toolbar
   background-image: url('../images/MT_sprite_34.png?v=27');
   background-repeat: no-repeat;
   background-position: -325.2px -165.2px;
-  background-size: 1920px 1120px;
-  opacity: 0.6; }
+  background-size: 1920px 1120px; }
+  .do-not-show-admin-bar #m-logo {
+    top: 5px; }
+  #m-logo.on {
+    top: 5px; }
   #m-logo:hover, #m-logo.on {
     opacity: 1; }
   #m-logo.active {
@@ -3078,7 +3084,7 @@ Common device preview
   #common-devices-preview .tvr-popright {
     top: 0;
     left: 0;
-    width: 280px;
+    width: 300px;
     background: rgba(47, 56, 70, 0.7); }
   #common-devices-preview .scrollable-area {
     padding-top: 25px;
@@ -5375,10 +5381,10 @@ Ruler
       left: 0;
       z-index: 6; }
 
-#v-top-controls, .show-rulers .ruler-stuff, .show-advanced #advanced-wizard, #v-left-controls-wrap {
+#common-devices-preview, #v-top-controls, .show-rulers .ruler-stuff, .show-advanced #advanced-wizard, #v-left-controls-wrap {
   display: none; }
 
-.show-interface.show-rulers .ruler-stuff, .show-interface.show-advanced #advanced-wizard, .show-interface #v-top-controls, .show-interface #v-left-controls-wrap {
+.show-interface.show-rulers .ruler-stuff, .show-interface.show-advanced #advanced-wizard, .show-interface #v-top-controls, .show-interface #common-devices-preview, .show-interface #v-left-controls-wrap {
   display: block; }
 .show-interface.show-rulers .ruler-stuff.hidden {
   display: none; }

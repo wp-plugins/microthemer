@@ -42,9 +42,11 @@ if ($refresh_css){
     }
 }
 
+// are we hiding the admin bar?
+$this->preferences['admin_bar_preview'] ? $ui_class = 'show-admin-bar' : $ui_class = 'do-not-show-admin-bar';
 ?>
 
-<div id="tvr" class='wrap tvr-wrap'>
+<div id="tvr" class='wrap tvr-wrap <?php echo $ui_class; ?>'>
 	<div id='tvr-ui'>
 
         <span id="ui-nonce"><?php echo wp_create_nonce('tvr_microthemer_ui_load_styles'); ?></span>

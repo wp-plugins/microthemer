@@ -42,9 +42,12 @@ body.tvr-crosshair .tvr-overlay {
 	cursor: default !important;
 }
 html.no-admin-bar-please {
-    margin-top:0 !important;
+    /*margin-top:0 !important;*/
 }
 html.no-admin-bar-please #wpadminbar,
 html.no-admin-bar-please #adminmenuwrap {
     display: none !important;
+}
+html.no-admin-bar-please body {
+    margin-top: -32px;
 }

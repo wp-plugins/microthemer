@@ -634,6 +634,9 @@ a.no-line {
       font-weight:bold;
       display: block;
     }
+    &.tvr-info {
+      border-left-color: $lighterBlue;
+    }
     &.tvr-warning {
       border-left-color: $orange;
     }
@@ -1854,6 +1857,7 @@ Frontend
   background: $lightBlue;
   position:relative;
   width: 100%;
+
   .show-rulers.show-interface & {
     padding:19px 0 0 19px;
   }
@@ -1869,6 +1873,7 @@ Frontend
   @include box-sizing();
   @include grey-shadow();
   //padding-right:18px;
+  //overflow: hidden; // alternative way to deal with unwanted admin bar
 }
 #rHighlight-wrap {
   position: absolute;
@@ -1966,16 +1971,24 @@ Left Toolbar
 
 }
 #m-logo {
+  top:37px;
+  opacity: 0.6;
+  .do-not-show-admin-bar & {
+    top:5px;
+
+  }
   position:absolute;
   z-index:99998;
   left:5px;
-  top:5px;
   width:30px;
   height:30px;
   cursor: pointer;
   background:$darkBlue;
   @include sprite(9.13, 5.13);
-  opacity: 0.6;
+
+  &.on {
+    top:5px;
+  }
   &:hover,
   &.on {
     opacity: 1;
@@ -2151,7 +2164,7 @@ Common device preview
   .tvr-popright {
     top:0;
     left:0;
-    width: 280px;
+    width: 300px;
     background: $mediumBlueAlpha;
   }
   .scrollable-area {
@@ -3906,6 +3919,7 @@ Ruler
 
 
 // COMPLETELY HIDE INTERFACE
+#common-devices-preview,
 #v-top-controls,
 .show-rulers .ruler-stuff,
 .show-advanced #advanced-wizard,
@@ -3916,6 +3930,7 @@ Ruler
   &.show-rulers .ruler-stuff,
   &.show-advanced #advanced-wizard,
   #v-top-controls,
+  #common-devices-preview,
   #v-left-controls-wrap {
     display: block;
   }

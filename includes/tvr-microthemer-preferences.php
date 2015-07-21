@@ -80,7 +80,15 @@ if ($this->edge_mode['available'] and !empty($this->preferences['edge_mode'])){
 				'top_level_shortcut' => array(
 					'label' => wp_kses(__('Include admin bar shortcut as a top level link', 'tvr-microthemer'), array()),
 					'explain' => wp_kses(__('If you are enabling the Microthemer shortcut in the admin bar, you can either have it as a top level menu link or as a sub-menu item of the main menu.', 'tvr-microthemer'), array())
-				)
+				),
+                /*'admin_bar_main_ui' => array(
+                    'label' => wp_kses(__('Display WP admin bar on Microthemer page', 'tvr-microthemer'), array()),
+                    'explain' => wp_kses(__('Display the WordPress admin bar at the top of the main Microthemer interface page'), array())
+                ),*/
+                'admin_bar_preview' => array(
+                    'label' => wp_kses(__('Display WP admin bar on site preview', 'tvr-microthemer'), array()),
+                    'explain' => wp_kses(__('Display the WordPress admin bar at the top of every page in the site preview', 'tvr-microthemer'), array())
+                ),
 				/*'boxsizing_by_default' => array(
 					'label' => __('Always use the box-sizing pollyfill where relevant', 'tvr-microthemer'),
 					'label_no' => __('(configure manually)', 'tvr-microthemer'),
