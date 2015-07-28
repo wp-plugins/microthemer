@@ -75,7 +75,7 @@ if (
 
 // determine if the user has applied a value for this field, adjust comp class accordingly
 $comp_class = 'comp-style cprop-' . str_replace('_', '-', $property);
-if (!empty($value) or $value === '0') {
+if (!empty($value) or $value === 0 or $value === '0') {
     $man_class = ' manual-val';
     $comp_class.= ' hidden';
 } else {

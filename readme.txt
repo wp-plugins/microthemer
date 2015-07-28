@@ -100,6 +100,14 @@ View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-cha
 
 == Upgrade Notice ==
 
+= 4.1.3 (July 28th - later on) =
+* (Major bug) Zero values for styles (e.g. padding-top:0) were not being redisplayed in the interface. This meant they were easily lost.
+* In Firefox (in particular) the tooltips would get stuck and couldn't be cleared under some conditions.
+* The highlighting could get stuck too on when auto-closing the quick edit menu (a feature added in the last version 4.1.0)
+
+= 4.1.1 (July 28th - later on) =
+* In Firefox (in particular) the tooltips would get stuck and couldn't be cleared under some conditions.
+
 = 4.1.0 (July 28th) =
 * Under some circumstances the key for identifying the last used responsive tab could become out of date. This caused a javascript error that prevented the interface from loading properly (spinning wheel of death).
 * The main/quick edit menus closes automatically after adding or editing a selector. It feels more inline with user expectation.

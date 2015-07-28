@@ -1,5 +1,12 @@
 CHANGELOG
 
+4.1.3 (July 28th - later on)
+
+# Bugs Fixed
+* (Major bug) Zero values for styles (e.g. padding-top:0) were not being redisplayed in the interface. This meant they were easily lost.
+* In Firefox (in particular) the tooltips would get stuck and couldn't be cleared under some conditions.
+* The highlighting could get stuck too on when auto-closing the quick edit menu (a feature added in the last version 4.1.0)
+
 4.1.0 (July 28th)
 
 # Bugs Fixed
