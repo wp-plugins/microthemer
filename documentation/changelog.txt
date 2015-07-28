@@ -1,5 +1,13 @@
 CHANGELOG
 
+4.1.0 (July 28th)
+
+# Bugs Fixed
+* Under some circumstances the key for identifying the last used responsive tab could become out of date. This caused a javascript error that prevented the interface from loading properly (spinning wheel of death).
+
+# Change
+* The main/quick edit menus closes automatically after adding or editing a selector. It feels more inline with user expectation.
+
 4.0.8 (July 21st)
 * Landscape dimensions for common phone previews added.
 * Fallback added for getting Microthemer's stylesheet when a 3rd party plugin strips out it's id.
