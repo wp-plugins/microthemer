@@ -4,7 +4,7 @@ Contributors: bastywebb, ahrale
 Donate link: http://themeover.com/microthemer/
 Tags: microthemer, theme customizer, theme editor, theme tweaker, theme generator, css plugin, css editor, css code generator, visual css editor, visual design tool, css3 pie, stylesheet, style.css, micro themes, microloader, wordpress, google fonts, google web fonts, web fonts, wordpress web fonts, google fonts plugin, wp google fonts, google
 Requires at least: 3.6
-Tested up to: 4.2.2
+Tested up to: 4.2.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -19,6 +19,10 @@ Microthemer is a feature-rich visual design plugin for customizing the appearanc
 **Main Features in 99 seconds**
 
 https://www.youtube.com/watch?v=HFxyzoMl-Ro
+
+**Live Demo**
+
+https://www.youtube.com/watch?v=FNEx-q5wQzI
 
 **Microthemer Lite** is a free trial that gives you full editing features and the same customer support paying customers receive. The only difference is that it limits you to editing/creating 9 'selectors’ e.g.
 
@@ -99,6 +103,9 @@ Microthemer has built-in documentation! Just click the help icon (top right of t
 View <a title="Microthemer Changelog" href="http://themeover.com/microthemer-changelog-3-x/" target="_blank">Microthemer's Changelog here</a>
 
 == Upgrade Notice ==
+
+= 4.1.4 (Aug 4th, 2015) =
+* On multisite, the Microthemer URL in the admin toolbar could be invalid.
 
 = 4.1.3 (July 28th - later on) =
 * (Major bug) Zero values for styles (e.g. padding-top:0) were not being redisplayed in the interface. This meant they were easily lost.

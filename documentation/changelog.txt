@@ -1,5 +1,10 @@
 CHANGELOG
 
+4.1.4 (Aug 4th, 2015)
+
+# Bugs Fixed
+* On multisite, the Microthemer URL in the admin toolbar could be invalid.
+
 4.1.3 (July 28th - later on)
 
 # Bugs Fixed
@@ -7,7 +12,7 @@ CHANGELOG
 * In Firefox (in particular) the tooltips would get stuck and couldn't be cleared under some conditions.
 * The highlighting could get stuck too on when auto-closing the quick edit menu (a feature added in the last version 4.1.0)
 
-4.1.0 (July 28th)
+4.1.0 (July 28th, 2015)
 
 # Bugs Fixed
 * Under some circumstances the key for identifying the last used responsive tab could become out of date. This caused a javascript error that prevented the interface from loading properly (spinning wheel of death).
@@ -15,7 +20,7 @@ CHANGELOG
 # Change
 * The main/quick edit menus closes automatically after adding or editing a selector. It feels more inline with user expectation.
 
-4.0.8 (July 21st)
+4.0.8 (July 21st, 2015)
 * Landscape dimensions for common phone previews added.
 * Fallback added for getting Microthemer's stylesheet when a 3rd party plugin strips out it's id.
 * A cap on the number of elements (20) Microthemer will highlight and analyse has been added. This prevents broad selectors applied to pages with large amounts of HTML from overloading the browser.
@@ -25,7 +30,7 @@ CHANGELOG
 * Setting the shortcut to Microthemer in the admin bar wasn't having an effect on admin pages (only the admin bar on the frontend of the site). Overall it was a bit glitchy.
 * The common screen previews at the top left of the rulers were not disappearing properly when hiding the interface with the logo toggle.
 
-4.0 (July 13th)
+4.0 (July 13th, 2015)
 
 # New Features
 * Easier to add responsive styles.

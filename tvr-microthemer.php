@@ -5,7 +5,7 @@ Plugin URI: http://www.themeover.com/microthemer
 Text Domain: tvr-microthemer
 Domain Path: /languages
 Description: Microthemer is a feature-rich visual design plugin for customizing the appearance of ANY WordPress Theme or Plugin Content (e.g. posts, pages, contact forms, headers, footers, sidebars) down to the smallest detail (unlike typical theme options). For CSS coders, Microthemer is a proficiency tool that allows them to rapidly restyle a WordPress theme or plugin. For non-coders, Microthemer's intuitive interface and "Double-click to Edit" feature opens the door to advanced theme and plugin customization.
-Version: 4.1.3
+Version: 4.1.4
 Author: Themeover
 Author URI: http://www.themeover.com
 Text Domain: tvr-microthemer
@@ -53,7 +53,7 @@ if ( is_admin() ) {
 		// define
 		class tvr_microthemer_admin {
 
-			var $version = '4.1.3';
+			var $version = '4.1.4';
             var $time = 0;
             // set this to true if version saved in DB is different, other actions may follow if new v
             var $new_version = false;
@@ -557,7 +557,7 @@ if ( is_admin() ) {
                     'id' => 'wp-mcr-shortcut',
                     'title' => 'Microthemer',
                     'parent' => $parent,
-                    'href' => $this->wp_admin_url . 'admin.php?page=' . $this->microthemeruipage,
+                    'href' => $this->wp_blog_admin_url . 'admin.php?page=' . $this->microthemeruipage,
                     'meta' => array(
                         'class' => 'wp-mcr-shortcut',
                         'title' => __('Jump to the Microthemer interface', 'tvr-microthemer')
@@ -6455,7 +6455,7 @@ if (!is_admin()) {
 			var $preferencesName = 'preferences_themer_loader';
 			// @var array $preferences Stores the ui options for this plugin
 			var $preferences = array();
-			var $version = '4.1.3';
+			var $version = '4.1.4';
             var $microthemeruipage = 'tvr-microthemer.php';
 
 			/**
@@ -6541,7 +6541,7 @@ if (!is_admin()) {
                     'id' => 'wp-mcr-shortcut',
                     'title' => 'Microthemer',
                     'parent' => $parent,
-                    'href' => $this->wp_admin_url . 'admin.php?page=' . $this->microthemeruipage,
+                    'href' => $this->wp_blog_admin_url . 'admin.php?page=' . $this->microthemeruipage,
                     'meta' => array(
                         'class' => 'wp-mcr-shortcut',
                         'title' => __('Jump to the Microthemer interface', 'tvr-microthemer')

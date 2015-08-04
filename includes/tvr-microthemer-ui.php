@@ -52,7 +52,7 @@ $this->preferences['admin_bar_preview'] ? $ui_class = 'show-admin-bar' : $ui_cla
         <span id="ui-nonce"><?php echo wp_create_nonce('tvr_microthemer_ui_load_styles'); ?></span>
         <span id="fonts-api" rel="<?php echo $this->thispluginurl.'includes/fonts-api.php'; ?>"></span>
         <span id="ui-url" rel="<?php echo 'admin.php?page=' . $this->microthemeruipage; ?>"></span>
-        <span id="admin-url" rel="<?php echo $this->wp_admin_url; ?>"></span>
+        <span id="admin-url" rel="<?php echo $this->wp_blog_admin_url; ?>"></span>
 
         <span id="ajaxUrl" rel="<?php echo $this->site_url .'/wp-admin/admin.php?page='.$this->microthemeruipage.'&_wpnonce='.wp_create_nonce('mcth_simple_ajax') ?>"></span>
         <span id="resetUrl" rel="<?php echo '&_wpnonce='.wp_create_nonce('tvr_microthemer_ui_reset');?>&action=tvr_ui_reset"></span>
@@ -1036,7 +1036,7 @@ $this->preferences['admin_bar_preview'] ? $ui_class = 'show-admin-bar' : $ui_cla
 			<div class="heading"><?php printf(wp_kses(__('WPTouch Mobile Plugin', 'tvr-microthemer'), array())); ?></div>
 			<p><?php wp_kses(
 				printf(__('Microthemer can be used to style the mobile-only theme that WPTouch presents to mobile devices. In order to load the mobile theme in Microthemer\'s preview window, simply enable WPTouch mode using the toggle in the left toolbar. This toggle will only appear if Microthemer detects that you have installed and activated WPTouch. There is a <a %1$s>free</a> and <a %2$s>premium version</a> of WPTouch.', 'tvr-microthemer'),
-					'target="_blank" href="<?php echo $this->wp_admin_url; ?>plugin-install.php?tab=search&type=term&s=wptouch+mobile+plugin"',
+					'target="_blank" href="<?php echo $this->wp_blog_admin_url; ?>plugin-install.php?tab=search&type=term&s=wptouch+mobile+plugin"',
 					'target="_blank" href="http://www.wptouch.com/"' ),
 				array( 'a' => array( 'href' => array(), 'target' => array() ) )
 			); ?></p>
